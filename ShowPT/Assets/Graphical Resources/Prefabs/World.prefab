@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1712368002154044}
+  m_IsPrefabParent: 1
+--- !u!1 &1712368002154044
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4357565715294106}
+  - component: {fileID: 114883880004481444}
+  - component: {fileID: 114586249490550762}
+  m_Layer: 0
+  m_Name: World
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4357565715294106
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1712368002154044}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 322.99692, y: 2.689984, z: 314.38547}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114586249490550762
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1712368002154044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ac2c1613f42b5e4f9b7ea45ecf71916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radioCohesion: 40
+  radioSeparation: 6
+  radioAligment: 20
+  radioAvoid: 20
+  KCohesion: 60
+  KSeparation: 50
+  KAligment: 80
+  KWonder: 10
+  KAvoid: 8000
+  KPlayer: 150
+  KMinH: 200
+  maxAcceleration: 20
+  maxVelocity: 20
+  maxFieldOfViewAngle: 180
+  wanderJitter: 180
+  wanderRadius: 30
+  wanderDistance: 100
+--- !u!114 &114883880004481444
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1712368002154044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0583ca0d4a663ac46ae61a4fb5e0ca86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentPrefab: {fileID: 4190641036543938, guid: b2733f39735bd0242afce79aa139f9ec,
+    type: 2}
+  nAgents: 20
+  agents: []
+  spawnRadio: 50
+  debugWonder: 0
+  hightPlayer: 5
+  radiousPlayer: 3
+  minimunHight: 0

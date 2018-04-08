@@ -1,0 +1,647 @@
+fileFormatVersion: 2
+guid: 655d96184ca449748acc40312e2ce16b
+timeCreated: 1517409334
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: ARMS_CONTROL
+    100002: ARMS_GEO
+    100004: ARMS_GLOBAL_CONTROL
+    100006: ARMS_GLOBAL_SCALE
+    100008: ARMS_JOINS
+    100010: ARMS_MAIN
+    100012: Control_free_hand
+    100014: LeftCollar01
+    100016: LeftCollar02
+    100018: LeftElbow_Ctrl_FK
+    100020: LeftElbow_FK_01
+    100022: LeftElbow_FK_02
+    100024: LeftElbow_FK_END_3
+    100026: LeftElbow_Grp_FK
+    100028: LeftElbow_IK_01
+    100030: LeftElbow_IK_02
+    100032: LeftElbow_IK_END_3
+    100034: LeftElbow_RESOLVE_01
+    100036: LeftElbow_RESOLVE_02
+    100038: LeftElbow_RESOLVE_END_3
+    100040: LeftElbowControl_IK
+    100042: LeftHand
+    100044: LeftHand2
+    100046: LeftHand_Ctrl
+    100048: LeftHand_Grp
+    100050: LeftHand_Grp_Top
+    100052: LeftHandle_Ctrl_IK
+    100054: LeftHandle_Grp_IK
+    100056: LeftHandle_IK
+    100058: LeftIndexFinger1
+    100060: LeftIndexFinger2
+    100062: LeftIndexFinger3
+    100064: LeftIndexFinger4
+    100066: LeftMiddleFinger1
+    100068: LeftMiddleFinger2
+    100070: LeftMiddleFinger3
+    100072: LeftMiddleFinger4
+    100074: LeftPinkyFinger1
+    100076: LeftPinkyFinger2
+    100078: LeftPinkyFinger3
+    100080: LeftPinkyFinger4
+    100082: LeftRingFinger1
+    100084: LeftRingFinger2
+    100086: LeftRingFinger3
+    100088: LeftRingFinger4
+    100090: LeftShoulder01
+    100092: LeftShoulder02
+    100094: LeftShoulder_FK_02
+    100096: LeftShoulder_IK_02
+    100098: LeftShoulder_RESOLVE_02
+    100100: LeftShoulderTwist_RESOLVE_03
+    100102: LeftThumb1
+    100104: LeftThumb2
+    100106: LeftThumb3
+    100108: LeftThumb4
+    100110: LeftTwist_RESOLVE
+    100112: LeftUpperArm_Ctrl_FK
+    100114: LeftUpperArm_Grp_FK
+    100116: locator1
+    100118: prop_player_arms
+    100120: prop_shotgun_ammo
+    100122: prop_shotgun_main
+    100124: prop_shotgun_reload
+    100126: prop_shotgun_trigger
+    100128: RightCollar01
+    100130: RightCollar02
+    100132: RightElbow_Ctrl_FK
+    100134: RightElbow_FK_01
+    100136: RightElbow_FK_02
+    100138: RightElbow_FK_END_03
+    100140: RightElbow_Grp_FK
+    100142: RightElbow_IK_01
+    100144: RightElbow_IK_02
+    100146: RightElbow_IK_03
+    100148: RightElbow_RESOLVE_01
+    100150: RightElbow_RESOLVE_02
+    100152: RightElbow_RESOLVE_END_03
+    100154: RightElbowControl_IK
+    100156: RightHand
+    100158: RightHand2
+    100160: RightHand_Ctrl
+    100162: RightHand_Grp
+    100164: RightHand_Grp_Top
+    100166: RightHandl_IK
+    100168: RightHandle_Ctrl_IK
+    100170: RightHandle_Grp_IK
+    100172: RightIndexFinger1
+    100174: RightIndexFinger2
+    100176: RightIndexFinger3
+    100178: RightIndexFinger4
+    100180: RightMiddleFinger1
+    100182: RightMiddleFinger2
+    100184: RightMiddleFinger3
+    100186: RightMiddleFinger4
+    100188: RightPinkyFinger1
+    100190: RightPinkyFinger2
+    100192: RightPinkyFinger3
+    100194: RightPinkyFinger4
+    100196: RightRingFinger1
+    100198: RightRingFinger2
+    100200: RightRingFinger3
+    100202: RightRingFinger4
+    100204: RightShoulder01
+    100206: RightShoulder02
+    100208: RightShoulder_FK_02
+    100210: RightShoulder_IK_02
+    100212: RightShoulder_RESOLVE_02
+    100214: RightShoulderTwist_RESOLVE_03
+    100216: RightThumb1
+    100218: RightThumb2
+    100220: RightThumb3
+    100222: RightThumb4
+    100224: RightTwist_RESOLVE
+    100226: RightUpperArm_Ctrl_FK
+    100228: RightUpperArm_Grp_FK
+    100230: ROOT
+    100232: //RootNode
+    400000: ARMS_CONTROL
+    400002: ARMS_GEO
+    400004: ARMS_GLOBAL_CONTROL
+    400006: ARMS_GLOBAL_SCALE
+    400008: ARMS_JOINS
+    400010: ARMS_MAIN
+    400012: Control_free_hand
+    400014: LeftCollar01
+    400016: LeftCollar02
+    400018: LeftElbow_Ctrl_FK
+    400020: LeftElbow_FK_01
+    400022: LeftElbow_FK_02
+    400024: LeftElbow_FK_END_3
+    400026: LeftElbow_Grp_FK
+    400028: LeftElbow_IK_01
+    400030: LeftElbow_IK_02
+    400032: LeftElbow_IK_END_3
+    400034: LeftElbow_RESOLVE_01
+    400036: LeftElbow_RESOLVE_02
+    400038: LeftElbow_RESOLVE_END_3
+    400040: LeftElbowControl_IK
+    400042: LeftHand
+    400044: LeftHand2
+    400046: LeftHand_Ctrl
+    400048: LeftHand_Grp
+    400050: LeftHand_Grp_Top
+    400052: LeftHandle_Ctrl_IK
+    400054: LeftHandle_Grp_IK
+    400056: LeftHandle_IK
+    400058: LeftIndexFinger1
+    400060: LeftIndexFinger2
+    400062: LeftIndexFinger3
+    400064: LeftIndexFinger4
+    400066: LeftMiddleFinger1
+    400068: LeftMiddleFinger2
+    400070: LeftMiddleFinger3
+    400072: LeftMiddleFinger4
+    400074: LeftPinkyFinger1
+    400076: LeftPinkyFinger2
+    400078: LeftPinkyFinger3
+    400080: LeftPinkyFinger4
+    400082: LeftRingFinger1
+    400084: LeftRingFinger2
+    400086: LeftRingFinger3
+    400088: LeftRingFinger4
+    400090: LeftShoulder01
+    400092: LeftShoulder02
+    400094: LeftShoulder_FK_02
+    400096: LeftShoulder_IK_02
+    400098: LeftShoulder_RESOLVE_02
+    400100: LeftShoulderTwist_RESOLVE_03
+    400102: LeftThumb1
+    400104: LeftThumb2
+    400106: LeftThumb3
+    400108: LeftThumb4
+    400110: LeftTwist_RESOLVE
+    400112: LeftUpperArm_Ctrl_FK
+    400114: LeftUpperArm_Grp_FK
+    400116: locator1
+    400118: prop_player_arms
+    400120: prop_shotgun_ammo
+    400122: prop_shotgun_main
+    400124: prop_shotgun_reload
+    400126: prop_shotgun_trigger
+    400128: RightCollar01
+    400130: RightCollar02
+    400132: RightElbow_Ctrl_FK
+    400134: RightElbow_FK_01
+    400136: RightElbow_FK_02
+    400138: RightElbow_FK_END_03
+    400140: RightElbow_Grp_FK
+    400142: RightElbow_IK_01
+    400144: RightElbow_IK_02
+    400146: RightElbow_IK_03
+    400148: RightElbow_RESOLVE_01
+    400150: RightElbow_RESOLVE_02
+    400152: RightElbow_RESOLVE_END_03
+    400154: RightElbowControl_IK
+    400156: RightHand
+    400158: RightHand2
+    400160: RightHand_Ctrl
+    400162: RightHand_Grp
+    400164: RightHand_Grp_Top
+    400166: RightHandl_IK
+    400168: RightHandle_Ctrl_IK
+    400170: RightHandle_Grp_IK
+    400172: RightIndexFinger1
+    400174: RightIndexFinger2
+    400176: RightIndexFinger3
+    400178: RightIndexFinger4
+    400180: RightMiddleFinger1
+    400182: RightMiddleFinger2
+    400184: RightMiddleFinger3
+    400186: RightMiddleFinger4
+    400188: RightPinkyFinger1
+    400190: RightPinkyFinger2
+    400192: RightPinkyFinger3
+    400194: RightPinkyFinger4
+    400196: RightRingFinger1
+    400198: RightRingFinger2
+    400200: RightRingFinger3
+    400202: RightRingFinger4
+    400204: RightShoulder01
+    400206: RightShoulder02
+    400208: RightShoulder_FK_02
+    400210: RightShoulder_IK_02
+    400212: RightShoulder_RESOLVE_02
+    400214: RightShoulderTwist_RESOLVE_03
+    400216: RightThumb1
+    400218: RightThumb2
+    400220: RightThumb3
+    400222: RightThumb4
+    400224: RightTwist_RESOLVE
+    400226: RightUpperArm_Ctrl_FK
+    400228: RightUpperArm_Grp_FK
+    400230: ROOT
+    400232: //RootNode
+    2300000: prop_shotgun_ammo
+    2300002: prop_shotgun_main
+    2300004: prop_shotgun_reload
+    2300006: prop_shotgun_trigger
+    3300000: prop_shotgun_ammo
+    3300002: prop_shotgun_main
+    3300004: prop_shotgun_reload
+    3300006: prop_shotgun_trigger
+    4300000: prop_player_arms
+    4300002: prop_shotgun_ammo
+    4300004: prop_shotgun_main
+    4300006: prop_shotgun_reload
+    4300008: prop_shotgun_trigger
+    7400000: Shoot
+    7400002: Idle
+    7400004: Walk
+    7400006: Run
+    7400008: Walk>Run
+    7400010: Run>Walk
+    7400012: Reload Start
+    7400014: Reload
+    7400016: Reload End
+    9500000: //RootNode
+    13700000: prop_player_arms
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: male_generic
+    second: {fileID: 2100000, guid: 56ce8215877c3b148b18b29244e583d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shotgun1
+    second: {fileID: 2100000, guid: 6ea88a062d57e8441a3f9a8dd170913f, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 300
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Shoot
+      takeName: Take 001
+      firstFrame: 301
+      lastFrame: 345
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.997297
+        functionName: checkMouseInput
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.0027030173
+        functionName: decreaseAmmo
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Walk
+      takeName: Take 001
+      firstFrame: 350
+      lastFrame: 410
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Run
+      takeName: Take 001
+      firstFrame: 430
+      lastFrame: 464
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Walk>Run
+      takeName: Take 001
+      firstFrame: 420
+      lastFrame: 430
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Run>Walk
+      takeName: Take 001
+      firstFrame: 465
+      lastFrame: 475
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Reload Start
+      takeName: Take 001
+      firstFrame: 480
+      lastFrame: 530
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Reload
+      takeName: Take 001
+      firstFrame: 530
+      lastFrame: 632
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.98648643
+        functionName: reloadAndCheck
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.4918921
+        functionName: increaseAmmo
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Reload End
+      takeName: Take 001
+      firstFrame: 633
+      lastFrame: 771
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.6054053
+        functionName: increaseAmmo
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.98691374
+        functionName: endReload
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
