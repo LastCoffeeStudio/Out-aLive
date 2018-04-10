@@ -16,7 +16,7 @@ MonoBehaviour:
     m_Settings:
       mode: 0
       depth:
-        scale: 1
+        scale: 0.074
       motionVectors:
         sourceOpacity: 1
         motionImageOpacity: 0
@@ -40,15 +40,15 @@ MonoBehaviour:
         stationaryBlending: 0.95
         motionBlending: 0.85
   ambientOcclusion:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
-      intensity: 0.15
-      radius: 1
+      intensity: 1.15
+      radius: 0.48
       sampleCount: 3
       downsampling: 0
       forceForwardCompatibility: 0
       ambientOnly: 0
-      highPrecision: 0
+      highPrecision: 1
   screenSpaceReflection:
     m_Enabled: 0
     m_Settings:
@@ -71,9 +71,9 @@ MonoBehaviour:
   depthOfField:
     m_Enabled: 0
     m_Settings:
-      focusDistance: 0.64
-      aperture: 0.7
-      focalLength: 8
+      focusDistance: 0.9
+      aperture: 2
+      focalLength: 16
       useCameraFov: 0
       kernelSize: 3
   motionBlur:
@@ -281,7 +281,7 @@ MonoBehaviour:
       lut: {fileID: 2800000, guid: 318cbcd94840f1d48aca4d86234dc2e7, type: 3}
       contribution: 1
   chromaticAberration:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
       spectralTexture: {fileID: 0}
       intensity: 0.219
