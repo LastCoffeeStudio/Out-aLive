@@ -6,14 +6,15 @@ using UnityEngine.UI;
 public class GameUI : MonoBehaviour {
 
 	[SerializeField]
-	Image pauseScreen;
+	GameObject pauseScreen;
+
+	Main mainManager;
 
 	[SerializeField]
 	Slider healthBar;
 
 	// Use this for initialization
 	void Start () {
-		
 	}
 	
 	// Update is called once per frame
@@ -25,18 +26,21 @@ public class GameUI : MonoBehaviour {
 	{
 		if (CtrlPause.gamePaused == false) 
 		{
-			pauseScreen.enabled = false;
+			pauseScreen.SetActive(false);
 		} 
 		else 
 		{
-			pauseScreen.enabled = true;
+			pauseScreen.SetActive(true);
 		}
 	}
 
 	public void ChangeHealthBar(int value)
 	{
-		print ("Value to apply to lifebar " + value);
 		healthBar.value = value;
-		print ("Value in lifebar now " + healthBar.value);
+	}
+
+	public void GoBackToMain()
+	{
+		
 	}
 }
