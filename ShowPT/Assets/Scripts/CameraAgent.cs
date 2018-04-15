@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 public class CameraAgent : MonoBehaviour
 {
-    public Vector3 x;
+    /*public Vector3 x;
     public Vector3 v;
     public Vector3 a;
     public World world;
@@ -65,7 +65,7 @@ public class CameraAgent : MonoBehaviour
 
             x = x + v * t;
 
-            // wrapArround(ref x, -world.bound, world.bound);
+            // wrapArround(ref x, -ctrlDrones.bound, ctrlDrones.bound);
 
             if (world.debugWonder == false)
             {
@@ -167,7 +167,7 @@ public class CameraAgent : MonoBehaviour
         //position the target in front of the agent
         Vector3 targetInLocalSpace = wanderTarget + new Vector3(0, 0, WanderDistance);
 
-        //tranform the target from local space to world space
+        //tranform the target from local space to ctrlDrones space
         Vector3 targetInWorldSpace = transform.TransformPoint(targetInLocalSpace);
 
         if (world.debugWonder) debugWanderCube.transform.position = targetInWorldSpace;
@@ -296,5 +296,5 @@ public class CameraAgent : MonoBehaviour
         }
 
         return Vector3.zero;
-    }
+    }*/
 }

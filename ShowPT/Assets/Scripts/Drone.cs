@@ -5,30 +5,37 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class Agent : MonoBehaviour
+public class Drone : MonoBehaviour
 {
+   
     public Vector3 position;
     public Vector3 velocity;
     public Vector3 acceleration;
-    public World world;
-    public AgentConfig conf;
-    
-
+    public GameObject target;
+    [HideInInspector]
+    public CtrlDrones ctrlDrones;
+    [HideInInspector]
+    public GameObject player;
+    [HideInInspector]
+    public DronesConfig conf;
+    [HideInInspector]
     private Vector3 wanderTarget;
     private GameObject debugWanderCube;
-    private GameObject player;
+    
 
     void Start ()
     {
-        world = FindObjectOfType<World>();
-        conf = FindObjectOfType<AgentConfig>();
         player = GameObject.FindGameObjectWithTag("Player");
         position = transform.position;
         velocity = new Vector3(Random.Range(-3, 3), Random.Range(-3, 3), Random.Range(-3, 3));
-        if (world.debugWonder) debugWanderCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        //***ONLY DOR DEBUG***//
+        //
+        //if (ctrlDrones.debugWonder) debugWanderCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        //
+        //********************//
     }
-	
-	void Update ()
+
+    void Update ()
 	{
         if(crash() == false) { 
 	        float t = Time.deltaTime;
@@ -41,20 +48,25 @@ public class Agent : MonoBehaviour
 
             position = position + velocity * t;
 
-           // wrapArround(ref x, -world.bound, world.bound);
+            transform.position = position;
 
-	        if (world.debugWonder == false)
+            if (velocity.magnitude > 0)
+            {
+                transform.LookAt(player.transform.position);
+            }
+            // wrapArround(ref x, -ctrlDrones.bound, ctrlDrones.bound);
+            //***ONLY DOR DEBUG***//
+            /*
+            if (ctrlDrones.debugWonder == true)
 	        {
-	            transform.position = position;
-
-	            if (velocity.magnitude > 0)
-	            {
-	                transform.LookAt(player.transform.position);
-	            }
+	            
 	        }
+            //
+            //********************/
         }
 
     }
+
     void OnCollisionEnter(Collision collision)
           {
                 if (collision.gameObject.tag.Equals("Agent") == false)
@@ -119,7 +131,7 @@ public class Agent : MonoBehaviour
     {
         Vector3 direction = new Vector3();
 
-        var neighbours = world.getNeightbours(this, conf.radioCohesion);
+        var neighbours = ctrlDrones.getNeightbours(this, conf.radioCohesion);
 
         if (neighbours.Count == 0)
         {
@@ -150,7 +162,7 @@ public class Agent : MonoBehaviour
 
         Vector3 direction = new Vector3();
 
-        var neighbours = world.getNeightbours(this, conf.radioSeparation);
+        var neighbours = ctrlDrones.getNeightbours(this, conf.radioSeparation);
 
         if (neighbours.Count == 0)
         {
@@ -183,7 +195,7 @@ public class Agent : MonoBehaviour
     {
         Vector3 direction = new Vector3();
 
-        var neighbours = world.getNeightbours(this, conf.radioAligment);
+        var neighbours = ctrlDrones.getNeightbours(this, conf.radioAligment);
 
         if (neighbours.Count == 0)
         {
@@ -205,7 +217,7 @@ public class Agent : MonoBehaviour
     protected virtual Vector3 combine()
     {
         Vector3 direction = conf.KCohesion*cohesion() + conf.KSeparation*separation() + conf.KAligment*alignment() + conf.KWonder*wander() 
-            + conf.KAvoid* avoidObstacle() + conf.KPlayer*searchPlayer() + conf.KMinH*riseUp();
+            + conf.KAvoid* avoidObstacle() + conf.KTarget*searchTarget() + conf.KMinHight*riseUp();
         return direction;
     }
 
@@ -251,11 +263,14 @@ public class Agent : MonoBehaviour
         //position the target in front of the agent
         Vector3 targetInLocalSpace = wanderTarget + new Vector3(0, 0, conf.wanderDistance);
 
-        //tranform the target from local space to world space
+        //tranform the target from local space to ctrlDrones space
         Vector3 targetInWorldSpace = transform.TransformPoint(targetInLocalSpace);
 
-        if (world.debugWonder) debugWanderCube.transform.position = targetInWorldSpace;
-
+        //***ONLY DOR DEBUG***//
+        //
+        //if (ctrlDrones.debugWonder) debugWanderCube.transform.position = targetInWorldSpace;
+        //
+        //********************/
         targetInWorldSpace -= this.position;
 
         return targetInWorldSpace.normalized;
@@ -342,10 +357,12 @@ public class Agent : MonoBehaviour
                 {
                     //force contribution is inversly proportional to 
                     direction += (towardsMe.normalized / towardsMe.magnitude);
+                    existObstacle = true;
                 }
             }
         }
     }
+
     Vector3 flee(Vector3 target)
     {
         //Run the oposite direction from target
@@ -355,14 +372,14 @@ public class Agent : MonoBehaviour
         return desiredVel - velocity;
     }
 
-    Vector3 searchPlayer()
+    Vector3 searchTarget()
     {
-        Vector3 postitionPlayer = player.transform.position;
-        postitionPlayer.y += world.hightPlayer;
+        Vector3 postitionTarget = target.transform.position;
+        postitionTarget.y += conf.overloadHightTarget;
 
-        if (Vector3.Distance(this.position, postitionPlayer) >  world.radiousPlayer)
+        if (Vector3.Distance(this.position, postitionTarget) > conf.radiousTarget)
         {
-            return Vector3.Normalize(postitionPlayer - this.position);
+            return Vector3.Normalize(postitionTarget - this.position);
         }
 
         return Vector3.zero;
@@ -370,9 +387,9 @@ public class Agent : MonoBehaviour
 
     Vector3 riseUp()
     {
-        Vector3 postitionPlayer = player.transform.position;
+        Vector3 postitionPlayer = target.transform.position;
 
-        if ((postitionPlayer.y + world.minimunHight) > this.position.y)
+        if ((postitionPlayer.y + conf.minimunHight) > this.position.y)
         {
             return new Vector3(0, 1, 0);
         }
