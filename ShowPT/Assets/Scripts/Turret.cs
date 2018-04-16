@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turret : MonoBehaviour {
+public class Turret : Enemy {
 
-	[SerializeField]
+    public bool active = false;
+
+    [SerializeField]
 	Projectile projectileToShoot;
-
 	[SerializeField]
 	float timeBetweenShots = 0.5f;
 	float shootTimer = 0.0f;
 
-	public bool active = false;
+    public Transform shotPoint;
 
 	// Update is called once per frame
 	void Update () 
@@ -21,9 +22,16 @@ public class Turret : MonoBehaviour {
 			shootTimer += Time.deltaTime;
 			if (shootTimer >= timeBetweenShots) 
 			{
-				GameObject.Instantiate (projectileToShoot, gameObject.transform.position, gameObject.transform.rotation);
+				GameObject.Instantiate (projectileToShoot, shotPoint.position, shotPoint.rotation);
 				shootTimer = 0.0f;
 			}
 		}
 	}
+
+    public override void getHit()
+    {
+        --enemyHealth;
+        //Execute properly Animation
+        base.checkHealth();
+    }
 }

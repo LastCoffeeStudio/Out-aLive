@@ -155,6 +155,11 @@ public class GunController : MonoBehaviour {
             {
                 GameObject.Instantiate(esferaVerde, hitInfo.point, Quaternion.Euler(0f, 0f, 0f));
             }
+
+            if (hitInfo.transform.tag == "Enemy")
+            {
+                hitInfo.collider.gameObject.GetComponent<Enemy>().getHit();
+            }
         }
 
         if (destroyed)
@@ -170,7 +175,7 @@ public class GunController : MonoBehaviour {
 
     void increaseAmmo()
     {
-        inventory.increaseAmmo(typeAmmo, maxAmmo - ammunition);
+        inventory.decreaseAmmo(typeAmmo, maxAmmo - ammunition);
         ammunition = maxAmmo;
     }
 

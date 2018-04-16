@@ -32,7 +32,7 @@ public class AITurret2 : MonoBehaviour {
 	float alertTimer;
 	float alertRotationTimer;
 	public float alertRotation = -2f;
-	Turret[] myTurrets;
+	public Turret myTurret;
 
 	state NPCstate;
 
@@ -41,7 +41,7 @@ public class AITurret2 : MonoBehaviour {
 	void Start () 
 	{
 		player = GameObject.FindGameObjectWithTag("Player");
-		myTurrets = gameObject.GetComponentsInChildren<Turret> ();
+		//myTurrets = gameObject.GetComponentInChildren<Turret> ();
 	}
 
 	// Update is called once per frame
@@ -54,15 +54,19 @@ public class AITurret2 : MonoBehaviour {
 
 		case state.SHOOTING:
 			LookAtSomething (player.transform.position);
-			if (!CanSeePlayer ()) 
+			if (!CanSeePlayer()) 
 			{
-				if (myTurrets.Length > 0) 
+                if (myTurret != null)
+                {
+                    myTurret.active = false;
+                }
+				/*if (myTurrets.Length > 0) 
 				{
 					for (int i = 0; i <= myTurrets.Length - 1; i++) 
 					{
 						myTurrets [i].active = false;
 					}
-				}
+				}*/
 				NPCstate = state.ALERT;
 			}
 			break;
@@ -88,14 +92,18 @@ public class AITurret2 : MonoBehaviour {
 		//These two will always happen, no matter the state
 		if (CanSeePlayer ()) 
 		{
-			if (myTurrets.Length > 0) 
+            if (myTurret != null)
+            {
+                myTurret.active = true;
+            }
+            /*if (myTurrets.Length > 0) 
 			{
 				for (int i = 0; i <= myTurrets.Length - 1; i++) 
 				{
 					myTurrets [i].active = true;
 				}
-			}
-			NPCstate = state.SHOOTING;
+			}*/
+            NPCstate = state.SHOOTING;
 		}
 	}
 
