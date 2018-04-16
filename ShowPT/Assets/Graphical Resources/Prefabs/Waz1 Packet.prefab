@@ -312,7 +312,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4189707482409738}
-  - component: {fileID: 114556442265166150}
   m_Layer: 0
   m_Name: Shooter
   m_TagString: Untagged
@@ -642,14 +641,15 @@ GameObject:
   m_Component:
   - component: {fileID: 4879271505068248}
   - component: {fileID: 33743940015471518}
-  - component: {fileID: 135524355814457904}
   - component: {fileID: 54845315434779760}
   - component: {fileID: 23862044960893010}
   - component: {fileID: 195712711460874960}
   - component: {fileID: 114837573164310508}
+  - component: {fileID: 114110816793214770}
+  - component: {fileID: 65200486843648866}
   m_Layer: 0
   m_Name: WAZ1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1013,7 +1013,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1935101195036714}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -116.08344, y: 67.6, z: -418.44495}
+  m_LocalPosition: {x: 85.35, y: 4.44, z: 5.2826977}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4879271505068248}
@@ -1728,6 +1728,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65200486843648866
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1921289157828376}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3404312, y: 2.35, z: 2.3453245}
+  m_Center: {x: 0.004787445, y: 0.68000007, z: 0.033512592}
 --- !u!95 &95511558216997056
 Animator:
   serializedVersion: 3
@@ -1781,6 +1793,22 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114110816793214770
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1921289157828376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be450ba1fac3194fb409a4ed695f2ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 0
+  projectileToShoot: {fileID: 114840388617318426, guid: 469469f629a9703448769a69cc39727d,
+    type: 2}
+  timeBetweenShots: 0.5
+  shotPoint: {fileID: 4189707482409738}
 --- !u!114 &114154209487135362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1805,21 +1833,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gizmoRadius: 1
---- !u!114 &114556442265166150
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1454881259746490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4976775d764554f408710f3b253377e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectileToShoot: {fileID: 114840388617318426, guid: 469469f629a9703448769a69cc39727d,
-    type: 2}
-  timeBetweenShots: 0.5
-  active: 0
 --- !u!114 &114837573164310508
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1846,6 +1859,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   alertRotation: 60
+  myTurrets: {fileID: 114110816793214770}
 --- !u!114 &114847585502291896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1870,18 +1884,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gizmoRadius: 1
---- !u!135 &135524355814457904
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1921289157828376}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &195712711460874960
 NavMeshAgent:
   m_ObjectHideFlags: 1

@@ -44,7 +44,7 @@ public class WeaponController : MonoBehaviour
     public Inventory.AMMO_TYPE typeAmmo;
 
     public Text wazPuntuation;
-    public Text torretPuntuation;
+    public Text turretPuntuation;
     public Text dronsPuntuation;
     public Text totalEnemies;
     public Text totalScore;
@@ -55,11 +55,26 @@ public class WeaponController : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         typeAmmo = Inventory.AMMO_TYPE.SHOTGUNAMMO;
-        dronsPuntuation.text = "-";
-        torretPuntuation.text = "-";
-        wazPuntuation.text = "-";
-        totalEnemies.text = "-";
-        totalScore.text = "0";
+        if (dronsPuntuation != null)
+        {
+            dronsPuntuation.text = "-";
+        }
+        if (turretPuntuation != null)
+        {
+            turretPuntuation.text = "-";
+        }
+        if (wazPuntuation != null)
+        {
+            wazPuntuation.text = "-";
+        }
+        if (totalEnemies != null)
+        {
+            totalEnemies.text = "-";
+        }
+        if (totalScore != null)
+        {
+            totalScore.text = "0";
+        }
     }
 
     private bool playLastReload = false;
@@ -184,16 +199,31 @@ public class WeaponController : MonoBehaviour
                 {
                     GameObject.Instantiate(esferaVerde, hitInfo.point, Quaternion.Euler(0f, 0f, 0f));
                 }
+
+                if (hitInfo.transform.tag == "Enemy" || hitInfo.transform.tag == "Drone")
+                {
+                    hitInfo.collider.gameObject.GetComponent<Enemy>().getHit();
+                }
             }
             
         }
         if (destroyed)
         {
             ++numDrons;
-            dronsPuntuation.text = numDrons.ToString();
-            totalEnemies.text = numDrons.ToString();
             int totalScoreInt = numDrons * 1236;
-            totalScore.text = totalScoreInt.ToString();
+
+            if (dronsPuntuation != null)
+            {
+                dronsPuntuation.text = numDrons.ToString();
+            }
+            if (totalEnemies != null)
+            {
+                totalEnemies.text = numDrons.ToString();
+            }
+            if (totalScore != null)
+            {
+                totalScore.text = totalScoreInt.ToString();
+            }
         }
     }
        

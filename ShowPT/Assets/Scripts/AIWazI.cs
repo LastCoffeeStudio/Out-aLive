@@ -52,7 +52,7 @@ public class AIWazI : MonoBehaviour {
 	float alertRotationTimer;
 	public float alertRotation = -2f;
 	Vector3 aggressiveDestination;
-	Turret[] myTurrets;
+	public Waz myTurrets;
 
 	state NPCstate;
 
@@ -83,7 +83,6 @@ public class AIWazI : MonoBehaviour {
 		viewAngle = spotLight.spotAngle / 2;
 	    player = GameObject.FindGameObjectWithTag("Player");
 	    playerMovment = player.GetComponent<PlayerMovment>();
-        myTurrets = gameObject.GetComponentsInChildren<Turret> ();
 	}
 
 	// Update is called once per frame
@@ -121,13 +120,10 @@ public class AIWazI : MonoBehaviour {
 			{
 				navMeshAgent.SetDestination (gameObject.transform.position);
 				navMeshAgent.isStopped = true;
-				if (myTurrets.Length > 0) 
-				{
-					for (int i = 0; i <= myTurrets.Length - 1; i++) 
-					{
-						myTurrets [i].active = true;
-					}
-				}
+                if (myTurrets != null)
+                {
+                    myTurrets.active = true;
+                }
 				NPCstate = state.SHOOTING;
 			}
 
@@ -147,13 +143,10 @@ public class AIWazI : MonoBehaviour {
 			if (!CanSeePlayer () || navMeshAgent.remainingDistance > shootingDistance) 
 			{
 				navMeshAgent.isStopped = false;
-				if (myTurrets.Length > 0) 
-				{
-					for (int i = 0; i <= myTurrets.Length - 1; i++) 
-					{
-						myTurrets [i].active = false;
-					}
-				}
+                if (myTurrets != null)
+                {
+                    myTurrets.active = false;
+                }
 				NPCstate = state.I_SEE_YOU;
 			}
 			break;

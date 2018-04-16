@@ -27,7 +27,7 @@ public class PlayerHealth : MonoBehaviour {
         }
     }
 
-    void ChangeHealth(int value)
+    public void ChangeHealth(int value)
     {
         health += value;
         gameUI.ChangeHealthBar(health);
