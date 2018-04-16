@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4078322300529978}
   - component: {fileID: 33220163025515878}
   - component: {fileID: 23470653295135098}
+  - component: {fileID: 65128354071081882}
   m_Layer: 0
   m_Name: prop_pilarrock02
   m_TagString: Untagged
@@ -82,3 +83,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1283723861332896}
   m_Mesh: {fileID: 4300000, guid: fcec5347a5479e64e8be000772271a47, type: 3}
+--- !u!65 &65128354071081882
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1283723861332896}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.0329, y: 9.690328, z: 8.937176}
+  m_Center: {x: -0.058517933, y: 4.8877807, z: -0.15372682}

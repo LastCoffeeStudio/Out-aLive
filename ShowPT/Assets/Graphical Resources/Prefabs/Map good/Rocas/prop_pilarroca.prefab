@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4096715161422316}
   - component: {fileID: 33557937979137326}
   - component: {fileID: 23735511549502150}
+  - component: {fileID: 65665987958828650}
   m_Layer: 0
   m_Name: prop_pilarroca
   m_TagString: Untagged
@@ -82,3 +83,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1889594869052762}
   m_Mesh: {fileID: 4300000, guid: c69caa656995c5c41a6ef6087b717487, type: 3}
+--- !u!65 &65665987958828650
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1889594869052762}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.944597, y: 9.646767, z: 7.296975}
+  m_Center: {x: -9.823268, y: 4.7062674, z: 0.30093908}
