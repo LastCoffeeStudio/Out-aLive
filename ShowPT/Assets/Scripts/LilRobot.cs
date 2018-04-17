@@ -134,13 +134,16 @@ public class LilRobot : MonoBehaviour {
         
         Vector3 vel = rb.velocity.normalized;
         float maxInclination = Mathf.Min(maxInclinationHead, rb.velocity.magnitude / headAngleFactor);
-        Debug.Log(maxInclination);
+        //Debug.Log(maxInclination);
         Vector3 dir = Vector3.Lerp(Vector3.up, new Vector3(vel.x, 0f, vel.z), maxInclination);
         head.localRotation = Quaternion.Slerp(head.localRotation, Quaternion.FromToRotation(Vector3.up, dir), Time.deltaTime * rotationSpeed);
         //head.localRotation = head.localRotation * Quaternion.FromToRotation(head.up, rb.velocity);
         //lastLocalRotation = head.localRotation;
 
         /** Update Debug Camera **/
-        lilRobCamera.position = transform.position - Vector3.forward * 2 + Vector3.up * 0.5f;
+        if (lilRobCamera != null)
+        {
+            lilRobCamera.position = transform.position - Vector3.forward * 2 + Vector3.up * 0.5f;
+        }
     }
 }
