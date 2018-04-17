@@ -30,7 +30,7 @@ public class PlayerMovment : MonoBehaviour {
     private bool isGrounded;
     private bool jumps = false;
     private bool jumping = false;
-
+    private bool crouched = false;
     public float spread = 5.0f;          
     public float maxSpread = 10.0f;
     public float minSpread = 5.0f;
@@ -111,9 +111,23 @@ public class PlayerMovment : MonoBehaviour {
 
     private void checkInput()
     {
-        xMov = getAxis("Horizontal", snap);
-        yMov = getAxis("Vertical", snap);
+        if (Input.GetAxis("JoyLeftX") != 0)
+        {
+            xMov = Input.GetAxis("Horizontal");
+        }
+        else
+        {
+            xMov = getAxis("JoyLeftY", snap);
+        }
 
+        if (Input.GetAxis("Vertical") != 0.1)
+        {
+            yMov = Input.GetAxis("Vertical");
+        }
+        else
+        {
+            yMov = getAxis("Vertical", snap);
+        }
         /*getAxis("Horizontal");
         getAxis("Vertical");*/
 
@@ -122,10 +136,26 @@ public class PlayerMovment : MonoBehaviour {
             spread += spreadPerSecond * Time.deltaTime;
         }
 
-        xRot = Input.GetAxis("Mouse X");
-        yRot = Input.GetAxis("Mouse Y");
+        if (Input.GetAxis("JoyRightX") != 0)
+        {
+            xRot = Input.GetAxis("JoyRightX");
+        }
+        else
+        {
+            xRot = Input.GetAxis("Mouse X");
+        }
+        if (Input.GetAxis("JoyRightY") != 0)
+        {
+            yRot = Input.GetAxis("JoyRightY");
+        }
+        else
+        {
+            yRot = Input.GetAxis("Mouse Y");
+        }
+       
+       
 
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetButton("Fire1") || Input.GetAxis("Fire1") < -0.5f)
         {
             /*
             if (Cursor.lockState != CursorLockMode.Locked)
@@ -141,7 +171,7 @@ public class PlayerMovment : MonoBehaviour {
             spread -= decreasePerSecond * Time.deltaTime;
         }
 
-        if (Input.GetKey(KeyCode.LeftShift) && yMov > runStart && !animator.GetBool("reloading") && !animator.GetBool("shooting"))
+        if ((Input.GetKey(KeyCode.LeftShift) || Input.GetButton("ButtonL3")) && yMov > runStart && !animator.GetBool("reloading") && !animator.GetBool("shooting"))
         {
             localSpeed = runSpeed;
         }
@@ -149,8 +179,11 @@ public class PlayerMovment : MonoBehaviour {
         {
             localSpeed = moveSpeed;
         }
-
-        if (Input.GetKey(KeyCode.C) && !jumping)
+        if (Input.GetButtonDown("ButtonB") && !jumping)
+        {
+            crouched = !crouched;
+        }
+        if ((Input.GetKey(KeyCode.C) || crouched) && !jumping)
         {
             localSpeed = agacSpeed;
             cam.transform.localPosition = Vector3.Lerp(cam.transform.localPosition, positionCameraAgac, Time.deltaTime * smoothAgac);
@@ -160,7 +193,7 @@ public class PlayerMovment : MonoBehaviour {
             cam.transform.localPosition = Vector3.Lerp(cam.transform.localPosition, positionCameraOr, Time.deltaTime * smoothAgac);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !jumping)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("ButtonA")) && isGrounded && !jumping)
         {
             jumps = true;
         }

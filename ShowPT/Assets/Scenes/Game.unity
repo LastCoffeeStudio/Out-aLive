@@ -7392,7 +7392,7 @@ MonoBehaviour:
   numDrons: 0
   typeAmmo: 1
   wazPuntuation: {fileID: 0}
-  torretPuntuation: {fileID: 0}
+  turretPuntuation: {fileID: 0}
   dronsPuntuation: {fileID: 0}
   totalEnemies: {fileID: 0}
   totalScore: {fileID: 0}
@@ -8073,10 +8073,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4976775d764554f408710f3b253377e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
   projectileToShoot: {fileID: 114840388617318426, guid: 469469f629a9703448769a69cc39727d,
     type: 2}
   timeBetweenShots: 0.1
-  active: 0
+  shotPoint: {fileID: 0}
 --- !u!1 &372448855
 GameObject:
   m_ObjectHideFlags: 0
@@ -13837,10 +13838,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4976775d764554f408710f3b253377e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
   projectileToShoot: {fileID: 114840388617318426, guid: 469469f629a9703448769a69cc39727d,
     type: 2}
   timeBetweenShots: 0.5
-  active: 0
+  shotPoint: {fileID: 0}
 --- !u!1 &612775171
 GameObject:
   m_ObjectHideFlags: 0
@@ -14886,6 +14888,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   alertRotation: 60
+  myTurrets: {fileID: 0}
 --- !u!195 &686659972
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -19503,6 +19506,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   alertRotation: 60
+  myTurrets: {fileID: 0}
 --- !u!195 &910049577
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -22637,7 +22641,7 @@ MonoBehaviour:
   numDrons: 0
   typeAmmo: 0
   wazPuntuation: {fileID: 0}
-  torretPuntuation: {fileID: 0}
+  turretPuntuation: {fileID: 0}
   dronsPuntuation: {fileID: 0}
   totalEnemies: {fileID: 0}
   totalScore: {fileID: 0}
@@ -28945,7 +28949,7 @@ MonoBehaviour:
   numDrons: 0
   typeAmmo: 0
   wazPuntuation: {fileID: 0}
-  torretPuntuation: {fileID: 0}
+  turretPuntuation: {fileID: 0}
   dronsPuntuation: {fileID: 0}
   totalEnemies: {fileID: 0}
   totalScore: {fileID: 0}
@@ -37164,6 +37168,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   alertRotation: -2
+  myTurret: {fileID: 0}
 --- !u!1 &1725388112
 GameObject:
   m_ObjectHideFlags: 0
@@ -37699,7 +37704,7 @@ MonoBehaviour:
   numDrons: 0
   typeAmmo: 2
   wazPuntuation: {fileID: 0}
-  torretPuntuation: {fileID: 0}
+  turretPuntuation: {fileID: 0}
   dronsPuntuation: {fileID: 0}
   totalEnemies: {fileID: 0}
   totalScore: {fileID: 0}
@@ -41118,10 +41123,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4976775d764554f408710f3b253377e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
   projectileToShoot: {fileID: 114840388617318426, guid: 469469f629a9703448769a69cc39727d,
     type: 2}
   timeBetweenShots: 0.5
-  active: 0
+  shotPoint: {fileID: 0}
 --- !u!1 &1865890509
 GameObject:
   m_ObjectHideFlags: 0
@@ -46472,7 +46478,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4268783777365062, guid: 01911e15c30fdfe40b34e480594904f3, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 20.3
+      value: 29.08
       objectReference: {fileID: 0}
     - target: {fileID: 4268783777365062, guid: 01911e15c30fdfe40b34e480594904f3, type: 2}
       propertyPath: m_LocalPosition.y
@@ -46480,7 +46486,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4268783777365062, guid: 01911e15c30fdfe40b34e480594904f3, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -86.57
+      value: -85.06
       objectReference: {fileID: 0}
     - target: {fileID: 4268783777365062, guid: 01911e15c30fdfe40b34e480594904f3, type: 2}
       propertyPath: m_LocalRotation.x
