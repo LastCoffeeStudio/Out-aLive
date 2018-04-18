@@ -117,7 +117,7 @@ public class PlayerMovment : MonoBehaviour {
         }
         else
         {
-            xMov = getAxis("JoyLeftY", snap);
+            xMov = getAxis("Horizontal", snap);
         }
 
         if (Input.GetAxis("Vertical") != 0.1)
@@ -155,7 +155,7 @@ public class PlayerMovment : MonoBehaviour {
        
        
 
-        if (Input.GetButton("Fire1") || Input.GetAxis("Fire1") < -0.5f)
+        if (Input.GetButton("Fire1") || Input.GetAxis("AxisRT") > 0.5f)
         {
             /*
             if (Cursor.lockState != CursorLockMode.Locked)
@@ -196,6 +196,7 @@ public class PlayerMovment : MonoBehaviour {
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("ButtonA")) && isGrounded && !jumping)
         {
             jumps = true;
+            crouched = false;
         }
 
         spread = Mathf.Clamp(spread, minSpread, maxSpread);

@@ -95,7 +95,7 @@ public class GunController : MonoBehaviour {
     {
         if (!reloading)
         {
-            if (Input.GetButton("Fire2") || Input.GetAxis("Fire2") > 0.5f)
+            if (Input.GetButton("Fire2") || Input.GetAxis("AxisLT") > 0.5f)
             {
                 transform.localPosition = Vector3.Lerp(transform.localPosition, aimPosition, Time.deltaTime * aimSpeed);
                 aimming = true;
@@ -121,7 +121,7 @@ public class GunController : MonoBehaviour {
 
     private void checkInputAnimations()
     {
-        if (Input.GetButton("Fire1") || Input.GetAxis("Fire1") < -0.5f)
+        if (Input.GetButton("Fire1") || Input.GetAxis("AxisRT") > 0.5f)
         {
             if (ammunition > 0)
             {
@@ -145,7 +145,7 @@ public class GunController : MonoBehaviour {
 
     void checkMouseInput()
     {
-        if (!Input.GetButton("Fire1") || Input.GetAxis("Fire1") < -0.5f || ammunition == 0)
+        if (!Input.GetButton("Fire1") || Input.GetAxis("AxisRT") > 0.5f || ammunition == 0)
         {
             animator.SetBool("shooting", false);
         }
