@@ -5,41 +5,42 @@ using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour
 {
-    public static Main instance = null;
-    public Slider loadBar;
+    AsyncOperation async;
 
-    private void Awake()
+    private void Start()
     {
-        if (instance == null)
-            instance = this;
-        else if (instance != this)
-            Destroy(gameObject);
-        DontDestroyOnLoad(gameObject);
+        StartCoroutine(loadLevel("Game"));
     }
+    
 
-    // Use this for initialization
-    private void Start() {}
+    private void Update()
+    {
 
-    private void Update() {}
+        if (async != null && async.isDone)
+        {
+
+            Debug.Log("done loading");
+        }
+    }
 
     public void playGame(string name)
     {
-        StartCoroutine(loadLevel(name));
+        if (async != null)
+        {
+            async.allowSceneActivation = true;
+        }
     }
-
-    public void loadSceneByName(string name)
-    {
-        SceneManager.LoadSceneAsync(name);
-    }
-
+            
     IEnumerator loadLevel(string name)
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(name);
-        while (!operation.isDone)
-        {
-            loadBar.value = operation.progress;
-            yield return null;
-        }
+        if (name == "")
+            yield break;
+
+        async = SceneManager.LoadSceneAsync(name);
+        async.allowSceneActivation = false;
+        async.priority = 1;
+        yield return async;
+
     }
 
     public void quitGame()
