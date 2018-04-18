@@ -7,6 +7,7 @@ public class Inventory : MonoBehaviour
 
     public WEAPON_TYPE weapon;
     public GameObject[] weaponsInventory;
+    private int selectedIdWeapond = 0;
 
     public enum AMMO_TYPE
     {
@@ -33,6 +34,7 @@ public class Inventory : MonoBehaviour
     void Start ()
     {
         weapon = WEAPON_TYPE.GUN;
+
 		ammoInvenotry.Add(AMMO_TYPE.SHOTGUNAMMO, 10);
         ammoInvenotry.Add(AMMO_TYPE.GUNAMMO, 15);
         ammoInvenotry.Add(AMMO_TYPE.RIFLEAMMO, 35);
@@ -58,6 +60,31 @@ public class Inventory : MonoBehaviour
         {
             switchWeapon(WEAPON_TYPE.RIFLE);
         }
+
+        if (Input.GetButtonDown("ButtonLB"))
+        {
+            nextWeapond(-1);
+        }
+        if (Input.GetButtonDown("ButtonRB"))
+        {
+            nextWeapond(+1);
+        }
+    }
+
+    void nextWeapond(int direction)
+    {
+        bool switched = false;
+        do
+        {
+            selectedIdWeapond += direction;
+            if (selectedIdWeapond < 0) selectedIdWeapond = (int)WEAPON_TYPE.TOTAL_WEAPONS-1;
+            selectedIdWeapond %= (int)WEAPON_TYPE.TOTAL_WEAPONS;
+            if (weaponsCarrying[selectedIdWeapond] == true)
+            {
+               switchWeapon(selectedIdWeapond);
+                switched = true;
+            }
+        } while (switched == false);
     }
 
     public uint getAmmo(AMMO_TYPE typeAmmo)
@@ -81,5 +108,28 @@ public class Inventory : MonoBehaviour
         weapon = type;
         weaponsInventory[(int)weapon].SetActive(true);
         gameObject.GetComponent<PlayerMovment>().animator = weaponsInventory[(int)weapon].GetComponentInChildren<Animator>();
+    }
+
+    private void switchWeapon(int intType)
+    {
+        weaponsInventory[(int)weapon].SetActive(false);
+        weapon = intToWeaponType(intType);
+        weaponsInventory[(int)weapon].SetActive(true);
+        gameObject.GetComponent<PlayerMovment>().animator = weaponsInventory[(int)weapon].GetComponentInChildren<Animator>();
+    }
+
+    WEAPON_TYPE intToWeaponType(int number)
+    {
+        switch (number)
+        {
+            case 0:
+                return WEAPON_TYPE.GUN;
+            case 1:
+                return WEAPON_TYPE.SHOTGUN;
+            case 2:
+                return WEAPON_TYPE.RIFLE;
+            default:
+                return WEAPON_TYPE.GUN;
+        }
     }
 }

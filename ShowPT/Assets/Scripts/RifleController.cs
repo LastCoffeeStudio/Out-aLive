@@ -97,7 +97,7 @@ public class RifleController : MonoBehaviour
     {
         if (!reloading)
         {
-            if (Input.GetButton("Fire2"))
+            if (Input.GetButton("Fire2") || Input.GetAxis("AxisLT") > 0.5f)
             {
                 transform.localPosition = Vector3.Lerp(transform.localPosition, aimPosition, Time.deltaTime * aimSpeed);
                 aimming = true;
@@ -123,7 +123,7 @@ public class RifleController : MonoBehaviour
 
     private void checkInputAnimations()
     {
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetButton("Fire1") || Input.GetAxis("AxisRT") > 0.5f)
         {
             if (ammunition > 0)
             {
@@ -135,7 +135,7 @@ public class RifleController : MonoBehaviour
                 }
             }
         }
-        if (Input.GetKey(KeyCode.R) && ammunition < maxAmmo)
+        if ((Input.GetKey(KeyCode.R) || Input.GetButton("ButtonX")) && ammunition < maxAmmo)
         {
             if (inventory.getAmmo(typeAmmo) > 0)
             {
@@ -147,7 +147,7 @@ public class RifleController : MonoBehaviour
 
     void checkMouseInput()
     {
-        if (!Input.GetKey(KeyCode.Mouse0) || ammunition == 0)
+        if (!Input.GetButton("Fire1") || Input.GetAxis("AxisRT") > 0.5f || ammunition == 0)
         {
             animator.SetBool("shooting", false);
         }
