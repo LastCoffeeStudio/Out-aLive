@@ -35,7 +35,7 @@ public class AIKamikaze : MonoBehaviour {
 	[SerializeField]
 	float alertRotationTime = 1.0f;
 
-	Light spotLight;
+	
 	float viewAngle;
 	private GameObject player;
     private PlayerMovment playerMovment;
@@ -77,8 +77,7 @@ public class AIKamikaze : MonoBehaviour {
 			}
 		}
 
-		spotLight = gameObject.GetComponentInChildren<Light> ();
-		viewAngle = spotLight.spotAngle / 2;
+		
 		player = GameObject.FindGameObjectWithTag("Player");
 	    playerMovment = player.GetComponent<PlayerMovment>();
 
@@ -90,7 +89,7 @@ public class AIKamikaze : MonoBehaviour {
 		switch (NPCstate) 
 		{
 		case state.WALKING:
-			spotLight.color = Color.green;
+			
 			if (navMeshAgent.remainingDistance <= 1.0f) 
 			{
 				waitTimer = 0.0f;
@@ -99,7 +98,6 @@ public class AIKamikaze : MonoBehaviour {
 			break;
 
 		case state.WAITING:
-			spotLight.color = Color.green;
 			waitTimer += Time.deltaTime;
 			if (waitTimer >= waitTime) 
 			{
@@ -111,14 +109,13 @@ public class AIKamikaze : MonoBehaviour {
 
 		case state.I_SEE_YOU:
 			LookAtSomething (aggressiveDestination);
-			spotLight.color = Color.red;
 			navMeshAgent.SetDestination (aggressiveDestination);
 
 			//Should I explode?
 			if (Vector3.Distance (transform.position, player.transform.position) < explodingDistance && CanSeePlayer ()) 
 			{
 				//TODO: Generate explosion
-				Destroy (gameObject);
+				//Destroy (gameObject);
 			}
 
 			//Did I lose track of the objective?
@@ -132,7 +129,6 @@ public class AIKamikaze : MonoBehaviour {
 			break;
 
 		case state.I_HEAR_YOU:
-			spotLight.color = Color.yellow;
 			if (navMeshAgent.remainingDistance <= 1.0f && !CanSeePlayer()) 
 			{
 				alertTimer = 0f;
@@ -142,7 +138,6 @@ public class AIKamikaze : MonoBehaviour {
 			break;
 
 		case state.ALERT:
-			spotLight.color = Color.yellow;
 			Vector3 rotation = new Vector3 (0f, alertRotation, 0f);
 			gameObject.transform.Rotate (rotation * Time.deltaTime);
 			alertRotationTimer += Time.deltaTime;
