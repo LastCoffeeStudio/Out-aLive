@@ -36,7 +36,7 @@ public class AIKamikaze : MonoBehaviour {
 	float alertRotationTime = 1.0f;
 
 	
-	float viewAngle;
+	public float viewAngle;
 	private GameObject player;
     private PlayerMovment playerMovment;
 
@@ -77,7 +77,7 @@ public class AIKamikaze : MonoBehaviour {
 			}
 		}
 
-		
+		viewAngle = 90f;
 		player = GameObject.FindGameObjectWithTag("Player");
 	    playerMovment = player.GetComponent<PlayerMovment>();
 
@@ -181,6 +181,7 @@ public class AIKamikaze : MonoBehaviour {
 			{
 				if(!Physics.Linecast(transform.position, player.transform.position, viewMask))
 				{
+					Debug.Log ("Te veo");
 					return true;
 				}
 			}
