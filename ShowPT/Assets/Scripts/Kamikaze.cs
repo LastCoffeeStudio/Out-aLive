@@ -8,6 +8,9 @@ public class Kamikaze : Enemy {
     public float explosionDistance = 20f;
     public int explosionDamage = 3;
 
+	[SerializeField]
+	GameObject explosion;
+
     // Use this for initialization
     void Start() 
 	{
@@ -38,6 +41,7 @@ public class Kamikaze : Enemy {
             {
                 player.GetComponent<PlayerHealth>().ChangeHealth(explosionDamage);
             }
+			GameObject.Instantiate (explosion, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
