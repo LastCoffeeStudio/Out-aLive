@@ -13,7 +13,10 @@ public class Inventory : MonoBehaviour
     {
         SHOTGUNAMMO,
         GUNAMMO,
-        RIFLEAMMO
+        RIFLEAMMO,
+
+        TOTAL_AMMO,
+        NO_AMMO
     }
 
     public enum WEAPON_TYPE
@@ -41,8 +44,8 @@ public class Inventory : MonoBehaviour
 
         weaponsCarrying = new bool[(int)WEAPON_TYPE.TOTAL_WEAPONS];
         weaponsCarrying[(int)WEAPON_TYPE.GUN] = true;
-        weaponsCarrying[(int)WEAPON_TYPE.SHOTGUN] = true;
-        weaponsCarrying[(int)WEAPON_TYPE.RIFLE] = true;
+        weaponsCarrying[(int)WEAPON_TYPE.SHOTGUN] = false;
+        weaponsCarrying[(int)WEAPON_TYPE.RIFLE] = false;
         gameObject.GetComponent<PlayerMovment>().animator = weaponsInventory[(int)weapon].GetComponentInChildren<Animator>();
     }
 
@@ -131,5 +134,24 @@ public class Inventory : MonoBehaviour
             default:
                 return WEAPON_TYPE.GUN;
         }
+    }
+
+    public bool hasWeapon(WEAPON_TYPE type)
+    {
+        return (weaponsCarrying[(int)type]);
+    }
+
+    public void addWeapon(WEAPON_TYPE type)
+    {
+        weaponsCarrying[(int)type] = true;
+        //Launch some animation or sound that has bought weapon
+    }
+
+    public void addAmmo(AMMO_TYPE ammo, uint quantity)
+    {
+        Debug.Log("Ammo before: " + ammoInvenotry[ammo]);
+        ammoInvenotry[ammo] += quantity;
+        Debug.Log("Ammo after: " + ammoInvenotry[ammo]);
+        //Launch some animation or sound that has bought ammo
     }
 }

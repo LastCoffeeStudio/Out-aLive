@@ -15,6 +15,7 @@ public class PlayerMovment : MonoBehaviour {
     public float axisSensitivity = 3f;
     public bool snap = false;
     public Camera cam;
+    public float interactMaxDistance;
     [Range(0.2f, 1f)]
     public float runStart = 0.2f;
     public LayerMask layerMask;
@@ -61,6 +62,8 @@ public class PlayerMovment : MonoBehaviour {
     [SerializeField]
 	GameUI gameUI;
 
+    private bool buying;
+
     void Start () {
         rb = GetComponent<Rigidbody>();
         //animator = gameObject.GetComponentInChildren<Animator>();
@@ -72,7 +75,7 @@ public class PlayerMovment : MonoBehaviour {
         lineStyle.normal.background = tex;
 
         positionCameraAgac = new Vector3(cam.transform.localPosition.x, 0, cam.transform.localPosition.z);
-
+        buying = false;
     }
 
     //Calcule 
@@ -197,6 +200,19 @@ public class PlayerMovment : MonoBehaviour {
         {
             jumps = true;
             crouched = false;
+        }
+
+        if (Input.GetButtonDown("ButtonY"))
+        {
+            interact();
+        }
+
+        if (Input.GetButtonDown("ButtonB"))
+        {
+            if (buying)
+            {
+                gameUI.disableResourceMachineUI();
+            }
         }
 
         spread = Mathf.Clamp(spread, minSpread, maxSpread);
@@ -344,5 +360,21 @@ public class PlayerMovment : MonoBehaviour {
         return displacement;
     }
 
-	
+	private void interact()
+    {
+        RaycastHit hitInfo;
+
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hitInfo, interactMaxDistance))
+        {
+            switch (hitInfo.transform.tag)
+            {
+                case "ResourceMachine":
+                {
+                    gameUI.enableResourceMachineUI();
+                    buying = true;
+                    break;
+                }
+            }
+        }
+    }
 }

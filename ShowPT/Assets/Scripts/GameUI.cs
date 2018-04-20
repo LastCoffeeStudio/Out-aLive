@@ -13,9 +13,13 @@ public class GameUI : MonoBehaviour {
 	[SerializeField]
 	Slider healthBar;
 
+    public GameObject resourceMachineMenu;
+
 	// Use this for initialization
-	void Start () {
-	}
+	void Start ()
+    {
+        resourceMachineMenu.SetActive(false);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -43,4 +47,14 @@ public class GameUI : MonoBehaviour {
 	{
 		
 	}
+
+    public void enableResourceMachineUI()
+    {
+        resourceMachineMenu.SetActive(true);
+    }
+
+    public void disableResourceMachineUI()
+    {
+        resourceMachineMenu.SetActive(false);
+    }
 }
