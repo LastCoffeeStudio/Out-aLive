@@ -37,7 +37,7 @@ public class AIWazI : MonoBehaviour {
 	float alertRotationTime = 1.0f;
 
 	Light spotLight;
-	float viewAngle;
+	public float viewAngle;
     private GameObject player;
     private PlayerMovment playerMovment;
 
