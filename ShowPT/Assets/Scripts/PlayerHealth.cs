@@ -20,9 +20,10 @@ public class PlayerHealth : MonoBehaviour {
     //TODO: Final version projectiles are going to function with raycasts, so chances are the following method will completely change
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.GetComponent<Projectile>())
+		Projectile bullet = collider.GetComponent<Projectile> ();
+        if (bullet != null)
         {
-            ChangeHealth(-1);
+			ChangeHealth(-bullet.damage);
             Destroy(collider.gameObject);
         }
     }

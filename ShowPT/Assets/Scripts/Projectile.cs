@@ -8,6 +8,8 @@ public class Projectile : MonoBehaviour
 	float speed = 5.0f;
     float timeLife = 10f;
 
+	public int damage = 1;
+
 	public LayerMask layerMask = -1; //make sure we aren't in this layer 
 	public float skinWidth = 0.1f; //probably doesn't need to be changed 
 

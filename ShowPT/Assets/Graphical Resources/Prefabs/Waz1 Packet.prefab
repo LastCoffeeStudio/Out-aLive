@@ -907,7 +907,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1571666830725448}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.09, y: 0.77, z: -3.64}
+  m_LocalPosition: {x: 0.1, y: 0.77, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4467913348540722}
@@ -973,7 +973,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1923616646077730}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.23, y: 0.44, z: 6.44}
+  m_LocalPosition: {x: 12.9, y: 0.44, z: 37.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4467913348540722}
@@ -1013,7 +1013,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1935101195036714}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 85.35, y: 4.44, z: 5.2826977}
+  m_LocalPosition: {x: 46.467148, y: 92.997856, z: -185.3829}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4879271505068248}
@@ -1044,7 +1044,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1072874612550820}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.51, y: 0.66, z: -2.05}
+  m_LocalPosition: {x: 24.4, y: 0.66, z: 24.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4467913348540722}
@@ -1126,7 +1126,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1505336184554098}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.24, y: 0.56, z: 6.24}
+  m_LocalPosition: {x: -23.1, y: 0.56, z: 7.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4467913348540722}
@@ -1805,7 +1805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
-  projectileToShoot: {fileID: 114840388617318426, guid: 469469f629a9703448769a69cc39727d,
+  projectileToShoot: {fileID: 114204168861104912, guid: 2767056ec05b701419cb7545219ca785,
     type: 2}
   timeBetweenShots: 0.5
   shotPoint: {fileID: 4189707482409738}
@@ -1855,6 +1855,7 @@ MonoBehaviour:
   shootingDistance: 20
   alertTime: 6
   alertRotationTime: 1
+  viewAngle: 0
   viewMask:
     serializedVersion: 2
     m_Bits: 256
