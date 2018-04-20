@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class LilRobot : MonoBehaviour {
+public class LilRobot : Enemy {
 
     enum LilRobotState
     {
@@ -17,15 +17,11 @@ public class LilRobot : MonoBehaviour {
     public Transform target;
     public float detectionDistance;
     public float jumpDistance;
-    public Transform head;
     public Transform agentTransform;
     public float recoverTime;
     public float maxSpeed;
-    public float jumpForce;
-    [Range(1,10)]
-    public float headAngleFactor;
-    [Range(0,1)]
-    public float maxInclinationHead;
+    public float jumpForceVertical;
+    public float jumpForceHorizontal;
     [Range(1,10)]
     public float rotationSpeed;
 
@@ -33,8 +29,6 @@ public class LilRobot : MonoBehaviour {
     private NavMeshAgent agent;
     private NavMeshPath path;
     private LilRobotState state;
-    private Vector3 headPosition;
-    private Quaternion lastLocalRotation;
     private float recoverResetTime;
 
     // Use this for initialization
@@ -47,8 +41,6 @@ public class LilRobot : MonoBehaviour {
         agent.updateRotation = false;
         path = new NavMeshPath();
         state = LilRobotState.IDLE;
-        headPosition = head.localPosition;
-        lastLocalRotation = head.localRotation;
         recoverResetTime = recoverTime;
     }
 
@@ -90,7 +82,10 @@ public class LilRobot : MonoBehaviour {
                 }
                 break;
             case LilRobotState.JUMP:
-                rb.AddForce(Vector3.up * jumpForce);
+                Vector3 playerDir = target.transform.position - transform.position;
+                rb.velocity = Vector3.zero;
+                rb.AddForce(Vector3.up * jumpForceVertical);
+                rb.AddForce(playerDir * jumpForceHorizontal);
                 state = LilRobotState.RECOVER;
                 break;
             case LilRobotState.RECOVER:
@@ -118,32 +113,22 @@ public class LilRobot : MonoBehaviour {
         updateObjects();
     }
 
-    /*void OnCollisionEnter(Collision collision)
-    {
-        Vector3 position = collision.contacts[0].point;
-        Vector3 normal = collision.contacts[0].normal;
-        rb.AddForceAtPosition(-normal, position);
-    }*/
-
-    void updateObjects()
+    private void updateObjects()
     {
         agentTransform.position = transform.position;
         agent.nextPosition = transform.position;
-        head.position = transform.position;
-        //head.localRotation = Quaternion.Inverse(transform.rotation);
-        
-        Vector3 vel = rb.velocity.normalized;
-        float maxInclination = Mathf.Min(maxInclinationHead, rb.velocity.magnitude / headAngleFactor);
-        //Debug.Log(maxInclination);
-        Vector3 dir = Vector3.Lerp(Vector3.up, new Vector3(vel.x, 0f, vel.z), maxInclination);
-        head.localRotation = Quaternion.Slerp(head.localRotation, Quaternion.FromToRotation(Vector3.up, dir), Time.deltaTime * rotationSpeed);
-        //head.localRotation = head.localRotation * Quaternion.FromToRotation(head.up, rb.velocity);
-        //lastLocalRotation = head.localRotation;
-
         /** Update Debug Camera **/
         if (lilRobCamera != null)
         {
             lilRobCamera.position = transform.position - Vector3.forward * 2 + Vector3.up * 0.5f;
         }
+    }
+
+    public override void getHit()
+    {
+        --enemyHealth;
+        Debug.Log(enemyHealth);
+        //Execute properly Animation
+        checkHealth();
     }
 }

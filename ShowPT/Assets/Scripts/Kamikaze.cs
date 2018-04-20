@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Kamikaze : Enemy {
 
-    public Transform player;
+    Transform player;
     public float explosionDistance = 20f;
     public int explosionDamage = 3;
 
     // Use this for initialization
-    void Start() {}
+    void Start() 
+	{
+		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform>();
+	}
 
     // Update is called once per frame
     void Update()
