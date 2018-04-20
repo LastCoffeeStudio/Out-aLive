@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
-public class Projectile : MonoBehaviour 
+public class DontGoThroughThings : MonoBehaviour
 {
-	[SerializeField]
-	float speed = 5.0f;
-    float timeLife = 10f;
+	// Careful when setting this to true - it might cause double
+	// events to be fired - but it won't pass through the trigger
+	public bool sendTriggerMessage = false; 	
 
 	public LayerMask layerMask = -1; //make sure we aren't in this layer 
 	public float skinWidth = 0.1f; //probably doesn't need to be changed 
@@ -31,8 +30,6 @@ public class Projectile : MonoBehaviour
 
 	void FixedUpdate() 
 	{ 
-		transform.Translate (Vector3.forward * speed * Time.deltaTime);
-
 		//have we moved more than our minimum extent? 
 		Vector3 movementThisStep = myRigidbody.position - previousPosition; 
 		float movementSqrMagnitude = movementThisStep.sqrMagnitude;
@@ -58,22 +55,5 @@ public class Projectile : MonoBehaviour
 		} 
 
 		previousPosition = myRigidbody.position; 
-
-		if (timeLife > 0f) 
-		{
-			timeLife -= Time.deltaTime;
-		} 
-		else 
-		{	
-			Destroy (gameObject);
-		}
-	}
-
-	void OnTriggerEnter(Collider col)
-	{
-		if (col.gameObject.layer == LayerMask.NameToLayer ("Wall")) 
-		{
-			Destroy (gameObject);
-		}
 	}
 }
