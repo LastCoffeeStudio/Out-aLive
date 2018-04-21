@@ -11,6 +11,7 @@ public class DronesConfig : MonoBehaviour
     public float radioAvoid;
     public float overloadHightTarget;
     public float radiousTarget;
+    public float radiousPlayer;
     public float minimunHight;
 
     public float KCohesion;

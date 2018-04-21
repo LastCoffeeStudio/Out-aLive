@@ -11,7 +11,8 @@ public class SnitchDrone : MonoBehaviour
     public Vector3 position;
     public Vector3 velocity;
     public Vector3 acceleration;
-    public GameObject player;
+    public Transform playerTransform;
+    public Transform targetTransform;
     public CtrlDrones ctrlDrones;
 
     public float radioAvoid;
@@ -25,7 +26,8 @@ public class SnitchDrone : MonoBehaviour
     {
         position = transform.position;
         velocity = new Vector3(Random.Range(-3, 3), Random.Range(-3, 3), Random.Range(-3, 3));
-        player = GameObject.FindGameObjectWithTag("Player");
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        targetTransform = ctrlDrones.target.transform;
     }
 
     void Update()
@@ -55,10 +57,10 @@ public class SnitchDrone : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag.Equals("Drone") == false)
+        /*if (collision.gameObject.tag.Equals("Drone") == false)
         {
             Destroy(gameObject);
-        }
+        }*/
     }
 
     bool crash()
@@ -112,7 +114,7 @@ public class SnitchDrone : MonoBehaviour
         {
             if (hit.collider.gameObject.tag.Equals("Drone") == false)
             {
-                Destroy(gameObject);
+                //Destroy(gameObject);
                 return true;
             }
         }
@@ -223,21 +225,27 @@ public class SnitchDrone : MonoBehaviour
         Vector3 centroidDrones = new Vector3();
         var neighbours = ctrlDrones.getAllNeightbours();
 
+        //Si no hay drones ponemos la posicion del Target.
         if (neighbours.Count == 0)
         {
-            return direction;
+            return (targetTransform.position - transform.position).normalized;
         }
 
         foreach (var drone in neighbours)
         {
             centroidDrones += drone.transform.position;
-            directionPlayerDrones = drone.position - player.transform.position;
+            directionPlayerDrones = drone.position - playerTransform.position;
             directionPlayerDrones += drone.position - transform.position;
         }
 
         directionPlayerDrones = directionPlayerDrones.normalized;
         centroidDrones /= neighbours.Count;
 
+        //Buscamos el centro entre la posicion del Target 
+        if (ctrlDrones.playerInHome == false)
+        {
+            centroidDrones = (centroidDrones + targetTransform.position) / 2.0f;
+        }
         direction = (centroidDrones + directionPlayerDrones * 10) - transform.position;
 
         return direction.normalized;
