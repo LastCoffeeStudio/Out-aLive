@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {}
 
-    public virtual void getHit() {}
+    public virtual void getHit(int damage) {}
 
     public virtual void shoot()
     {

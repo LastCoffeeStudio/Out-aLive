@@ -10,9 +10,9 @@ public class Turret : Enemy
         shoot();
     }
 
-    public override void getHit()
+    public override void getHit(int damage)
     {
-        --enemyHealth;
+        enemyHealth -= damage;
         //Execute properly Animation
         base.checkHealth();
     }

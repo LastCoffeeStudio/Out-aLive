@@ -11,6 +11,7 @@ public class GunController : MonoBehaviour {
     public float amount;
     public float maxAmount;
     public float smoothAmount;
+    public int damage;
     public Transform shootPoint;
     public Transform camera;
     public uint maxAmmo = 10;
@@ -174,7 +175,7 @@ public class GunController : MonoBehaviour {
 
             if (hitInfo.transform.tag == "Enemy" || hitInfo.transform.tag == "Drone")
             {
-                hitInfo.collider.gameObject.GetComponent<Enemy>().getHit();
+                hitInfo.collider.gameObject.GetComponent<Enemy>().getHit(damage);
             }
         }
 

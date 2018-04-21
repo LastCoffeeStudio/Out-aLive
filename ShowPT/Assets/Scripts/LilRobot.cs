@@ -124,9 +124,9 @@ public class LilRobot : Enemy {
         }
     }
 
-    public override void getHit()
+    public override void getHit(int damage)
     {
-        --enemyHealth;
+        enemyHealth -= damage;
         Debug.Log(enemyHealth);
         //Execute properly Animation
         checkHealth();
