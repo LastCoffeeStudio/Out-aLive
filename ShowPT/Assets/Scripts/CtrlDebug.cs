@@ -16,28 +16,33 @@ public class CtrlDebug : MonoBehaviour
 	    player = GameObject.FindGameObjectWithTag("Player");
         camerasDebug = GameObject.Find("CamerasDebug");
     }
-	
-	// Update is called once per frame
-	void Update () {
-	    if (activeDebug)
-	    {
-	        if (Input.GetMouseButtonDown(0))
-	        {
-	            camerasDebug.transform.GetChild(indexChildren).gameObject.SetActive(false);
-	            indexChildren = (indexChildren + 1) % sizeChildren;
-	            camerasDebug.transform.GetChild(indexChildren).gameObject.SetActive(true);
-	        }
-	    }
-	    if (Input.GetKeyDown(KeyCode.B))
-	    {
-	        if (activeDebug)
-	        {
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (activeDebug)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                camerasDebug.transform.GetChild(indexChildren).gameObject.SetActive(false);
+                indexChildren = (indexChildren + 1) % sizeChildren;
+                camerasDebug.transform.GetChild(indexChildren).gameObject.SetActive(true);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            if (activeDebug)
+            {
                 disableDebug();
-	        }
-	        else
-	        {
-	            enableDebug();
-	        }
+            }
+            else
+            {
+                enableDebug();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            player.GetComponent<PlayerHealth>().ChangeHealth(-5);
         }
     }
 
