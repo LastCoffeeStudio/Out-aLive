@@ -7,12 +7,12 @@ public class AIKamikaze : MonoBehaviour {
 
 	public enum state 
 	{
-		WALKING,
 		WAITING,
 		I_SEE_YOU,
-		I_HEAR_YOU,
-		ALERT
-	}
+	    JUMPING,
+        WALKING
+
+    }
 
 	[SerializeField]
 	float waitTime = 3.0f;
@@ -27,7 +27,7 @@ public class AIKamikaze : MonoBehaviour {
 	float viewDistance = 50.0f;
 
 	[SerializeField]
-	float explodingDistance = 0.1f;
+	float explodingDistance = 25.0f;
 
 	[SerializeField]
 	float alertTime = 6.0f;
@@ -53,7 +53,7 @@ public class AIKamikaze : MonoBehaviour {
 	Vector3 aggressiveDestination;
 
 	state NPCstate;
-
+    private Animator animKamikaze;
 
 	// Use this for initialization
 	void Start () {
@@ -80,116 +80,59 @@ public class AIKamikaze : MonoBehaviour {
 		viewAngle = 90f;
 		player = GameObject.FindGameObjectWithTag("Player");
 	    playerMovment = player.GetComponent<PlayerMovment>();
+	    animKamikaze = gameObject.GetComponent<Animator>();
 
 	}
 
 	// Update is called once per frame
-	void Update () 
-	{
-		switch (NPCstate) 
-		{
-		case state.WALKING:
-			
-			if (navMeshAgent.remainingDistance <= 1.0f) 
-			{
-				waitTimer = 0.0f;
-				NPCstate = state.WAITING;
-			}
-			break;
+    void Update()
+    {
+        aggressiveDestination = player.transform.position;
+        switch (NPCstate)
+        {
 
-		case state.WAITING:
-			waitTimer += Time.deltaTime;
-			if (waitTimer >= waitTime) 
-			{
-				ChangePatrolNode ();
-				SetDestination ();
-				NPCstate = state.WALKING;
-			}
-			break;
+            case state.WAITING:
+                if (Vector3.Distance(transform.position, player.transform.position) < viewDistance)
+                {
+                    NPCstate = state.I_SEE_YOU;
+                }
+                break;
 
-		case state.I_SEE_YOU:
-			LookAtSomething (aggressiveDestination);
-			navMeshAgent.SetDestination (aggressiveDestination);
+            case state.I_SEE_YOU:
+                animKamikaze.SetBool("Jump", true);
+                NPCstate = state.JUMPING;
+                break;
+            case state.JUMPING:
+                if (animKamikaze.GetCurrentAnimatorStateInfo(0).IsName("stopJump"))
+                {
+                    LookAtSomething(aggressiveDestination);
+                }
+                if (animKamikaze.GetCurrentAnimatorStateInfo(0).IsName("run"))
+                {
+                    NPCstate = state.WALKING;
+                }
+                break;
+            case state.WALKING:
+                LookAtSomething(aggressiveDestination);
+                navMeshAgent.SetDestination(aggressiveDestination);
 
-			//Should I explode?
-			if (Vector3.Distance (transform.position, player.transform.position) < explodingDistance && CanSeePlayer ()) 
-			{
-				//TODO: Generate explosion
-				//Destroy (gameObject);
-			}
+                Vector3 localDesiredVelocity = transform.InverseTransformVector(navMeshAgent.desiredVelocity);
+                float angle = Mathf.Atan2(localDesiredVelocity.x, localDesiredVelocity.z) * Mathf.Rad2Deg;
+                float speed = localDesiredVelocity.z;
+                animKamikaze.SetFloat("Speed", speed, 0.1f, Time.deltaTime);
+                Debug.Log(Mathf.Abs(Vector3.Distance(gameObject.transform.position, player.transform.position)) + "// " + explodingDistance);
+                //Should I explode?
+                if (Mathf.Abs(Vector3.Distance(gameObject.transform.position, player.transform.position)) < explodingDistance )
+                {
+                    
+                    animKamikaze.SetBool("Explode", true);
+                }
+                break;
 
-			//Did I lose track of the objective?
-			if (Vector3.Distance (transform.position, player.transform.position) <= 1.0f && !CanSeePlayer()) 
-			{
-				alertTimer = 0f;
-				alertRotationTimer = 0f;
-				LookAtSomething (aggressiveDestination);
-				NPCstate = state.ALERT;
-			}
-			break;
+        }
+    }
 
-		case state.I_HEAR_YOU:
-			if (navMeshAgent.remainingDistance <= 1.0f && !CanSeePlayer()) 
-			{
-				alertTimer = 0f;
-				alertRotationTimer = 0f;
-				NPCstate = state.ALERT;
-			}
-			break;
-
-		case state.ALERT:
-			Vector3 rotation = new Vector3 (0f, alertRotation, 0f);
-			gameObject.transform.Rotate (rotation * Time.deltaTime);
-			alertRotationTimer += Time.deltaTime;
-			if (alertRotationTimer >= alertRotationTime) 
-			{
-				alertRotation = alertRotation * (-1);
-				alertRotationTimer = 0;
-			}
-
-			alertTimer += Time.deltaTime;
-			if (alertTimer >= alertTime) 
-			{
-				SetDestination ();
-				NPCstate = state.WALKING;
-			}
-			break;
-		}
-
-		//These two will always happen, no matter the state
-		if (CanHearPlayer ()) 
-		{
-			aggressiveDestination = player.transform.position;
-			navMeshAgent.SetDestination (aggressiveDestination);
-			NPCstate = state.I_HEAR_YOU;
-		}
-		if (CanSeePlayer ()) 
-		{
-			aggressiveDestination = player.transform.position;
-			NPCstate = state.I_SEE_YOU;
-		}
-
-	}
-
-	bool CanSeePlayer()
-	{
-		if (Vector3.Distance (transform.position, player.transform.position) < viewDistance) 
-		{
-			Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
-			float angleBetweenThisAndPlayer = Vector3.Angle (transform.forward, directionToPlayer);
-			if (angleBetweenThisAndPlayer < viewAngle) 
-			{
-				if(!Physics.Linecast(transform.position, player.transform.position, viewMask))
-				{
-					Debug.Log ("Te veo");
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-
-	bool CanHearPlayer(){
+    bool CanHearPlayer(){
 		if (playerMovment.noiseValue > Vector3.Distance (transform.position, player.transform.position)) 
 		{
 			return true;
