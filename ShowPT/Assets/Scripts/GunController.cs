@@ -16,8 +16,6 @@ public class GunController : MonoBehaviour {
     public Transform camera;
     public uint maxAmmo = 10;
     public uint ammunition;
-    public Text text;
-    public Text numDronsText;
 
     private bool firing = false;
     private bool reloading = false;
@@ -37,11 +35,7 @@ public class GunController : MonoBehaviour {
     
     public Inventory.AMMO_TYPE typeAmmo;
 
-    public Text wazPuntuation;
-    public Text turretPuntuation;
-    public Text dronsPuntuation;
-    public Text totalEnemies;
-    public Text totalScore;
+    public ScoreController scoreController;
 
     private Inventory inventory;
     private bool playLastReload = false;
@@ -56,26 +50,6 @@ public class GunController : MonoBehaviour {
         animator = gameObject.GetComponent<Animator>();
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         typeAmmo = Inventory.AMMO_TYPE.GUNAMMO;
-        if (dronsPuntuation != null)
-        {
-            dronsPuntuation.text = "-";
-        }
-        if (turretPuntuation != null)
-        {
-            turretPuntuation.text = "-";
-        }
-        if (wazPuntuation != null)
-        {
-            wazPuntuation.text = "-";
-        }
-        if (totalEnemies != null)
-        {
-            totalEnemies.text = "-";
-        }
-        if (totalScore != null)
-        {
-            totalScore.text = "0";
-        }
     }
 	
 	// Update is called once per frame
@@ -186,20 +160,12 @@ public class GunController : MonoBehaviour {
         if (destroyed)
         {
             ++numDrons;
+            /*
+            dronsPuntuation.text = numDrons.ToString();
+            totalEnemies.text = numDrons.ToString();
             int totalScoreInt = numDrons * 1236;
-
-            if (dronsPuntuation != null)
-            {
-                dronsPuntuation.text = numDrons.ToString();
-            }
-            if (totalEnemies != null)
-            {
-                totalEnemies.text = numDrons.ToString();
-            }
-            if (totalScore != null)
-            {
-                totalScore.text = totalScoreInt.ToString();
-            }
+            totalScore.text = totalScoreInt.ToString();
+            */
         }
     }
 
