@@ -62,6 +62,8 @@ public class PlayerMovment : MonoBehaviour {
     [SerializeField]
 	GameUI gameUI;
 
+    public HudController hudController;
+
     private bool buying;
 
     void Start () {
@@ -188,11 +190,13 @@ public class PlayerMovment : MonoBehaviour {
         }
         if ((Input.GetKey(KeyCode.C) || crouched) && !jumping)
         {
+            hudController.setMenDown(true);
             localSpeed = agacSpeed;
             cam.transform.localPosition = Vector3.Lerp(cam.transform.localPosition, positionCameraAgac, Time.deltaTime * smoothAgac);
         }
         else
         {
+            hudController.setMenDown(false);
             cam.transform.localPosition = Vector3.Lerp(cam.transform.localPosition, positionCameraOr, Time.deltaTime * smoothAgac);
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,9 @@ public class HudController : MonoBehaviour {
 
     private Color32 YELLOW = new Color32(247, 221, 85, 255);
     private Color32 RED = new Color32(255, 0, 85, 255);
+
+    private Color32 STATE_DISABLED = new Color32(255, 255, 255, 80);
+    private Color32 STATE_SELECTED = new Color32(255, 255, 255, 255);
 
     public Text valueHealth;
     public Text bulletsLabel;
@@ -23,9 +27,26 @@ public class HudController : MonoBehaviour {
 
     public GameObject fillHealth;
 
+    public GameObject pistolState;
+    public GameObject shotGunState;
+    public GameObject smgState;
+    public GameObject canonState;
+
+    public GameObject pistolSelected;
+    public GameObject shotGunSelected;
+    public GameObject smgSelected;
+    public GameObject canonSelected;
+
+    private GameObject currentWeapon;
+    private GameObject currentSelected;
+
+    public GameObject menDown;
+
     // Use this for initialization
     void Start () {
-		
+        //Test 
+        addWeapon(Inventory.WEAPON_TYPE.GUN);
+        selectWeapon(Inventory.WEAPON_TYPE.GUN);
 	}
 	
 	// Update is called once per frame
@@ -54,4 +75,59 @@ public class HudController : MonoBehaviour {
         bulletsLabel.text = bullets.ToString();
     }
 
+    public void addWeapon(Inventory.WEAPON_TYPE type)
+    {
+       switch(type)
+        {
+            case Inventory.WEAPON_TYPE.GUN:
+                pistolState.GetComponent<Image>().color = STATE_DISABLED;
+                break;
+            case Inventory.WEAPON_TYPE.SHOTGUN:
+                shotGunState.GetComponent<Image>().color = STATE_DISABLED;
+                break;
+            case Inventory.WEAPON_TYPE.RIFLE:
+                smgState.GetComponent<Image>().color = STATE_DISABLED;
+                break;
+        }
+    }
+
+    public void selectWeapon(Inventory.WEAPON_TYPE type)
+    {
+        if (currentWeapon != null && currentSelected != null)
+        {
+            currentWeapon.GetComponent<Image>().color = STATE_DISABLED;
+            currentSelected.SetActive(false);
+        }
+
+        switch (type)
+        {
+            case Inventory.WEAPON_TYPE.GUN:
+                currentWeapon = pistolState;
+                currentSelected = pistolSelected;
+                break;
+            case Inventory.WEAPON_TYPE.SHOTGUN:
+                currentWeapon = shotGunState;
+                currentSelected = shotGunSelected;
+                break;
+            case Inventory.WEAPON_TYPE.RIFLE:
+                currentWeapon = smgState;
+                currentSelected = smgSelected;
+                break;
+        }
+
+        currentWeapon.GetComponent<Image>().color = STATE_SELECTED;
+        currentSelected.SetActive(true);
+    }
+
+    public void setMenDown(bool v)
+    {
+        if(v && !menDown.activeSelf)
+        {
+            menDown.SetActive(true);
+        }
+        else if (!v && menDown.activeSelf)
+        {
+            menDown.SetActive(false);
+        }
+    }
 }

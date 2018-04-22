@@ -32,6 +32,7 @@ public class Inventory : MonoBehaviour
     Dictionary<AMMO_TYPE, uint> ammoInvenotry = new Dictionary<AMMO_TYPE, uint>();
     bool[] weaponsCarrying;
 
+    public HudController hudController;
 
     // Use this for initialization
     void Start ()
@@ -110,6 +111,7 @@ public class Inventory : MonoBehaviour
         weaponsInventory[(int)weapon].SetActive(false);
         weapon = type;
         weaponsInventory[(int)weapon].SetActive(true);
+        hudController.selectWeapon(type);
         gameObject.GetComponent<PlayerMovment>().animator = weaponsInventory[(int)weapon].GetComponentInChildren<Animator>();
     }
 
@@ -121,6 +123,7 @@ public class Inventory : MonoBehaviour
     public void addWeapon(WEAPON_TYPE type)
     {
         weaponsCarrying[(int)type] = true;
+        hudController.addWeapon(type);
         //Launch some animation or sound that has bought weapon
     }
 
