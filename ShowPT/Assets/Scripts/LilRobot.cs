@@ -32,6 +32,7 @@ public class LilRobot : Enemy
     public float jumpForceHorizontal;
     [Range(1, 10)]
     public float rotationSpeed;
+    public int damage;
 
     [SerializeField]
     LayerMask detectionLayer;
@@ -42,6 +43,7 @@ public class LilRobot : Enemy
     private LilRobotState state;
     private float recoverResetTime;
     private bool climbing;
+    private bool playerDamaged;
 
     // Use this for initialization
     void Start()
@@ -58,6 +60,7 @@ public class LilRobot : Enemy
         state = LilRobotState.IDLE;
         recoverResetTime = recoverTime;
         climbing = false;
+        playerDamaged = false;
     }
 
     private void FixedUpdate()
@@ -139,6 +142,7 @@ public class LilRobot : Enemy
                 {
                     recoverTime = recoverResetTime;
                     state = LilRobotState.IDLE;
+                    playerDamaged = false;
                 }
                 break;
             default:
@@ -177,5 +181,14 @@ public class LilRobot : Enemy
         return (!Physics.Linecast(transform.position, target.position, detectionLayer) ||
             !Physics.Linecast(transform.position, targetHead.position, detectionLayer) ||
             !Physics.Linecast(transform.position, targetFeet.position, detectionLayer));
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (state == LilRobotState.RECOVER && collision.gameObject.tag == "Player" && !playerDamaged)
+        {
+            playerDamaged = true;
+            collision.gameObject.GetComponent<PlayerHealth>().ChangeHealth(-damage);
+        }
     }
 }

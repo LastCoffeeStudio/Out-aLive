@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour {
 
     public Transform shotPoint;
 
+    [SerializeField]
     protected float enemyHealth = 10f;
     protected EnemyType enemyType = EnemyType.NONE;
     
