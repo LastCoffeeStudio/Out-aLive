@@ -9311,15 +9311,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1401375725620754}
-  m_LocalRotation: {x: -0, y: 0.7936476, z: -0, w: -0.6083778}
-  m_LocalPosition: {x: 102.39682, y: 3.3548477, z: 21.67877}
+  m_LocalRotation: {x: -0, y: 0.7160897, z: -0, w: 0.69800824}
+  m_LocalPosition: {x: -13.7, y: 3.3548477, z: -8.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4897929634300206}
   - {fileID: 4103704944230370}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 254.94499, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 91.465004, z: 0}
 --- !u!4 &4779947234734298
 Transform:
   m_ObjectHideFlags: 1
@@ -11301,6 +11301,7 @@ MonoBehaviour:
   amount: 0.06
   maxAmount: 0.1
   smoothAmount: 3
+  damage: 1
   shootPoint: {fileID: 4761935772003440}
   camera: {fileID: 4897929634300206}
   maxAmmo: 12
@@ -11405,6 +11406,7 @@ MonoBehaviour:
   amount: 0.06
   maxAmount: 0.1
   smoothAmount: 3
+  damage: 1
   shootPoint: {fileID: 4761935772003440}
   camera: {fileID: 4897929634300206}
   maxAmmo: 35
@@ -11452,6 +11454,7 @@ MonoBehaviour:
   amount: 0.06
   maxAmount: 0.1
   smoothAmount: 3
+  damage: 1
   shootPoint: {fileID: 4761935772003440}
   camera: {fileID: 4897929634300206}
   maxAmmo: 15

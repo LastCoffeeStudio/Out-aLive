@@ -30,6 +30,7 @@ public class ResourceMachine : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         dPadVerticalPressed = false;
         dPadHorizontalPressed = false;
 

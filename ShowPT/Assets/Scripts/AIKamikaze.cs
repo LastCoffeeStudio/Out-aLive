@@ -52,6 +52,7 @@ public class AIKamikaze : MonoBehaviour {
 	public float alertRotation = -2f;
 	Vector3 aggressiveDestination;
 
+    [SerializeField]
 	state NPCstate;
     private Animator animKamikaze;
 
@@ -119,8 +120,10 @@ public class AIKamikaze : MonoBehaviour {
                 Vector3 localDesiredVelocity = transform.InverseTransformVector(navMeshAgent.desiredVelocity);
                 float angle = Mathf.Atan2(localDesiredVelocity.x, localDesiredVelocity.z) * Mathf.Rad2Deg;
                 float speed = localDesiredVelocity.z;
-                animKamikaze.SetFloat("Speed", speed, 0.1f, Time.deltaTime);
-                Debug.Log(Mathf.Abs(Vector3.Distance(gameObject.transform.position, player.transform.position)) + "// " + explodingDistance);
+                /** Linea comentada para evitar warning, descomentar cuando se haya aplicado la animacion al kamikaze**/
+                //animKamikaze.SetFloat("Speed", speed, 0.1f, Time.deltaTime);
+                
+                //Debug.Log(Mathf.Abs(Vector3.Distance(gameObject.transform.position, player.transform.position)) + "// " + explodingDistance);
                 //Should I explode?
                 if (Mathf.Abs(Vector3.Distance(gameObject.transform.position, player.transform.position)) < explodingDistance )
                 {
