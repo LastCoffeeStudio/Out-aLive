@@ -6,8 +6,8 @@ public class PlayerHealth : MonoBehaviour {
 
     public int maxHealth = 100;
     public int health;
-    public GameUI gameUI;
-    public  GameObject ctrlGame;
+    public HudController hudUI;
+    public GameObject ctrlGame;
     private CtrlGameState ctrlGameState;
 
     // Use this for initialization
@@ -31,7 +31,7 @@ public class PlayerHealth : MonoBehaviour {
     public void ChangeHealth(int value)
     {
         health += value;
-        gameUI.ChangeHealthBar(health);
+        hudUI.ChangeHealthBar(health);
 
         if (health > maxHealth)
         {
