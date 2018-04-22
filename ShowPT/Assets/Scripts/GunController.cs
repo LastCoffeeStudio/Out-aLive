@@ -40,9 +40,12 @@ public class GunController : MonoBehaviour {
     private Inventory inventory;
     private bool playLastReload = false;
 
+    public HudController hudController;
+
     // Use this for initialization
     void Start () {
         ammunition = maxAmmo;
+        hudController.setAmmo((int)ammunition);
         initialposition = transform.localPosition;
         animator = gameObject.GetComponent<Animator>();
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
@@ -129,6 +132,7 @@ public class GunController : MonoBehaviour {
     void decreaseAmmo()
     {
         --ammunition;
+        hudController.setAmmo((int)ammunition);
         bool destroyed = false;
         //switch with different weapons
         RaycastHit hitInfo;
@@ -164,6 +168,7 @@ public class GunController : MonoBehaviour {
     {
         inventory.decreaseAmmo(typeAmmo, maxAmmo - ammunition);
         ammunition = maxAmmo;
+        hudController.setAmmo((int)ammunition);
     }
 
     void endReload()

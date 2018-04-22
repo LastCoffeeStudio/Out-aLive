@@ -6,9 +6,10 @@ public class PlayerHealth : MonoBehaviour {
 
     public int maxHealth = 100;
     public int health;
-    public HudController scoreController;
     public  GameObject ctrlGame;
     private CtrlGameState ctrlGameState;
+
+    public HudController hudController;
 
     // Use this for initialization
     void Start ()
@@ -31,11 +32,12 @@ public class PlayerHealth : MonoBehaviour {
     public void ChangeHealth(int value)
     {
         health += value;
-        scoreController.ChangeHealthBar(health);
+        hudController.ChangeHealthBar(health);
 
         if (health > maxHealth)
         {
             health = maxHealth;
+            hudController.ChangeHealthBar(health);
         }
         else if (health <= 0)
         {
