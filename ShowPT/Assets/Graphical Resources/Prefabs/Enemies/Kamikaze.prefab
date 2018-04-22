@@ -1172,7 +1172,7 @@ GameObject:
   - component: {fileID: 114561256025948472}
   m_Layer: 0
   m_Name: Kamikaze
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1257,7 +1257,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1958634897916010}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -22.486639, y: 92.810455, z: -179.41571}
+  m_LocalPosition: {x: -20.947319, y: 92.3748, z: -177.68515}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4787161064436222}
@@ -2705,6 +2705,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   alertRotation: -2
+  NPCstate: 0
 --- !u!114 &114659683674704604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2720,6 +2721,7 @@ MonoBehaviour:
   projectileToShoot: {fileID: 0}
   timeBetweenShots: 0.5
   shotPoint: {fileID: 0}
+  enemyHealth: 5
   explosionDistance: 3
   explosionDamage: -10
   explosion: {fileID: 1887034620482000, guid: 96551d92d51e0e041ae9d6516d696fd5, type: 2}
@@ -2745,11 +2747,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 8
+  m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

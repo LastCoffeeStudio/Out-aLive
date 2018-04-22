@@ -52,7 +52,6 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(ammoInvenotry[AMMO_TYPE.GUNAMMO]);
         if (Input.GetKeyDown(KeyCode.Alpha1) && weapon != WEAPON_TYPE.GUN && weaponsCarrying[(int)WEAPON_TYPE.GUN])
         {
             switchWeapon(WEAPON_TYPE.GUN);

@@ -127,7 +127,6 @@ public class AIKamikaze : MonoBehaviour {
                 //Should I explode?
                 if (Mathf.Abs(Vector3.Distance(gameObject.transform.position, player.transform.position)) < explodingDistance )
                 {
-                    
                     animKamikaze.SetBool("Explode", true);
                 }
                 break;
