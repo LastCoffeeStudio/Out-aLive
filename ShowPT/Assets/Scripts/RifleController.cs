@@ -203,7 +203,7 @@ public class RifleController : MonoBehaviour
 
     void increaseAmmo()
     {
-        inventory.increaseAmmo(typeAmmo, maxAmmo - ammunition);
+        inventory.decreaseAmmo(typeAmmo, maxAmmo - ammunition);
         ammunition = maxAmmo;
     }
 
