@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-
     public WEAPON_TYPE weapon;
     public GameObject[] weaponsInventory;
     private int selectedIdWeapond = 0;
