@@ -10,9 +10,6 @@ public class GameUI : MonoBehaviour {
 
 	Main mainManager;
 
-	[SerializeField]
-	Slider healthBar;
-
     public GameObject resourceMachineMenu;
 
 	// Use this for initialization
@@ -36,11 +33,6 @@ public class GameUI : MonoBehaviour {
 		{
 			pauseScreen.SetActive(true);
 		}
-	}
-
-	public void ChangeHealthBar(int value)
-	{
-		healthBar.value = value;
 	}
 
 	public void GoBackToMain()

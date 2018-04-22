@@ -6,7 +6,7 @@ public class PlayerHealth : MonoBehaviour {
 
     public int maxHealth = 100;
     public int health;
-    public GameUI gameUI;
+    public HudController scoreController;
     public  GameObject ctrlGame;
     private CtrlGameState ctrlGameState;
 
@@ -31,7 +31,7 @@ public class PlayerHealth : MonoBehaviour {
     public void ChangeHealth(int value)
     {
         health += value;
-        gameUI.ChangeHealthBar(health);
+        scoreController.ChangeHealthBar(health);
 
         if (health > maxHealth)
         {
