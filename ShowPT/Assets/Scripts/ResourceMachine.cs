@@ -9,8 +9,8 @@ public class ResourceMachine : MonoBehaviour {
     public float minimumAxisValue;
     public Inventory playerInventory;
     public Button[] buttons;
-    public uint ammoShotgun;
-    public uint ammoRifle;
+    public int ammoShotgun;
+    public int ammoRifle;
     public int points;
 
     private struct MachineButton

@@ -29,7 +29,7 @@ public class Inventory : MonoBehaviour
         NO_WEAPON
     }
 
-    Dictionary<AMMO_TYPE, uint> ammoInvenotry = new Dictionary<AMMO_TYPE, uint>();
+    Dictionary<AMMO_TYPE, int> ammoInvenotry = new Dictionary<AMMO_TYPE, int>();
     bool[] weaponsCarrying;
 
 
@@ -51,6 +51,7 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(ammoInvenotry[AMMO_TYPE.GUNAMMO]);
         if (Input.GetKeyDown(KeyCode.Alpha1) && weapon != WEAPON_TYPE.GUN && weaponsCarrying[(int)WEAPON_TYPE.GUN])
         {
             switchWeapon(WEAPON_TYPE.GUN);
@@ -90,17 +91,21 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public uint getAmmo(AMMO_TYPE typeAmmo)
+    public int getAmmo(AMMO_TYPE typeAmmo)
     {
         return ammoInvenotry[typeAmmo];
     }
 
-    public void decreaseAmmo(AMMO_TYPE typeAmmo, uint value)
+    public void decreaseAmmo(AMMO_TYPE typeAmmo, int value)
     {
         ammoInvenotry[typeAmmo] -= value;
+        if (ammoInvenotry[typeAmmo] < 0)
+        {
+            ammoInvenotry[typeAmmo] = 0;
+        }
     }
 
-    public void increaseAmmo(AMMO_TYPE typeAmmo, uint value)
+    public void increaseAmmo(AMMO_TYPE typeAmmo, int value)
     {
         ammoInvenotry[typeAmmo] += value;
     }
@@ -124,7 +129,7 @@ public class Inventory : MonoBehaviour
         //Launch some animation or sound that has bought weapon
     }
 
-    public void addAmmo(AMMO_TYPE ammo, uint quantity)
+    public void addAmmo(AMMO_TYPE ammo, int quantity)
     {
         Debug.Log("Ammo before: " + ammoInvenotry[ammo]);
         ammoInvenotry[ammo] += quantity;

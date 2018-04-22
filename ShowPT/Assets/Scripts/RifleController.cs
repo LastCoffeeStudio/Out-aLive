@@ -15,8 +15,8 @@ public class RifleController : MonoBehaviour
     public int damage;
     public Transform shootPoint;
     public Transform camera;
-    public uint maxAmmo = 10;
-    public uint ammunition;
+    public int maxAmmo = 10;
+    public int ammunition;
     public Text text;
     public Text numDronsText;
 
