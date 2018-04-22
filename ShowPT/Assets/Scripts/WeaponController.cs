@@ -232,7 +232,7 @@ public class WeaponController : MonoBehaviour
     void increaseAmmo()
     {
         ++ammunition;
-        inventory.increaseAmmo(typeAmmo, 1);
+        inventory.decreaseAmmo(typeAmmo, 1);
     }
 
     void endReload()

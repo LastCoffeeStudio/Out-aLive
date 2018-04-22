@@ -65,11 +65,11 @@ public class Inventory : MonoBehaviour
             switchWeapon(WEAPON_TYPE.RIFLE);
         }
 
-        if (Input.GetButtonDown("ButtonLB"))
+        if (Input.GetButtonDown("ButtonLB") || Input.GetAxis("Mouse ScrollWheel") > 0)
         {
             nextWeapond(-1);
         }
-        if (Input.GetButtonDown("ButtonRB"))
+        if (Input.GetButtonDown("ButtonRB") || Input.GetAxis("Mouse ScrollWheel") < 0)
         {
             nextWeapond(+1);
         }
