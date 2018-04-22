@@ -28,11 +28,13 @@ public class GameUI : MonoBehaviour {
 		if (CtrlPause.gamePaused == false) 
 		{
 			pauseScreen.SetActive(false);
+            setCursorScreen(false);
 		} 
 		else 
 		{
 			pauseScreen.SetActive(true);
-		}
+            setCursorScreen(true);
+        }
 	}
 
 	public void GoBackToMain()
@@ -43,10 +45,28 @@ public class GameUI : MonoBehaviour {
     public void enableResourceMachineUI()
     {
         resourceMachineMenu.SetActive(true);
+        setCursorScreen(true);
     }
 
     public void disableResourceMachineUI()
     {
         resourceMachineMenu.SetActive(false);
+        setCursorScreen(false);
+    }
+
+    private void setCursorScreen(bool active)
+    {
+        if (active)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            Time.timeScale = 1;
+        }
     }
 }

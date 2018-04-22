@@ -202,12 +202,12 @@ public class PlayerMovment : MonoBehaviour {
             crouched = false;
         }
 
-        if (Input.GetButtonDown("ButtonY"))
+        if (Input.GetButtonDown("ButtonY") || Input.GetKeyDown(KeyCode.O))
         {
             interact();
         }
 
-        if (Input.GetButtonDown("ButtonB"))
+        if (Input.GetButtonDown("ButtonB") || Input.GetKeyDown(KeyCode.K))
         {
             if (buying)
             {
