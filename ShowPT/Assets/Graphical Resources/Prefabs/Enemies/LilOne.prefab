@@ -45,6 +45,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1881099576046758
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4936345871809278}
+  m_Layer: 0
+  m_Name: ObstacleDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1942792941949426
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,14 +110,28 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1058839322506776}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 92.161415, y: 3.6048477, z: 23.833288}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 31.409996, y: 92.040016, z: -108.369995}
+  m_LocalScale: {x: 0.50070006, y: 0.50065994, z: 0.50002}
   m_Children:
   - {fileID: 4382713581705130}
   - {fileID: 4480458815541574}
+  - {fileID: 4936345871809278}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -167.84001, z: 0}
+--- !u!4 &4936345871809278
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1881099576046758}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4934016899046308}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23512091973653318
 MeshRenderer:
@@ -177,14 +206,24 @@ MonoBehaviour:
   shotPoint: {fileID: 0}
   lilRobCamera: {fileID: 0}
   target: {fileID: 0}
+  targetHead: {fileID: 0}
+  targetFeet: {fileID: 0}
+  obstacleDetector: {fileID: 0}
+  obstacleDetectorDistance: 0
   detectionDistance: 20
   jumpDistance: 3
+  climbForce: 0
+  deceleration: 0
   agentTransform: {fileID: 4382713581705130}
   recoverTime: 2
   maxSpeed: 200
   jumpForceVertical: 0
   jumpForceHorizontal: 0
   rotationSpeed: 4
+  detectionLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  state: 0
 --- !u!114 &114780589224621640
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -202,14 +241,24 @@ MonoBehaviour:
   shotPoint: {fileID: 0}
   lilRobCamera: {fileID: 0}
   target: {fileID: 0}
+  targetHead: {fileID: 0}
+  targetFeet: {fileID: 0}
+  obstacleDetector: {fileID: 0}
+  obstacleDetectorDistance: 0.8
   detectionDistance: 20
   jumpDistance: 3
+  climbForce: 5
+  deceleration: 0.1
   agentTransform: {fileID: 4382713581705130}
   recoverTime: 2
   maxSpeed: 350
   jumpForceVertical: 200
   jumpForceHorizontal: 150
   rotationSpeed: 8
+  detectionLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  state: 0
 --- !u!135 &135335171840244336
 SphereCollider:
   m_ObjectHideFlags: 1
