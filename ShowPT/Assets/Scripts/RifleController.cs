@@ -54,7 +54,7 @@ public class RifleController : MonoBehaviour
         initialposition = transform.localPosition;
         animator = gameObject.GetComponent<Animator>();
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
-        typeAmmo = Inventory.AMMO_TYPE.GUNAMMO;
+        typeAmmo = Inventory.AMMO_TYPE.RIFLEAMMO;
         if (dronsPuntuation != null)
         {
             dronsPuntuation.text = "-";
@@ -168,10 +168,6 @@ public class RifleController : MonoBehaviour
                 destroyed = true;
                 Destroy(hitInfo.collider.gameObject);
                 GameObject.Instantiate(explosion, hitInfo.point, Quaternion.Euler(0f, 0f, 0f));
-            }
-            else
-            {
-                GameObject.Instantiate(esferaVerde, hitInfo.point, Quaternion.Euler(0f, 0f, 0f));
             }
 
             if (hitInfo.transform.tag == "Enemy" || hitInfo.transform.tag == "Drone")

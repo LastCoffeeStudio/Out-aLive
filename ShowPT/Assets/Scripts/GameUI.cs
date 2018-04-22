@@ -39,7 +39,7 @@ public class GameUI : MonoBehaviour {
 
 	public void GoBackToMain()
 	{
-		
+        Application.Quit();
 	}
 
     public void enableResourceMachineUI()

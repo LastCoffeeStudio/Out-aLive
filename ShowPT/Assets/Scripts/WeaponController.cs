@@ -196,10 +196,6 @@ public class WeaponController : MonoBehaviour
                     Destroy(hitInfo.collider.gameObject);
                     GameObject.Instantiate(explosion, hitInfo.point, Quaternion.Euler(0f, 0f, 0f));
                 }
-                else
-                {
-                    GameObject.Instantiate(esferaVerde, hitInfo.point, Quaternion.Euler(0f, 0f, 0f));
-                }
 
                 if (hitInfo.transform.tag == "Enemy" || hitInfo.transform.tag == "Drone")
                 {

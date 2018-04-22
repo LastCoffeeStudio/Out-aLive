@@ -37,13 +37,13 @@ public class StatsController : MonoBehaviour {
             frames = 0;
             dt -= 1f / rate;
         }
-
+        /*
         fps.text = "FPS: " + framesPerSecond.ToString();
         triangles.text = "Triangles: " + UnityEditor.UnityStats.triangles.ToString();
         vertices.text = "Vertices: " + UnityEditor.UnityStats.vertices.ToString();
         drawCalls.text = "Draw Calls: " + UnityEditor.UnityStats.drawCalls.ToString();
         render.text = "Render Time: " + UnityEditor.UnityStats.renderTime.ToString();
         vbo.text = "VBOs: " + UnityEditor.UnityStats.vboTotal.ToString();
-
+        */
     }
 }
