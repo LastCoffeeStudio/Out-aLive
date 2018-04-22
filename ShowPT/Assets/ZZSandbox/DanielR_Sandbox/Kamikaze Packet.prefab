@@ -997,16 +997,16 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1888506101466090}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.46, y: 0, z: -8.22}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.000000006519258, y: 0.4510577, z: -0.0000000037252903, w: 0.8924948}
+  m_LocalPosition: {x: -22.300076, y: 92.57994, z: -176.73822}
+  m_LocalScale: {x: 1.0002779, y: 1.0006698, z: 1.0003932}
   m_Children:
   - {fileID: 4922924392692822}
   - {fileID: 4747623761804888}
   - {fileID: 4266204273512400}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 53.623, z: 0}
 --- !u!4 &4889420845349658
 Transform:
   m_ObjectHideFlags: 1
@@ -1497,6 +1497,7 @@ MonoBehaviour:
   projectileToShoot: {fileID: 0}
   timeBetweenShots: 0.5
   shotPoint: {fileID: 0}
+  enemyHealth: 7
   explosionDistance: 3
   explosionDamage: -10
   explosion: {fileID: 1887034620482000, guid: 96551d92d51e0e041ae9d6516d696fd5, type: 2}
@@ -1516,7 +1517,7 @@ MonoBehaviour:
   nodeList:
   - {fileID: 114618110389343698}
   - {fileID: 114603685330028116}
-  viewDistance: 50
+  viewDistance: 3
   explodingDistance: 0.1
   alertTime: 6
   alertRotationTime: 1
@@ -1525,6 +1526,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   alertRotation: -2
+  NPCstate: 0
 --- !u!114 &114603685330028116
 MonoBehaviour:
   m_ObjectHideFlags: 1
