@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,8 +33,20 @@ public class Kamikaze : Enemy {
         Debug.Log(enemyHealth);
         if (enemyHealth <= 0)
         {
-            explode();
+            forceExplode();
         }
+    }
+
+    private void forceExplode()
+    {
+        //Explosion animation
+        RaycastHit hitInfo;
+        if (Physics.Raycast(transform.position, player.position - transform.position, out hitInfo, explosionDistance) && hitInfo.transform.tag == "Player")
+        {
+            player.GetComponent<PlayerHealth>().ChangeHealth(explosionDamage);
+        }
+        GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
     private void hasExplode()
@@ -55,14 +68,7 @@ public class Kamikaze : Enemy {
     {
         if (player != null && Vector3.Distance(player.position, transform.position) <= explosionDistance)
         {
-            //Explosion animation
-            RaycastHit hitInfo;
-            if (Physics.Raycast(transform.position, player.position - transform.position, out hitInfo, explosionDistance) && hitInfo.transform.tag == "Player")
-            {
-                player.GetComponent<PlayerHealth>().ChangeHealth(explosionDamage);
-            }
-            GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            forceExplode();
         }
     }
 
