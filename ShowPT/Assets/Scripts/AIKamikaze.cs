@@ -129,6 +129,10 @@ public class AIKamikaze : MonoBehaviour {
                 {
                     animKamikaze.SetBool("Explode", true);
                 }
+                if (animKamikaze.GetCurrentAnimatorStateInfo(0).IsName("exit"))
+                {
+                    gameObject.GetComponent<Kamikaze>().explode();
+                }
                 break;
 
         }

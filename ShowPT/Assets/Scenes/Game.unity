@@ -17055,6 +17055,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
+  hitAudio: {fileID: 0}
+  ctrAudio: {fileID: 0}
   projectileToShoot: {fileID: 114204168861104912, guid: 2767056ec05b701419cb7545219ca785,
     type: 2}
   timeBetweenShots: 0.5
@@ -22942,6 +22944,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 634ca97caf7a0c84eb1f2c39654664bf, type: 2}
   numSounds: 10
+  hit: {fileID: 8300000, guid: 55744afcd47e8ea4180fe7f45d0ed2d9, type: 3}
 --- !u!4 &1175559943
 Transform:
   m_ObjectHideFlags: 0
@@ -28083,6 +28086,16 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114887275633836690, guid: 922e4787834b26949a3b87e34afcdf81,
+        type: 2}
+      propertyPath: reload
+      value: 
+      objectReference: {fileID: 8300000, guid: acd47db0d8d41aa4f820275ae2302f9b, type: 3}
+    - target: {fileID: 114887275633836690, guid: 922e4787834b26949a3b87e34afcdf81,
+        type: 2}
+      propertyPath: shot
+      value: 
+      objectReference: {fileID: 8300000, guid: eba2a5b7be178b042b2477624eccde55, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 922e4787834b26949a3b87e34afcdf81, type: 2}
   m_IsPrefabParent: 0

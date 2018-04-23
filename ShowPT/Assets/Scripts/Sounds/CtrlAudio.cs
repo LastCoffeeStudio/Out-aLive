@@ -17,6 +17,10 @@ public class CtrlAudio : MonoBehaviour
     private ulong nextId = 0;
     private Transform listenerPos = null;
 
+
+    //REFACTORIZAR!!!!
+    public AudioClip hit;
+
     void Awake()
     {
         DontDestroyOnLoad(gameObject);

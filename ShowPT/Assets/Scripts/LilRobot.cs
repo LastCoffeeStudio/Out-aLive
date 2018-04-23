@@ -48,6 +48,8 @@ public class LilRobot : Enemy
     // Use this for initialization
     void Start()
     {
+        ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
+        hitAudio = ctrAudio.hit;
         target = GameObject.FindGameObjectWithTag("Player").transform;
         obstacleDetector = transform.Find("ObstacleDetector");
         targetHead = target.Find("Head");
@@ -169,6 +171,7 @@ public class LilRobot : Enemy
 
     public override void getHit(int damage)
     {
+        ctrAudio.playOneSound("Enemies", hitAudio, transform.position, 1.0f, 0.0f, 128);
         enemyHealth -= damage;
         Debug.Log(enemyHealth);
         rb.constraints = RigidbodyConstraints.None;

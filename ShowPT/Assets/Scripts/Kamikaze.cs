@@ -15,23 +15,28 @@ public class Kamikaze : Enemy {
     void Start() 
 	{
 		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform>();
-	}
+	    ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
+    }
 
     // Update is called once per frame
     void Update()
     {
-        explode();
+        hasExplode();
     }
 
     public override void getHit(int damage)
     {
+        ctrAudio.playOneSound("Enemies", hitAudio, transform.position, 1.0f, 0.0f, 128);
+        hitAudio = ctrAudio.hit;
         enemyHealth -= damage;
         Debug.Log(enemyHealth);
-        //Execute properly Animation
-        checkHealth();
+        if (enemyHealth <= 0)
+        {
+            explode();
+        }
     }
 
-    private void explode()
+    private void hasExplode()
     {
         if (player != null && Vector3.Distance(player.position, transform.position) <= explosionDistance)
         {
@@ -42,6 +47,21 @@ public class Kamikaze : Enemy {
                 player.GetComponent<PlayerHealth>().ChangeHealth(explosionDamage);
             }
 			GameObject.Instantiate (explosion, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+    }
+
+    public void explode()
+    {
+        if (player != null && Vector3.Distance(player.position, transform.position) <= explosionDistance)
+        {
+            //Explosion animation
+            RaycastHit hitInfo;
+            if (Physics.Raycast(transform.position, player.position - transform.position, out hitInfo, explosionDistance) && hitInfo.transform.tag == "Player")
+            {
+                player.GetComponent<PlayerHealth>().ChangeHealth(explosionDamage);
+            }
+            GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

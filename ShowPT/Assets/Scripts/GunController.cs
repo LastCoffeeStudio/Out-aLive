@@ -42,6 +42,9 @@ public class GunController : MonoBehaviour {
 
     public HudController hudController;
 
+    public AudioClip shot;
+    public AudioClip reload;
+    private CtrlAudio ctrlAudio;
     // Use this for initialization
     void Start () {
         ammunition = maxAmmo;
@@ -50,6 +53,7 @@ public class GunController : MonoBehaviour {
         animator = gameObject.GetComponent<Animator>();
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         typeAmmo = Inventory.AMMO_TYPE.GUNAMMO;
+        ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
     }
 	
 	// Update is called once per frame
@@ -103,7 +107,7 @@ public class GunController : MonoBehaviour {
 
     private void checkInputAnimations()
     {
-        if (Input.GetButton("Fire1") || Input.GetAxis("AxisRT") > 0.5f)
+        if (Input.GetButton("Fire1") || Input.GetAxis("AxisRT") > 0.5f && animator.GetBool("shooting") == false)
         {
             if (ammunition > 0)
             {
@@ -113,12 +117,15 @@ public class GunController : MonoBehaviour {
                     reloading = false;
                     animator.SetBool("reloading", false);
                 }
+                ctrlAudio.playOneSound("Player", shot, transform.position, 1.0f, 0f, 150);
+
             }
         }
-        if ((Input.GetKey(KeyCode.R) || Input.GetButton("ButtonX")) && ammunition < maxAmmo)
+        if ((Input.GetKey(KeyCode.R) || Input.GetButton("ButtonX")) && ammunition < maxAmmo && animator.GetBool("reloading") == false)
         {
             if (inventory.getAmmo(typeAmmo) > 0)
             {
+                ctrlAudio.playOneSound("Player", reload, transform.position, 1.0f, 0f, 90);
                 reloading = true;
                 animator.SetBool("reloading", true);
             }

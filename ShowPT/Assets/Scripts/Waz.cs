@@ -5,7 +5,11 @@ using UnityEngine;
 public class Waz : Enemy
 {
     // Use this for initialization
-    void Start() {}
+    void Start()
+    {
+        ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
+        hitAudio = ctrAudio.hit;
+    }
 
     // Update is called once per frame
     void Update()
@@ -15,6 +19,7 @@ public class Waz : Enemy
 
     public override void getHit(int damage)
     {
+        ctrAudio.playOneSound("Enemies", hitAudio, transform.position, 1.0f, 0.0f, 128);
         enemyHealth -= damage;
         Debug.Log(enemyHealth);
         //Execute properly Animation

@@ -18,7 +18,10 @@ public class Enemy : MonoBehaviour {
     }
 
     public bool active = false;
-
+    [SerializeField]
+    public AudioClip hitAudio;
+    [SerializeField]
+    public CtrlAudio ctrAudio;
     [SerializeField]
     Projectile projectileToShoot;
     [SerializeField]
@@ -33,7 +36,10 @@ public class Enemy : MonoBehaviour {
     
 
     // Use this for initialization
-    void Start () {}
+    void Start()
+    {
+       
+    }
 	
 	// Update is called once per frame
 	void Update () {}
