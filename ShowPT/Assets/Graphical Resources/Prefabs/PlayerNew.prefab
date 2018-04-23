@@ -9367,8 +9367,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1401375725620754}
-  m_LocalRotation: {x: -0, y: 0.7160897, z: -0, w: 0.69800824}
-  m_LocalPosition: {x: -13.7, y: 3.3548477, z: -8.5}
+  m_LocalRotation: {x: -0, y: 0.7072876, z: -0, w: 0.70692587}
+  m_LocalPosition: {x: -11.39, y: 3.3548477, z: -12.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4897929634300206}
@@ -9377,7 +9377,7 @@ Transform:
   - {fileID: 4470521166980132}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 91.465004, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90.02901, z: 0}
 --- !u!4 &4779947234734298
 Transform:
   m_ObjectHideFlags: 1
@@ -11414,6 +11414,7 @@ MonoBehaviour:
   - {fileID: 1463461705257190}
   - {fileID: 1590534683661790}
   - {fileID: 1213973929153448}
+  hudController: {fileID: 0}
 --- !u!114 &114715274666396352
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11450,6 +11451,8 @@ MonoBehaviour:
   animator: {fileID: 0}
   noiseValue: 0
   gameUI: {fileID: 0}
+  hudController: {fileID: 0}
+  steps: {fileID: 11400000, guid: be0819aed5b2a434286b70dc76897002, type: 2}
 --- !u!114 &114762021060740494
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -110,6 +110,10 @@ public class RifleController : MonoBehaviour
             }
         }
     }
+    void playStep()
+    {
+        gameObject.GetComponentInParent<PlayerMovment>().PlayStep();
+    }
 
     private void swagWeaponMovement()
     {

@@ -66,6 +66,9 @@ public class PlayerMovment : MonoBehaviour {
 
     private bool buying;
 
+    public AudioCollection steps;
+    private CtrlAudio ctrlAudio;
+
     void Start () {
         rb = GetComponent<Rigidbody>();
         //animator = gameObject.GetComponentInChildren<Animator>();
@@ -78,6 +81,12 @@ public class PlayerMovment : MonoBehaviour {
 
         positionCameraAgac = new Vector3(cam.transform.localPosition.x, 0, cam.transform.localPosition.z);
         buying = false;
+        ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
+    }
+
+    public void PlayStep()
+    {
+        ctrlAudio.playOneSound("Player", steps[0], transform.position, steps.volume, steps.spatialBlend, steps.priority);
     }
 
     //Calcule 

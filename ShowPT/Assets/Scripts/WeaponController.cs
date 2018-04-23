@@ -78,6 +78,11 @@ public class WeaponController : MonoBehaviour
         }
     }
 
+    void playStep()
+    {
+        gameObject.GetComponentInParent<PlayerMovment>().PlayStep();
+    }
+
     private bool playLastReload = false;
 	void Update () {
         

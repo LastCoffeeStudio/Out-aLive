@@ -69,6 +69,10 @@ public class GunController : MonoBehaviour {
         aimAmmo();
     }
 
+    void playStep()
+    {
+        gameObject.GetComponentInParent<PlayerMovment>().PlayStep();
+    }
     void aimAmmo()
     {
         if (!reloading)
