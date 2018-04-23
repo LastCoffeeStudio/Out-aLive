@@ -33,6 +33,7 @@ public class GunController : MonoBehaviour {
     public GameObject esferaRoja;
     public GameObject explosion;
     public ParticleSystem shootEffect;
+    public GameObject sparks;
 
     public int numDrons = 0;
     
@@ -161,6 +162,8 @@ public class GunController : MonoBehaviour {
             {
                 hitInfo.collider.gameObject.GetComponent<Enemy>().getHit(damage);
                 ScoreController.gunHit();
+                GameObject spark = Instantiate(sparks, hitInfo.point, Quaternion.Euler(0f, 0f, 0f));
+                spark.transform.up = hitInfo.normal;
             }
         }
 
