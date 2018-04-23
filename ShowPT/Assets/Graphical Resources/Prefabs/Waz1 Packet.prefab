@@ -647,6 +647,7 @@ GameObject:
   - component: {fileID: 114837573164310508}
   - component: {fileID: 114110816793214770}
   - component: {fileID: 65200486843648866}
+  - component: {fileID: 95216695089412656}
   m_Layer: 0
   m_Name: WAZ1
   m_TagString: Enemy
@@ -1740,6 +1741,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.3404312, y: 2.35, z: 2.3453245}
   m_Center: {x: 0.004787445, y: 0.68000007, z: 0.033512592}
+--- !u!95 &95216695089412656
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1921289157828376}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 91cf089f090664b4597a62d98c528712, type: 3}
+  m_Controller: {fileID: 9100000, guid: 80ec82e8dd810b74c8254f6c58e75afa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &95511558216997056
 Animator:
   serializedVersion: 3
@@ -1805,6 +1823,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
+  hitAudio: {fileID: 0}
+  ctrAudio: {fileID: 0}
   projectileToShoot: {fileID: 114204168861104912, guid: 2767056ec05b701419cb7545219ca785,
     type: 2}
   timeBetweenShots: 1
@@ -1853,6 +1873,7 @@ MonoBehaviour:
   - {fileID: 114239889397567300}
   - {fileID: 114847585502291896}
   viewDistance: 50
+  absoluteAwarenessRadius: 5
   shootingDistance: 20
   alertTime: 6
   alertRotationTime: 1

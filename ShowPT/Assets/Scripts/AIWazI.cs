@@ -58,11 +58,12 @@ public class AIWazI : MonoBehaviour {
 	public Waz myTurrets;
 
 	state NPCstate;
-
+	private Animator animWaz;
 
 	// Use this for initialization
 	void Start () {
 		navMeshAgent = this.GetComponent<NavMeshAgent> ();
+		animWaz = this.GetComponent<Animator> ();
 
 		if (navMeshAgent == null) 
 		{
@@ -94,6 +95,7 @@ public class AIWazI : MonoBehaviour {
 		switch (NPCstate) 
 		{
 		case state.WALKING:
+			animWaz.SetBool ("walking", true);
 			spotLight.color = Color.green;
 			if (navMeshAgent.remainingDistance <= 1.0f) 
 			{
@@ -103,6 +105,7 @@ public class AIWazI : MonoBehaviour {
 			break;
 
 		case state.WAITING:
+			animWaz.SetBool ("walking", false);
 			spotLight.color = Color.green;
 			waitTimer += Time.deltaTime;
 			if (waitTimer >= waitTime) 
