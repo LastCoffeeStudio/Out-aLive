@@ -28,6 +28,9 @@ public class AIWazI : MonoBehaviour {
 	float viewDistance = 50.0f;
 
 	[SerializeField]
+	float absoluteAwarenessRadius = 5.0f;
+
+	[SerializeField]
 	float shootingDistance = 20.0f;
 
 	[SerializeField]
@@ -201,7 +204,11 @@ public class AIWazI : MonoBehaviour {
 
 	bool CanSeePlayer()
 	{
-		if (Vector3.Distance (transform.position, player.transform.position) < viewDistance) 
+		if (Vector3.Distance (transform.position, player.transform.position) < absoluteAwarenessRadius) 
+		{
+			return true;
+		}
+		else if (Vector3.Distance (transform.position, player.transform.position) < viewDistance) 
 		{
 			Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
 			float angleBetweenThisAndPlayer = Vector3.Angle (transform.forward, directionToPlayer);
