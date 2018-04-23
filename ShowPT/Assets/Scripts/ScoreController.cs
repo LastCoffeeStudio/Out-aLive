@@ -53,6 +53,22 @@ public class ScoreController : MonoBehaviour {
     private int LilDeads;
     private int totalEnemies;
 
+    private static int gunShotsUsed;
+    private static int rifleShotsUsed;
+    private static int weaponShotsUsed;
+
+    private static int gunShotsTouched;
+    private static int rifleShotsTouched;
+    private static int weaponShotsTouched;
+
+    public static void gunUsed() { ++gunShotsUsed;  }
+    public static void rifleUsed() { ++rifleShotsUsed; }
+    public static void weaponUsed() { ++weaponShotsUsed; }
+
+    public static void gunHit() { ++gunShotsTouched; }
+    public static void rifleHit() { ++rifleShotsTouched; }
+    public static void weaponHit() { ++weaponShotsTouched; }
+
     // Use this for initialization
     void Start () {}
 	

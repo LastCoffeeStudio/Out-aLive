@@ -161,6 +161,7 @@ public class RifleController : MonoBehaviour
     void decreaseAmmo()
     {
         --ammunition;
+        ScoreController.rifleUsed();
         bool destroyed = false;
         //switch with different weapons
         RaycastHit hitInfo;
@@ -177,6 +178,7 @@ public class RifleController : MonoBehaviour
             if (hitInfo.transform.tag == "Enemy" || hitInfo.transform.tag == "Drone")
             {
                 hitInfo.collider.gameObject.GetComponent<Enemy>().getHit(damage);
+                ScoreController.rifleHit();
             }
         }
 

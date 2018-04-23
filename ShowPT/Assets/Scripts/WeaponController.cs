@@ -184,6 +184,7 @@ public class WeaponController : MonoBehaviour
     void decreaseAmmo()
     {
         --ammunition;
+        ScoreController.weaponUsed();
         bool destroyed = false;
         shotAudio.Play();
         //switch with different weapons
@@ -205,6 +206,7 @@ public class WeaponController : MonoBehaviour
                 if (hitInfo.transform.tag == "Enemy" || hitInfo.transform.tag == "Drone")
                 {
                     hitInfo.collider.gameObject.GetComponent<Enemy>().getHit(damage);
+                    ScoreController.weaponHit();
                 }
             }
             

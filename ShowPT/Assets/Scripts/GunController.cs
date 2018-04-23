@@ -143,6 +143,7 @@ public class GunController : MonoBehaviour {
     void decreaseAmmo()
     {
         --ammunition;
+        ScoreController.gunUsed();
         hudController.setAmmo((int)ammunition);
         bool destroyed = false;
         //switch with different weapons
@@ -165,6 +166,7 @@ public class GunController : MonoBehaviour {
             if (hitInfo.transform.tag == "Enemy" || hitInfo.transform.tag == "Drone")
             {
                 hitInfo.collider.gameObject.GetComponent<Enemy>().getHit(damage);
+                ScoreController.gunHit();
             }
         }
 
