@@ -17136,6 +17136,7 @@ MonoBehaviour:
   timeBetweenShots: 0.5
   shotPoint: {fileID: 739880256}
   enemyHealth: 10
+  imAlreadyDead: 0
 --- !u!114 &892992388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28123,7 +28124,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114656390642214366, guid: 922e4787834b26949a3b87e34afcdf81,
+    - target: {fileID: 114715274666396352, guid: 922e4787834b26949a3b87e34afcdf81,
+        type: 2}
+      propertyPath: gameUI
+      value: 
+      objectReference: {fileID: 1060103772}
+    - target: {fileID: 114715274666396352, guid: 922e4787834b26949a3b87e34afcdf81,
         type: 2}
       propertyPath: hudController
       value: 
@@ -28138,39 +28144,11 @@ Prefab:
       propertyPath: hudController
       value: 
       objectReference: {fileID: 1570164641}
-    - target: {fileID: 114715274666396352, guid: 922e4787834b26949a3b87e34afcdf81,
-        type: 2}
-      propertyPath: gameUI
-      value: 
-      objectReference: {fileID: 1060103772}
-    - target: {fileID: 114715274666396352, guid: 922e4787834b26949a3b87e34afcdf81,
+    - target: {fileID: 114656390642214366, guid: 922e4787834b26949a3b87e34afcdf81,
         type: 2}
       propertyPath: hudController
       value: 
       objectReference: {fileID: 1570164641}
-    - target: {fileID: 114887275633836690, guid: 922e4787834b26949a3b87e34afcdf81,
-        type: 2}
-      propertyPath: hudController
-      value: 
-      objectReference: {fileID: 1570164641}
-    - target: {fileID: 1590534683661790, guid: 922e4787834b26949a3b87e34afcdf81, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1213973929153448, guid: 922e4787834b26949a3b87e34afcdf81, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114887275633836690, guid: 922e4787834b26949a3b87e34afcdf81,
-        type: 2}
-      propertyPath: reload
-      value: 
-      objectReference: {fileID: 8300000, guid: acd47db0d8d41aa4f820275ae2302f9b, type: 3}
-    - target: {fileID: 114887275633836690, guid: 922e4787834b26949a3b87e34afcdf81,
-        type: 2}
-      propertyPath: shot
-      value: 
-      objectReference: {fileID: 8300000, guid: eba2a5b7be178b042b2477624eccde55, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 922e4787834b26949a3b87e34afcdf81, type: 2}
   m_IsPrefabParent: 0

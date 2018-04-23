@@ -33,6 +33,7 @@ public class RifleController : MonoBehaviour
     public GameObject esferaVerde;
     public GameObject esferaRoja;
     public GameObject explosion;
+    public ParticleSystem shootEffect;
 
     public int numDrons = 0;
 
@@ -222,5 +223,9 @@ public class RifleController : MonoBehaviour
     {
         reloading = false;
         animator.SetBool("reloading", false);
+    }
+    private void shoot()
+    {
+        shootEffect.Play();
     }
 }

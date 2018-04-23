@@ -32,6 +32,7 @@ public class GunController : MonoBehaviour {
     public GameObject esferaVerde;
     public GameObject esferaRoja;
     public GameObject explosion;
+    public ParticleSystem shootEffect;
 
     public int numDrons = 0;
     
@@ -115,7 +116,7 @@ public class GunController : MonoBehaviour {
                     reloading = false;
                     animator.SetBool("reloading", false);
                 }
-                ctrlAudio.playOneSound("Player", shot, transform.position, 1.0f, 0f, 150);
+                //ctrlAudio.playOneSound("Player", shot, transform.position, 1.0f, 0f, 150);
 
             }
         }
@@ -191,5 +192,11 @@ public class GunController : MonoBehaviour {
     {
         reloading = false;
         animator.SetBool("reloading", false);
+    }
+
+    private void shoot()
+    {
+        ctrlAudio.playOneSound("Player", shot, transform.position, 1.0f, 0f, 150);
+        shootEffect.Play();
     }
 }

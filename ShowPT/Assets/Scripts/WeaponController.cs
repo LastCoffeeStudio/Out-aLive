@@ -38,6 +38,7 @@ public class WeaponController : MonoBehaviour
     public GameObject esferaVerde;
     public GameObject esferaRoja;
     public GameObject explosion;
+    public ParticleSystem shootEffect;
 
     public int numDrons = 0;
 
@@ -253,5 +254,8 @@ public class WeaponController : MonoBehaviour
             animator.SetBool("lastBullet", true);
         }
     }
-    
+    private void shoot()
+    {
+        shootEffect.Play();
+    }
 }
