@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Waz : Enemy
 {
+	Animator wazAnimator;
+	public bool imAlreadyDead = false;
+
     // Use this for initialization
     void Start()
     {
+		wazAnimator = gameObject.GetComponent<Animator> ();
         ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
         hitAudio = ctrAudio.hit;
     }
@@ -15,6 +19,12 @@ public class Waz : Enemy
     void Update()
     {
         shoot();
+
+		if(imAlreadyDead && wazAnimator.GetCurrentAnimatorStateInfo (0).normalizedTime > 1) 
+		{
+			Destroy (gameObject);
+			ScoreController.addDead (ScoreController.Enemy.WAZ);
+		}
     }
 
     public override void getHit(int damage)
@@ -30,8 +40,10 @@ public class Waz : Enemy
     {
         if (enemyHealth <= 0f)
         {
-            Destroy(gameObject);
-            ScoreController.addDead(ScoreController.Enemy.WAZ);
+			if (!imAlreadyDead) {
+				wazAnimator.SetTrigger ("dying");
+				imAlreadyDead = true;
+			} 
         }
     }
 }
