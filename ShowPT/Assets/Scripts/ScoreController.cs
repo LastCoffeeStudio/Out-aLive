@@ -73,7 +73,12 @@ public class ScoreController : MonoBehaviour {
     void Start () {}
 	
 	// Update is called once per frame
-	void Update () {}
+	void Update ()
+    {
+        totalScoreLabel.text = totalScoreInt.ToString();
+    }
+    
+
 
     public void addDead(Enemy enemy)
     {
