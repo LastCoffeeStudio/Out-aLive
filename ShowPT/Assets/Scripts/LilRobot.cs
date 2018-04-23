@@ -179,6 +179,15 @@ public class LilRobot : Enemy
         checkHealth();
     }
 
+    public override void checkHealth()
+    {
+        if (enemyHealth <= 0f)
+        {
+            Destroy(gameObject);
+            ScoreController.addDead(ScoreController.Enemy.LIL);
+        }
+    }
+
     private bool detectPlayer()
     {
         return (!Physics.Linecast(transform.position, target.position, detectionLayer) ||

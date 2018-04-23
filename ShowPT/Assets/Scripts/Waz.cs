@@ -25,4 +25,13 @@ public class Waz : Enemy
         //Execute properly Animation
         checkHealth();
     }
+
+    public override void checkHealth()
+    {
+        if (enemyHealth <= 0f)
+        {
+            Destroy(gameObject);
+            ScoreController.addDead(ScoreController.Enemy.WAZ);
+        }
+    }
 }

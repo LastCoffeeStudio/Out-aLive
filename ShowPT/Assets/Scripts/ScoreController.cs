@@ -42,16 +42,16 @@ public class ScoreController : MonoBehaviour {
     public Text totalDeadsLabel;
 
     //Public Gui objects
-    private int likesInt;
-    private int disLikesInt;
-    private int totalScoreInt;
+    private static int likesInt;
+    private static int disLikesInt;
+    private static int totalScoreInt;
 
-    private int wazDeads;
-    private int torretDeads;
-    private int dronsDeads;
-    private int kamikazeDeads;
-    private int LilDeads;
-    private int totalEnemies;
+    private static int wazDeads;
+    private static int torretDeads;
+    private static int dronsDeads;
+    private static int kamikazeDeads;
+    private static int LilDeads;
+    private static int totalEnemies;
 
     private static int gunShotsUsed;
     private static int rifleShotsUsed;
@@ -80,7 +80,7 @@ public class ScoreController : MonoBehaviour {
     
 
 
-    public void addDead(Enemy enemy)
+    public static void addDead(Enemy enemy)
     {
         switch (enemy)
         {
@@ -117,7 +117,7 @@ public class ScoreController : MonoBehaviour {
         likesInt += likes;
     }
 
-    public void addScore(int score)
+    public static void addScore(int score)
     {
         totalScoreInt += score;
     }

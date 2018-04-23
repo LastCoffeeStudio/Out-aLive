@@ -46,4 +46,14 @@ public class Drone1 : Enemy {
             active = false;
         }
     }
+
+    public override void checkHealth()
+    {
+        if (enemyHealth <= 0f)
+        {
+            Destroy(gameObject);
+            ScoreController.addDead(ScoreController.Enemy.DRON);
+        }
+    }
+
 }

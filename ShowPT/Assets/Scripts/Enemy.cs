@@ -59,7 +59,7 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    public void checkHealth()
+    public virtual void checkHealth()
     {
         if (enemyHealth <= 0f)
         {

@@ -23,4 +23,14 @@ public class Turret : Enemy
         //Execute properly Animation
         base.checkHealth();
     }
+
+    public override void checkHealth()
+    {
+        if (enemyHealth <= 0f)
+        {
+            Destroy(gameObject);
+            ScoreController.addDead(ScoreController.Enemy.TURRET);
+        }
+    }
+
 }

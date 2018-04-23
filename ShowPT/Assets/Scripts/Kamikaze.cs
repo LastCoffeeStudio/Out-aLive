@@ -65,4 +65,13 @@ public class Kamikaze : Enemy {
             Destroy(gameObject);
         }
     }
+
+    public override void checkHealth()
+    {
+        if (enemyHealth <= 0f)
+        {
+            Destroy(gameObject);
+            ScoreController.addDead(ScoreController.Enemy.KAMIKAZE);
+        }
+    }
 }
