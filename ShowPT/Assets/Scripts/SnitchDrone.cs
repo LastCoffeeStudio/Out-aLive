@@ -27,7 +27,6 @@ public class SnitchDrone : MonoBehaviour
         position = transform.position;
         velocity = new Vector3(Random.Range(-3, 3), Random.Range(-3, 3), Random.Range(-3, 3));
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        targetTransform = ctrlDrones.target.transform;
     }
 
     void Update()
