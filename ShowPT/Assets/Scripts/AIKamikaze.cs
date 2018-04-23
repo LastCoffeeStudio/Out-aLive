@@ -74,8 +74,8 @@ public class AIKamikaze : MonoBehaviour {
 			} 
 			else 
 			{
-				Debug.LogError ("Not enough nodes for the object " + gameObject.name + " to patrol at all.");
-			}
+			    NPCstate = state.WAITING;
+            }
 		}
 
 		viewAngle = 90f;
