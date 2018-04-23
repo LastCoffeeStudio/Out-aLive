@@ -2697,7 +2697,7 @@ MonoBehaviour:
   switchProbability: 0.5
   nodeList: []
   viewDistance: 25
-  explodingDistance: 6.5
+  explodingDistance: 10
   alertTime: 6
   alertRotationTime: 1
   viewAngle: 90
@@ -2718,11 +2718,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
+  hitAudio: {fileID: 0}
+  ctrAudio: {fileID: 0}
   projectileToShoot: {fileID: 0}
   timeBetweenShots: 0.5
   shotPoint: {fileID: 0}
   enemyHealth: 5
-  explosionDistance: 3
+  explosionDistance: 1
   explosionDamage: -10
   explosion: {fileID: 1887034620482000, guid: 96551d92d51e0e041ae9d6516d696fd5, type: 2}
 --- !u!136 &136531938865925744

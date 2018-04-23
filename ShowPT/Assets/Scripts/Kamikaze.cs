@@ -66,17 +66,17 @@ public class Kamikaze : Enemy {
 
     public void explode()
     {
-        if (player != null && Vector3.Distance(player.position, transform.position) <= explosionDistance)
-        {
+       // if (player != null && Vector3.Distance(player.position, transform.position) <= explosionDistance)
+       // {
             forceExplode();
-        }
+       // }
     }
 
     public override void checkHealth()
     {
         if (enemyHealth <= 0f)
         {
-            Destroy(gameObject);
+            forceExplode();
             ScoreController.addDead(ScoreController.Enemy.KAMIKAZE);
         }
     }
