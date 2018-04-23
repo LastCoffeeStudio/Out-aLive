@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class CtrlAudioTest : MonoBehaviour
 {
+    public AudioClip clip;
+    private CtrlAudio ctrlAudio;
     // Use this for initialization
     void Start()
     {
-        CtrlAudio ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
-        ctrlAudio.SetTrackVolume("Enemies", 10, 5);
+        ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
+        ctrlAudio.setTrackVolume("Enemies", 10, 5);
+        InvokeRepeating("playTest",0.5f, 0.1f);
+    }
+
+    void playTest()
+    {
+        ctrlAudio.playOneSound("Player", clip, transform.position, 0.5f, 0.0f, 128);
     }
 }

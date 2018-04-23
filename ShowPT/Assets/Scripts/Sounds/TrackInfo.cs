@@ -3,7 +3,7 @@ using UnityEngine.Audio;
 
 public class TrackInfo  {
 
-    public string Name = string.Empty;
-    public AudioMixerGroup Group = null;
-    public IEnumerator TrackFader = null;
+    public string name = string.Empty;
+    public AudioMixerGroup group = null;
+    public IEnumerator trackFader = null;
 }
