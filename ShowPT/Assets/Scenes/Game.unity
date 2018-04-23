@@ -22909,6 +22909,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1175559943}
   - component: {fileID: 1175559942}
+  - component: {fileID: 1175559941}
   m_Layer: 0
   m_Name: CtrlAudio
   m_TagString: CtrlAudio
@@ -22916,6 +22917,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1175559941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1175559940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1c65fe9e360cf3418a6ac6401582a42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  music: {fileID: 8300000, guid: 549664bc840e0024785154e0146f8fb8, type: 3}
 --- !u!114 &1175559942
 MonoBehaviour:
   m_ObjectHideFlags: 0
