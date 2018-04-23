@@ -161,6 +161,7 @@ public class RifleController : MonoBehaviour
     void decreaseAmmo()
     {
         --ammunition;
+        inventory.setAmmo(typeAmmo, (int)ammunition);
         ScoreController.rifleUsed();
         bool destroyed = false;
         //switch with different weapons
@@ -202,11 +203,19 @@ public class RifleController : MonoBehaviour
         }
     }
 
-
     void increaseAmmo()
     {
+        int ammoTemp = inventory.getAmmo(Inventory.AMMO_TYPE.RIFLEAMMO);
         inventory.decreaseAmmo(typeAmmo, maxAmmo - ammunition);
-        ammunition = maxAmmo;
+        if ((maxAmmo - ammunition) > ammoTemp)
+        {
+            ammunition += ammoTemp;
+        } else
+        {
+            ammunition = maxAmmo;
+        }
+
+        inventory.setAmmo(typeAmmo, (int)ammunition);
     }
 
     void endReload()

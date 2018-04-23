@@ -40,15 +40,13 @@ public class GunController : MonoBehaviour {
     private Inventory inventory;
     private bool playLastReload = false;
 
-    public HudController hudController;
-
     public AudioClip shot;
     public AudioClip reload;
     private CtrlAudio ctrlAudio;
+
     // Use this for initialization
     void Start () {
         ammunition = maxAmmo;
-        hudController.setAmmo((int)ammunition);
         initialposition = transform.localPosition;
         animator = gameObject.GetComponent<Animator>();
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
@@ -144,7 +142,7 @@ public class GunController : MonoBehaviour {
     {
         --ammunition;
         ScoreController.gunUsed();
-        hudController.setAmmo((int)ammunition);
+        inventory.setAmmo(typeAmmo, (int)ammunition);
         bool destroyed = false;
         //switch with different weapons
         RaycastHit hitInfo;
@@ -157,11 +155,6 @@ public class GunController : MonoBehaviour {
                 Destroy(hitInfo.collider.gameObject);
                 GameObject.Instantiate(explosion, hitInfo.point, Quaternion.Euler(0f, 0f, 0f));
             }
-            /*else
-            {
-                //Prints the green bullet to debug
-                GameObject.Instantiate(esferaVerde, hitInfo.point, Quaternion.Euler(0f, 0f, 0f));
-            }*/
 
             if (hitInfo.transform.tag == "Enemy" || hitInfo.transform.tag == "Drone")
             {
@@ -179,9 +172,19 @@ public class GunController : MonoBehaviour {
 
     void increaseAmmo()
     {
-        inventory.decreaseAmmo(typeAmmo, maxAmmo - ammunition);
-        ammunition = maxAmmo;
-        hudController.setAmmo((int)ammunition);
+        int ammoTemp = inventory.getAmmo(Inventory.AMMO_TYPE.GUNAMMO);
+        //Only Test
+       // inventory.decreaseAmmo(typeAmmo, maxAmmo - ammunition);
+        if ((maxAmmo - ammunition) > ammoTemp)
+        {
+            ammunition += ammoTemp;
+        }
+        else
+        {
+            ammunition = maxAmmo;
+        }
+
+        inventory.setAmmo(typeAmmo, (int)ammunition);
     }
 
     void endReload()

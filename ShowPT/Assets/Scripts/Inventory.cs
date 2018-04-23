@@ -30,6 +30,7 @@ public class Inventory : MonoBehaviour
     }
 
     Dictionary<AMMO_TYPE, int> ammoInvenotry = new Dictionary<AMMO_TYPE, int>();
+    Dictionary<AMMO_TYPE, int> totalAmmoInvenotry = new Dictionary<AMMO_TYPE, int>();
     bool[] weaponsCarrying;
 
     public HudController hudController;
@@ -39,7 +40,11 @@ public class Inventory : MonoBehaviour
     {
         weapon = WEAPON_TYPE.GUN;
 
-		ammoInvenotry.Add(AMMO_TYPE.SHOTGUNAMMO, 10);
+        totalAmmoInvenotry.Add(AMMO_TYPE.SHOTGUNAMMO, 10);
+        totalAmmoInvenotry.Add(AMMO_TYPE.GUNAMMO, 15);
+        totalAmmoInvenotry.Add(AMMO_TYPE.RIFLEAMMO, 35);
+
+        ammoInvenotry.Add(AMMO_TYPE.SHOTGUNAMMO, 12);
         ammoInvenotry.Add(AMMO_TYPE.GUNAMMO, 15);
         ammoInvenotry.Add(AMMO_TYPE.RIFLEAMMO, 35);
 
@@ -93,21 +98,37 @@ public class Inventory : MonoBehaviour
 
     public int getAmmo(AMMO_TYPE typeAmmo)
     {
-        return ammoInvenotry[typeAmmo];
+        return totalAmmoInvenotry[typeAmmo];
     }
 
     public void decreaseAmmo(AMMO_TYPE typeAmmo, int value)
     {
-        ammoInvenotry[typeAmmo] -= value;
-        if (ammoInvenotry[typeAmmo] < 0)
+        totalAmmoInvenotry[typeAmmo] -= value;
+        if (totalAmmoInvenotry[typeAmmo] < 0)
         {
-            ammoInvenotry[typeAmmo] = 0;
+            totalAmmoInvenotry[typeAmmo] = 0;
         }
+        hudController.setTotalAmmo(typeAmmo, totalAmmoInvenotry[typeAmmo]);
     }
 
     public void increaseAmmo(AMMO_TYPE typeAmmo, int value)
     {
-        ammoInvenotry[typeAmmo] += value;
+        totalAmmoInvenotry[typeAmmo] += value;
+        hudController.setTotalAmmo(typeAmmo, totalAmmoInvenotry[typeAmmo]);
+    }
+
+    public void setAmmo(AMMO_TYPE typeAmmo, int value)
+    {
+        if (ammoInvenotry.ContainsKey(typeAmmo)) {
+
+            ammoInvenotry[typeAmmo] = value;
+        }
+        else
+        {
+            ammoInvenotry.Add(typeAmmo, value);
+        }
+
+        hudController.setAmmo(ammoInvenotry[typeAmmo]);
     }
 
     private void switchWeapon(WEAPON_TYPE type)
@@ -115,7 +136,19 @@ public class Inventory : MonoBehaviour
         weaponsInventory[(int)weapon].SetActive(false);
         weapon = type;
         weaponsInventory[(int)weapon].SetActive(true);
-        hudController.selectWeapon(type);
+
+        switch(type)
+        {
+            case WEAPON_TYPE.GUN:
+                hudController.selectWeapon(type, ammoInvenotry[AMMO_TYPE.GUNAMMO], getAmmo(AMMO_TYPE.GUNAMMO));
+                break;
+            case WEAPON_TYPE.SHOTGUN:
+                hudController.selectWeapon(type, ammoInvenotry[AMMO_TYPE.SHOTGUNAMMO], getAmmo(AMMO_TYPE.SHOTGUNAMMO));
+                break;
+            case WEAPON_TYPE.RIFLE:
+                hudController.selectWeapon(type, ammoInvenotry[AMMO_TYPE.RIFLEAMMO], getAmmo(AMMO_TYPE.RIFLEAMMO));
+                break;
+        }
         gameObject.GetComponent<PlayerMovment>().animator = weaponsInventory[(int)weapon].GetComponentInChildren<Animator>();
     }
 
@@ -129,13 +162,5 @@ public class Inventory : MonoBehaviour
         weaponsCarrying[(int)type] = true;
         hudController.addWeapon(type);
         //Launch some animation or sound that has bought weapon
-    }
-
-    public void addAmmo(AMMO_TYPE ammo, int quantity)
-    {
-        Debug.Log("Ammo before: " + ammoInvenotry[ammo]);
-        ammoInvenotry[ammo] += quantity;
-        Debug.Log("Ammo after: " + ammoInvenotry[ammo]);
-        //Launch some animation or sound that has bought ammo
     }
 }

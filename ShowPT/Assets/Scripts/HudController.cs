@@ -46,7 +46,7 @@ public class HudController : MonoBehaviour {
     void Start () {
         //Test 
         addWeapon(Inventory.WEAPON_TYPE.GUN);
-        selectWeapon(Inventory.WEAPON_TYPE.GUN);
+        selectWeapon(Inventory.WEAPON_TYPE.GUN, 15, 0);
 	}
 	
 	// Update is called once per frame
@@ -74,6 +74,17 @@ public class HudController : MonoBehaviour {
         bullets = value;
         bulletsLabel.text = bullets.ToString();
     }
+    public void setTotalAmmo(Inventory.AMMO_TYPE type, int value)
+    {
+        totalBullets = value;
+        if(type == Inventory.AMMO_TYPE.GUNAMMO)
+        {
+            totalBulletsLabel.text = "∞";
+        } else
+        {
+            totalBulletsLabel.text = totalBullets.ToString();
+        }
+    }
 
     public void addWeapon(Inventory.WEAPON_TYPE type)
     {
@@ -91,7 +102,7 @@ public class HudController : MonoBehaviour {
         }
     }
 
-    public void selectWeapon(Inventory.WEAPON_TYPE type)
+    public void selectWeapon(Inventory.WEAPON_TYPE type, int bullets, int totalBullets)
     {
         if (currentWeapon != null && currentSelected != null)
         {
@@ -104,14 +115,20 @@ public class HudController : MonoBehaviour {
             case Inventory.WEAPON_TYPE.GUN:
                 currentWeapon = pistolState;
                 currentSelected = pistolSelected;
+                bulletsLabel.text = bullets.ToString();
+                totalBulletsLabel.text = "∞";
                 break;
             case Inventory.WEAPON_TYPE.SHOTGUN:
                 currentWeapon = shotGunState;
                 currentSelected = shotGunSelected;
+                bulletsLabel.text = bullets.ToString();
+                totalBulletsLabel.text = totalBullets.ToString();
                 break;
             case Inventory.WEAPON_TYPE.RIFLE:
                 currentWeapon = smgState;
                 currentSelected = smgSelected;
+                bulletsLabel.text = bullets.ToString();
+                totalBulletsLabel.text = totalBullets.ToString();
                 break;
         }
 

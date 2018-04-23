@@ -184,6 +184,7 @@ public class WeaponController : MonoBehaviour
     void decreaseAmmo()
     {
         --ammunition;
+        inventory.setAmmo(typeAmmo, (int)ammunition);
         ScoreController.weaponUsed();
         bool destroyed = false;
         shotAudio.Play();
@@ -230,12 +231,12 @@ public class WeaponController : MonoBehaviour
             }
         }
     }
-       
 
     void increaseAmmo()
     {
         ++ammunition;
         inventory.decreaseAmmo(typeAmmo, 1);
+        inventory.setAmmo(typeAmmo, (int)ammunition);
     }
 
     void endReload()

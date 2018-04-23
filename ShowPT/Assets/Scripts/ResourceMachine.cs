@@ -140,7 +140,7 @@ public class ResourceMachine : MonoBehaviour {
                 cost = 15;
                 if (points > cost)
                 {
-                    playerInventory.addAmmo(Inventory.AMMO_TYPE.SHOTGUNAMMO, ammoShotgun);
+                    playerInventory.increaseAmmo(Inventory.AMMO_TYPE.SHOTGUNAMMO, ammoShotgun);
                     points -= cost;
                     Debug.Log("Buy shotgun ammo");
                 }
@@ -149,7 +149,7 @@ public class ResourceMachine : MonoBehaviour {
                 cost = 25;
                 if (points > cost)
                 {
-                    playerInventory.addAmmo(Inventory.AMMO_TYPE.RIFLEAMMO, ammoRifle);
+                    playerInventory.increaseAmmo(Inventory.AMMO_TYPE.RIFLEAMMO, ammoRifle);
                     points -= cost;
                     Debug.Log("Buy rifle ammo");
                 }
