@@ -60,10 +60,13 @@ public class AIWazI : MonoBehaviour {
 	state NPCstate;
 	private Animator animWaz;
 
+	Waz wazScript;
+
 	// Use this for initialization
 	void Start () {
 		navMeshAgent = this.GetComponent<NavMeshAgent> ();
 		animWaz = this.GetComponent<Animator> ();
+		wazScript = this.GetComponent<Waz> ();
 
 		if (navMeshAgent == null) 
 		{
@@ -117,6 +120,7 @@ public class AIWazI : MonoBehaviour {
 			break;
 
 		case state.I_SEE_YOU:
+			animWaz.SetBool ("walking", true);
 			LookAtSomething (aggressiveDestination);
 			spotLight.color = Color.red;
 			navMeshAgent.SetDestination (aggressiveDestination);
@@ -126,7 +130,7 @@ public class AIWazI : MonoBehaviour {
 			{
 				navMeshAgent.SetDestination (gameObject.transform.position);
 				navMeshAgent.isStopped = true;
-                if (myTurrets != null)
+                if (myTurrets != null && !wazScript.imAlreadyDead)
                 {
                     myTurrets.active = true;
                 }
@@ -144,9 +148,10 @@ public class AIWazI : MonoBehaviour {
 			break;
 
 		case state.SHOOTING:
+			animWaz.SetBool ("walking", false);
 			navMeshAgent.SetDestination (aggressiveDestination);
 			LookAtSomething (aggressiveDestination);
-			if (!CanSeePlayer () || navMeshAgent.remainingDistance > shootingDistance) 
+			if (!CanSeePlayer () || navMeshAgent.remainingDistance > shootingDistance || wazScript.imAlreadyDead) 
 			{
 				navMeshAgent.isStopped = false;
                 if (myTurrets != null)
@@ -158,6 +163,7 @@ public class AIWazI : MonoBehaviour {
 			break;
 
 		case state.I_HEAR_YOU:
+			animWaz.SetBool ("walking", true);
 			spotLight.color = Color.yellow;
 			if (navMeshAgent.remainingDistance <= 1.0f && !CanSeePlayer()) 
 			{
@@ -168,6 +174,7 @@ public class AIWazI : MonoBehaviour {
 			break;
 
 		case state.ALERT:
+			animWaz.SetBool ("walking", false);
 			spotLight.color = Color.yellow;
 			Vector3 rotation = new Vector3 (0f, alertRotation, 0f);
 			gameObject.transform.Rotate (rotation * Time.deltaTime);
