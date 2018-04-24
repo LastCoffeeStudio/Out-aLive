@@ -19,9 +19,9 @@ public class CtrlGameState : MonoBehaviour
     public Image medal;
 
     public gameStates gameState;
-    
-	// Use this for initialization
-	void Start ()
+
+    // Use this for initialization
+    void Start ()
 	{
         gameState = gameStates.ACTIVE;
     }
@@ -36,29 +36,29 @@ public class CtrlGameState : MonoBehaviour
         switch (newGameState)
         {
             case gameStates.ACTIVE:
-            break;
+                break;
             case gameStates.PAUSE:
                 break;
             case gameStates.DEBUG:
                 break;
             case gameStates.WIN:
                 print("YOU WIIIIINNN!!!!");
-                winState.text = "YOU WIN!";
-                medal.enabled = true;
-                gameObject.GetComponent<CtrlCamerasWin>().enabled = true;
+                //winState.text = "YOU WIN!";
+                //medal.enabled = true;
+                //gameObject.GetComponent<CtrlCamerasWin>().enabled = true;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 CtrlPause.gamePaused = true;
-                score.SetActive(true);
+                //score.SetActive(true);
                 break;
             case gameStates.DEATH:
                 print("YOU DEATH!!!!");
-                winState.text = "YOU DIED!";
-                medal.enabled = false;
+                //winState.text = "YOU DIED!";
+                //medal.enabled = false;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 CtrlPause.gamePaused = true;
-                score.SetActive(true);
+                //score.SetActive(true);
                 break;
             case gameStates.EXIT:
                 break;

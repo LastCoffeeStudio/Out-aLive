@@ -1099,7 +1099,7 @@ GameObject:
   - component: {fileID: 114828950072503900}
   m_Layer: 0
   m_Name: Snitch
-  m_TagString: Untagged
+  m_TagString: Snitch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3981,7 +3981,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1167917424246580}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 66f36973de45a3c4f80c449acc659c7d, type: 2}
   m_CullingMode: 0
@@ -4003,10 +4003,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
+  hitAudio: {fileID: 0}
+  ctrAudio: {fileID: 0}
   projectileToShoot: {fileID: 114840388617318426, guid: 469469f629a9703448769a69cc39727d,
     type: 2}
   timeBetweenShots: 0.5
   shotPoint: {fileID: 4060929029516532}
+  enemyHealth: 10
   player: {fileID: 0}
   shootingDistance: 20
 --- !u!114 &114078641043793916
@@ -4021,10 +4024,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
+  hitAudio: {fileID: 0}
+  ctrAudio: {fileID: 0}
   projectileToShoot: {fileID: 114840388617318426, guid: 469469f629a9703448769a69cc39727d,
     type: 2}
   timeBetweenShots: 0.5
   shotPoint: {fileID: 4825380151122532}
+  enemyHealth: 10
   player: {fileID: 0}
   shootingDistance: 20
 --- !u!114 &114219700865609282
@@ -4039,10 +4045,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
+  hitAudio: {fileID: 0}
+  ctrAudio: {fileID: 0}
   projectileToShoot: {fileID: 114840388617318426, guid: 469469f629a9703448769a69cc39727d,
     type: 2}
   timeBetweenShots: 0.5
   shotPoint: {fileID: 4923045008109702}
+  enemyHealth: 10
   player: {fileID: 0}
   shootingDistance: 20
 --- !u!114 &114237384785330302
@@ -4057,10 +4066,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
+  hitAudio: {fileID: 0}
+  ctrAudio: {fileID: 0}
   projectileToShoot: {fileID: 114840388617318426, guid: 469469f629a9703448769a69cc39727d,
     type: 2}
   timeBetweenShots: 0.5
   shotPoint: {fileID: 4351329540294958}
+  enemyHealth: 10
   player: {fileID: 0}
   shootingDistance: 20
 --- !u!114 &114276025323459106
@@ -4111,10 +4123,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
+  hitAudio: {fileID: 0}
+  ctrAudio: {fileID: 0}
   projectileToShoot: {fileID: 114840388617318426, guid: 469469f629a9703448769a69cc39727d,
     type: 2}
   timeBetweenShots: 0.5
   shotPoint: {fileID: 4877803299424634}
+  enemyHealth: 10
   player: {fileID: 0}
   shootingDistance: 20
 --- !u!114 &114487893417334790
@@ -4153,10 +4168,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
+  hitAudio: {fileID: 0}
+  ctrAudio: {fileID: 0}
   projectileToShoot: {fileID: 114840388617318426, guid: 469469f629a9703448769a69cc39727d,
     type: 2}
   timeBetweenShots: 0.5
   shotPoint: {fileID: 4189479137651406}
+  enemyHealth: 10
   player: {fileID: 0}
   shootingDistance: 20
 --- !u!114 &114576578259770408
@@ -4203,10 +4221,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
+  hitAudio: {fileID: 0}
+  ctrAudio: {fileID: 0}
   projectileToShoot: {fileID: 114840388617318426, guid: 469469f629a9703448769a69cc39727d,
     type: 2}
   timeBetweenShots: 0.5
   shotPoint: {fileID: 4508294242336162}
+  enemyHealth: 10
   player: {fileID: 0}
   shootingDistance: 20
 --- !u!114 &114695769275064960
@@ -4239,10 +4260,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
+  hitAudio: {fileID: 0}
+  ctrAudio: {fileID: 0}
   projectileToShoot: {fileID: 114840388617318426, guid: 469469f629a9703448769a69cc39727d,
     type: 2}
   timeBetweenShots: 0.5
   shotPoint: {fileID: 4274748358253076}
+  enemyHealth: 10
   player: {fileID: 0}
   shootingDistance: 20
 --- !u!114 &114828950072503900
@@ -4256,6 +4280,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e75b22c6809ee3643aa6eb5b0735159b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
+  hitAudio: {fileID: 0}
+  ctrAudio: {fileID: 0}
+  projectileToShoot: {fileID: 0}
+  timeBetweenShots: 0.5
+  shotPoint: {fileID: 0}
+  enemyHealth: 10
+  globalTimer: {fileID: 0}
   position: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
   acceleration: {x: 0, y: 0, z: 0}

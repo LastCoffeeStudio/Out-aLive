@@ -158,7 +158,7 @@ public class GunController : MonoBehaviour {
                 GameObject.Instantiate(explosion, hitInfo.point, Quaternion.Euler(0f, 0f, 0f));
             }
 
-            if (hitInfo.transform.tag == "Enemy" || hitInfo.transform.tag == "Drone")
+            if (hitInfo.transform.tag == "Enemy" || hitInfo.transform.tag == "Drone" || hitInfo.transform.tag == "Snitch")
             {
                 hitInfo.collider.gameObject.GetComponent<Enemy>().getHit(damage);
                 ScoreController.gunHit();
