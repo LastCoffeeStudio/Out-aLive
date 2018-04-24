@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class SnitchDrone : MonoBehaviour
+public class SnitchDrone : Enemy
 {
-
+    public GlobalTimer globalTimer;
     public Vector3 position;
     public Vector3 velocity;
     public Vector3 acceleration;
@@ -27,6 +27,9 @@ public class SnitchDrone : MonoBehaviour
         position = transform.position;
         velocity = new Vector3(Random.Range(-3, 3), Random.Range(-3, 3), Random.Range(-3, 3));
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        globalTimer = GameObject.FindGameObjectWithTag("GlobalTimer").GetComponent<GlobalTimer>();
+        ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
+        hitAudio = ctrAudio.hit;
     }
 
     void Update()
@@ -248,5 +251,21 @@ public class SnitchDrone : MonoBehaviour
         direction = (centroidDrones + directionPlayerDrones * 10) - transform.position;
 
         return direction.normalized;
+    }
+    public override void getHit(int damage)
+    {
+        ctrAudio.playOneSound("Enemies", hitAudio, transform.position, 1.0f, 0.0f, 128);
+        enemyHealth -= damage;
+        Debug.Log(enemyHealth);
+        checkHealth();
+    }
+
+    public override void checkHealth()
+    {
+        if (enemyHealth <= 0f)
+        {
+            globalTimer.updateSnitches();
+            Destroy(gameObject);
+        }
     }
 }
