@@ -29,9 +29,9 @@ public class Inventory : MonoBehaviour
         NO_WEAPON
     }
 
-    Dictionary<AMMO_TYPE, int> ammoInvenotry = new Dictionary<AMMO_TYPE, int>();
-    Dictionary<AMMO_TYPE, int> totalAmmoInvenotry = new Dictionary<AMMO_TYPE, int>();
-    bool[] weaponsCarrying;
+    public Dictionary<AMMO_TYPE, int> ammoInvenotry = new Dictionary<AMMO_TYPE, int>();
+    public Dictionary<AMMO_TYPE, int> totalAmmoInvenotry = new Dictionary<AMMO_TYPE, int>();
+    public bool[] weaponsCarrying;
 
     public HudController hudController;
 

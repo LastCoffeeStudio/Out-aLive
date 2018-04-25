@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,11 +10,15 @@ public class CtrlDebug : MonoBehaviour
     private bool activeDebug;
     private int indexChildren;
     private int sizeChildren;
+
+    public GameObject gun;
+    public GameObject shotgun;
+    public GameObject rifle;
     // Use this for initialization
     void Start ()
 	{
 	    activeDebug = false;
-	    player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         camerasDebug = GameObject.Find("CamerasDebug");
     }
 	
@@ -38,6 +43,34 @@ public class CtrlDebug : MonoBehaviour
 	        {
 	            enableDebug();
 	        }
+        }
+	    if (Input.GetKeyDown(KeyCode.T))
+	    {
+	       Vector3 positionCamera = camerasDebug.transform.GetChild(indexChildren).gameObject.transform.position;
+           disableDebug();
+	       player.transform.position = positionCamera;
+	    }
+	    if (Input.GetKeyDown(KeyCode.G))
+	    {
+	        player.GetComponent<PlayerHealth>().maxHealth = Int32.MaxValue;
+	        player.GetComponent<PlayerHealth>().health = Int32.MaxValue;
+
+            for (int i = 0; i < (int) Inventory.WEAPON_TYPE.TOTAL_WEAPONS; ++i)
+	        {
+	            player.GetComponent<Inventory>().weaponsCarrying[i] = true;
+            }
+	        for (int i = 0; i < (int)Inventory.AMMO_TYPE.TOTAL_AMMO; ++i)
+	        {
+	            player.GetComponent<Inventory>().totalAmmoInvenotry[(Inventory.AMMO_TYPE)i] = Int32.MaxValue;
+                player.GetComponent<Inventory>().ammoInvenotry[(Inventory.AMMO_TYPE)i] = Int32.MaxValue;
+            }
+
+	        gun.GetComponent<GunController>().maxAmmo = Int32.MaxValue;
+	        gun.GetComponent<GunController>().ammunition = Int32.MaxValue;
+	        shotgun.GetComponent<WeaponController>().maxAmmo = Int32.MaxValue;
+	        shotgun.GetComponent<WeaponController>().ammunition = Int32.MaxValue;
+	        rifle.GetComponent<RifleController>().maxAmmo = Int32.MaxValue;
+	        rifle.GetComponent<RifleController>().ammunition = Int32.MaxValue;
         }
     }
 
