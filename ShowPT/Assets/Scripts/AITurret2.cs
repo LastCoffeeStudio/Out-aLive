@@ -24,6 +24,16 @@ public class AITurret2 : MonoBehaviour {
 	[SerializeField]
 	float alertRotationTime = 1.0f;
 
+	[SerializeField]
+	float rotationSpeed = 1f;
+
+	[SerializeField]
+	float burstTime = 2f;
+	[SerializeField]
+	float coolDownTime = 2f;
+	float attackCountdown = 0f;
+	bool shooting = false;
+
 	private GameObject player;
 
 	[SerializeField]
@@ -54,21 +64,37 @@ public class AITurret2 : MonoBehaviour {
 
 		case state.SHOOTING:
 			LookAtSomething (player.transform.position);
-			if (!CanSeePlayer()) 
+			if (!shooting && attackCountdown >= coolDownTime) 
 			{
-                if (myTurret != null)
-                {
-                    myTurret.active = false;
-                }
-				/*if (myTurrets.Length > 0) 
+				if (myTurret != null) 
 				{
-					for (int i = 0; i <= myTurrets.Length - 1; i++) 
-					{
-						myTurrets [i].active = false;
-					}
-				}*/
-				NPCstate = state.ALERT;
+					attackCountdown = 0f;
+					shooting = true;
+					myTurret.active = true;
+				}
 			}
+			else if (shooting && attackCountdown >= burstTime) 
+			{
+				if (myTurret != null) 
+				{
+					attackCountdown = 0f;
+					shooting = false;
+					myTurret.active = false;
+				}
+			}
+
+			if (!CanSeePlayer ()) 
+			{
+				if (myTurret != null) 
+				{
+					myTurret.active = false;
+				}
+				attackCountdown = 0f;
+				shooting = false;
+				NPCstate = state.WAITING;
+			}
+
+			attackCountdown += Time.deltaTime;
 			break;
 
 		case state.ALERT:
@@ -92,17 +118,6 @@ public class AITurret2 : MonoBehaviour {
 		//These two will always happen, no matter the state
 		if (CanSeePlayer ()) 
 		{
-            if (myTurret != null)
-            {
-                myTurret.active = true;
-            }
-            /*if (myTurrets.Length > 0) 
-			{
-				for (int i = 0; i <= myTurrets.Length - 1; i++) 
-				{
-					myTurrets [i].active = true;
-				}
-			}*/
             NPCstate = state.SHOOTING;
 		}
 	}
@@ -123,7 +138,7 @@ public class AITurret2 : MonoBehaviour {
 	void LookAtSomething(Vector3 something)
 	{
 		var lookPos = something - transform.position /*+ new Vector3(0f, 90f, 0f)*/;
-		transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (lookPos), Time.deltaTime * 1);
+		transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (lookPos), Time.deltaTime * rotationSpeed);
 	}
 
 	void OnDrawGizmos()
