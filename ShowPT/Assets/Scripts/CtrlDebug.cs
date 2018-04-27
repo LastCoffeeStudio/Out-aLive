@@ -71,6 +71,30 @@ public class CtrlDebug : MonoBehaviour
 	        shotgun.GetComponent<WeaponController>().ammunition = Int32.MaxValue;
 	        rifle.GetComponent<RifleController>().maxAmmo = Int32.MaxValue;
 	        rifle.GetComponent<RifleController>().ammunition = Int32.MaxValue;
+	        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+	        for (int i = 0; i < enemies.Length; i++)
+	        {
+                if (enemies[i].GetComponent<Enemy>() != null)
+                {
+	                enemies[i].GetComponent<Enemy>().enemyHealth = 1;
+                }
+            }
+	        enemies = GameObject.FindGameObjectsWithTag("Drone");
+	        for (int i = 0; i < enemies.Length; i++)
+	        {
+	            if (enemies[i].GetComponent<Enemy>() != null)
+	            {
+	                enemies[i].GetComponent<Enemy>().enemyHealth = 1;
+	            }
+	        }
+	        enemies = GameObject.FindGameObjectsWithTag("Snitch");
+	        for (int i = 0; i < enemies.Length; i++)
+	        {
+	            if (enemies[i].GetComponent<Enemy>() != null)
+	            {
+	                enemies[i].GetComponent<Enemy>().enemyHealth = 1;
+	            }
+	        }
         }
     }
 
