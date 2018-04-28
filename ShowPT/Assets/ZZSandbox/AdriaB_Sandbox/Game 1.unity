@@ -5536,26 +5536,6 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1 &284836660 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1789056377944990, guid: 922e4787834b26949a3b87e34afcdf81,
-    type: 2}
-  m_PrefabInternal: {fileID: 1482716172}
---- !u!123 &284836666
-LensFlare:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 284836660}
-  m_Enabled: 1
-  m_Flare: {fileID: 12100000, guid: 09ebe82dbd1113c3d000dc0b8d76c639, type: 2}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_Brightness: 1
-  m_FadeSpeed: 3
-  m_IgnoreLayers:
-    serializedVersion: 2
-    m_Bits: 6
-  m_Directional: 0
 --- !u!4 &289534873 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 96491272e4d268d47b38f38e57200e57, type: 3}
@@ -30368,7 +30348,8 @@ Prefab:
       propertyPath: hudController
       value: 
       objectReference: {fileID: 1570164641}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 124615977449217554, guid: 922e4787834b26949a3b87e34afcdf81, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 922e4787834b26949a3b87e34afcdf81, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1483850328 stripped
