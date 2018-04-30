@@ -20,6 +20,9 @@ public class CtrlGameState : MonoBehaviour
 
     public gameStates gameState;
 
+    [SerializeField]
+    GameUI gameUI;
+
     // Use this for initialization
     void Start ()
 	{
@@ -49,6 +52,7 @@ public class CtrlGameState : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 CtrlPause.gamePaused = true;
+                gameUI.TogglePauseScreen();
                 //score.SetActive(true);
                 break;
             case gameStates.DEATH:
@@ -58,7 +62,7 @@ public class CtrlGameState : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 CtrlPause.gamePaused = true;
-                //score.SetActive(true);
+                gameUI.TogglePauseScreen();
                 break;
             case gameStates.EXIT:
                 break;
