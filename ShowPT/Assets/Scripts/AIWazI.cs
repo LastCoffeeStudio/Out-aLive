@@ -57,7 +57,7 @@ public class AIWazI : MonoBehaviour {
 	Vector3 aggressiveDestination;
 	public Waz myTurrets;
 
-	state NPCstate;
+	public state NPCstate;
 	private Animator animWaz;
 
 	Waz wazScript;
@@ -130,7 +130,7 @@ public class AIWazI : MonoBehaviour {
 			{
 				navMeshAgent.SetDestination (gameObject.transform.position);
 				navMeshAgent.isStopped = true;
-                if (myTurrets != null && !wazScript.imAlreadyDead)
+                if (myTurrets != null /*&& !wazScript.imAlreadyDead*/)
                 {
                     myTurrets.active = true;
                 }
@@ -151,7 +151,7 @@ public class AIWazI : MonoBehaviour {
 			animWaz.SetBool ("walking", false);
 			navMeshAgent.SetDestination (aggressiveDestination);
 			LookAtSomething (aggressiveDestination);
-			if (!CanSeePlayer () || navMeshAgent.remainingDistance > shootingDistance || wazScript.imAlreadyDead) 
+			if (!CanSeePlayer () || navMeshAgent.remainingDistance > shootingDistance /*|| wazScript.imAlreadyDead*/) 
 			{
 				navMeshAgent.isStopped = false;
                 if (myTurrets != null)
@@ -209,7 +209,6 @@ public class AIWazI : MonoBehaviour {
 				NPCstate = state.I_SEE_YOU;
 			}
 		}
-
 	}
 
 	bool CanSeePlayer()
