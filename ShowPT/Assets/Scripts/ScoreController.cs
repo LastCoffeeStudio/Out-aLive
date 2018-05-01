@@ -41,6 +41,13 @@ public class ScoreController : MonoBehaviour {
     public Text lilDeadsLabel;
     public Text totalDeadsLabel;
 
+    public Text gunShotsUsedText;
+    public Text rifleShotsUsedText;
+    public Text weaponShotsUsedText;
+    public Text gunShotsTouchedText;
+    public Text rifleShotsTouchedText;
+    public Text weaponShotsTouchedText;
+
     //Public Gui objects
     private static int likesInt;
     private static int disLikesInt;
@@ -69,12 +76,26 @@ public class ScoreController : MonoBehaviour {
     public static void rifleHit() { ++rifleShotsTouched; }
     public static void weaponHit() { ++weaponShotsTouched; }
 
+    public GameObject stadistics;
+    public GameObject hud;
+
     // Use this for initialization
     void Start () {}
 	
 	// Update is called once per frame
 	void Update ()
     {
+        if (Input.GetKey(KeyCode.Tab))
+        {
+            stadistics.SetActive(true);
+            hud.SetActive(false);
+        }
+        else
+        {
+            stadistics.SetActive(false);
+            hud.SetActive(true);
+        }
+
         totalScoreLabel.text = totalScoreInt.ToString();
     }
     

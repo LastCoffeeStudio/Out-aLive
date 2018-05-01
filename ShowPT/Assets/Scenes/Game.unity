@@ -45503,6 +45503,7 @@ GameObject:
   - component: {fileID: 2041485746}
   - component: {fileID: 2041485745}
   - component: {fileID: 1060103772}
+  - component: {fileID: 2041485749}
   m_Layer: 0
   m_Name: Scene UI
   m_TagString: Untagged
@@ -45594,6 +45595,34 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2041485749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2041485744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76b9931546c40df44a6adf8599044f9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  likesLabel: {fileID: 0}
+  disLikesLabel: {fileID: 0}
+  totalScoreLabel: {fileID: 343685004}
+  wazDeadsLabel: {fileID: 0}
+  turretDeadsLabel: {fileID: 0}
+  dronsDeadsLabel: {fileID: 0}
+  kamikazeDeadsLabel: {fileID: 0}
+  lilDeadsLabel: {fileID: 0}
+  totalDeadsLabel: {fileID: 0}
+  gunShotsUsedText: {fileID: 0}
+  rifleShotsUsedText: {fileID: 0}
+  weaponShotsUsedText: {fileID: 0}
+  gunShotsTouchedText: {fileID: 0}
+  rifleShotsTouchedText: {fileID: 0}
+  weaponShotsTouchedText: {fileID: 0}
+  stadistics: {fileID: 13325088}
+  hud: {fileID: 1570164639}
 --- !u!1001 &2041658765
 Prefab:
   m_ObjectHideFlags: 0
