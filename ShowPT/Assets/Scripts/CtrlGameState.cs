@@ -18,10 +18,7 @@ public class CtrlGameState : MonoBehaviour
     public Text winState;
     public Image medal;
 
-    public gameStates gameState;
-
-    [SerializeField]
-    GameUI gameUI;
+    public static gameStates gameState;
 
     // Use this for initialization
     void Start ()
@@ -29,13 +26,26 @@ public class CtrlGameState : MonoBehaviour
         gameState = gameStates.ACTIVE;
     }
 
-    public gameStates getGameState()
+    public static gameStates getGameState()
     {
         return gameState;
     }
 
+    public void Update()
+    {
+        if (Input.GetKey(KeyCode.V))
+        {
+            gameState = gameStates.WIN;
+        }
+        if (Input.GetKey(KeyCode.B))
+        {
+            gameState = gameStates.DEATH;
+        }
+    }
+
     public void setGameState(gameStates newGameState)
     {
+        gameState = newGameState;
         switch (newGameState)
         {
             case gameStates.ACTIVE:
@@ -51,8 +61,6 @@ public class CtrlGameState : MonoBehaviour
                 //gameObject.GetComponent<CtrlCamerasWin>().enabled = true;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
-                CtrlPause.gamePaused = true;
-                gameUI.TogglePauseScreen();
                 //score.SetActive(true);
                 break;
             case gameStates.DEATH:
@@ -61,8 +69,6 @@ public class CtrlGameState : MonoBehaviour
                 //medal.enabled = false;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
-                CtrlPause.gamePaused = true;
-                gameUI.TogglePauseScreen();
                 break;
             case gameStates.EXIT:
                 break;
