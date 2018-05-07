@@ -99,6 +99,9 @@ public class HudController : MonoBehaviour {
             case Inventory.WEAPON_TYPE.RIFLE:
                 smgState.GetComponent<Image>().color = STATE_DISABLED;
                 break;
+            case Inventory.WEAPON_TYPE.CANON:
+                canonState.GetComponent<Image>().color = STATE_DISABLED;
+                break;
         }
     }
 
@@ -127,6 +130,12 @@ public class HudController : MonoBehaviour {
             case Inventory.WEAPON_TYPE.RIFLE:
                 currentWeapon = smgState;
                 currentSelected = smgSelected;
+                bulletsLabel.text = bullets.ToString();
+                totalBulletsLabel.text = totalBullets.ToString();
+                break;
+            case Inventory.WEAPON_TYPE.CANON:
+                currentWeapon = canonState;
+                currentSelected = canonSelected;
                 bulletsLabel.text = bullets.ToString();
                 totalBulletsLabel.text = totalBullets.ToString();
                 break;

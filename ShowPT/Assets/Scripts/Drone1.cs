@@ -8,7 +8,7 @@ public class Drone1 : Enemy {
     public float shootingDistance = 20f;
 
 	// Use this for initialization
-	void Start ()
+	private void Start ()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
@@ -16,7 +16,7 @@ public class Drone1 : Enemy {
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (player != null)
         {

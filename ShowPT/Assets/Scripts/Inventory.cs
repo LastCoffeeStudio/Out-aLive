@@ -14,6 +14,7 @@ public class Inventory : MonoBehaviour
         SHOTGUNAMMO,
         GUNAMMO,
         RIFLEAMMO,
+        CANONAMMO,
 
         TOTAL_AMMO,
         NO_AMMO
@@ -24,6 +25,7 @@ public class Inventory : MonoBehaviour
         GUN,
         SHOTGUN,
         RIFLE,
+        CANON,
 
         TOTAL_WEAPONS,
         NO_WEAPON
@@ -40,18 +42,21 @@ public class Inventory : MonoBehaviour
     {
         weapon = WEAPON_TYPE.GUN;
 
-        totalAmmoInvenotry.Add(AMMO_TYPE.SHOTGUNAMMO, 10);
+        totalAmmoInvenotry.Add(AMMO_TYPE.SHOTGUNAMMO, 12);
         totalAmmoInvenotry.Add(AMMO_TYPE.GUNAMMO, 15);
         totalAmmoInvenotry.Add(AMMO_TYPE.RIFLEAMMO, 35);
+        totalAmmoInvenotry.Add(AMMO_TYPE.CANONAMMO, 5);
 
         ammoInvenotry.Add(AMMO_TYPE.SHOTGUNAMMO, 12);
         ammoInvenotry.Add(AMMO_TYPE.GUNAMMO, 15);
         ammoInvenotry.Add(AMMO_TYPE.RIFLEAMMO, 35);
+        ammoInvenotry.Add(AMMO_TYPE.CANONAMMO, 5);
 
         weaponsCarrying = new bool[(int)WEAPON_TYPE.TOTAL_WEAPONS];
         weaponsCarrying[(int)WEAPON_TYPE.GUN] = true;
         weaponsCarrying[(int)WEAPON_TYPE.SHOTGUN] = false;
         weaponsCarrying[(int)WEAPON_TYPE.RIFLE] = false;
+        weaponsCarrying[(int)WEAPON_TYPE.CANON] = false;
         gameObject.GetComponent<PlayerMovment>().animator = weaponsInventory[(int)weapon].GetComponentInChildren<Animator>();
     }
 
@@ -68,6 +73,10 @@ public class Inventory : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3) && weapon != WEAPON_TYPE.RIFLE && weaponsCarrying[(int)WEAPON_TYPE.RIFLE])
         {
             switchWeapon(WEAPON_TYPE.RIFLE);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4) && weapon != WEAPON_TYPE.CANON && weaponsCarrying[(int)WEAPON_TYPE.CANON])
+        {
+            switchWeapon(WEAPON_TYPE.CANON);
         }
 
         if (Input.GetButtonDown("ButtonLB") || Input.GetAxis("Mouse ScrollWheel") > 0)
@@ -147,6 +156,9 @@ public class Inventory : MonoBehaviour
                 break;
             case WEAPON_TYPE.RIFLE:
                 hudController.selectWeapon(type, ammoInvenotry[AMMO_TYPE.RIFLEAMMO], getAmmo(AMMO_TYPE.RIFLEAMMO));
+                break;
+            case WEAPON_TYPE.CANON:
+                hudController.selectWeapon(type, ammoInvenotry[AMMO_TYPE.CANONAMMO], getAmmo(AMMO_TYPE.CANONAMMO));
                 break;
         }
         gameObject.GetComponent<PlayerMovment>().animator = weaponsInventory[(int)weapon].GetComponentInChildren<Animator>();

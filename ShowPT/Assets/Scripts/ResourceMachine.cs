@@ -11,6 +11,7 @@ public class ResourceMachine : MonoBehaviour {
     public Button[] buttons;
     public int ammoShotgun;
     public int ammoRifle;
+    public int ammoCanon;
     public int points;
 
     private struct MachineButton
@@ -121,6 +122,13 @@ public class ResourceMachine : MonoBehaviour {
                 cost = 50;
                 Debug.Log("Buy rifle");
                 break;
+            case "Canon":
+                type = Inventory.WEAPON_TYPE.CANON;
+                cost = 100;
+                Debug.Log("Buy canon");
+                break;
+            default:
+                break;
         }
 
         if (points > cost && type != Inventory.WEAPON_TYPE.NO_WEAPON && !playerInventory.hasWeapon(type))
@@ -152,6 +160,15 @@ public class ResourceMachine : MonoBehaviour {
                     playerInventory.increaseAmmo(Inventory.AMMO_TYPE.RIFLEAMMO, ammoRifle);
                     points -= cost;
                     Debug.Log("Buy rifle ammo");
+                }
+                break;
+            case "Canon":
+                cost = 45;
+                if (points > cost)
+                {
+                    playerInventory.increaseAmmo(Inventory.AMMO_TYPE.CANONAMMO, ammoCanon);
+                    points -= cost;
+                    Debug.Log("Buy canon ammo");
                 }
                 break;
         }

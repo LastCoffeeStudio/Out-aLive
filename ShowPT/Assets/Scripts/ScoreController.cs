@@ -62,19 +62,21 @@ public class ScoreController : MonoBehaviour {
 
     private static int gunShotsUsed;
     private static int rifleShotsUsed;
-    private static int weaponShotsUsed;
+    private static int shotgunShotsUsed;
+    private static int canonShotsUsed;
 
     private static int gunShotsTouched;
     private static int rifleShotsTouched;
-    private static int weaponShotsTouched;
+    private static int shotgunShotsTouched;
+    private static int canonShotsTouched;
+    
+    //public static void gunUsed() { ++gunShotsUsed;  }
+    //public static void rifleUsed() { ++rifleShotsUsed; }
+    //public static void weaponUsed() { ++weaponShotsUsed; }
 
-    public static void gunUsed() { ++gunShotsUsed;  }
-    public static void rifleUsed() { ++rifleShotsUsed; }
-    public static void weaponUsed() { ++weaponShotsUsed; }
-
-    public static void gunHit() { ++gunShotsTouched; }
-    public static void rifleHit() { ++rifleShotsTouched; }
-    public static void weaponHit() { ++weaponShotsTouched; }
+    //public static void gunHit() { ++gunShotsTouched; }
+    //public static void rifleHit() { ++rifleShotsTouched; }
+    //public static void weaponHit() { ++weaponShotsTouched; }
 
     public GameObject stadistics;
     public GameObject hud;
@@ -98,8 +100,48 @@ public class ScoreController : MonoBehaviour {
 
         totalScoreLabel.text = totalScoreInt.ToString();
     }
-    
 
+    public static void weaponUsed(Inventory.WEAPON_TYPE weaponType)
+    {
+        switch (weaponType)
+        {
+            case Inventory.WEAPON_TYPE.GUN:
+                ++gunShotsUsed;
+                break;
+            case Inventory.WEAPON_TYPE.SHOTGUN:
+                ++shotgunShotsUsed;
+                break;
+            case Inventory.WEAPON_TYPE.RIFLE:
+                ++rifleShotsUsed;
+                break;
+            case Inventory.WEAPON_TYPE.CANON:
+                ++canonShotsUsed;
+                break;
+            default:
+                break;
+        }
+    }
+
+    public static void weaponHit(Inventory.WEAPON_TYPE weaponType)
+    {
+        switch (weaponType)
+        {
+            case Inventory.WEAPON_TYPE.GUN:
+                ++gunShotsTouched;
+                break;
+            case Inventory.WEAPON_TYPE.SHOTGUN:
+                ++shotgunShotsTouched;
+                break;
+            case Inventory.WEAPON_TYPE.RIFLE:
+                ++rifleShotsTouched;
+                break;
+            case Inventory.WEAPON_TYPE.CANON:
+                ++canonShotsTouched;
+                break;
+            default:
+                break;
+        }
+    }
 
     public static void addDead(Enemy enemy)
     {

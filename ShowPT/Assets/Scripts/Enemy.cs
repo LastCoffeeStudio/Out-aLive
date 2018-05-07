@@ -33,16 +33,6 @@ public class Enemy : MonoBehaviour {
     [SerializeField]
     public float enemyHealth = 10f;
     protected EnemyType enemyType = EnemyType.NONE;
-    
-
-    // Use this for initialization
-    void Start()
-    {
-       
-    }
-	
-	// Update is called once per frame
-	void Update () {}
 
     public virtual void getHit(int damage) {}
 

@@ -65,12 +65,12 @@ public class CtrlDebug : MonoBehaviour
                 player.GetComponent<Inventory>().ammoInvenotry[(Inventory.AMMO_TYPE)i] = Int32.MaxValue;
             }
 
-	        gun.GetComponent<GunController>().maxAmmo = Int32.MaxValue;
-	        gun.GetComponent<GunController>().ammunition = Int32.MaxValue;
-	        shotgun.GetComponent<WeaponController>().maxAmmo = Int32.MaxValue;
-	        shotgun.GetComponent<WeaponController>().ammunition = Int32.MaxValue;
-	        rifle.GetComponent<RifleController>().maxAmmo = Int32.MaxValue;
-	        rifle.GetComponent<RifleController>().ammunition = Int32.MaxValue;
+	        gun.GetComponent<Weapon>().maxAmmo = Int32.MaxValue;
+	        gun.GetComponent<Weapon>().ammunition = Int32.MaxValue;
+	        shotgun.GetComponent<Shotgun>().maxAmmo = Int32.MaxValue;
+	        shotgun.GetComponent<Shotgun>().ammunition = Int32.MaxValue;
+	        rifle.GetComponent<Weapon>().maxAmmo = Int32.MaxValue;
+	        rifle.GetComponent<Weapon>().ammunition = Int32.MaxValue;
 	        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 	        for (int i = 0; i < enemies.Length; i++)
 	        {
