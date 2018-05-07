@@ -8749,7 +8749,7 @@ GameObject:
   - component: {fileID: 426151069}
   - component: {fileID: 426151068}
   m_Layer: 0
-  m_Name: Pistol Shooted
+  m_Name: Smg Shooted
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10872,7 +10872,7 @@ GameObject:
   - component: {fileID: 541186697}
   - component: {fileID: 541186698}
   m_Layer: 0
-  m_Name: PistolBar
+  m_Name: SmgBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11457,7 +11457,7 @@ GameObject:
   - component: {fileID: 562740802}
   - component: {fileID: 562740803}
   m_Layer: 0
-  m_Name: PistolBar
+  m_Name: CanonBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15925,7 +15925,7 @@ GameObject:
   - component: {fileID: 762922912}
   - component: {fileID: 762922911}
   m_Layer: 0
-  m_Name: Pistol Hitted
+  m_Name: Canon Hitted
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20601,7 +20601,7 @@ GameObject:
   - component: {fileID: 1006228575}
   - component: {fileID: 1006228574}
   m_Layer: 0
-  m_Name: Pistol Hitted
+  m_Name: Smg Hitted
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36692,7 +36692,7 @@ GameObject:
   - component: {fileID: 1769593043}
   - component: {fileID: 1769593042}
   m_Layer: 0
-  m_Name: PistolPercent
+  m_Name: SmgPercent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40434,12 +40434,18 @@ MonoBehaviour:
   kamikazeDeadsLabel: {fileID: 0}
   lilDeadsLabel: {fileID: 0}
   totalDeadsLabel: {fileID: 0}
-  gunShotsUsedText: {fileID: 0}
-  rifleShotsUsedText: {fileID: 0}
-  weaponShotsUsedText: {fileID: 0}
-  gunShotsTouchedText: {fileID: 0}
-  rifleShotsTouchedText: {fileID: 0}
-  weaponShotsTouchedText: {fileID: 0}
+  pistolShotsUsedText: {fileID: 1919022119}
+  shotgunShotsUsedText: {fileID: 352616485}
+  SMGShotsUsedText: {fileID: 426151068}
+  canonShotsUsedText: {fileID: 2072256178}
+  pistolShotsTouchedText: {fileID: 635216749}
+  shotgunShotsTouchedText: {fileID: 674742056}
+  SMGShotsTouchedText: {fileID: 1006228574}
+  canonShotsTouchedText: {fileID: 762922911}
+  pistolAverage: {fileID: 1141951735}
+  shotgunAverage: {fileID: 331853778}
+  SMGAverage: {fileID: 1769593042}
+  canonAverage: {fileID: 2070743019}
   stadistics: {fileID: 53128468}
   hud: {fileID: 239004709}
 --- !u!114 &1931270171
@@ -43448,7 +43454,7 @@ GameObject:
   - component: {fileID: 2070743020}
   - component: {fileID: 2070743019}
   m_Layer: 0
-  m_Name: PistolPercent
+  m_Name: CanonPercent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43522,7 +43528,7 @@ GameObject:
   - component: {fileID: 2072256179}
   - component: {fileID: 2072256178}
   m_Layer: 0
-  m_Name: Pistol Shooted
+  m_Name: Canon Shooted
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

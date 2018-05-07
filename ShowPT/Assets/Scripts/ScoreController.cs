@@ -41,12 +41,19 @@ public class ScoreController : MonoBehaviour {
     public Text lilDeadsLabel;
     public Text totalDeadsLabel;
 
-    public Text gunShotsUsedText;
-    public Text rifleShotsUsedText;
-    public Text weaponShotsUsedText;
-    public Text gunShotsTouchedText;
-    public Text rifleShotsTouchedText;
-    public Text weaponShotsTouchedText;
+    public Text pistolShotsUsedText;
+    public Text shotgunShotsUsedText;
+    public Text SMGShotsUsedText;
+    public Text canonShotsUsedText;
+    public Text pistolShotsTouchedText;
+    public Text shotgunShotsTouchedText;
+    public Text SMGShotsTouchedText;
+    public Text canonShotsTouchedText;
+
+    public Text pistolAverage;
+    public Text shotgunAverage;
+    public Text SMGAverage;
+    public Text canonAverage;
 
     //Public Gui objects
     private static int likesInt;
@@ -60,26 +67,30 @@ public class ScoreController : MonoBehaviour {
     private static int LilDeads;
     private static int totalEnemies;
 
-    private static int gunShotsUsed;
-    private static int rifleShotsUsed;
+    private static int pistolShotsUsed;
+    private static int SMGShotsUsed;
     private static int shotgunShotsUsed;
     private static int canonShotsUsed;
 
-    private static int gunShotsTouched;
-    private static int rifleShotsTouched;
+    private static int pistolShotsTouched;
+    private static int SMGShotsTouched;
     private static int shotgunShotsTouched;
     private static int canonShotsTouched;
     
-    //public static void gunUsed() { ++gunShotsUsed;  }
-    //public static void rifleUsed() { ++rifleShotsUsed; }
-    //public static void weaponUsed() { ++weaponShotsUsed; }
+    public static void pistolUsed() { ++pistolShotsUsed;  }
+    public static void SMGUsed() { ++SMGShotsUsed; }
+    public static void shotgunUsed() { ++SMGShotsUsed; }
+    public static void canonUsed() { ++canonShotsUsed; }
 
-    //public static void gunHit() { ++gunShotsTouched; }
-    //public static void rifleHit() { ++rifleShotsTouched; }
-    //public static void weaponHit() { ++weaponShotsTouched; }
+    public static void pistolHit() { ++pistolShotsTouched; }
+    public static void SMGHit() { ++SMGShotsTouched; }
+    public static void shotgunHit() { ++shotgunShotsTouched; }
+    public static void canonHit() { ++canonShotsTouched; }
 
     public GameObject stadistics;
     public GameObject hud;
+
+    private static bool updateHud = false;
 
     // Use this for initialization
     void Start () {}
@@ -99,6 +110,26 @@ public class ScoreController : MonoBehaviour {
         }
 
         totalScoreLabel.text = totalScoreInt.ToString();
+        if(updateHud)
+        {
+            updateHud = false;
+            pistolShotsUsedText.text = pistolShotsUsed.ToString();
+            pistolShotsTouchedText.text = pistolShotsTouched.ToString();
+
+            SMGShotsUsedText.text = SMGShotsUsed.ToString();
+            SMGShotsTouchedText.text = SMGShotsTouched.ToString();
+
+            shotgunShotsUsedText.text = shotgunShotsUsed.ToString();
+            shotgunShotsTouchedText.text = shotgunShotsTouched.ToString();
+
+            canonShotsUsedText.text = canonShotsUsed.ToString();
+            canonShotsTouchedText.text = canonShotsTouched.ToString();
+
+            pistolAverage.text = (( pistolShotsTouched * 100 ) / pistolShotsUsed).ToString();
+            SMGAverage.text = ((SMGShotsTouched * 100) / SMGShotsUsed).ToString();
+            shotgunAverage.text = ((shotgunShotsTouched * 100) / shotgunShotsUsed).ToString();
+            canonAverage.text = ((canonShotsTouched * 100) / canonShotsUsed).ToString();
+        }
     }
 
     public static void weaponUsed(Inventory.WEAPON_TYPE weaponType)
@@ -106,13 +137,13 @@ public class ScoreController : MonoBehaviour {
         switch (weaponType)
         {
             case Inventory.WEAPON_TYPE.GUN:
-                ++gunShotsUsed;
+                ++pistolShotsUsed;
                 break;
             case Inventory.WEAPON_TYPE.SHOTGUN:
                 ++shotgunShotsUsed;
                 break;
             case Inventory.WEAPON_TYPE.RIFLE:
-                ++rifleShotsUsed;
+                ++SMGShotsUsed;
                 break;
             case Inventory.WEAPON_TYPE.CANON:
                 ++canonShotsUsed;
@@ -120,6 +151,7 @@ public class ScoreController : MonoBehaviour {
             default:
                 break;
         }
+        updateHud = true;
     }
 
     public static void weaponHit(Inventory.WEAPON_TYPE weaponType)
@@ -127,13 +159,13 @@ public class ScoreController : MonoBehaviour {
         switch (weaponType)
         {
             case Inventory.WEAPON_TYPE.GUN:
-                ++gunShotsTouched;
+                ++pistolShotsTouched;
                 break;
             case Inventory.WEAPON_TYPE.SHOTGUN:
                 ++shotgunShotsTouched;
                 break;
             case Inventory.WEAPON_TYPE.RIFLE:
-                ++rifleShotsTouched;
+                ++SMGShotsTouched;
                 break;
             case Inventory.WEAPON_TYPE.CANON:
                 ++canonShotsTouched;
