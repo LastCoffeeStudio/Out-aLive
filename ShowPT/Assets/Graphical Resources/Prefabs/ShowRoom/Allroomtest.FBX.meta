@@ -45,6 +45,12 @@ ModelImporter:
     100074: Sphere007
     100076: Sphere008
     100078: Sphere009
+    100080: Capsule001
+    100082: prop_nevera
+    100084: Object
+    100086: perop_liftroom
+    100088: Prop_arcade003
+    100090: Prop_arcade004
     400000: //RootNode
     400002: Box001
     400004: Box005
@@ -85,6 +91,12 @@ ModelImporter:
     400074: Sphere007
     400076: Sphere008
     400078: Sphere009
+    400080: Capsule001
+    400082: prop_nevera
+    400084: Object
+    400086: perop_liftroom
+    400088: Prop_arcade003
+    400090: Prop_arcade004
     2100000: room
     2100002: door
     2100004: sofa
@@ -109,6 +121,12 @@ ModelImporter:
     2100042: light
     2100044: bathroom
     2100046: Fan
+    2100048: lift
+    2100050: screenlift
+    2100052: Unwrap Texture Checker Material
+    2100054: '05 - Default Slot #3'
+    2100056: fridge
+    2100058: ceelingfan
     2300000: Box001
     2300002: Box005
     2300004: Box010
@@ -148,6 +166,12 @@ ModelImporter:
     2300072: Sphere007
     2300074: Sphere008
     2300076: Sphere009
+    2300078: Capsule001
+    2300080: prop_nevera
+    2300082: Object
+    2300084: perop_liftroom
+    2300086: Prop_arcade003
+    2300088: Prop_arcade004
     3300000: Box001
     3300002: Box005
     3300004: Box010
@@ -187,6 +211,12 @@ ModelImporter:
     3300072: Sphere007
     3300074: Sphere008
     3300076: Sphere009
+    3300078: Capsule001
+    3300080: prop_nevera
+    3300082: Object
+    3300084: perop_liftroom
+    3300086: Prop_arcade003
+    3300088: Prop_arcade004
     4300000: Box001
     4300002: Box005
     4300004: Group1
@@ -226,6 +256,12 @@ ModelImporter:
     4300072: Box022
     4300074: Cylinder020
     4300076: Object006
+    4300078: Capsule001
+    4300080: prop_nevera
+    4300082: perop_liftroom
+    4300084: Object
+    4300086: Prop_arcade003
+    4300088: Prop_arcade004
     6400000: Box001
     6400002: Box005
     6400004: Box010
@@ -265,6 +301,12 @@ ModelImporter:
     6400072: Sphere007
     6400074: Sphere008
     6400076: Sphere009
+    6400078: Capsule001
+    6400080: prop_nevera
+    6400082: Object
+    6400084: perop_liftroom
+    6400086: Prop_arcade003
+    6400088: Prop_arcade004
     9500000: //RootNode
   externalObjects:
   - first:
@@ -285,8 +327,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 6fb05cdc4abc22d42a5af76ee5716704, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: alfombra
     second: {fileID: 2100000, guid: 2a9d6810619157240b11af68fdf2027e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bathroom
+    second: {fileID: 2100000, guid: 79d9ad3bcf5ef474d9aa4a3307cc3203, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -302,6 +354,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: door
     second: {fileID: 2100000, guid: 4c2f98b6b1f0bf740a43588561d060df, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lift
+    second: {fileID: 2100000, guid: 09deebb57d2ecec4586c4dd4da089761, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -322,6 +379,21 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: table
     second: {fileID: 2100000, guid: e59a598dfe9745a409862fbc77d3d41a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: techo
+    second: {fileID: 2100000, guid: c899bb3415978e74ba060a494344eae9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: televisor
+    second: {fileID: 2100000, guid: 11fe0595b99114349be54d7e4fc8ea9c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: toilette
+    second: {fileID: 2100000, guid: 80593750d634fb54ab4618fb08107c5d, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
