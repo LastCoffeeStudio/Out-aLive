@@ -387,6 +387,10 @@ public class PlayerMovment : MonoBehaviour {
                     buying = true;
                     break;
                 }
+
+				case "GateTerminal":
+					hitInfo.collider.gameObject.GetComponent<GateTerminal> ().Activate ();
+					break;
             }
         }
     }
