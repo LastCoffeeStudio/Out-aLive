@@ -17,6 +17,8 @@ public class CtrlGameState : MonoBehaviour
 
     public Text winState;
     public Image medal;
+    public int numSnithcObjectives;
+    public static int numSnitchKilled;
 
     public static gameStates gameState;
 
@@ -24,6 +26,8 @@ public class CtrlGameState : MonoBehaviour
     void Start ()
 	{
         gameState = gameStates.ACTIVE;
+        numSnitchKilled = 0;
+        numSnithcObjectives = 1;
     }
 
     public static gameStates getGameState()
@@ -33,7 +37,7 @@ public class CtrlGameState : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKey(KeyCode.V))
+        if (Input.GetKey(KeyCode.V) || numSnitchKilled >= numSnithcObjectives)
         {
             gameState = gameStates.WIN;
         }
