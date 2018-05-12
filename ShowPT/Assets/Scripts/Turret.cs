@@ -18,6 +18,7 @@ public class Turret : Enemy
 
     public override void getHit(int damage)
     {
+        Debug.Log("Gets Hit Turret");
         ctrAudio.playOneSound("Enemies", hitAudio, transform.position, 1.0f, 0.0f, 128);
         enemyHealth -= damage;
         //Execute properly Animation

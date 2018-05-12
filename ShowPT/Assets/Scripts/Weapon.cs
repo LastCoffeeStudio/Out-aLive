@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Weapon : MonoBehaviour
 {
+    public LayerMask maskBullets;
     public float amount;
     public float maxAmount;
     public float smoothAmount;
@@ -158,9 +159,10 @@ public class Weapon : MonoBehaviour
     protected void shotBullet(Vector3 dir)
     {
         RaycastHit hitInfo;
-
-        if (Physics.Raycast(cameraPlayer.position, dir, out hitInfo, weaponRange))
+        
+        if (Physics.Raycast(cameraPlayer.position, dir, out hitInfo, weaponRange, maskBullets))
         {
+            Debug.Log(hitInfo.transform.tag);
             if (hitInfo.transform.tag == "Enemy" || hitInfo.transform.tag == "Drone" || hitInfo.transform.tag == "Snitch")
             {
                 hitInfo.collider.gameObject.GetComponent<Enemy>().getHit(damage);
