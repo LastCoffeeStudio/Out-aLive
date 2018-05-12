@@ -264,6 +264,7 @@ public class SnitchDrone : Enemy
     {
         if (enemyHealth <= 0f)
         {
+            CtrlGameState.numSnitchKilled++;
             globalTimer.updateSnitches();
             Destroy(gameObject);
         }
