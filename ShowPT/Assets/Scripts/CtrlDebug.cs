@@ -33,7 +33,7 @@ public class CtrlDebug : MonoBehaviour
 	            camerasDebug.transform.GetChild(indexChildren).gameObject.SetActive(true);
 	        }
 	    }
-	    if (Input.GetKeyDown(KeyCode.B))
+	    if (Input.GetKeyDown(KeyCode.X))
 	    {
 	        if (activeDebug)
 	        {
