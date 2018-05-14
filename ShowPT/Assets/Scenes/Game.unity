@@ -77677,7 +77677,7 @@ Prefab:
         type: 2}
       propertyPath: gun
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 587851602}
     - target: {fileID: 114497096684429664, guid: 020030e7ca02d944eb8625b1fd8c4c5b,
         type: 2}
       propertyPath: shotgun
@@ -77692,6 +77692,11 @@ Prefab:
       propertyPath: m_Name
       value: CtrlGame
       objectReference: {fileID: 0}
+    - target: {fileID: 114497096684429664, guid: 020030e7ca02d944eb8625b1fd8c4c5b,
+        type: 2}
+      propertyPath: canon
+      value: 
+      objectReference: {fileID: 1125331861}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 020030e7ca02d944eb8625b1fd8c4c5b, type: 2}
   m_IsPrefabParent: 0
@@ -90054,7 +90059,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 1756075338
+  randomSeed: 436347736
   InitialModule:
     serializedVersion: 3
     enabled: 1

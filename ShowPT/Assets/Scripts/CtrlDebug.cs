@@ -14,6 +14,7 @@ public class CtrlDebug : MonoBehaviour
     public GameObject gun;
     public GameObject shotgun;
     public GameObject rifle;
+    public GameObject canon;
     // Use this for initialization
     void Start ()
 	{
@@ -71,7 +72,9 @@ public class CtrlDebug : MonoBehaviour
 	        shotgun.GetComponent<Shotgun>().ammunition = Int32.MaxValue;
 	        rifle.GetComponent<Weapon>().maxAmmo = Int32.MaxValue;
 	        rifle.GetComponent<Weapon>().ammunition = Int32.MaxValue;
-	        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            canon.GetComponent<Weapon>().maxAmmo = Int32.MaxValue;
+            canon.GetComponent<Weapon>().ammunition = Int32.MaxValue;
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 	        for (int i = 0; i < enemies.Length; i++)
 	        {
                 if (enemies[i].GetComponent<Enemy>() != null)
