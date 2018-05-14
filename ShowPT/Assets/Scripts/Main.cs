@@ -7,6 +7,7 @@ public class Main : MonoBehaviour
 {
     public static Main instance = null;
     public Slider loadBar;
+    AsyncOperation async;
 
     private void Awake()
     {
@@ -18,28 +19,33 @@ public class Main : MonoBehaviour
     }
 
     // Use this for initialization
-    private void Start() {}
+    private void Start()
+    {
+        StartCoroutine(loadLevel(1));
+    }
 
-    private void Update() {}
+    private void Update()
+    {
+        if (async != null && async.isDone)
+        {
+            Debug.Log("done loading");
+        }
+    }
 
     public void playGame(string name)
     {
-        StartCoroutine(loadLevel(name));
-    }
-
-    public void loadSceneByName(string name)
-    {
-        SceneManager.LoadSceneAsync(name);
-    }
-
-    IEnumerator loadLevel(string name)
-    {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(name);
-        while (!operation.isDone)
+        if (async != null)
         {
-            loadBar.value = operation.progress;
-            yield return null;
+            async.allowSceneActivation = true;
         }
+    }
+
+    IEnumerator loadLevel(int numScene)
+    {
+        async = SceneManager.LoadSceneAsync(numScene);
+        loadBar.value = async.progress;
+        async.allowSceneActivation = false;
+        yield return async;
     }
 
     public void quitGame()
