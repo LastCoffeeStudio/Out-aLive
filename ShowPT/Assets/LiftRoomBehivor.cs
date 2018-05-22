@@ -7,79 +7,108 @@ public class LiftRoomBehivor : MonoBehaviour
     public int timeForOpen;
     public int timeForClose;
     public int timeForClimb;
-    public float speedDoors;
+    public float timeOpening;
+    public AnimationCurve doorCurvetimeOpening;
+    public float timeClosing;
+    public AnimationCurve doorCurvetimeClosing;
     public float timeClimbingSec;
     public Vector3 positionLiftInDesert;
+    public AnimationCurve speedCurvelights;
+    public float speedLeave;
 
     private StateLift actualState;
     private GameObject player;
-    public GameObject doorPos;
-    public GameObject doorNeg;
+    private GameObject doorPos;
+    private GameObject doorNeg;
+    private GameObject lightSound;
+
+
+    //Values for restart
+    private Vector3 initPosition;
+    private float initTimeClimibingSec;
 
     enum StateLift
     {
-        Close,
+        Closed,
         OpeningBelow,
         OpenedBelow,
         ClosingBelow,
         Climbing,
         Avobe,
-        OpeningAvobe
+        OpeningAvobe,
+        ClosingAvobe,
+        Leaving
     }
 
-	// Use this for initialization
-	void Start ()
-	{
+    // Use this for initialization
+    void Start()
+    {
         for (int i = 0; i < transform.childCount; i++)
-	    {
-	        switch (transform.GetChild(i).name)
-	        {
+        {
+            switch (transform.GetChild(i).name)
+            {
                 case "DoorPos":
                     doorPos = transform.GetChild(i).gameObject;
                     break;
-	            case "DoorNeg":
-	                doorNeg = transform.GetChild(i).gameObject;
+                case "DoorNeg":
+                    doorNeg = transform.GetChild(i).gameObject;
+                    break;
+                case "lightSound":
+                    lightSound = transform.GetChild(i).gameObject;
                     break;
             }
-	    }
+        }
 
-	    actualState = StateLift.Close;
-	    StartCoroutine(delayForOpen());
+        initPosition = transform.position;
+        initTimeClimibingSec = timeClimbingSec;
+        actualState = StateLift.Closed;
+        StartCoroutine(delayForOpen());
     }
 
     IEnumerator delayForOpen()
     {
         yield return new WaitForSeconds(timeForOpen);
         actualState = StateLift.OpeningBelow;
+        StartCoroutine(openDoorsSmooth());
     }
 
 
     // Update is called once per frame
-    void Update () {
-	    switch (actualState)
-	    {
-	        case StateLift.OpeningBelow:
-	            openDoors();
-                break;
-	        case StateLift.ClosingBelow:
-	            closeDoors();
-	            break;
-	        case StateLift.Climbing:
-	            climbing();
-	            break;
+    void Update()
+    {
+        if (actualState == StateLift.Climbing)
+        {
+            lightSound.active = true;
+            climbing();
         }
     }
-    void openDoors()
+
+    IEnumerator openDoorsSmooth()
     {
-        if (doorPos.transform.rotation.z < 0.20f)
+        float time = 0f;
+        Vector3 startRotation = new Vector3(0f, 0f, 0f);
+        Vector3 endRotation = new Vector3(0f, 0f, 30f);
+        while (time <= timeOpening)
         {
-            doorNeg.transform.Rotate(0f, 0f, -speedDoors * Time.deltaTime);
-            doorPos.transform.Rotate(0f, 0f, speedDoors * Time.deltaTime);
+            time += Time.deltaTime;
+            Quaternion newRotationPos = Quaternion.Euler(Vector3.Lerp(startRotation, endRotation, doorCurvetimeOpening.Evaluate(time)));
+            Quaternion newRotationNeg = Quaternion.Euler(Vector3.Lerp(startRotation, -endRotation, doorCurvetimeOpening.Evaluate(time)));
+            doorNeg.transform.localRotation = newRotationNeg;
+            doorPos.transform.localRotation = newRotationPos;
+            yield return null;
         }
-        else
+        doorNeg.transform.localRotation = Quaternion.Euler(-endRotation);
+        doorPos.transform.localRotation = Quaternion.Euler(endRotation);
+        if (actualState == StateLift.OpeningBelow)
         {
             actualState = StateLift.OpenedBelow;
         }
+        else if (actualState == StateLift.OpeningAvobe)
+        {
+            actualState = StateLift.Avobe;
+        }
+
+
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -87,6 +116,7 @@ public class LiftRoomBehivor : MonoBehaviour
         if ((actualState == StateLift.OpeningBelow || actualState == StateLift.OpenedBelow)
             && collider.gameObject.tag == "Player")
         {
+            actualState = StateLift.ClosingBelow;
             StartCoroutine(delayForClose());
             player = collider.gameObject;
             player.transform.parent = transform;
@@ -96,19 +126,35 @@ public class LiftRoomBehivor : MonoBehaviour
     IEnumerator delayForClose()
     {
         yield return new WaitForSeconds(timeForClose);
-        actualState = StateLift.ClosingBelow;
+        StartCoroutine(closeDoorsSmooth());
     }
 
-    void closeDoors()
+    IEnumerator closeDoorsSmooth()
     {
-        if (doorPos.transform.rotation.z > 0f)
+        float time = 0f;
+        Vector3 startRotation = new Vector3(0f, 0f, 30f);
+        Vector3 endRotation = new Vector3(0f, 0f, 0f);
+        while (time <= timeClosing)
         {
-            doorNeg.transform.Rotate(0f, 0f, speedDoors * Time.deltaTime);
-            doorPos.transform.Rotate(0f, 0f, -speedDoors * Time.deltaTime);
+            time += Time.deltaTime;
+            Quaternion newRotationPos = Quaternion.Euler(Vector3.Lerp(startRotation, endRotation, doorCurvetimeClosing.Evaluate(time)));
+            Quaternion newRotationNeg = Quaternion.Euler(Vector3.Lerp(-startRotation, endRotation, doorCurvetimeClosing.Evaluate(time)));
+            doorNeg.transform.localRotation = newRotationNeg;
+            doorPos.transform.localRotation = newRotationPos;
+            yield return null;
         }
-        else
+        doorNeg.transform.localRotation = Quaternion.Euler(-endRotation);
+        doorPos.transform.localRotation = Quaternion.Euler(endRotation);
+
+        if (actualState == StateLift.ClosingBelow)
         {
+            actualState = StateLift.OpenedBelow;
             StartCoroutine(delayForClimb());
+        }
+        else if (actualState == StateLift.ClosingAvobe)
+        {
+            actualState = StateLift.Leaving;
+            StartCoroutine(leaving());
         }
     }
 
@@ -123,19 +169,61 @@ public class LiftRoomBehivor : MonoBehaviour
     {
         if (timeClimbingSec > 0)
         {
-
             timeClimbingSec -= Time.deltaTime;
+            moveLightLiftSound();
+            vibratePlayer();
         }
         else
         {
+            lightSound.active = false;
             transform.position = positionLiftInDesert;
             player.transform.parent = null;
-            actualState = StateLift.OpeningBelow;
+            actualState = StateLift.OpeningAvobe;
+            StartCoroutine(openDoorsSmooth());
         }
     }
 
+    void moveLightLiftSound()
+    {
+        float speed = speedCurvelights.Evaluate(timeClimbingSec) * Time.deltaTime;
+        lightSound.transform.Translate(0, 0, -speed);
+        if (lightSound.transform.localPosition.z < -2f)
+        {
+            lightSound.transform.localPosition = new Vector3(0f, 0f, 10f);
 
-    
+        }
+    }
 
+    void vibratePlayer()
+    {
+        if (timeClimbingSec > 0 && timeClimbingSec < 9)
+        {
+            player.transform.Translate(0, Time.deltaTime * 0.5f, 0);
+        }
+    }
 
+    private void OnTriggerExit(Collider collider)
+    {
+        if ((actualState == StateLift.OpeningAvobe || actualState == StateLift.Avobe)
+            && collider.gameObject.tag == "Player")
+        {
+            actualState = StateLift.ClosingAvobe;
+            StartCoroutine(delayForClose());
+        }
+    }
+
+    IEnumerator leaving()
+    {
+        while (transform.position.y > -5)
+        {
+            transform.Translate(0f, 0f, -speedLeave * Time.deltaTime);
+            yield return null;
+        }
+
+        //Setup initial variables
+        timeClimbingSec = initTimeClimibingSec;
+        transform.position = initPosition;
+        actualState = StateLift.Closed;
+
+    }
 }
