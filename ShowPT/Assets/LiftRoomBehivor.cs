@@ -21,7 +21,8 @@ public class LiftRoomBehivor : MonoBehaviour
     private GameObject doorPos;
     private GameObject doorNeg;
     private GameObject lightSound;
-
+    private float initialReflectionLight;
+    private Vector3 initialPositionLightSound;
 
     //Values for restart
     private Vector3 initPosition;
@@ -59,6 +60,7 @@ public class LiftRoomBehivor : MonoBehaviour
             }
         }
 
+        initialReflectionLight = RenderSettings.reflectionIntensity;
         initPosition = transform.position;
         initTimeClimibingSec = timeClimbingSec;
         actualState = StateLift.Closed;
@@ -72,13 +74,18 @@ public class LiftRoomBehivor : MonoBehaviour
         StartCoroutine(openDoorsSmooth());
     }
 
-
+    private bool varPROVISIONAL = true;
     // Update is called once per frame
     void Update()
     {
         if (actualState == StateLift.Climbing)
         {
-            lightSound.active = true;
+            if (varPROVISIONAL)
+            {
+                varPROVISIONAL = false;
+                lightSound.active = true;
+                initialPositionLightSound = lightSound.transform.localPosition;
+            }
             climbing();
         }
     }
@@ -129,6 +136,7 @@ public class LiftRoomBehivor : MonoBehaviour
         StartCoroutine(closeDoorsSmooth());
     }
 
+    
     IEnumerator closeDoorsSmooth()
     {
         float time = 0f;
@@ -146,8 +154,11 @@ public class LiftRoomBehivor : MonoBehaviour
         doorNeg.transform.localRotation = Quaternion.Euler(-endRotation);
         doorPos.transform.localRotation = Quaternion.Euler(endRotation);
 
+        
+
         if (actualState == StateLift.ClosingBelow)
         {
+            RenderSettings.reflectionIntensity = 0.2f;
             actualState = StateLift.OpenedBelow;
             StartCoroutine(delayForClimb());
         }
@@ -169,12 +180,14 @@ public class LiftRoomBehivor : MonoBehaviour
     {
         if (timeClimbingSec > 0)
         {
+            CtrlVibration.playVibration(0f, 5f);
             timeClimbingSec -= Time.deltaTime;
             moveLightLiftSound();
             vibratePlayer();
         }
         else
         {
+            CtrlVibration.stopVibration();
             lightSound.active = false;
             transform.position = positionLiftInDesert;
             player.transform.parent = null;
@@ -189,15 +202,16 @@ public class LiftRoomBehivor : MonoBehaviour
         lightSound.transform.Translate(0, 0, -speed);
         if (lightSound.transform.localPosition.z < -2f)
         {
-            lightSound.transform.localPosition = new Vector3(0f, 0f, 10f);
+            lightSound.transform.localPosition = initialPositionLightSound;
 
         }
     }
 
     void vibratePlayer()
     {
-        if (timeClimbingSec > 0 && timeClimbingSec < 9)
+        if (timeClimbingSec > 1 && timeClimbingSec < (initTimeClimibingSec - 1))
         {
+            CtrlVibration.playVibration(10f, 10f);
             player.transform.Translate(0, Time.deltaTime * 0.5f, 0);
         }
     }
@@ -207,6 +221,7 @@ public class LiftRoomBehivor : MonoBehaviour
         if ((actualState == StateLift.OpeningAvobe || actualState == StateLift.Avobe)
             && collider.gameObject.tag == "Player")
         {
+            RenderSettings.reflectionIntensity = initialReflectionLight;
             actualState = StateLift.ClosingAvobe;
             StartCoroutine(delayForClose());
         }
