@@ -163,13 +163,17 @@ public class Weapon : MonoBehaviour
         if (Physics.Raycast(cameraPlayer.position, dir, out hitInfo, weaponRange, maskBullets))
         {
             Debug.Log(hitInfo.transform.tag);
-            if (hitInfo.transform.tag == "Enemy" || hitInfo.transform.tag == "Drone" || hitInfo.transform.tag == "Snitch")
-            {
-                hitInfo.collider.gameObject.GetComponent<Enemy>().getHit(damage);
-                ScoreController.weaponHit(type);
-                GameObject spark = Instantiate(sparks, hitInfo.point, Quaternion.Euler(0f, 0f, 0f));
-                spark.transform.up = hitInfo.normal;
-            }
+			if (hitInfo.transform.tag == "Enemy" || hitInfo.transform.tag == "Drone" || hitInfo.transform.tag == "Snitch") 
+			{
+				hitInfo.collider.gameObject.GetComponent<Enemy> ().getHit (damage);
+				ScoreController.weaponHit (type);
+				GameObject spark = Instantiate (sparks, hitInfo.point, Quaternion.Euler (0f, 0f, 0f));
+				spark.transform.up = hitInfo.normal;
+			} 
+			else if (hitInfo.transform.tag == "Barrel") 
+			{
+				hitInfo.collider.gameObject.gameObject.GetComponent<Barrel> ().shotBehavior (hitInfo.point, damage);
+			}
         }
     }
 
