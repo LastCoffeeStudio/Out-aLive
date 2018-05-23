@@ -564,7 +564,7 @@ GameObject:
   - component: {fileID: 17987457}
   - component: {fileID: 17987456}
   - component: {fileID: 17987455}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Box022
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1435,7 +1435,7 @@ GameObject:
   - component: {fileID: 56025549}
   - component: {fileID: 56025548}
   - component: {fileID: 56025547}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Prop_arcade003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3616,6 +3616,67 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 120939217}
   m_Mesh: {fileID: 4300000, guid: 18ca9cba298725542922274c03f91668, type: 3}
+--- !u!1 &123625722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 123625723}
+  - component: {fileID: 123625724}
+  m_Layer: 11
+  m_Name: Reflection Probe
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &123625723
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 123625722}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.79, z: -1.05}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1184643740}
+  m_RootOrder: 35
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!215 &123625724
+ReflectionProbe:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 123625722}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Type: 0
+  m_Mode: 0
+  m_RefreshMode: 0
+  m_TimeSlicingMode: 0
+  m_Resolution: 512
+  m_UpdateFrequency: 0
+  m_BoxSize: {x: 19.84, y: 11.87, z: 17.04}
+  m_BoxOffset: {x: 0, y: 0, z: 0}
+  m_NearClip: 0.3
+  m_FarClip: 1000
+  m_ShadowDistance: 100
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IntensityMultiplier: 1
+  m_BlendDistance: 1
+  m_HDR: 1
+  m_BoxProjection: 1
+  m_RenderDynamicObjects: 0
+  m_UseOcclusionCulling: 1
+  m_Importance: 1
+  m_CustomBakedTexture: {fileID: 0}
 --- !u!1 &125122695
 GameObject:
   m_ObjectHideFlags: 0
@@ -3718,7 +3779,7 @@ GameObject:
   - component: {fileID: 133331886}
   - component: {fileID: 133331885}
   - component: {fileID: 133331884}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Cylinder020
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3944,7 +4005,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294965247
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -5665,7 +5726,7 @@ GameObject:
   - component: {fileID: 184351328}
   - component: {fileID: 184351327}
   - component: {fileID: 184351326}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Box010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5716,7 +5777,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100010, guid: 52d94b4846605b6428a9fb9759645791, type: 3}
+  - {fileID: 2100000, guid: 54701d04516e14c43b6e6ebbedc2ed8a, type: 2}
   - {fileID: 2100000, guid: b39d9c483df0fd94aa31df7958e7f419, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -5901,7 +5962,7 @@ GameObject:
   - component: {fileID: 196339273}
   - component: {fileID: 196339272}
   - component: {fileID: 196339271}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10343,7 +10404,7 @@ GameObject:
   - component: {fileID: 355546035}
   - component: {fileID: 355546034}
   - component: {fileID: 355546033}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Box021
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10394,7 +10455,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100010, guid: 52d94b4846605b6428a9fb9759645791, type: 3}
+  - {fileID: 2100000, guid: cc0b80a6c4eba0d45b9f7cb527542ed1, type: 2}
   - {fileID: 2100000, guid: b39d9c483df0fd94aa31df7958e7f419, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -16039,7 +16100,7 @@ GameObject:
   - component: {fileID: 425001428}
   - component: {fileID: 425001427}
   - component: {fileID: 425001426}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Sphere003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16294,7 +16355,7 @@ GameObject:
   - component: {fileID: 430738731}
   - component: {fileID: 430738730}
   - component: {fileID: 430738729}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Box005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18475,7 +18536,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 16522255263f69b4699c54fbcb8ed4a2, type: 2}
-  - {fileID: 2100000, guid: 16522255263f69b4699c54fbcb8ed4a2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20463,7 +20523,7 @@ GameObject:
   - component: {fileID: 564205581}
   - component: {fileID: 564205580}
   - component: {fileID: 564205579}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: prop_tableclothe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37976,7 +38036,7 @@ GameObject:
   - component: {fileID: 829755696}
   - component: {fileID: 829755695}
   - component: {fileID: 829755694}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Sphere005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44690,7 +44750,7 @@ GameObject:
   - component: {fileID: 952402276}
   - component: {fileID: 952402275}
   - component: {fileID: 952402274}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: prop_nevera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45732,7 +45792,7 @@ GameObject:
   - component: {fileID: 975644669}
   - component: {fileID: 975644668}
   - component: {fileID: 975644667}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Prop_arcade002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47245,7 +47305,7 @@ GameObject:
   - component: {fileID: 1019537090}
   - component: {fileID: 1019537089}
   - component: {fileID: 1019537088}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Object003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47418,7 +47478,7 @@ GameObject:
   - component: {fileID: 1029733126}
   - component: {fileID: 1029733125}
   - component: {fileID: 1029733124}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Cylinder019
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47432,7 +47492,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1029733122}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: -0.00000023841858, z: -0.1625812}
   m_LocalScale: {x: 0.6715055, y: 0.6715055, z: 0.9864046}
   m_Children: []
@@ -47470,7 +47530,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 99f5dbef75e936f4baf524d040088a45, type: 2}
-  - {fileID: 2100054, guid: 52d94b4846605b6428a9fb9759645791, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -51936,7 +51995,7 @@ GameObject:
   - component: {fileID: 1081039106}
   - component: {fileID: 1081039105}
   - component: {fileID: 1081039104}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Group002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52191,7 +52250,7 @@ GameObject:
   - component: {fileID: 1084255812}
   - component: {fileID: 1084255811}
   - component: {fileID: 1084255810}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Box012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52496,7 +52555,7 @@ GameObject:
   - component: {fileID: 1098202506}
   - component: {fileID: 1098202505}
   - component: {fileID: 1098202504}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Box001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53009,7 +53068,7 @@ GameObject:
   - component: {fileID: 1106379294}
   - component: {fileID: 1106379293}
   - component: {fileID: 1106379292}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: prop_cojin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61998,7 +62057,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1184643740}
   - component: {fileID: 1184643739}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Showroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62009,16 +62068,15 @@ GameObject:
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 95881668658293452, guid: 0081201625b733c4bb417690034b02cf,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1184643738}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 52d94b4846605b6428a9fb9759645791, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a61f6176c7230324aa061707d40ff97a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -62069,6 +62127,8 @@ Transform:
   - {fileID: 1414973024}
   - {fileID: 1452515319}
   - {fileID: 1907779346}
+  - {fileID: 123625723}
+  - {fileID: 1608059535}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -64587,7 +64647,7 @@ GameObject:
   - component: {fileID: 1261022366}
   - component: {fileID: 1261022365}
   - component: {fileID: 1261022364}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Cylinder018
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65194,7 +65254,7 @@ GameObject:
   - component: {fileID: 1273756567}
   - component: {fileID: 1273756566}
   - component: {fileID: 1273756565}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Cylinder012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65932,7 +65992,7 @@ GameObject:
   - component: {fileID: 1293992716}
   - component: {fileID: 1293992715}
   - component: {fileID: 1293992714}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Cylinder010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66525,7 +66585,7 @@ GameObject:
   - component: {fileID: 1319877909}
   - component: {fileID: 1319877908}
   - component: {fileID: 1319877907}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Box017
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71914,7 +71974,7 @@ GameObject:
   - component: {fileID: 1414973027}
   - component: {fileID: 1414973026}
   - component: {fileID: 1414973025}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Sphere007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72595,7 +72655,7 @@ GameObject:
   - component: {fileID: 1452515322}
   - component: {fileID: 1452515321}
   - component: {fileID: 1452515320}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Sphere008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77725,7 +77785,7 @@ GameObject:
   - component: {fileID: 1506869043}
   - component: {fileID: 1506869042}
   - component: {fileID: 1506869041}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: prop_cojin002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78054,7 +78114,7 @@ GameObject:
   - component: {fileID: 1527101279}
   - component: {fileID: 1527101278}
   - component: {fileID: 1527101277}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Group1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78567,7 +78627,7 @@ GameObject:
   - component: {fileID: 1544585770}
   - component: {fileID: 1544585769}
   - component: {fileID: 1544585768}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Box014
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79540,7 +79600,7 @@ GameObject:
   - component: {fileID: 1562465481}
   - component: {fileID: 1562465480}
   - component: {fileID: 1562465479}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Prop_arcade004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80745,7 +80805,7 @@ GameObject:
   - component: {fileID: 1589811846}
   - component: {fileID: 1589811845}
   - component: {fileID: 1589811844}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Box020
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80796,7 +80856,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100010, guid: 52d94b4846605b6428a9fb9759645791, type: 3}
+  - {fileID: 2100000, guid: f4341e7499a7153489a3099a5cad09d2, type: 2}
   - {fileID: 2100000, guid: b39d9c483df0fd94aa31df7958e7f419, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -81409,6 +81469,71 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1607437371}
   m_Mesh: {fileID: 4300000, guid: 48f3ee64228b5b84a9c94f43bc488d10, type: 3}
+--- !u!1 &1608059534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1608059535}
+  - component: {fileID: 1608059536}
+  m_Layer: 11
+  m_Name: Point light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1608059535
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1608059534}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.96, y: 3.54, z: -1.784}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1184643740}
+  m_RootOrder: 36
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!108 &1608059536
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1608059534}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 2
+  m_Color: {r: 0.32017735, g: 0.6512902, b: 1.0367647, a: 1}
+  m_Intensity: 0.98
+  m_Range: 18.42
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 0.485
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.38
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 2
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &1608407957
 GameObject:
   m_ObjectHideFlags: 0
@@ -82614,7 +82739,7 @@ GameObject:
   - component: {fileID: 1641430768}
   - component: {fileID: 1641430767}
   - component: {fileID: 1641430766}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Cylinder015
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85996,7 +86121,7 @@ GameObject:
   - component: {fileID: 1748647496}
   - component: {fileID: 1748647495}
   - component: {fileID: 1748647494}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: prop_cojin001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88526,7 +88651,7 @@ GameObject:
   - component: {fileID: 1804865657}
   - component: {fileID: 1804865656}
   - component: {fileID: 1804865655}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: perop_liftroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94777,7 +94902,7 @@ GameObject:
   - component: {fileID: 1907779349}
   - component: {fileID: 1907779348}
   - component: {fileID: 1907779347}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Sphere009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99619,7 +99744,7 @@ GameObject:
   - component: {fileID: 1941536425}
   - component: {fileID: 1941536424}
   - component: {fileID: 1941536423}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Sphere006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100108,7 +100233,7 @@ GameObject:
   - component: {fileID: 1970087515}
   - component: {fileID: 1970087514}
   - component: {fileID: 1970087513}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Cylinder014
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120511,7 +120636,7 @@ GameObject:
   - component: {fileID: 2069058783}
   - component: {fileID: 2069058782}
   - component: {fileID: 2069058781}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Sphere004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
