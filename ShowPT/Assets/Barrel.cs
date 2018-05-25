@@ -17,7 +17,13 @@ public class Barrel : MonoBehaviour {
 	float floatiness = 400f;
 
 	[SerializeField]
+	float rotationWhenBlasted = 60f;
+
+	[SerializeField]
 	GameObject explosion;
+
+	[SerializeField]
+	float timeBeforeExploding = 0.5f;
 
 	[SerializeField]
 	int explosionDamage = 10;
@@ -49,16 +55,20 @@ public class Barrel : MonoBehaviour {
 			myRigidBody.AddExplosionForce (floatiness * damage, hitPoint, 100f);
 			break;
 		case typeOfBarrel.explosive:
-			explode ();
+			StartCoroutine (explode ());
+			//explode ();
 			break;
 		default:
 			break;
 		}
 	}
 
-	void explode()
+	IEnumerator explode()
 	{
 		activable = false;
+
+		yield return new WaitForSeconds (timeBeforeExploding);
+
 		GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
 
 		RaycastHit hitInfo;
@@ -72,7 +82,7 @@ public class Barrel : MonoBehaviour {
 			{
 				if (Physics.Raycast (transform.position, barrel.transform.position - transform.position, out hitInfo, explosionDistance)) {
 					
-					barrel.myRigidBody.AddTorque (new Vector3 (30f, 30f, 30f));
+					barrel.myRigidBody.AddTorque (new Vector3 (rotationWhenBlasted, rotationWhenBlasted, rotationWhenBlasted));
 					barrel.shotBehavior (hitInfo.point, explosionDamage / 3);
 					//barrel.myRigidBody.AddForce (Vector3.up * explosionDamage);
 				}
