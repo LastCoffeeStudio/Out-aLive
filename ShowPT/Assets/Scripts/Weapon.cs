@@ -183,7 +183,6 @@ public class Weapon : MonoBehaviour
         
         if (Physics.Raycast(ray, out hitInfo, weaponRange, maskBullets))
         {
-            Debug.Log(hitInfo.transform.tag);
             if (hitInfo.transform.tag == "Enemy" || hitInfo.transform.tag == "Drone" || hitInfo.transform.tag == "Snitch")
             {
                 hitInfo.collider.gameObject.GetComponent<Enemy>().getHit(damage);

@@ -18,7 +18,6 @@ public class LaserCanon : Weapon {
             overheatTime += Time.deltaTime;
             checkMouseInput();
         }
-        Debug.Log(Input.GetAxis("AxisRT"));
     }
 
     protected override void checkMouseInput()

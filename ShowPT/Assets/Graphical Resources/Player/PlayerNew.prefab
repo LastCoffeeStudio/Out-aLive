@@ -921,6 +921,8 @@ GameObject:
   - component: {fileID: 4013574722361878}
   - component: {fileID: 95236048043836640}
   - component: {fileID: 114777413869291284}
+  - component: {fileID: 114659565279591520}
+  - component: {fileID: 114137068971340946}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -1120,6 +1122,8 @@ GameObject:
   - component: {fileID: 4264764593322244}
   - component: {fileID: 95267467255061502}
   - component: {fileID: 114018341101017394}
+  - component: {fileID: 114096344868049022}
+  - component: {fileID: 114709502255805696}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Weapon
@@ -5420,7 +5424,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4003881523709554}
   - component: {fileID: 95119521677657184}
-  - component: {fileID: 114531891622059346}
+  - component: {fileID: 114519003255608786}
+  - component: {fileID: 114529171459479846}
+  - component: {fileID: 114163952753824676}
   m_Layer: 0
   m_Name: Canon
   m_TagString: Untagged
@@ -6990,6 +6996,8 @@ GameObject:
   - component: {fileID: 4671879044421516}
   - component: {fileID: 95333027406333932}
   - component: {fileID: 114046779586839478}
+  - component: {fileID: 114832662433329132}
+  - component: {fileID: 114837183040474492}
   m_Layer: 0
   m_Name: Rifle
   m_TagString: Weapon
@@ -9782,7 +9790,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1931096828903088}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -11306,12 +11314,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1648125857121628}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4922040038484778}
-  m_RootOrder: 3
+  m_LocalRotation: {x: 0.7070996, y: -0.00021579918, z: -0.00014342631, w: 0.707114}
+  m_LocalPosition: {x: 0.00002, y: -0.002843, z: 0.00085}
+  m_LocalScale: {x: 0.0037855068, y: 0.0037855061, z: 0.0037855073}
+  m_Children:
+  - {fileID: 4732324568803672}
+  m_Father: {fileID: 4596192027161554}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4452922466961454
 Transform:
@@ -12142,8 +12151,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1015626004004706}
-  m_LocalRotation: {x: -0, y: 0.7072876, z: -0, w: 0.70692587}
-  m_LocalPosition: {x: -11.8, y: 0.98, z: -13.8}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 5.51, y: 6.7, z: -9.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4265720775127786}
@@ -12153,7 +12162,7 @@ Transform:
   - {fileID: 4275820661019928}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90.02901, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4576311995697196
 Transform:
   m_ObjectHideFlags: 1
@@ -12310,6 +12319,7 @@ Transform:
   m_LocalScale: {x: 102.59012, y: 102.59012, z: 102.59012}
   m_Children:
   - {fileID: 4679248475418268}
+  - {fileID: 4447024633381200}
   - {fileID: 4922040038484778}
   m_Father: {fileID: 4013574722361878}
   m_RootOrder: 1
@@ -13138,12 +13148,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1428826286214892}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 1.4551915e-11, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0000005, y: 1, z: 1.0000005}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4922040038484778}
-  m_RootOrder: 4
+  m_Father: {fileID: 4447024633381200}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4733710791925214
 Transform:
@@ -14423,17 +14433,15 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1342698653192384}
   m_LocalRotation: {x: 0.7070996, y: -0.00021579918, z: -0.00014342631, w: 0.707114}
-  m_LocalPosition: {x: 0.00002, y: -0.0009, z: 0.00085}
+  m_LocalPosition: {x: 0.00002, y: -0.00228, z: 0.00085}
   m_LocalScale: {x: 0.0037855061, y: 0.003785505, z: 0.0037855061}
   m_Children:
   - {fileID: 4974136748420498}
   - {fileID: 4837232266422908}
   - {fileID: 4549438740205976}
-  - {fileID: 4447024633381200}
-  - {fileID: 4732324568803672}
   - {fileID: 4983140711025078}
   m_Father: {fileID: 4596192027161554}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
 --- !u!4 &4924630192434092
 Transform:
@@ -14951,7 +14959,7 @@ Transform:
   - {fileID: 4585653935218132}
   - {fileID: 4635901783215690}
   m_Father: {fileID: 4922040038484778}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4986668290255862
 Transform:
@@ -16556,13 +16564,15 @@ MonoBehaviour:
   aimSpeed: 8
   weaponRange: 100
   shootEffect: {fileID: 198509623956340540}
+  trailEffect: {fileID: 0}
   sparks: {fileID: 1149727948857286, guid: 81170b26490e59a45b57295281371104, type: 2}
   typeAmmo: 0
   type: 1
   shot: {fileID: 8300000, guid: d97de43f1cc6b974b8115ad8b5a8a03d, type: 3}
   reload: {fileID: 8300000, guid: 518e3804bc77c9b4cadc7d7a534031d2, type: 3}
+  shotSpreadFactor: 20
+  redSphere: {fileID: 1875600123601928, guid: f9e53e24f85fa9549adb0b70849208db, type: 2}
   shotgunBullets: 10
-  bulletDispersion: 0.2
 --- !u!114 &114045291391524378
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16605,11 +16615,89 @@ MonoBehaviour:
   aimSpeed: 8
   weaponRange: 100
   shootEffect: {fileID: 198758747759328522}
+  trailEffect: {fileID: 0}
   sparks: {fileID: 1149727948857286, guid: 81170b26490e59a45b57295281371104, type: 2}
   typeAmmo: 2
   type: 2
   shot: {fileID: 8300000, guid: eba2a5b7be178b042b2477624eccde55, type: 3}
   reload: {fileID: 8300000, guid: acd47db0d8d41aa4f820275ae2302f9b, type: 3}
+  shotSpreadFactor: 10
+  redSphere: {fileID: 1875600123601928, guid: f9e53e24f85fa9549adb0b70849208db, type: 2}
+--- !u!114 &114096344868049022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1117868887188048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7dac0206bd25048837f3d2f17d457b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  lines:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  startingSpread: 20
+  minSpread: 0
+  maxSpread: 100
+  walkFactorSpread: 2.5
+  runFactorSpread: 4.5
+  crouchFactorSpread: 0.3
+  jumpFactorSpread: 4
+  increaseSpeed: 15
+  decreaseSpeed: 2
+  isFixed: 0
+--- !u!114 &114137068971340946
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1098104653458366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d553325bfe4018c48981a05e268cba55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minRecoilAmountX: 0.5
+  maxRecoilAmountX: 1
+  minRecoilAmountY: 0.5
+  maxRecoilAmountY: 1
+  maxRecoilX: 5
+  maxRecoilY: 3
+  speedRecover: 2
+  recoilActive: 1
+  cameraHead: {fileID: 1931096828903088}
+  playerHead: {fileID: 1015626004004706}
+  percRecoilRecovered: 1
+  recoilAmountX: 0
+  recoilAmountY: 0
+--- !u!114 &114163952753824676
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1679613485041532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d553325bfe4018c48981a05e268cba55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minRecoilAmountX: 1
+  maxRecoilAmountX: 2
+  minRecoilAmountY: 1
+  maxRecoilAmountY: 2
+  maxRecoilX: 10
+  maxRecoilY: 5
+  speedRecover: 3
+  recoilActive: 0
+  cameraHead: {fileID: 1931096828903088}
+  playerHead: {fileID: 1015626004004706}
+  percRecoilRecovered: 1
+  recoilAmountX: 0
+  recoilAmountY: 0
 --- !u!114 &114335640710939872
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16622,7 +16710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profile: {fileID: 11400000, guid: ecbb3fa47308ae34894362934a8f82dd, type: 2}
---- !u!114 &114531891622059346
+--- !u!114 &114519003255608786
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -16630,7 +16718,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1679613485041532}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f3d1036c4e1b1f46bb06e7d0012c919, type: 3}
+  m_Script: {fileID: 11500000, guid: 688f3cb5bc6ef7b44b4610de8ea93b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maskBullets:
@@ -16649,11 +16737,42 @@ MonoBehaviour:
   aimSpeed: 8
   weaponRange: 100
   shootEffect: {fileID: 198953363875841906}
+  trailEffect: {fileID: 0}
   sparks: {fileID: 1149727948857286, guid: 81170b26490e59a45b57295281371104, type: 2}
   typeAmmo: 3
   type: 3
   shot: {fileID: 8300000, guid: eba2a5b7be178b042b2477624eccde55, type: 3}
   reload: {fileID: 8300000, guid: acd47db0d8d41aa4f820275ae2302f9b, type: 3}
+  shotSpreadFactor: 10
+  redSphere: {fileID: 1875600123601928, guid: f9e53e24f85fa9549adb0b70849208db, type: 2}
+  overheatMaxTime: 2
+--- !u!114 &114529171459479846
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1679613485041532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7dac0206bd25048837f3d2f17d457b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  lines:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  startingSpread: 10
+  minSpread: 0
+  maxSpread: 100
+  walkFactorSpread: 2.5
+  runFactorSpread: 4.5
+  crouchFactorSpread: 0.3
+  jumpFactorSpread: 4
+  increaseSpeed: 15
+  decreaseSpeed: 5
+  isFixed: 1
 --- !u!114 &114623645713180148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16673,6 +16792,57 @@ MonoBehaviour:
   - {fileID: 1679613485041532}
   weaponsCarrying: 
   hudController: {fileID: 0}
+--- !u!114 &114659565279591520
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1098104653458366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7dac0206bd25048837f3d2f17d457b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  lines:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  startingSpread: 10
+  minSpread: 0
+  maxSpread: 100
+  walkFactorSpread: 2.5
+  runFactorSpread: 4.5
+  crouchFactorSpread: 0.6
+  jumpFactorSpread: 4
+  increaseSpeed: 15
+  decreaseSpeed: 2
+  isFixed: 0
+--- !u!114 &114709502255805696
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1117868887188048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d553325bfe4018c48981a05e268cba55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minRecoilAmountX: 1
+  maxRecoilAmountX: 2
+  minRecoilAmountY: 1
+  maxRecoilAmountY: 2
+  maxRecoilX: 10
+  maxRecoilY: 5
+  speedRecover: 3
+  recoilActive: 0
+  cameraHead: {fileID: 1931096828903088}
+  playerHead: {fileID: 1015626004004706}
+  percRecoilRecovered: 1
+  recoilAmountX: 0
+  recoilAmountY: 0
 --- !u!114 &114777413869291284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16700,11 +16870,14 @@ MonoBehaviour:
   aimSpeed: 8
   weaponRange: 100
   shootEffect: {fileID: 198882881353778648}
+  trailEffect: {fileID: 1648125857121628}
   sparks: {fileID: 1149727948857286, guid: 81170b26490e59a45b57295281371104, type: 2}
   typeAmmo: 1
   type: 0
   shot: {fileID: 8300000, guid: eba2a5b7be178b042b2477624eccde55, type: 3}
   reload: {fileID: 8300000, guid: acd47db0d8d41aa4f820275ae2302f9b, type: 3}
+  shotSpreadFactor: 10
+  redSphere: {fileID: 1875600123601928, guid: f9e53e24f85fa9549adb0b70849208db, type: 2}
 --- !u!114 &114804194555419774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16719,6 +16892,7 @@ MonoBehaviour:
   moveSpeed: 4
   runSpeed: 8
   agacSpeed: 2
+  localSpeed: 0
   lookSensivity: 3
   swagLook: 1
   jumpForce: 450
@@ -16726,23 +16900,72 @@ MonoBehaviour:
   flyControl: 1
   axisSensitivity: 10
   snap: 1
+  state: 0
   cam: {fileID: 20949150660808694}
   interactMaxDistance: 10
   runStart: 0.8
   layerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  spread: 5
-  maxSpread: 10
-  minSpread: 5
-  spreadPerSecond: 30
-  decreasePerSecond: 35
-  smoothAgac: 5
+  hudController: {fileID: 0}
+  steps: {fileID: 11400000, guid: be0819aed5b2a434286b70dc76897002, type: 2}
+  smoothCrouch: 5
+  crouchAmount: 0.25
+  crouched: 0
   animator: {fileID: 0}
   noiseValue: 0
   gameUI: {fileID: 0}
-  hudController: {fileID: 0}
-  steps: {fileID: 11400000, guid: be0819aed5b2a434286b70dc76897002, type: 2}
+--- !u!114 &114832662433329132
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1896728161791284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7dac0206bd25048837f3d2f17d457b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  lines:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  startingSpread: 10
+  minSpread: 0
+  maxSpread: 100
+  walkFactorSpread: 2.5
+  runFactorSpread: 4.5
+  crouchFactorSpread: 0.6
+  jumpFactorSpread: 4
+  increaseSpeed: 15
+  decreaseSpeed: 2
+  isFixed: 0
+--- !u!114 &114837183040474492
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1896728161791284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d553325bfe4018c48981a05e268cba55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minRecoilAmountX: 1
+  maxRecoilAmountX: 2
+  minRecoilAmountY: 0.5
+  maxRecoilAmountY: 1
+  maxRecoilX: 10
+  maxRecoilY: 5
+  speedRecover: 1.5
+  recoilActive: 1
+  cameraHead: {fileID: 1931096828903088}
+  playerHead: {fileID: 1015626004004706}
+  percRecoilRecovered: 1
+  recoilAmountX: 0
+  recoilAmountY: 0
 --- !u!124 &124357771027677786
 Behaviour:
   m_ObjectHideFlags: 1
@@ -20744,7 +20967,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: 1146042355
+  randomSeed: -2060707450
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -44634,7 +44857,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: -875223641
+  randomSeed: 69017035
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -48040,7 +48263,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: 1973495680
+  randomSeed: 2137377821
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -64986,7 +65209,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: 583612451
+  randomSeed: -1780315668
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -75120,7 +75343,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: -896874917
+  randomSeed: 1990419483
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -81038,7 +81261,7 @@ ParticleSystem:
     radiusScale: 1
   SubModule:
     serializedVersion: 2
-    enabled: 1
+    enabled: 0
     subEmitters:
     - serializedVersion: 2
       emitter: {fileID: 198390370941981260}
