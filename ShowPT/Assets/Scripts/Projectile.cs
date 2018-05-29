@@ -77,5 +77,10 @@ public class Projectile : MonoBehaviour
 		{
 			Destroy (gameObject);
 		}
+        if (col.tag == "Enemy" || col.tag == "Agent" || col.tag == "Snitch")
+        {
+            col.gameObject.GetComponent<Enemy>().getHit(damage);
+            Destroy(gameObject);
+        }
 	}
 }
