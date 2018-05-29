@@ -18451,20 +18451,18 @@ MonoBehaviour:
   positionLiftInDesert: {x: -12.95, y: 25.85, z: 1.5}
   speedLeave: 5
   reflectionLift: 0.2
---- !u!64 &491889956
-MeshCollider:
+--- !u!65 &491889956
+BoxCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 491889950}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300010, guid: 52d94b4846605b6428a9fb9759645791, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 1.0647632, y: 3.2307363, z: 4.3962517}
+  m_Center: {x: -1.0903156, y: 0.05693214, z: 2.0297418}
 --- !u!1 &493447475
 GameObject:
   m_ObjectHideFlags: 0

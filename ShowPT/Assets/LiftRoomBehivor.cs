@@ -29,6 +29,9 @@ public class LiftRoomBehivor : MonoBehaviour
     private float initialReflectionLight;
     private Vector3 initialPositionLightSound;
 
+    //For know who collider is touching
+    private int contCollider = 0;
+
     //Values for restart
     private Vector3 initPosition;
     private float initTimeClimibingSec;
@@ -125,8 +128,9 @@ public class LiftRoomBehivor : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
+        ++contCollider;
         if ((actualState == StateLift.OpeningBelow || actualState == StateLift.OpenedBelow)
-            && collider.gameObject.tag == "Player")
+            && collider.gameObject.tag == "Player" && contCollider == 2)
         {
             actualState = StateLift.ClosingBelow;
             StartCoroutine(delayForClose());
@@ -164,11 +168,20 @@ public class LiftRoomBehivor : MonoBehaviour
         if (actualState == StateLift.ClosingBelow)
         {
             //RenderSettings.reflectionIntensity = reflectionLift;
-            actualState = StateLift.OpenedBelow;
-            StartCoroutine(delayForClimb());
+            if (contCollider == 2)
+            {
+                actualState = StateLift.OpenedBelow;
+                StartCoroutine(delayForClimb());
+            }
+            else
+            {
+                actualState = StateLift.OpeningBelow;
+                StartCoroutine(openDoorsSmooth());
+            }
         }
         else if (actualState == StateLift.ClosingAvobe)
         {
+            gameObject.GetComponent<MeshCollider>().isTrigger = false;
             actualState = StateLift.Leaving;
             StartCoroutine(leaving());
         }
@@ -197,6 +210,7 @@ public class LiftRoomBehivor : MonoBehaviour
             transform.localPosition = positionLiftInDesert;
             player.transform.parent = null;
             actualState = StateLift.OpeningAvobe;
+            gameObject.GetComponent<MeshCollider>().isTrigger = true;
             StartCoroutine(openDoorsSmooth());
         }
     }
@@ -223,6 +237,7 @@ public class LiftRoomBehivor : MonoBehaviour
 
     private void OnTriggerExit(Collider collider)
     {
+        --contCollider;
         if ((actualState == StateLift.OpeningAvobe || actualState == StateLift.Avobe)
             && collider.gameObject.tag == "Player")
         {
