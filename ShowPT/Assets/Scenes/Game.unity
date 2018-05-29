@@ -10405,7 +10405,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1471, y: 640}
+  m_AnchoredPosition: {x: -126, y: -89}
   m_SizeDelta: {x: 126.1, y: 59.1}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &351914139
@@ -18271,6 +18271,7 @@ GameObject:
   - component: {fileID: 491889952}
   - component: {fileID: 491889955}
   - component: {fileID: 491889956}
+  - component: {fileID: 491889957}
   m_Layer: 9
   m_Name: Cylinder007
   m_TagString: Untagged
@@ -18463,6 +18464,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0647632, y: 3.2307363, z: 4.3962517}
   m_Center: {x: -1.0903156, y: 0.05693214, z: 2.0297418}
+--- !u!64 &491889957
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 491889950}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300010, guid: 52d94b4846605b6428a9fb9759645791, type: 3}
 --- !u!1 &493447475
 GameObject:
   m_ObjectHideFlags: 0
@@ -73734,7 +73749,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1471, y: 640}
+  m_AnchoredPosition: {x: -125.99992, y: -88.999985}
   m_SizeDelta: {x: 126.1, y: 59.1}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1491819675
