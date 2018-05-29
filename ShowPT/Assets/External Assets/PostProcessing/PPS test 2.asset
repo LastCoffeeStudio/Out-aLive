@@ -33,28 +33,28 @@ MonoBehaviour:
     m_Settings:
       method: 0
       fxaaSettings:
-        preset: 2
+        preset: 0
       taaSettings:
-        jitterSpread: 0.75
-        sharpen: 0.3
-        stationaryBlending: 0.95
-        motionBlending: 0.85
+        jitterSpread: 1
+        sharpen: 1.85
+        stationaryBlending: 0.309
+        motionBlending: 0.189
   ambientOcclusion:
     m_Enabled: 1
     m_Settings:
-      intensity: 0.88
-      radius: 0.71
+      intensity: 0.78
+      radius: 1.44
       sampleCount: 3
       downsampling: 1
-      forceForwardCompatibility: 1
-      ambientOnly: 0
+      forceForwardCompatibility: 0
+      ambientOnly: 1
       highPrecision: 1
   screenSpaceReflection:
     m_Enabled: 0
     m_Settings:
       reflection:
-        blendType: 0
-        reflectionQuality: 2
+        blendType: 1
+        reflectionQuality: 0
         maxDistance: 100
         iterationCount: 256
         stepSize: 3
@@ -62,25 +62,25 @@ MonoBehaviour:
         reflectionBlur: 1
         reflectBackfaces: 0
       intensity:
-        reflectionMultiplier: 1
-        fadeDistance: 100
+        reflectionMultiplier: 1.268
+        fadeDistance: 287
         fresnelFade: 1
         fresnelFadePower: 1
       screenEdgeMask:
-        intensity: 0.03
+        intensity: 0.252
   depthOfField:
     m_Enabled: 0
     m_Settings:
-      focusDistance: 0.9
-      aperture: 4.7
-      focalLength: 1
+      focusDistance: 1.13
+      aperture: 2.2
+      focalLength: 19
       useCameraFov: 0
       kernelSize: 3
   motionBlur:
     m_Enabled: 0
     m_Settings:
-      shutterAngle: 270
-      sampleCount: 10
+      shutterAngle: 64
+      sampleCount: 5
       frameBlending: 0.003
   eyeAdaptation:
     m_Enabled: 1
@@ -94,7 +94,7 @@ MonoBehaviour:
       adaptationType: 0
       speedUp: 2
       speedDown: 1
-      logMin: -6
+      logMin: -3
       logMax: 6
   bloom:
     m_Enabled: 1

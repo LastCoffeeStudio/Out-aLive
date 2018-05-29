@@ -191,6 +191,10 @@ public class Weapon : MonoBehaviour
                 GameObject spark = Instantiate(sparks, hitInfo.point, Quaternion.Euler(0f, 0f, 0f));
                 spark.transform.up = hitInfo.normal;
             }
+            else if (hitInfo.transform.tag == "Barrel")
+            {
+                hitInfo.collider.gameObject.gameObject.GetComponent<Barrel>().shotBehavior(hitInfo.point, damage);
+            }
 
             //Trail effect
             if (trailEffect != null)
