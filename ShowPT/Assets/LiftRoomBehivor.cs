@@ -182,9 +182,17 @@ public class LiftRoomBehivor : MonoBehaviour
         }
         else if (actualState == StateLift.ClosingAvobe)
         {
-            gameObject.GetComponent<MeshCollider>().isTrigger = false;
-            actualState = StateLift.Leaving;
-            StartCoroutine(leaving());
+            if (contCollider == 0)
+            {
+                gameObject.GetComponent<MeshCollider>().isTrigger = false;
+                actualState = StateLift.Leaving;
+                StartCoroutine(leaving());
+            }
+            else
+            {
+                actualState = StateLift.OpeningAvobe;
+                StartCoroutine(openDoorsSmooth());
+            }
         }
     }
 
