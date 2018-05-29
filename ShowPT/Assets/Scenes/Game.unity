@@ -18424,7 +18424,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   timeClimbingSec: 8
-  positionLiftInDesert: {x: -9.03, y: 0.3, z: -6.88}
   speedCurvelights:
     serializedVersion: 2
     m_Curve:
@@ -18449,7 +18448,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  positionLiftInDesert: {x: -12.95, y: 25.85, z: 1.5}
   speedLeave: 5
+  reflectionLift: 0.2
 --- !u!64 &491889956
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -62267,7 +62268,7 @@ Transform:
   m_GameObject: {fileID: 1184643738}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.0600433, y: -25.21, z: -8.345444}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1098202503}
   - {fileID: 430738728}

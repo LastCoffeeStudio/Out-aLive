@@ -7,14 +7,19 @@ public class LiftRoomBehivor : MonoBehaviour
     public int timeForOpen;
     public int timeForClose;
     public int timeForClimb;
+    [Header("Modify the time and the curve")]
     public float timeOpening;
     public AnimationCurve doorCurvetimeOpening;
+    [Header("Modify the time and the curve")]
     public float timeClosing;
     public AnimationCurve doorCurvetimeClosing;
+    [Header("Modify the time and the curve")]
     public float timeClimbingSec;
-    public Vector3 positionLiftInDesert;
     public AnimationCurve speedCurvelights;
+    [Header("Position on appears the lift")]
+    public Vector3 positionLiftInDesert;
     public float speedLeave;
+    public float reflectionLift;
 
     private StateLift actualState;
     private GameObject player;
@@ -158,7 +163,7 @@ public class LiftRoomBehivor : MonoBehaviour
 
         if (actualState == StateLift.ClosingBelow)
         {
-            RenderSettings.reflectionIntensity = 0.2f;
+            //RenderSettings.reflectionIntensity = reflectionLift;
             actualState = StateLift.OpenedBelow;
             StartCoroutine(delayForClimb());
         }
@@ -189,7 +194,7 @@ public class LiftRoomBehivor : MonoBehaviour
         {
             CtrlVibration.stopVibration();
             lightSound.active = false;
-            transform.position = positionLiftInDesert;
+            transform.localPosition = positionLiftInDesert;
             player.transform.parent = null;
             actualState = StateLift.OpeningAvobe;
             StartCoroutine(openDoorsSmooth());
