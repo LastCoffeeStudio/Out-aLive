@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HudController : MonoBehaviour {
+public class HudController : MonoBehaviour
+{
 
     private const int MAX_GREEN_LIFE = 60;
     private const int MAX_YELLOW_LIFE = 20;
@@ -42,10 +43,20 @@ public class HudController : MonoBehaviour {
 
     public GameObject menDown;
 
+    [Header("Crosshair")]
+    public GameObject[] weaponsCrosshairs;
+
+    private GameObject currentCrosshair;
+
     // Use this for initialization
-    void Start () {
-        //Test 
-        addWeapon(Inventory.WEAPON_TYPE.GUN);
+    void Start ()
+    {
+        for (int i = 0; i < weaponsCrosshairs.Length; ++i)
+        {
+            weaponsCrosshairs[i].SetActive(false);
+        }
+
+        //Test
         selectWeapon(Inventory.WEAPON_TYPE.GUN, 15, 0);
 	}
 	
@@ -111,6 +122,7 @@ public class HudController : MonoBehaviour {
         {
             currentWeapon.GetComponent<Image>().color = STATE_DISABLED;
             currentSelected.SetActive(false);
+            currentCrosshair.SetActive(false);
         }
 
         switch (type)
@@ -120,24 +132,32 @@ public class HudController : MonoBehaviour {
                 currentSelected = pistolSelected;
                 bulletsLabel.text = bullets.ToString();
                 totalBulletsLabel.text = "∞";
+                currentCrosshair = weaponsCrosshairs[(int)Inventory.WEAPON_TYPE.GUN];
+                currentCrosshair.SetActive(true);
                 break;
             case Inventory.WEAPON_TYPE.SHOTGUN:
                 currentWeapon = shotGunState;
                 currentSelected = shotGunSelected;
                 bulletsLabel.text = bullets.ToString();
                 totalBulletsLabel.text = totalBullets.ToString();
+                currentCrosshair = weaponsCrosshairs[(int)Inventory.WEAPON_TYPE.SHOTGUN];
+                currentCrosshair.SetActive(true);
                 break;
             case Inventory.WEAPON_TYPE.RIFLE:
                 currentWeapon = smgState;
                 currentSelected = smgSelected;
                 bulletsLabel.text = bullets.ToString();
                 totalBulletsLabel.text = totalBullets.ToString();
+                currentCrosshair = weaponsCrosshairs[(int)Inventory.WEAPON_TYPE.RIFLE];
+                currentCrosshair.SetActive(true);
                 break;
             case Inventory.WEAPON_TYPE.CANON:
                 currentWeapon = canonState;
                 currentSelected = canonSelected;
                 bulletsLabel.text = bullets.ToString();
                 totalBulletsLabel.text = totalBullets.ToString();
+                currentCrosshair = weaponsCrosshairs[(int)Inventory.WEAPON_TYPE.CANON];
+                currentCrosshair.SetActive(true);
                 break;
         }
 

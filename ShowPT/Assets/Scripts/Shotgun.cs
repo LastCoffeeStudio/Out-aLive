@@ -10,7 +10,6 @@ using Random = UnityEngine.Random;
 public class Shotgun : Weapon
 {
     public int shotgunBullets;
-    public float bulletDispersion;
 
     public override void decreaseAmmo()
     {
@@ -19,9 +18,13 @@ public class Shotgun : Weapon
         ScoreController.weaponUsed(type);
         for (uint i = 0; i < shotgunBullets; ++i)
         {
-            Vector3 dir = transform.forward + (Vector3.Cross(cameraPlayer.forward, Random.insideUnitSphere) * Random.Range(0f, bulletDispersion));
-            shotBullet(dir);
+            shotBullet(crosshair.getRayCrosshairArea());
         }
+        if (!crosshair.isFixed)
+        {
+            crosshair.increaseSpread(shotSpreadFactor);
+        }
+        recoil.addRecoil();
     }
 
     public override void increaseAmmo()

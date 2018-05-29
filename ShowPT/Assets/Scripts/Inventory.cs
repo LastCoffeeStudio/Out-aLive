@@ -40,6 +40,8 @@ public class Inventory : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        gameObject.GetComponent<PlayerMovment>().animator = weaponsInventory[(int)weapon].GetComponentInChildren<Animator>();
+
         weapon = WEAPON_TYPE.GUN;
 
         totalAmmoInvenotry.Add(AMMO_TYPE.SHOTGUNAMMO, 12);
@@ -53,11 +55,16 @@ public class Inventory : MonoBehaviour
         ammoInvenotry.Add(AMMO_TYPE.CANONAMMO, 5);
 
         weaponsCarrying = new bool[(int)WEAPON_TYPE.TOTAL_WEAPONS];
-        weaponsCarrying[(int)WEAPON_TYPE.GUN] = true;
+        weaponsCarrying[(int)WEAPON_TYPE.GUN] = false;
         weaponsCarrying[(int)WEAPON_TYPE.SHOTGUN] = false;
         weaponsCarrying[(int)WEAPON_TYPE.RIFLE] = false;
         weaponsCarrying[(int)WEAPON_TYPE.CANON] = false;
-        gameObject.GetComponent<PlayerMovment>().animator = weaponsInventory[(int)weapon].GetComponentInChildren<Animator>();
+
+        //test
+        addWeapon(WEAPON_TYPE.GUN);
+        addWeapon(WEAPON_TYPE.SHOTGUN);
+        addWeapon(WEAPON_TYPE.RIFLE);
+        addWeapon(WEAPON_TYPE.CANON);
     }
 
     private void Update()

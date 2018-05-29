@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Crosshair))]
+[RequireComponent(typeof(Recoil))]
+
 public class Weapon : MonoBehaviour
 {
     public LayerMask maskBullets;
@@ -15,7 +18,7 @@ public class Weapon : MonoBehaviour
     public int maxAmmo = 10;
     public int ammunition;
 
-    private bool firing = false;
+    protected bool firing = false;
     private bool reloading = false;
     private bool aimming = false;
     protected Animator animator;
@@ -26,6 +29,7 @@ public class Weapon : MonoBehaviour
     public float aimSpeed;
     public float weaponRange;
     public ParticleSystem shootEffect;
+    public GameObject trailEffect;
     public GameObject sparks;
 
     protected Inventory inventory;
@@ -35,6 +39,14 @@ public class Weapon : MonoBehaviour
     public AudioClip reload;
     private CtrlAudio ctrlAudio;
 
+    [Header("Crosshair Settings")]
+    public float shotSpreadFactor;
+    protected Crosshair crosshair;
+
+    protected Recoil recoil;
+
+    public GameObject redSphere;
+
     // Use this for initialization
     private void Start ()
     {
@@ -43,22 +55,27 @@ public class Weapon : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
+        crosshair = gameObject.GetComponent<Crosshair>();
+        recoil = gameObject.GetComponent<Recoil>();
     }
 	
 	// Update is called once per frame
-	private void Update ()
+	protected virtual void Update ()
     {
-        if (!firing && !reloading && !aimming)
+        if (!firing && !reloading)
         {
-            swagWeaponMovement();
+            aimAmmo();
+
+            if (!aimming)
+            {
+                swagWeaponMovement();
+            }
         }
 
         if (CtrlPause.gamePaused == false)
         {
             checkInputAnimations();
         }
-
-        aimAmmo();
     }
 
     private void swagWeaponMovement()
@@ -74,27 +91,25 @@ public class Weapon : MonoBehaviour
 
     private void aimAmmo()
     {
-        if (!reloading)
+        if (Input.GetButton("Fire2") || Input.GetAxis("AxisLT") > 0.5f)
         {
-            if (Input.GetButton("Fire2") || Input.GetAxis("AxisLT") > 0.5f)
-            {
-                transform.localPosition = Vector3.Lerp(transform.localPosition, aimPosition, Time.deltaTime * aimSpeed);
-                aimming = true;
-            }
-            else
-            {
-                transform.localPosition = Vector3.Lerp(transform.localPosition, originalPosition, Time.deltaTime * aimSpeed);
-                aimming = false;
-            }
+            transform.localPosition = Vector3.Lerp(transform.localPosition, aimPosition, Time.deltaTime * aimSpeed);
+            aimming = true;
+        }
+        else
+        {
+            transform.localPosition = Vector3.Lerp(transform.localPosition, originalPosition, Time.deltaTime * aimSpeed);
+            aimming = false;
         }
     }
 
     private void checkInputAnimations()
     {
-        if (Input.GetButton("Fire1") || Input.GetAxis("AxisRT") > 0.5f && animator.GetBool("shooting") == false)
+        if ((Input.GetButtonDown("Fire1") || Input.GetAxis("AxisRT") > 0.5f) && animator.GetBool("shooting") == false)
         {
             if (ammunition > 0)
             {
+                firing = true;
                 animator.SetBool("shooting", true);
                 if (animator.GetBool("reloading"))
                 {
@@ -118,11 +133,12 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private void checkMouseInput()
+    protected virtual void checkMouseInput()
     {
-        if (!Input.GetButton("Fire1") || Input.GetAxis("AxisRT") > 0.5f || ammunition == 0)
+        if ((!Input.GetButton("Fire1") && Input.GetAxis("AxisRT") < 0.5f) || ammunition == 0)
         {
             animator.SetBool("shooting", false);
+            firing = false;
         }
     }
 
@@ -131,7 +147,12 @@ public class Weapon : MonoBehaviour
         --ammunition;
         inventory.setAmmo(typeAmmo, ammunition);
         ScoreController.weaponUsed(type);
-        shotBullet(transform.forward);
+        shotBullet(crosshair.getRayCrosshairArea());
+        if (!crosshair.isFixed)
+        {
+            crosshair.increaseSpread(shotSpreadFactor);
+        }
+        recoil.addRecoil();
     }
 
     public virtual void increaseAmmo()
@@ -156,11 +177,11 @@ public class Weapon : MonoBehaviour
         inventory.setAmmo(typeAmmo, ammunition);
     }
 
-    protected void shotBullet(Vector3 dir)
+    protected void shotBullet(Ray ray)
     {
         RaycastHit hitInfo;
         
-        if (Physics.Raycast(cameraPlayer.position, dir, out hitInfo, weaponRange, maskBullets))
+        if (Physics.Raycast(ray, out hitInfo, weaponRange, maskBullets))
         {
             Debug.Log(hitInfo.transform.tag);
             if (hitInfo.transform.tag == "Enemy" || hitInfo.transform.tag == "Drone" || hitInfo.transform.tag == "Snitch")
@@ -170,6 +191,14 @@ public class Weapon : MonoBehaviour
                 GameObject spark = Instantiate(sparks, hitInfo.point, Quaternion.Euler(0f, 0f, 0f));
                 spark.transform.up = hitInfo.normal;
             }
+
+            //Trail effect
+            if (trailEffect != null)
+            {
+                trailEffect.transform.LookAt(hitInfo.point);
+                trailEffect.GetComponent<ParticleSystem>().Play();
+            }
+            Instantiate(redSphere, hitInfo.point, hitInfo.transform.rotation);
         }
     }
 
