@@ -40,10 +40,12 @@ public class CtrlGameState : MonoBehaviour
         if (Input.GetKey(KeyCode.V) || numSnitchKilled >= numSnithcObjectives)
         {
             gameState = gameStates.WIN;
+            Time.timeScale = 0;
         }
         if (Input.GetKey(KeyCode.B))
         {
             gameState = gameStates.DEATH;
+            Time.timeScale = 0;
         }
     }
 
