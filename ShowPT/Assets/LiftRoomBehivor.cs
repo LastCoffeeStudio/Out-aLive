@@ -26,8 +26,7 @@ public class LiftRoomBehivor : MonoBehaviour
     private GameObject doorPos;
     private GameObject doorNeg;
     private GameObject lightSound;
-    private float initialReflectionLight;
-    private Vector3 initialPositionLightSound;
+    
 
     //For know who collider is touching
     private int contCollider = 0;
@@ -35,6 +34,8 @@ public class LiftRoomBehivor : MonoBehaviour
     //Values for restart
     private Vector3 initPosition;
     private float initTimeClimibingSec;
+    private float initialReflectionLight;
+    private Vector3 initialPositionLightSound;
 
     enum StateLift
     {
@@ -68,7 +69,7 @@ public class LiftRoomBehivor : MonoBehaviour
             }
         }
 
-        initialReflectionLight = RenderSettings.reflectionIntensity;
+        //initialReflectionLight = RenderSettings.reflectionIntensity;
         initPosition = transform.position;
         initTimeClimibingSec = timeClimbingSec;
         actualState = StateLift.Closed;
@@ -241,7 +242,7 @@ public class LiftRoomBehivor : MonoBehaviour
         if ((actualState == StateLift.OpeningAvobe || actualState == StateLift.Avobe)
             && collider.gameObject.tag == "Player")
         {
-            RenderSettings.reflectionIntensity = initialReflectionLight;
+            //RenderSettings.reflectionIntensity = initialReflectionLight;
             actualState = StateLift.ClosingAvobe;
             StartCoroutine(delayForClose());
         }
