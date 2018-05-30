@@ -96,23 +96,28 @@ public class Crosshair : MonoBehaviour
     /*Returns a ray from the camera inside the area of the crosshair*/
     public Ray getRayCrosshairArea()
     {
+
+        Debug.Log(playerCamera);
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
         Vector2 centerPoint = playerCamera.ViewportToScreenPoint(new Vector3(0.5f, 0.5f, 0f));
         Vector2 scaledSize = Vector2.Scale(lines[0].rectTransform.rect.size, lines[0].rectTransform.lossyScale);
-        Vector3 position = Vector3.zero;
+        Vector3 position = centerPoint;
 
-        switch (type)
+        if (!isFixed)
         {
-            case CrosshairType.CROSS:
+            switch (type)
+            {
+                case CrosshairType.CROSS:
 
-                //With pivot at center!
-                position = centerPoint + Random.insideUnitCircle * (((float)Screen.height / (float)Screen.currentResolution.height) * lines[0].rectTransform.localPosition.y  - scaledSize.y / 2f);
-                break;
-            case CrosshairType.CIRCLE:
+                    //With pivot at center!
+                    position = centerPoint + Random.insideUnitCircle * (((float)Screen.height / (float)Screen.currentResolution.height) * lines[0].rectTransform.localPosition.y - scaledSize.y / 2f);
+                    break;
+                case CrosshairType.CIRCLE:
 
-                //With pivot at center!
-                position = centerPoint + Random.insideUnitCircle * (((float)Screen.height / (float)Screen.currentResolution.height) * lines[0].rectTransform.localPosition.y + scaledSize.x / 2f);
-                break;
+                    //With pivot at center!
+                    position = centerPoint + Random.insideUnitCircle * (((float)Screen.height / (float)Screen.currentResolution.height) * lines[0].rectTransform.localPosition.y + scaledSize.x / 2f);
+                    break;
+            }
         }
 
         ray = playerCamera.ScreenPointToRay(position);

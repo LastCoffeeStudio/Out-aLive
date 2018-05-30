@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour {
             shootTimer += Time.deltaTime;
             if (shootTimer >= timeBetweenShots)
             {
-                GameObject.Instantiate(projectileToShoot, shotPoint.position, shotPoint.rotation);
+                Instantiate(projectileToShoot, shotPoint.position, shotPoint.rotation);
                 shootTimer = 0.0f;
             }
         }

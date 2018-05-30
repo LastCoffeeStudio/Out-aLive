@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CtrlGameState : MonoBehaviour
 {
@@ -79,5 +80,10 @@ public class CtrlGameState : MonoBehaviour
             case gameStates.EXIT:
                 break;
         }
+    }
+    
+    public void goToMainMenu()
+    {
+        Main.instance.goMainMenu();
     }
 }

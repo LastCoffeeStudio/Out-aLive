@@ -288,8 +288,7 @@ public class PlayerMovment : MonoBehaviour {
         if (rotation != Vector3.zero)
         {
             Quaternion currentRotation = cam.transform.localRotation;
-            //currentRotation.x = Mathf.Clamp(currentRotation.x + Quaternion.Euler(rotation).x, -0.7f, 0.7f);
-            currentRotation.x = currentRotation.x + Quaternion.Euler(rotation).x;
+            currentRotation.x = Mathf.Clamp(currentRotation.x + Quaternion.Euler(rotation).x, -0.7f, 0.7f);
             cam.transform.localRotation = currentRotation;
         }
     }

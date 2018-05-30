@@ -48,7 +48,7 @@ public class Weapon : MonoBehaviour
     public GameObject redSphere;
 
     // Use this for initialization
-    private void Start ()
+    protected virtual void Start ()
     {
         ammunition = maxAmmo;
         initialposition = transform.localPosition;
@@ -177,7 +177,7 @@ public class Weapon : MonoBehaviour
         inventory.setAmmo(typeAmmo, ammunition);
     }
 
-    protected void shotBullet(Ray ray)
+    protected virtual void shotBullet(Ray ray)
     {
         RaycastHit hitInfo;
         

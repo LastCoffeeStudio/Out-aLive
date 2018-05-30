@@ -6,11 +6,24 @@ public class LaserCanon : Weapon {
 
     [Header("Canon Settings")]
     public float overheatMaxTime;
+    public float minBulletSize;
+    public float maxBulletSize;
+    [SerializeField]
+    Projectile projectileToShoot;
 
     private float overheatTime;
-	
-	// Update is called once per frame
-	protected override void Update ()
+    private Vector3 minBulletScale;
+    private Vector3 maxBulletScale;
+
+    protected override void Start()
+    {
+        base.Start();
+        minBulletScale = new Vector3(minBulletSize, minBulletSize, minBulletSize);
+        maxBulletScale = new Vector3(maxBulletSize, maxBulletSize, maxBulletSize);
+    }
+
+    // Update is called once per frame
+    protected override void Update ()
     {
         base.Update();
         if (firing)
@@ -26,7 +39,13 @@ public class LaserCanon : Weapon {
         {
             animator.SetBool("shooting", false);
             firing = false;
-            overheatTime = 0f;
         }
+    }
+
+    protected override void shotBullet(Ray ray)
+    {
+        Projectile bullet = Instantiate(projectileToShoot, shootPoint.position, Quaternion.LookRotation(ray.direction));
+        bullet.transform.localScale = Vector3.Lerp(minBulletScale, maxBulletScale, overheatTime / overheatMaxTime);
+        overheatTime = 0f;
     }
 }

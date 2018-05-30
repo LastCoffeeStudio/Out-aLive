@@ -173,7 +173,6 @@ public class LilRobot : Enemy
     {
         ctrAudio.playOneSound("Enemies", hitAudio, transform.position, 1.0f, 0.0f, 128);
         enemyHealth -= damage;
-        Debug.Log(enemyHealth);
         rb.constraints = RigidbodyConstraints.None;
         state = LilRobotState.ATTACK;
         checkHealth();

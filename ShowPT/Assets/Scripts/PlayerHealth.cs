@@ -22,7 +22,7 @@ public class PlayerHealth : MonoBehaviour {
     void OnTriggerEnter(Collider collider)
     {
 		Projectile bullet = collider.GetComponent<Projectile> ();
-        if (bullet != null)
+        if (bullet != null && bullet.layerMask == LayerMask.NameToLayer("EnemiesProjectiles"))
         {
 			ChangeHealth(-bullet.damage);
             Destroy(collider.gameObject);
