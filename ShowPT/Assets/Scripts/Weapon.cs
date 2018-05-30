@@ -194,14 +194,14 @@ public class Weapon : MonoBehaviour
             {
                 hitInfo.collider.gameObject.gameObject.GetComponent<Barrel>().shotBehavior(hitInfo.point, damage);
             }
-
-            //Trail effect
-            if (trailEffect != null)
-            {
-                trailEffect.transform.LookAt(hitInfo.point);
-                trailEffect.GetComponent<ParticleSystem>().Play();
-            }
             Instantiate(redSphere, hitInfo.point, hitInfo.transform.rotation);
+        }
+
+        //Trail effect
+        if (trailEffect != null)
+        {
+            trailEffect.transform.LookAt(ray.origin + ray.direction * weaponRange);
+            trailEffect.GetComponent<ParticleSystem>().Play();
         }
     }
 
