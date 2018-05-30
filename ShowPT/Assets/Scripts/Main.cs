@@ -40,6 +40,11 @@ public class Main : MonoBehaviour
         }
     }
 
+    public void goMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
     IEnumerator loadLevel(int numScene)
     {
         async = SceneManager.LoadSceneAsync(numScene);

@@ -80,4 +80,9 @@ public class CtrlGameState : MonoBehaviour
                 break;
         }
     }
+    
+    public void goToMainMenu()
+    {
+        Main.instance.goMainMenu();
+    }
 }
