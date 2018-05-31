@@ -15,6 +15,10 @@ public class CtrlDebug : MonoBehaviour
     public GameObject shotgun;
     public GameObject rifle;
     public GameObject canon;
+
+	public GameObject neons;
+	public GameObject enemies;
+
     // Use this for initialization
     void Start ()
 	{
@@ -99,6 +103,32 @@ public class CtrlDebug : MonoBehaviour
 	            }
 	        }
         }
+
+		//Activate/Deactivate neons
+		if (Input.GetKeyDown (KeyCode.N)) 
+		{
+			if (neons.activeInHierarchy) 
+			{
+				neons.SetActive (false);
+			} 
+			else 
+			{
+				neons.SetActive (true);
+			}
+		}
+
+		//Activate/Deactivate enemies
+		if (Input.GetKeyDown (KeyCode.M)) 
+		{
+			if (enemies.activeInHierarchy) 
+			{
+				enemies.SetActive (false);
+			} 
+			else 
+			{
+				enemies.SetActive (true);
+			}
+		}
     }
 
     void enableDebug()
