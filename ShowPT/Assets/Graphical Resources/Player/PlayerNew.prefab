@@ -783,7 +783,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4013574722361878}
   - component: {fileID: 95236048043836640}
-  - component: {fileID: 114777413869291284}
+  - component: {fileID: 114782836643875848}
   - component: {fileID: 114659565279591520}
   - component: {fileID: 114137068971340946}
   m_Layer: 0
@@ -11196,7 +11196,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1512421731036516}
   m_LocalRotation: {x: 0.7070996, y: -0.00021579918, z: -0.00014342631, w: 0.707114}
-  m_LocalPosition: {x: 0.000019, y: -0.002885, z: 0.00085}
+  m_LocalPosition: {x: 0.00002, y: -0.00288, z: 0.0012}
   m_LocalScale: {x: 0.0037855061, y: 0.003785505, z: 0.0037855061}
   m_Children:
   - {fileID: 4302635299485270}
@@ -14109,8 +14109,8 @@ MonoBehaviour:
   shotSpreadFactor: 10
   redSphere: {fileID: 1875600123601928, guid: f9e53e24f85fa9549adb0b70849208db, type: 2}
   overheatMaxTime: 2
-  minBulletSize: 0.1
-  maxBulletSize: 2
+  minBulletSize: 5
+  maxBulletSize: 5
   projectileToShoot: {fileID: 114009639829938674, guid: d2858f23448027f4a81363c5c9c9152c,
     type: 2}
 --- !u!114 &114529171459479846
@@ -14210,7 +14210,7 @@ MonoBehaviour:
   percRecoilRecovered: 1
   recoilAmountX: 0
   recoilAmountY: 0
---- !u!114 &114777413869291284
+--- !u!114 &114782836643875848
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -14218,7 +14218,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1098104653458366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f3d1036c4e1b1f46bb06e7d0012c919, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f14c8df7d0556b41bdf5b4473f5581a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maskBullets:
@@ -14228,23 +14228,25 @@ MonoBehaviour:
   maxAmount: 0.1
   smoothAmount: 3
   damage: 1
-  shootPoint: {fileID: 4980555381683326}
-  cameraPlayer: {fileID: 4265720775127786}
+  shootPoint: {fileID: 0}
+  cameraPlayer: {fileID: 0}
   maxAmmo: 15
   ammunition: 0
   aimPosition: {x: -0.2, y: -1.06, z: 0}
   originalPosition: {x: -0.014, y: -1.157, z: 0.045}
   aimSpeed: 8
   weaponRange: 100
-  shootEffect: {fileID: 198755642533361842}
-  trailEffect: {fileID: 1512421731036516}
+  shootEffect: {fileID: 0}
+  trailEffect: {fileID: 0}
   sparks: {fileID: 1149727948857286, guid: 81170b26490e59a45b57295281371104, type: 2}
   typeAmmo: 1
   type: 0
   shot: {fileID: 8300000, guid: eba2a5b7be178b042b2477624eccde55, type: 3}
   reload: {fileID: 8300000, guid: acd47db0d8d41aa4f820275ae2302f9b, type: 3}
   shotSpreadFactor: 10
-  redSphere: {fileID: 1875600123601928, guid: f9e53e24f85fa9549adb0b70849208db, type: 2}
+  redSphere: {fileID: 0}
+  projectileToShoot: {fileID: 114746525181282946, guid: 60eaf786cb3611144bb20f7b695528cf,
+    type: 2}
 --- !u!114 &114804194555419774
 MonoBehaviour:
   m_ObjectHideFlags: 1

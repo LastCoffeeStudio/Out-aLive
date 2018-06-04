@@ -45,8 +45,6 @@ public class Weapon : MonoBehaviour
 
     protected Recoil recoil;
 
-    public GameObject redSphere;
-
     // Use this for initialization
     protected virtual void Start ()
     {
@@ -194,7 +192,6 @@ public class Weapon : MonoBehaviour
             {
                 hitInfo.collider.gameObject.gameObject.GetComponent<Barrel>().shotBehavior(hitInfo.point, damage);
             }
-            Instantiate(redSphere, hitInfo.point, hitInfo.transform.rotation);
         }
 
         //Trail effect

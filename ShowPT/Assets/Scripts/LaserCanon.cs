@@ -44,8 +44,17 @@ public class LaserCanon : Weapon {
 
     protected override void shotBullet(Ray ray)
     {
-        Projectile bullet = Instantiate(projectileToShoot, shootPoint.position, Quaternion.LookRotation(ray.direction));
-        bullet.transform.localScale = Vector3.Lerp(minBulletScale, maxBulletScale, overheatTime / overheatMaxTime);
+        RaycastHit hitInfo;
+        Projectile projectile = new Projectile();
+        if (Physics.Raycast(ray, out hitInfo, weaponRange, maskBullets))
+        {
+            projectile = Instantiate(projectileToShoot, shootPoint.position, Quaternion.LookRotation(Vector3.Normalize(hitInfo.point - shootPoint.position)));
+        }
+        else
+        {
+            projectile = Instantiate(projectileToShoot, shootPoint.position, Quaternion.LookRotation(Vector3.Normalize((ray.origin + ray.direction * weaponRange) - shootPoint.position)));
+        }
+        projectile.transform.localScale = Vector3.Lerp(minBulletScale, maxBulletScale, overheatTime / overheatMaxTime);
         overheatTime = 0f;
     }
 }
