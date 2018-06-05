@@ -6,9 +6,9 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Sphere001Mat
+  m_Name: Sphere001Mat 1
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _EMISSION _METALLICGLOSSMAP _NORMALMAP
+  m_ShaderKeywords: _EMISSION _NORMALMAP
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -19,7 +19,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 547157acf52e16c41a2179c261aa601b, type: 3}
+        m_Texture: {fileID: 2800000, guid: ef759516bf5ffa94388766ffddb6e982, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -35,19 +35,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: 8decf74e365f1494d8ae5d3a353bc0fe, type: 3}
+        m_Texture: {fileID: 2800000, guid: f3fc9a04497790744afa93d74201c587, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: b80ca7e94c7d01e42992e573d9fd074b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 367aee9be87ae7f4cae01ebbd4938ef9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 5955bf1a00bb88a41875451a4c0dfe63, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: 5b4fbb986e3ad6144adc9c903fbf63ff, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
@@ -72,5 +72,5 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.6985294, g: 0.6985294, b: 0.6985294, a: 1}
-    - _EmissionColor: {r: 1.095, g: 1.095, b: 1.095, a: 1}
+    - _Color: {r: 0.85294116, g: 0.85294116, b: 0.85294116, a: 1}
+    - _EmissionColor: {r: 1.2, g: 1.2, b: 1.2, a: 1}
