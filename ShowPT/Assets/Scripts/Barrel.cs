@@ -14,10 +14,10 @@ public class Barrel : MonoBehaviour {
 	typeOfBarrel barrelType = typeOfBarrel.normal;
 
 	[SerializeField]
-	float floatiness = 400f;
+	float floatiness = 50f;
 
 	[SerializeField]
-	float rotationWhenBlasted = 60f;
+	float rotationWhenBlasted = 180f;
 
 	[SerializeField]
 	GameObject explosion;
@@ -29,14 +29,16 @@ public class Barrel : MonoBehaviour {
 	int explosionDamage = 10;
 
 	[SerializeField]
-	float explosionDistance = 20f;
+	float explosionDistance = 5f;
 
 	Transform player;
 	CtrlAudio ctrAudio;
 	public Rigidbody myRigidBody;
 	public bool activable = true;
+	bool immaExplodeNow = false;
+	float explosionTimer = 0f;
 
-	Barrel[] allBarrels;
+	//Barrel[] allBarrels;
 
 	void Start() 
 	{
@@ -44,31 +46,44 @@ public class Barrel : MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform>();
 		ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
 
-		allBarrels = FindObjectsOfType<Barrel> ();
+		//allBarrels = FindObjectsOfType<Barrel> ();
 	}
 
-	public void shotBehavior(Vector3 hitPoint, int damage)
+	void Update()
 	{
+		if(immaExplodeNow){
+			explosionTimer += Time.deltaTime;
+			if (explosionTimer >= timeBeforeExploding) 
+			{
+				explode ();
+			}
+		}
+	}
+
+	public void shotBehavior(Vector4 hitData/*Vector3 hitPoint, int damage*/)
+	{
+		Vector3 forceOrigin = new Vector3(hitData[0], hitData[1], hitData[2]);
+		float hitForce = hitData[3];
+			
 		switch (barrelType) 
 		{
 		case typeOfBarrel.normal:
-			myRigidBody.AddExplosionForce (floatiness * damage, hitPoint, 100f);
+			myRigidBody.AddExplosionForce (floatiness * hitForce, forceOrigin, explosionDistance);
+			myRigidBody.AddForce (Vector3.up * hitForce * floatiness);
+			float rotation = Random.Range (-rotationWhenBlasted, rotationWhenBlasted);
+			myRigidBody.AddTorque (new Vector3 (rotation, rotation, rotation) * hitForce);
 			break;
 		case typeOfBarrel.explosive:
-			StartCoroutine (explode ());
-			//explode ();
+			activable = false;
+			immaExplodeNow = true;
 			break;
 		default:
 			break;
 		}
 	}
 
-	IEnumerator explode()
+	void explode()
 	{
-		activable = false;
-
-		yield return new WaitForSeconds (timeBeforeExploding);
-
 		GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
 
 		RaycastHit hitInfo;
@@ -77,7 +92,17 @@ public class Barrel : MonoBehaviour {
 			player.GetComponent<PlayerHealth>().ChangeHealth(-explosionDamage);
 		}
 
-		foreach (Barrel barrel in allBarrels) {
+		int layerMask = 1 << LayerMask.NameToLayer ("PhysicsObjects");
+		Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionDistance, layerMask);
+		int i = 0;
+		while (i < hitColliders.Length)
+		{
+			Debug.Log (hitColliders [i].name);
+			Vector4 dataToPass = new Vector4(transform.position.x, transform.position.y, transform.position.z, explosionDamage);
+			hitColliders[i].SendMessage ("shotBehavior", dataToPass);
+			i++;
+		}
+		/*foreach (Barrel barrel in allBarrels) {
 			if (barrel.activable == true && Vector3.Distance (transform.position, barrel.transform.position) < explosionDistance)
 			{
 				if (Physics.Raycast (transform.position, barrel.transform.position - transform.position, out hitInfo, explosionDistance)) {
@@ -87,7 +112,7 @@ public class Barrel : MonoBehaviour {
 					//barrel.myRigidBody.AddForce (Vector3.up * explosionDamage);
 				}
 			}
-		}
+		}*/
 
 		Destroy(gameObject);
 	}

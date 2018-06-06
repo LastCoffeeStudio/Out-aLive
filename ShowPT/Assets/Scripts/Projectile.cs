@@ -82,5 +82,12 @@ public class Projectile : MonoBehaviour
             col.gameObject.GetComponent<Enemy>().getHit(damage);
             Destroy(gameObject);
         }
+		if (col.gameObject.layer == LayerMask.NameToLayer("PhysicsObjects")) 
+		{
+			Vector4 dataToPass = new Vector4(transform.position.x, transform.position.y, transform.position.z, damage);
+
+			col.gameObject.SendMessage ("shotBehavior", dataToPass);
+			Destroy(gameObject);
+		}
 	}
 }

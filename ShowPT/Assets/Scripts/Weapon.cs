@@ -190,7 +190,7 @@ public class Weapon : MonoBehaviour
             }
             else if (hitInfo.transform.tag == "Barrel")
             {
-                hitInfo.collider.gameObject.gameObject.GetComponent<Barrel>().shotBehavior(hitInfo.point, damage);
+                //hitInfo.collider.gameObject.gameObject.GetComponent<Barrel>().shotBehavior(hitInfo.point, damage);
             }
         }
 
