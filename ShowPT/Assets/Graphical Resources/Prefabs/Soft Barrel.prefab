@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 95354120405047500}
   - component: {fileID: 54146353264789850}
   - component: {fileID: 114402033807284514}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Soft Barrel
   m_TagString: Barrel
   m_Icon: {fileID: 0}
@@ -144,8 +144,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barrelType: 0
-  floatiness: 400
+  floatiness: 40
+  rotationWhenBlasted: 180
   explosion: {fileID: 1660948848680200, guid: 04aaa1d59e48d74429585d10386fc055, type: 2}
+  timeBeforeExploding: 0.5
   explosionDamage: 10
   explosionDistance: 20
   myRigidBody: {fileID: 0}
