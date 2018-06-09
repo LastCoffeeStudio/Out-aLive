@@ -7,6 +7,7 @@ public class CtrlDebug : MonoBehaviour
 {
     public GameObject player;
     public GameObject camerasDebug;
+    public GameObject objectTimer;
     private bool activeDebug;
     private int indexChildren;
     private int sizeChildren;
@@ -59,6 +60,7 @@ public class CtrlDebug : MonoBehaviour
 	    {
 	        player.GetComponent<PlayerHealth>().maxHealth = Int32.MaxValue;
 	        player.GetComponent<PlayerHealth>().health = Int32.MaxValue;
+	        objectTimer.GetComponent<GlobalTimer>().totalTimeLeft = float.MaxValue;
 
             for (int i = 0; i < (int) Inventory.WEAPON_TYPE.TOTAL_WEAPONS; ++i)
 	        {
