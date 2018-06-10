@@ -34,6 +34,7 @@ public class Main : MonoBehaviour
         if(SceneManager.GetActiveScene().buildIndex == 0)
         {
             shouldLoadSceneOne = true;
+            Time.timeScale = 1;
         }
     }
 

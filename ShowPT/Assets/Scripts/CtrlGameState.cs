@@ -29,6 +29,7 @@ public class CtrlGameState : MonoBehaviour
         gameState = gameStates.ACTIVE;
         numSnitchKilled = 0;
         numSnithcObjectives = 1;
+        Time.timeScale = 1;
     }
 
     public static gameStates getGameState()
@@ -40,12 +41,12 @@ public class CtrlGameState : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.V) || numSnitchKilled >= numSnithcObjectives)
         {
-            gameState = gameStates.WIN;
+            setGameState(gameStates.WIN);
             Time.timeScale = 0;
         }
         if (Input.GetKey(KeyCode.B))
         {
-            gameState = gameStates.DEATH;
+            setGameState(gameStates.DEATH);
             Time.timeScale = 0;
         }
     }

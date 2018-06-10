@@ -15,7 +15,8 @@ public class CtrlPause : MonoBehaviour
 	void Start () 
 	{
 		Cursor.lockState = CursorLockMode.Locked;
-	}
+        gamePaused = false;
+    }
 	
 	// Update is called once per frame
 	void Update () 
