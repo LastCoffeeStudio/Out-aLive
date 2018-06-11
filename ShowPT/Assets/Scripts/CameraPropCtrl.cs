@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraPropCtrl : MonoBehaviour {
+public class CameraPropCtrl : MonoBehaviour
+{
+    public Transform targetPosition; // we have to add in the Inspector our target
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    void Update()
+    {
+        if (targetPosition != null)
+        {
+            transform.LookAt(targetPosition);
+        }
+    }
 }
