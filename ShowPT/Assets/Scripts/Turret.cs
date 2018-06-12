@@ -14,13 +14,15 @@ public class Turret : Enemy
     public float timeShooting = 3.0f;
     public float timeNoShooting = 1.0f;
     public int shootDamage = 1;
-
+    public float minDistToAtack = 10;
     private float shootTimerTurret = 0.0f;
     private bool particlesInited = false;
+    private GameObject player;
 
     private void Start()
     {
         ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
+        player = GameObject.FindGameObjectWithTag("Player");
         hitAudio = ctrAudio.hit;
     }
 
@@ -33,7 +35,9 @@ public class Turret : Enemy
     public override void shoot()
     {
         shootTimerTurret += Time.deltaTime;
-        if (shootTimerTurret >= timeNoShooting)
+        float distWithPlayer = Vector3.Distance(player.transform.position, transform.position);
+
+        if (shootTimerTurret >= timeNoShooting && distWithPlayer < minDistToAtack)
         {
             laserEffect.SetActive(true);
             if (!particlesInited)
