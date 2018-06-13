@@ -45,7 +45,7 @@ public class LaserCanon : Weapon {
     protected override void shotBullet(Ray ray)
     {
         RaycastHit hitInfo;
-        Projectile projectile = gameObject.AddComponent(typeof(Projectile)) as Projectile;
+        Projectile projectile;
 
         if (Physics.Raycast(ray, out hitInfo, weaponRange, maskBullets))
         {

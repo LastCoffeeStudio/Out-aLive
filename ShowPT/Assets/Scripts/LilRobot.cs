@@ -184,6 +184,7 @@ public class LilRobot : Enemy
         enemyHealth -= damage;
         rb.constraints = RigidbodyConstraints.None;
         state = LilRobotState.ATTACK;
+        destination = target.position;
         checkHealth();
     }
 
