@@ -93,8 +93,9 @@ ModelImporter:
     7400000: Wazz_idle_look_left
     7400002: Wazz_idle_look_right
     7400004: Wazz_walking
-    7400006: Wazz_shoting
-    7400008: Wazz_dies
+    7400006: Wazz_Dies
+    7400008: Wazz_Shoting
+    7400010: Wazz_pre_shooting
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -208,7 +209,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Wazz_shoting
+      name: Wazz_Dies
       takeName: Take 001
       firstFrame: 1225
       lastFrame: 1340
@@ -236,10 +237,38 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Wazz_dies
+      name: Wazz_Shoting
       takeName: Take 001
-      firstFrame: 0
-      lastFrame: 1340
+      firstFrame: 1175
+      lastFrame: 1225
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Wazz_pre_shooting
+      takeName: Take 001
+      firstFrame: 1174
+      lastFrame: 1174
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
