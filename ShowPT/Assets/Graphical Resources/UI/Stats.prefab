@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 224283365219026042}
   - component: {fileID: 222161395312674222}
   - component: {fileID: 114521737579942452}
-  - component: {fileID: 114896583091949650}
   m_Layer: 0
   m_Name: Stats
   m_TagString: Untagged
@@ -290,23 +289,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: New Text
---- !u!114 &114896583091949650
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1166998108713360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aff18ef80b5668b418153914e484ea5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fps: {fileID: 114614010353199148}
-  triangles: {fileID: 114992467497348708}
-  vertices: {fileID: 114472244163856718}
-  drawCalls: {fileID: 114876984067855614}
-  render: {fileID: 114196828664176792}
-  vbo: {fileID: 114921046476111472}
 --- !u!114 &114921046476111472
 MonoBehaviour:
   m_ObjectHideFlags: 1

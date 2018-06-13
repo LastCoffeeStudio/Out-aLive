@@ -38,7 +38,7 @@ public class LilRobot : Enemy
     LayerMask detectionLayer;
     private Rigidbody rb;
     private NavMeshAgent agent;
-    private NavMeshPath path;
+    //private NavMeshPath path;
     [SerializeField]
     private LilRobotState state;
     private float recoverResetTime;
@@ -58,7 +58,7 @@ public class LilRobot : Enemy
         agent = agentTransform.GetComponent<NavMeshAgent>();
         agent.updatePosition = false;
         agent.updateRotation = false;
-        path = new NavMeshPath();
+        //path = new NavMeshPath();
         state = LilRobotState.IDLE;
         recoverResetTime = recoverTime;
         climbing = false;
