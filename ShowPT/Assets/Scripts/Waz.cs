@@ -39,8 +39,7 @@ public class Waz : Enemy
 
     [SerializeField]
     float alertRotationTime = 1.0f;
-
-    Light spotLight;
+    
     public float viewAngle;
     private GameObject player;
     private PlayerMovment playerMovment;
@@ -61,6 +60,9 @@ public class Waz : Enemy
 
     private Animator wazAnimator;
 	private bool imAlreadyDead = false;
+
+    public GameObject body;
+    public GameObject eye;
 
     // Use this for initialization
     void Start()
@@ -87,9 +89,7 @@ public class Waz : Enemy
                 Debug.LogError("Not enough nodes for the object " + gameObject.name + " to patrol at all.");
             }
         }
-
-        spotLight = gameObject.GetComponentInChildren<Light>();
-        viewAngle = spotLight.spotAngle / 2;
+        
         player = GameObject.FindGameObjectWithTag("Player");
         playerMovment = player.GetComponent<PlayerMovment>();
     }
@@ -113,6 +113,28 @@ public class Waz : Enemy
                 NPCstate = state.I_SEE_YOU;
             }
         }
+
+        /*if (NPCstate == state.I_SEE_YOU || NPCstate == state.SHOOTING)
+        {
+            Vector3 vectorToPlayer = gameObject.transform.position - player.transform.position;
+            vectorToPlayer.y = 0;
+            Vector3.Normalize(vectorToPlayer);
+            Vector3 myVectorSpeed = navMeshAgent.velocity;
+            myVectorSpeed.y = 0;
+            Vector3.Normalize(myVectorSpeed);
+            float angle = Vector3.Angle(vectorToPlayer, myVectorSpeed);
+            if (angle > -50 && angle < 50)
+            {
+                eye.transform.LookAt(player.transform);
+                eye.transform.Rotate(90f,0f,0f);
+                //Same high like Waz
+                Transform playerTranformLinear = player.transform;
+                Vector3 playerPosition = player.transform.position;
+                playerPosition.y = transform.position.y;
+                playerTranformLinear.position = playerPosition;
+                body.transform.LookAt(playerTranformLinear);
+            }
+        }*/
 
         shoot();
 
@@ -165,7 +187,6 @@ public class Waz : Enemy
         {
             case state.WALKING:
                 wazAnimator.SetBool("walking", true);
-                spotLight.color = Color.green;
                 if (navMeshAgent.remainingDistance <= 1.0f)
                 {
                     waitTimer = 0.0f;
@@ -175,7 +196,6 @@ public class Waz : Enemy
 
             case state.WAITING:
                 wazAnimator.SetBool("walking", false);
-                spotLight.color = Color.green;
                 waitTimer += Time.deltaTime;
                 if (waitTimer >= waitTime)
                 {
@@ -188,7 +208,6 @@ public class Waz : Enemy
             case state.I_SEE_YOU:
                 wazAnimator.SetBool("walking", true);
                 LookAtSomething(aggressiveDestination);
-                spotLight.color = Color.red;
                 navMeshAgent.SetDestination(aggressiveDestination);
 
                 //Should I start shooting?
@@ -227,7 +246,6 @@ public class Waz : Enemy
 
             case state.I_HEAR_YOU:
                 wazAnimator.SetBool("walking", true);
-                spotLight.color = Color.yellow;
                 if (navMeshAgent.remainingDistance <= 1.0f && !CanSeePlayer())
                 {
                     alertTimer = 0f;
@@ -238,7 +256,6 @@ public class Waz : Enemy
 
             case state.ALERT:
                 wazAnimator.SetBool("walking", false);
-                spotLight.color = Color.yellow;
                 Vector3 rotation = new Vector3(0f, alertRotation, 0f);
                 gameObject.transform.Rotate(rotation * Time.deltaTime);
                 alertRotationTimer += Time.deltaTime;

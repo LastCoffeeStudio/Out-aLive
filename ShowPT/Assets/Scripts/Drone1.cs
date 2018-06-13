@@ -21,9 +21,8 @@ public class Drone1 : Enemy {
         if (player != null)
         {
             checkPlayerDistance();
-            shotPoint.LookAt(player);
         }
-        shoot();
+        
     }
 
     public override void getHit(int damage)
