@@ -9,22 +9,14 @@ using Random = UnityEngine.Random;
 
 public class Shotgun : Weapon
 {
-    public int shotgunBullets;
+    [Header("Shotgun Settings")]
+    [SerializeField]
+    GameObject projectileToShoot;
 
-    public override void decreaseAmmo()
+    protected override void shotBullet(Ray ray)
     {
-        --ammunition;
-        inventory.setAmmo(typeAmmo, ammunition);
-        ScoreController.weaponUsed(type);
-        for (uint i = 0; i < shotgunBullets; ++i)
-        {
-            shotBullet(crosshair.getRayCrosshairArea());
-        }
-        if (!crosshair.isFixed)
-        {
-            crosshair.increaseSpread(shotSpreadFactor);
-        }
-        recoil.addRecoil();
+        GameObject projectile = Instantiate(projectileToShoot, shootPoint.position, Quaternion.LookRotation(Vector3.Normalize((ray.origin + ray.direction * weaponRange) - shootPoint.position)));
+        projectile.transform.Rotate(0f, 180f, 0f);
     }
 
     public override void increaseAmmo()

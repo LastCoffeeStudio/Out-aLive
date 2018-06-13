@@ -18,18 +18,21 @@ public class Turret : Enemy
     private float shootTimerTurret = 0.0f;
     private bool particlesInited = false;
     private GameObject player;
+    private bool electrified;
 
     private void Start()
     {
         ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
         player = GameObject.FindGameObjectWithTag("Player");
         hitAudio = ctrAudio.hit;
+        electrified = false;
     }
 
     // Update is called once per frame
 	private void Update()
     {
         shoot();
+        checkStatus();
     }
 
     public override void shoot()
@@ -37,7 +40,7 @@ public class Turret : Enemy
         shootTimerTurret += Time.deltaTime;
         float distWithPlayer = Vector3.Distance(player.transform.position, transform.position);
 
-        if (shootTimerTurret >= timeNoShooting && distWithPlayer < minDistToAtack)
+        if (shootTimerTurret >= timeNoShooting && distWithPlayer < minDistToAtack && !electrified)
         {
             laserEffect.SetActive(true);
             if (!particlesInited)
@@ -89,5 +92,31 @@ public class Turret : Enemy
             ScoreController.addDead(ScoreController.Enemy.TURRET);
         }
     }
+    public override void setStatusParalyzed()
+    {
+        if (status == Status.NONE && !electrified)
+        {
+            Debug.Log("a");
+            shootTimerTurret = 0.0f;
+            laserEffect.SetActive(false);
+            particlesInited = false;
+            electrified = true;
+            status = Status.PARALYZED;
+        }
+    }
 
+    private void checkStatus()
+    {
+        if (electrified)
+        {
+            paralyzedActualTime -= Time.deltaTime;
+            if (paralyzedActualTime <= 0f)
+            {
+                Debug.Log("b");
+                status = Status.NONE;
+                electrified = false;
+                paralyzedActualTime = paralyzedTotalTime;
+            }
+        }
+    }
 }
