@@ -101,8 +101,7 @@ public class Waz : Enemy
         //These two will always happen, no matter the state
         if (CanHearPlayer())
         {
-            aggressiveDestination = player.transform.position;
-            navMeshAgent.SetDestination(aggressiveDestination);
+            goToPlayer();
             NPCstate = state.I_HEAR_YOU;
         }
         if (CanSeePlayer())
@@ -123,8 +122,19 @@ public class Waz : Enemy
 		}
     }
 
+    void goToPlayer()
+    {
+        aggressiveDestination = player.transform.position;
+        navMeshAgent.SetDestination(aggressiveDestination);
+        
+    }
     public override void getHit(int damage)
     {
+        if (state.SHOOTING != NPCstate && state.I_SEE_YOU != NPCstate)
+        {
+            goToPlayer();
+            NPCstate = state.I_HEAR_YOU;
+        }
         ctrAudio.playOneSound("Enemies", hitAudio, transform.position, 1.0f, 0.0f, 128);
         enemyHealth -= damage;
         Debug.Log(enemyHealth);
