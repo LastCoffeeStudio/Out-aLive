@@ -14,8 +14,8 @@ public class AIKamikaze : MonoBehaviour {
 
     }
 
-	[SerializeField]
-	float waitTime = 3.0f;
+	//[SerializeField]
+	//float waitTime = 3.0f;
 
 	[SerializeField]
 	float switchProbability = 0.5f;
@@ -29,11 +29,11 @@ public class AIKamikaze : MonoBehaviour {
 	[SerializeField]
 	float explodingDistance = 25.0f;
 
-	[SerializeField]
-	float alertTime = 6.0f;
+	//[SerializeField]
+	//float alertTime = 6.0f;
 
-	[SerializeField]
-	float alertRotationTime = 1.0f;
+	//[SerializeField]
+	//float alertRotationTime = 1.0f;
 
 	
 	public float viewAngle;
@@ -117,9 +117,9 @@ public class AIKamikaze : MonoBehaviour {
                 LookAtSomething(aggressiveDestination);
                 navMeshAgent.SetDestination(aggressiveDestination);
 
-                Vector3 localDesiredVelocity = transform.InverseTransformVector(navMeshAgent.desiredVelocity);
-                float angle = Mathf.Atan2(localDesiredVelocity.x, localDesiredVelocity.z) * Mathf.Rad2Deg;
-                float speed = localDesiredVelocity.z;
+                //Vector3 localDesiredVelocity = transform.InverseTransformVector(navMeshAgent.desiredVelocity);
+                //float angle = Mathf.Atan2(localDesiredVelocity.x, localDesiredVelocity.z) * Mathf.Rad2Deg;
+                //float speed = localDesiredVelocity.z;
                 /** Linea comentada para evitar warning, descomentar cuando se haya aplicado la animacion al kamikaze**/
                 //animKamikaze.SetFloat("Speed", speed, 0.1f, Time.deltaTime);
                 

@@ -203,6 +203,7 @@ GameObject:
   - component: {fileID: 33394631917443934}
   - component: {fileID: 136805480094074114}
   - component: {fileID: 114795604395307104}
+  - component: {fileID: 54429631084467386}
   m_Layer: 0
   m_Name: TURRET
   m_TagString: Enemy
@@ -231,7 +232,7 @@ Transform:
   m_GameObject: {fileID: 1965281497583358}
   m_LocalRotation: {x: 0.0000000018626451, y: -0.96036524, z: -0.000000063329935,
     w: 0.2787448}
-  m_LocalPosition: {x: 14.39, y: 97.7, z: -132.05}
+  m_LocalPosition: {x: 15.87, y: 97.7, z: -131.28}
   m_LocalScale: {x: 1.0005199, y: 1.0006698, z: 1.0001593}
   m_Children:
   - {fileID: 4360794568582730}
@@ -337,7 +338,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1158167672872994}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.041257806, y: -0.88635474, z: 0.08053442, w: 0.45407858}
   m_LocalPosition: {x: 0, y: 0.3355462, z: 0.17649364}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -508,6 +509,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1547682798803518}
   m_Mesh: {fileID: 4300000, guid: e560a96b263458e4d844efe7ab436688, type: 3}
+--- !u!54 &54429631084467386
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1965281497583358}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!95 &95698741779953668
 Animator:
   serializedVersion: 3
@@ -596,13 +612,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
-  hitAudio: {fileID: 0}
+  hitAudio: {fileID: 8300000, guid: 55744afcd47e8ea4180fe7f45d0ed2d9, type: 3}
   ctrAudio: {fileID: 0}
   projectileToShoot: {fileID: 114840388617318426, guid: 469469f629a9703448769a69cc39727d,
     type: 2}
   timeBetweenShots: 0.1
   shotPoint: {fileID: 4764462254280930}
   enemyHealth: 6
+  paralyzedTotalTime: 3
   laserEffect: {fileID: 1489644668993388}
   lineRenderer: {fileID: 120269702870475804}
   particlesInitial: {fileID: 198806592563267720}
@@ -610,6 +627,7 @@ MonoBehaviour:
   timeShooting: 3
   timeNoShooting: 1
   shootDamage: 1
+  minDistToAtack: 10
 --- !u!120 &120269702870475804
 LineRenderer:
   m_ObjectHideFlags: 1

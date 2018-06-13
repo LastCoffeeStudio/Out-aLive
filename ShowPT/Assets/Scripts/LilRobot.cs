@@ -11,10 +11,11 @@ public class LilRobot : Enemy
         IDLE,
         ATTACK,
         JUMP,
-        RECOVER
+        RECOVER,
+        PARALYZED
     }
 
-    public Transform lilRobCamera;
+    [Header("LilRobot parameters")]
     public Transform target;
     public Transform targetHead;
     public Transform targetFeet;
@@ -23,7 +24,7 @@ public class LilRobot : Enemy
     public float detectionDistance;
     public float jumpDistance;
     public float climbForce;
-    [Range(0f,0.95f)]
+    [Range(0f, 0.95f)]
     public float deceleration;
     public Transform agentTransform;
     public float recoverTime;
@@ -38,12 +39,14 @@ public class LilRobot : Enemy
     LayerMask detectionLayer;
     private Rigidbody rb;
     private NavMeshAgent agent;
-    private NavMeshPath path;
     [SerializeField]
     private LilRobotState state;
+    private LilRobotState lastState;
     private float recoverResetTime;
     private bool climbing;
     private bool playerDamaged;
+    [SerializeField]
+    private Vector3 destination;
 
     // Use this for initialization
     void Start()
@@ -58,11 +61,11 @@ public class LilRobot : Enemy
         agent = agentTransform.GetComponent<NavMeshAgent>();
         agent.updatePosition = false;
         agent.updateRotation = false;
-        path = new NavMeshPath();
         state = LilRobotState.IDLE;
         recoverResetTime = recoverTime;
         climbing = false;
         playerDamaged = false;
+        destination = target.position;
     }
 
     private void FixedUpdate()
@@ -73,7 +76,6 @@ public class LilRobot : Enemy
         {
             case LilRobotState.IDLE:
 
-                //Debug.DrawLine(transform.position, target.position, new Color(1f, 0f, 0f, 1f));
                 rb.angularVelocity = new Vector3(rb.angularVelocity.x * deceleration, rb.angularVelocity.y, rb.angularVelocity.z * deceleration);
                 rb.velocity = new Vector3(rb.velocity.x * deceleration, rb.velocity.y, rb.velocity.z * deceleration);
                 if (rb.velocity.magnitude < 0.1f)
@@ -83,25 +85,28 @@ public class LilRobot : Enemy
                 }
                 if (distance < detectionDistance && detectPlayer())
                 {
+                    destination = target.position;
                     rb.constraints = RigidbodyConstraints.None;
                     state = LilRobotState.ATTACK;
                 }
                 break;
             case LilRobotState.ATTACK:
-                //Debug.DrawLine(transform.position, target.position, new Color(1f, 0f, 0f, 1f));
-                //Debug.DrawRay(obstacleDetector.position, obstacleDetector.forward * obstacleDetectorDistance, new Color(0f, 0f, 1f));
-
-                if (agent.SetDestination(target.position) && agent.path.corners.Length > 1)
+                //Update destination
+                if (detectPlayer() && distance < detectionDistance)
                 {
-                    Vector3 nextPosition = agent.path.corners[1];
+                    destination = target.position;
+                }
+
+                if (agent.SetDestination(destination))
+                {
+                    Vector3 nextPosition = transform.position;
+                    if (agent.path.corners.Length > 1)
+                    {
+                        nextPosition = agent.path.corners[1];
+                    }
                     //Move Lil
                     Vector3 dir = nextPosition - transform.position;
                     rb.AddForce(dir.normalized * maxSpeed * Time.deltaTime);
-                    /** Debug **/
-                    /*for (int i = 0; i < agent.path.corners.Length - 1; ++i)
-                    {
-                        Debug.DrawLine(agent.path.corners[i], agent.path.corners[i + 1], new Color(0f, 1f, 0f));
-                    }*/
 
                     //Climb if necessary
                     obstacleDetector.LookAt(new Vector3(nextPosition.x, obstacleDetector.position.y, nextPosition.z));
@@ -117,7 +122,7 @@ public class LilRobot : Enemy
                         rb.useGravity = true;
                     }
                 }
-                if (!climbing && agent.remainingDistance <= agent.stoppingDistance)
+                if (!climbing && agent.remainingDistance <= agent.stoppingDistance && !detectPlayer())
                 {
                     state = LilRobotState.IDLE;
                 }
@@ -147,6 +152,15 @@ public class LilRobot : Enemy
                     playerDamaged = false;
                 }
                 break;
+            case LilRobotState.PARALYZED:
+                paralyzedActualTime -= Time.deltaTime;
+                if (paralyzedActualTime <= 0f)
+                {
+                    status = Status.NONE;
+                    state = LilRobotState.IDLE;
+                    paralyzedActualTime = paralyzedTotalTime;
+                }
+                break;
             default:
                 break;
         }
@@ -162,11 +176,6 @@ public class LilRobot : Enemy
     {
         agentTransform.position = transform.position;
         agent.nextPosition = transform.position;
-        /** Update Debug Camera **/
-        if (lilRobCamera != null)
-        {
-            lilRobCamera.position = transform.position - Vector3.forward * 2 + Vector3.up * 0.5f;
-        }
     }
 
     public override void getHit(int damage)
@@ -200,6 +209,17 @@ public class LilRobot : Enemy
         {
             playerDamaged = true;
             collision.gameObject.GetComponent<PlayerHealth>().ChangeHealth(-damage);
+        }
+    }
+
+    public override void setStatusParalyzed()
+    {
+        if (status == Status.NONE && state != LilRobotState.PARALYZED)
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            state = LilRobotState.PARALYZED;
+            status = Status.PARALYZED;
         }
     }
 }

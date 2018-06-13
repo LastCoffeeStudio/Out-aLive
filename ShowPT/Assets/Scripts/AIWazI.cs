@@ -60,13 +60,13 @@ public class AIWazI : MonoBehaviour {
 	public state NPCstate;
 	private Animator animWaz;
 
-	Waz wazScript;
+	//Waz wazScript;
 
 	// Use this for initialization
 	void Start () {
 		navMeshAgent = this.GetComponent<NavMeshAgent> ();
 		animWaz = this.GetComponent<Animator> ();
-		wazScript = this.GetComponent<Waz> ();
+		//wazScript = this.GetComponent<Waz> ();
 
 		if (navMeshAgent == null) 
 		{

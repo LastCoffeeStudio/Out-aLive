@@ -32,7 +32,7 @@ public class Barrel : MonoBehaviour {
 	float explosionDistance = 5f;
 
 	Transform player;
-	CtrlAudio ctrAudio;
+	//CtrlAudio ctrAudio;
 	public Rigidbody myRigidBody;
 	public bool activable = true;
 	bool immaExplodeNow = false;
@@ -44,7 +44,7 @@ public class Barrel : MonoBehaviour {
 	{
 		myRigidBody = gameObject.GetComponent<Rigidbody>();
 		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform>();
-		ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
+		//ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
 
 		//allBarrels = FindObjectsOfType<Barrel> ();
 	}

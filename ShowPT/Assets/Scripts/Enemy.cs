@@ -17,6 +17,14 @@ public class Enemy : MonoBehaviour {
         TOTAL_DRONES
     }
 
+    public enum Status
+    {
+        NONE,
+        PARALYZED,
+
+        NUM_STATUS
+    }
+
     public bool active = false;
     [SerializeField]
     public AudioClip hitAudio;
@@ -33,6 +41,11 @@ public class Enemy : MonoBehaviour {
     [SerializeField]
     public float enemyHealth = 10f;
     protected EnemyType enemyType = EnemyType.NONE;
+
+    [Header("Status parameters")]
+    public float paralyzedTotalTime;
+    protected float paralyzedActualTime;
+    protected Status status = Status.NONE;
 
     public virtual void getHit(int damage) {}
 
@@ -56,4 +69,6 @@ public class Enemy : MonoBehaviour {
             Destroy(gameObject);
         }
     }
+
+    public virtual void setStatusParalyzed() {}
 }

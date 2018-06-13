@@ -92,7 +92,7 @@ public class LiftRoomBehivor : MonoBehaviour
             if (varPROVISIONAL)
             {
                 varPROVISIONAL = false;
-                lightSound.active = true;
+                lightSound.SetActive(true);
                 initialPositionLightSound = lightSound.transform.localPosition;
             }
             climbing();
@@ -215,7 +215,7 @@ public class LiftRoomBehivor : MonoBehaviour
         else
         {
             CtrlVibration.stopVibration();
-            lightSound.active = false;
+            lightSound.SetActive(false);
             transform.localPosition = positionLiftInDesert;
             player.transform.parent = null;
             actualState = StateLift.OpeningAvobe;

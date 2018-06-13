@@ -15,6 +15,7 @@ public class Waz : Enemy
         ALERT
     }
 
+    [Header("Waz parameters")]
     [SerializeField]
     float waitTime = 3.0f;
 

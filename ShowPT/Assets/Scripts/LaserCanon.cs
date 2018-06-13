@@ -45,7 +45,8 @@ public class LaserCanon : Weapon {
     protected override void shotBullet(Ray ray)
     {
         RaycastHit hitInfo;
-        Projectile projectile = new Projectile();
+        Projectile projectile = gameObject.AddComponent(typeof(Projectile)) as Projectile;
+
         if (Physics.Raycast(ray, out hitInfo, weaponRange, maskBullets))
         {
             projectile = Instantiate(projectileToShoot, shootPoint.position, Quaternion.LookRotation(Vector3.Normalize(hitInfo.point - shootPoint.position)));

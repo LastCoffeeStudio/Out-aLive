@@ -69,7 +69,7 @@ public class PlayerMovment : MonoBehaviour {
 	//At the start of the update() method, reset noiseValue to 0.
     [HideInInspector]
 	public float noiseValue = 0f;
-    private bool screenAbove = true;
+    //private bool screenAbove = true;
 
     [SerializeField]
 	private GameUI gameUI;
@@ -115,10 +115,10 @@ public class PlayerMovment : MonoBehaviour {
 		}
     }
 
-    public void setScreenAbove(bool screenAbove)
+    /*public void setScreenAbove(bool screenAbove)
     {
         this.screenAbove = screenAbove;
-    }
+    }*/
 
     private void checkInput()
     {
