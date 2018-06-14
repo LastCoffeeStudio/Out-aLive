@@ -71,4 +71,9 @@ public class Enemy : MonoBehaviour {
     }
 
     public virtual void setStatusParalyzed() {}
+
+    public bool isDeath()
+    {
+        return enemyHealth <= 0f;
+    }
 }

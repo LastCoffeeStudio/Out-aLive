@@ -20,7 +20,6 @@ public class Weapon : MonoBehaviour
 
     protected bool firing = false;
     private bool reloading = false;
-    private bool aimming = false;
     protected Animator animator;
     private Vector3 initialposition;
 
@@ -55,6 +54,9 @@ public class Weapon : MonoBehaviour
         ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
         crosshair = gameObject.GetComponent<Crosshair>();
         recoil = gameObject.GetComponent<Recoil>();
+
+        aimPosition = new Vector3(-0.204f, -1.07f, 0);
+        aimSpeed = 10;
     }
 	
 	// Update is called once per frame
@@ -63,11 +65,7 @@ public class Weapon : MonoBehaviour
         if (!firing && !reloading)
         {
             aimAmmo();
-
-            if (!aimming)
-            {
-                swagWeaponMovement();
-            }
+           // swagWeaponMovement();
         }
 
         if (CtrlPause.gamePaused == false)
@@ -92,12 +90,12 @@ public class Weapon : MonoBehaviour
         if (Input.GetButton("Fire2") || Input.GetAxis("AxisLT") > 0.5f)
         {
             transform.localPosition = Vector3.Lerp(transform.localPosition, aimPosition, Time.deltaTime * aimSpeed);
-            aimming = true;
+            animator.SetBool("aiming", true);
         }
         else
         {
             transform.localPosition = Vector3.Lerp(transform.localPosition, originalPosition, Time.deltaTime * aimSpeed);
-            aimming = false;
+            animator.SetBool("aiming", false);
         }
     }
 
@@ -116,7 +114,7 @@ public class Weapon : MonoBehaviour
                 }
             }
         }
-        if ((Input.GetKey(KeyCode.R) || Input.GetButton("ButtonX")) && ammunition < maxAmmo && animator.GetBool("reloading") == false)
+        if ((Input.GetKey(KeyCode.R) || Input.GetButton("ButtonX")) && ammunition < maxAmmo && animator.GetBool("reloading") == false && !animator.GetBool("aiming"))
         {
             if (inventory.getAmmo(typeAmmo) > 0)
             {

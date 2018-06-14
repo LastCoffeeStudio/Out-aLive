@@ -12,9 +12,11 @@ public class PlayerMovment : MonoBehaviour {
         JUMPING
     }
 
+    [Header("Speed Settings")]
     public float moveSpeed = 5f;
     public float runSpeed = 10f;
     public float agacSpeed = 2f;
+    private float aimingSpeed = 2f;
     [HideInInspector]
     public float localSpeed = 0f;
     public float lookSensivity;
@@ -64,9 +66,12 @@ public class PlayerMovment : MonoBehaviour {
     private Vector3 originalCapsuleCenter;
     private float originalCapsuleHeight;
 
+    private float zoom;
+    private float zoomSpeed;
+    private float originalZoom;
 
-	//noiseValue must be modified whenever the player makes noise. Higher values mean enemies will hear you from further away.
-	//At the start of the update() method, reset noiseValue to 0.
+    //noiseValue must be modified whenever the player makes noise. Higher values mean enemies will hear you from further away.
+    //At the start of the update() method, reset noiseValue to 0.
     [HideInInspector]
 	public float noiseValue = 0f;
     //private bool screenAbove = true;
@@ -92,6 +97,11 @@ public class PlayerMovment : MonoBehaviour {
         ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
 
         state = playerState.IDLE;
+
+        zoom = 50f;
+        zoomSpeed = 10f;
+        originalZoom = 60f;
+
     }
 
     public void PlayStep()
@@ -157,12 +167,18 @@ public class PlayerMovment : MonoBehaviour {
             yRot = Input.GetAxis("Mouse Y");
         }
 
-        if ((Input.GetKey(KeyCode.LeftShift) || Input.GetButton("ButtonL3")) && yMov > runStart && !animator.GetBool("reloading") && !animator.GetBool("shooting") && !jumping)
+        if ((Input.GetKey(KeyCode.LeftShift) || Input.GetButton("ButtonL3")) && yMov > runStart && !animator.GetBool("reloading") && !animator.GetBool("shooting") && !jumping && !animator.GetBool("aiming"))
         {
             localSpeed = runSpeed;
         }
+        else if (animator.GetBool("aiming"))
+        {
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, zoom, Time.deltaTime * zoomSpeed);
+            localSpeed = aimingSpeed;
+        }
         else
         {
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, originalZoom, Time.deltaTime * zoomSpeed);
             localSpeed = moveSpeed;
         }
         if ((Input.GetButtonDown("ButtonB") || Input.GetKeyDown(KeyCode.C)) && !jumping)

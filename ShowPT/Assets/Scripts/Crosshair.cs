@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,8 @@ public class Crosshair : MonoBehaviour
     [Header("Crosshair properties")]
     public CrosshairType type;
     public Image[] lines;
+    public Image touchedCross;
+    public Image killedCross;
     public float startingSpread;
     public float minSpread;
     public float maxSpread;
@@ -110,12 +113,12 @@ public class Crosshair : MonoBehaviour
                 case CrosshairType.CROSS:
 
                     //With pivot at center!
-                    position = centerPoint + Random.insideUnitCircle * (((float)Screen.height / (float)Screen.currentResolution.height) * lines[0].rectTransform.localPosition.y - scaledSize.y / 2f);
+                    position = centerPoint + UnityEngine.Random.insideUnitCircle * (((float)Screen.height / (float)Screen.currentResolution.height) * lines[0].rectTransform.localPosition.y - scaledSize.y / 2f);
                     break;
                 case CrosshairType.CIRCLE:
 
                     //With pivot at center!
-                    position = centerPoint + Random.insideUnitCircle * (((float)Screen.height / (float)Screen.currentResolution.height) * lines[0].rectTransform.localPosition.y + scaledSize.x / 2f);
+                    position = centerPoint + UnityEngine.Random.insideUnitCircle * (((float)Screen.height / (float)Screen.currentResolution.height) * lines[0].rectTransform.localPosition.y + scaledSize.x / 2f);
                     break;
             }
         }
@@ -128,5 +131,15 @@ public class Crosshair : MonoBehaviour
     public void increaseSpread(float addedSpread)
     {
         spread += addedSpread;
+    }
+
+    public void enemyDeath()
+    {
+        killedCross.GetComponent<Animator>().Play("ShowKilled");
+    }
+
+    public void enemyReached()
+    {
+        killedCross.GetComponent<Animator>().Play("ShowTouched");
     }
 }
