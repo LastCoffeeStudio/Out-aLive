@@ -171,7 +171,7 @@ public class PlayerMovment : MonoBehaviour
         {
             localSpeed = runSpeed;
         }
-        else if (animator == null || animator.GetBool("aiming"))
+        else if (animator != null && animator.GetBool("aiming"))
         {
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, zoom, Time.deltaTime * zoomSpeed);
             localSpeed = aimingSpeed;
