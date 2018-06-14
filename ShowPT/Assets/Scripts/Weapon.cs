@@ -32,6 +32,7 @@ public class Weapon : MonoBehaviour
     public GameObject sparks;
 
     protected Inventory inventory;
+    private PlayerMovment playerState;
     public Inventory.AMMO_TYPE typeAmmo;
     public Inventory.WEAPON_TYPE type;
     public AudioClip shot;
@@ -45,12 +46,12 @@ public class Weapon : MonoBehaviour
     protected Recoil recoil;
 
     // Use this for initialization
-    protected virtual void Start ()
+    protected virtual void Start()
     {
-        ammunition = maxAmmo;
         initialposition = transform.localPosition;
         animator = gameObject.GetComponent<Animator>();
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        playerState = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovment>();
         ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
         crosshair = gameObject.GetComponent<Crosshair>();
         recoil = gameObject.GetComponent<Recoil>();
@@ -58,17 +59,17 @@ public class Weapon : MonoBehaviour
         aimPosition = new Vector3(-0.204f, -1.07f, 0);
         aimSpeed = 10;
     }
-	
-	// Update is called once per frame
-	protected virtual void Update ()
+
+    // Update is called once per frame
+    protected virtual void Update()
     {
         if (!firing && !reloading)
         {
             aimAmmo();
-           // swagWeaponMovement();
+            //swagWeaponMovement();
         }
 
-        if (CtrlPause.gamePaused == false)
+        if (CtrlPause.gamePaused == false && !playerState.buying)
         {
             checkInputAnimations();
         }
@@ -87,7 +88,7 @@ public class Weapon : MonoBehaviour
 
     private void aimAmmo()
     {
-        if (Input.GetButton("Fire2") || Input.GetAxis("AxisLT") > 0.5f)
+        if ((Input.GetButton("Fire2") || Input.GetAxis("AxisLT") > 0.5f) && !reloading)
         {
             transform.localPosition = Vector3.Lerp(transform.localPosition, aimPosition, Time.deltaTime * aimSpeed);
             animator.SetBool("aiming", true);
@@ -114,7 +115,7 @@ public class Weapon : MonoBehaviour
                 }
             }
         }
-        if ((Input.GetKey(KeyCode.R) || Input.GetButton("ButtonX")) && ammunition < maxAmmo && animator.GetBool("reloading") == false && !animator.GetBool("aiming"))
+        if (ammunition == 0 || ((Input.GetKey(KeyCode.R) || Input.GetButton("ButtonX")) && ammunition < maxAmmo && animator.GetBool("reloading") == false))
         {
             if (inventory.getAmmo(typeAmmo) > 0)
             {
@@ -155,12 +156,6 @@ public class Weapon : MonoBehaviour
     {
         int ammoTemp = inventory.getAmmo(typeAmmo);
 
-        //Infinite ammo for gun
-        if (type != Inventory.WEAPON_TYPE.GUN)
-        {
-            inventory.decreaseAmmo(typeAmmo, maxAmmo - ammunition);
-        }
-
         if ((maxAmmo - ammunition) > ammoTemp)
         {
             ammunition += ammoTemp;
@@ -171,12 +166,13 @@ public class Weapon : MonoBehaviour
         }
 
         inventory.setAmmo(typeAmmo, ammunition);
+        inventory.decreaseAmmo(typeAmmo, maxAmmo - ammunition);
     }
 
     protected virtual void shotBullet(Ray ray)
     {
         RaycastHit hitInfo;
-        
+
         if (Physics.Raycast(ray, out hitInfo, weaponRange, maskBullets))
         {
             if (hitInfo.transform.tag == "Enemy" || hitInfo.transform.tag == "Drone" || hitInfo.transform.tag == "Snitch")

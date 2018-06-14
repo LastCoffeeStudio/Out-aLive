@@ -151,9 +151,6 @@ public class ScoreController : MonoBehaviour {
             case Inventory.WEAPON_TYPE.SHOTGUN:
                 ++shotgunShotsUsed;
                 break;
-            case Inventory.WEAPON_TYPE.RIFLE:
-                ++SMGShotsUsed;
-                break;
             case Inventory.WEAPON_TYPE.CANON:
                 ++canonShotsUsed;
                 break;
@@ -172,9 +169,6 @@ public class ScoreController : MonoBehaviour {
                 break;
             case Inventory.WEAPON_TYPE.SHOTGUN:
                 ++shotgunShotsTouched;
-                break;
-            case Inventory.WEAPON_TYPE.RIFLE:
-                ++SMGShotsTouched;
                 break;
             case Inventory.WEAPON_TYPE.CANON:
                 ++canonShotsTouched;

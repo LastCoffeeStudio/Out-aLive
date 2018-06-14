@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovment : MonoBehaviour {
-
+public class PlayerMovment : MonoBehaviour
+{
     public enum playerState
     {
         IDLE,
@@ -51,7 +51,7 @@ public class PlayerMovment : MonoBehaviour {
 
     [Header("Crouch Settings")]
     public float smoothCrouch = 0.05f;
-    [Range(0.1f,0.9f)]
+    [Range(0.1f, 0.9f)]
     public float crouchAmount;
     [HideInInspector]
     public bool crouched = false;
@@ -73,14 +73,15 @@ public class PlayerMovment : MonoBehaviour {
     //noiseValue must be modified whenever the player makes noise. Higher values mean enemies will hear you from further away.
     //At the start of the update() method, reset noiseValue to 0.
     [HideInInspector]
-	public float noiseValue = 0f;
+    public float noiseValue = 0f;
     //private bool screenAbove = true;
 
     [SerializeField]
-	private GameUI gameUI;
-    private bool buying;
+    private GameUI gameUI;
+    public bool buying;
 
-    void Start () {
+    void Start()
+    {
         rb = GetComponent<Rigidbody>();
         playerCollider = GetComponent<CapsuleCollider>();
         originalCapsuleCenter = playerCollider.center;
@@ -101,7 +102,6 @@ public class PlayerMovment : MonoBehaviour {
         zoom = 50f;
         zoomSpeed = 10f;
         originalZoom = 60f;
-
     }
 
     public void PlayStep()
@@ -116,13 +116,13 @@ public class PlayerMovment : MonoBehaviour {
         rotateCamera();
     }
 
-    void Update ()
+    void Update()
     {
-		noiseValue = 0f;
-		if (CtrlPause.gamePaused == false) 
-		{
-			checkInput ();
-		}
+        noiseValue = 0f;
+        if (CtrlPause.gamePaused == false)
+        {
+            checkInput();
+        }
     }
 
     /*public void setScreenAbove(bool screenAbove)
@@ -167,11 +167,11 @@ public class PlayerMovment : MonoBehaviour {
             yRot = Input.GetAxis("Mouse Y");
         }
 
-        if ((Input.GetKey(KeyCode.LeftShift) || Input.GetButton("ButtonL3")) && yMov > runStart && !animator.GetBool("reloading") && !animator.GetBool("shooting") && !jumping && !animator.GetBool("aiming"))
+        if ((Input.GetKey(KeyCode.LeftShift) || Input.GetButton("ButtonL3")) && yMov > runStart && (animator == null || (!animator.GetBool("reloading") && !animator.GetBool("shooting") && !animator.GetBool("aiming"))) && !jumping)
         {
             localSpeed = runSpeed;
         }
-        else if (animator.GetBool("aiming"))
+        else if (animator == null || animator.GetBool("aiming"))
         {
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, zoom, Time.deltaTime * zoomSpeed);
             localSpeed = aimingSpeed;
@@ -187,7 +187,7 @@ public class PlayerMovment : MonoBehaviour {
         }
         if (crouched && !jumping)
         {
-            hudController.setMenDown(true); 
+            hudController.setMenDown(true);
             localSpeed = agacSpeed;
             Vector3 endPosition = new Vector3(originalCameraPos.x, originalCameraPos.y - originalCapsuleHeight * crouchAmount, originalCameraPos.z);
             cam.transform.localPosition = Vector3.Lerp(cam.transform.localPosition, endPosition, Time.deltaTime * smoothCrouch);
@@ -218,6 +218,7 @@ public class PlayerMovment : MonoBehaviour {
             if (buying)
             {
                 gameUI.disableResourceMachineUI();
+                buying = false;
             }
         }
     }
@@ -229,7 +230,7 @@ public class PlayerMovment : MonoBehaviour {
         Debug.DrawRay(transform.position, -Vector3.up, new Color(1f, 0f, 0f), 0.1f, true);
         if (GameManager.debugMode)
         {
-            Debug.DrawRay(transform.position, -Vector3.up*groundDistance, new Color(255f,0f,0f));
+            Debug.DrawRay(transform.position, -Vector3.up * groundDistance, new Color(255f, 0f, 0f));
         }
 
         if (flyControl || isGrounded)
@@ -246,7 +247,11 @@ public class PlayerMovment : MonoBehaviour {
 
             if (velocity != Vector3.zero)
             {
-                animator.SetFloat("speed", localSpeed);
+                if (animator != null)
+                {
+                    animator.SetFloat("speed", localSpeed);
+                }
+
                 rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
                 if (!jumping)
                 {
@@ -262,7 +267,11 @@ public class PlayerMovment : MonoBehaviour {
             }
             else
             {
-                animator.SetFloat("speed", 0f);
+                if (animator != null)
+                {
+                    animator.SetFloat("speed", 0f);
+                }
+
                 if (!jumping)
                 {
                     state = playerState.IDLE;
@@ -382,7 +391,7 @@ public class PlayerMovment : MonoBehaviour {
         return displacement;
     }
 
-	private void interact()
+    private void interact()
     {
         RaycastHit hitInfo;
 
@@ -391,15 +400,12 @@ public class PlayerMovment : MonoBehaviour {
             switch (hitInfo.transform.tag)
             {
                 case "ResourceMachine":
-                {
                     gameUI.enableResourceMachineUI();
                     buying = true;
                     break;
-                }
-
-				case "GateTerminal":
-					hitInfo.collider.gameObject.GetComponent<GateTerminal> ().Activate ();
-					break;
+                case "GateTerminal":
+                    hitInfo.collider.gameObject.GetComponent<GateTerminal>().Activate();
+                    break;
             }
         }
     }

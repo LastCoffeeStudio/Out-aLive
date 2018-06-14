@@ -57,7 +57,7 @@ public class HudController : MonoBehaviour
         }
 
         //Test
-        selectWeapon(Inventory.WEAPON_TYPE.GUN, 15, 0);
+        //selectWeapon(Inventory.WEAPON_TYPE.GUN, 15, 0);
 	}
 	
 	// Update is called once per frame
@@ -107,9 +107,6 @@ public class HudController : MonoBehaviour
             case Inventory.WEAPON_TYPE.SHOTGUN:
                 shotGunState.GetComponent<Image>().color = STATE_DISABLED;
                 break;
-            case Inventory.WEAPON_TYPE.RIFLE:
-                smgState.GetComponent<Image>().color = STATE_DISABLED;
-                break;
             case Inventory.WEAPON_TYPE.CANON:
                 canonState.GetComponent<Image>().color = STATE_DISABLED;
                 break;
@@ -141,14 +138,6 @@ public class HudController : MonoBehaviour
                 bulletsLabel.text = bullets.ToString();
                 totalBulletsLabel.text = totalBullets.ToString();
                 currentCrosshair = weaponsCrosshairs[(int)Inventory.WEAPON_TYPE.SHOTGUN];
-                currentCrosshair.SetActive(true);
-                break;
-            case Inventory.WEAPON_TYPE.RIFLE:
-                currentWeapon = smgState;
-                currentSelected = smgSelected;
-                bulletsLabel.text = bullets.ToString();
-                totalBulletsLabel.text = totalBullets.ToString();
-                currentCrosshair = weaponsCrosshairs[(int)Inventory.WEAPON_TYPE.RIFLE];
                 currentCrosshair.SetActive(true);
                 break;
             case Inventory.WEAPON_TYPE.CANON:

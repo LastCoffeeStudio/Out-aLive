@@ -68,8 +68,8 @@ public class CtrlDebug : MonoBehaviour
             }
 	        for (int i = 0; i < (int)Inventory.AMMO_TYPE.TOTAL_AMMO; ++i)
 	        {
-	            player.GetComponent<Inventory>().totalAmmoInvenotry[(Inventory.AMMO_TYPE)i] = Int32.MaxValue;
-                player.GetComponent<Inventory>().ammoInvenotry[(Inventory.AMMO_TYPE)i] = Int32.MaxValue;
+	            player.GetComponent<Inventory>().totalAmmoInventory[(Inventory.AMMO_TYPE)i] = Int32.MaxValue;
+                player.GetComponent<Inventory>().ammoInventory[(Inventory.AMMO_TYPE)i] = Int32.MaxValue;
             }
 
 	        gun.GetComponent<Weapon>().maxAmmo = Int32.MaxValue;

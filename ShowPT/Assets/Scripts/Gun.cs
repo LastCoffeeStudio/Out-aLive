@@ -20,4 +20,10 @@ public class Gun : Weapon
             Instantiate(projectileToShoot, shootPoint.position, Quaternion.LookRotation(Vector3.Normalize((ray.origin + ray.direction * weaponRange) - shootPoint.position)));
         }
     }
+
+    public override void increaseAmmo()
+    {
+        ammunition = maxAmmo;
+        inventory.setAmmo(typeAmmo, ammunition);
+    }
 }

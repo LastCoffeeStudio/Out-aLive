@@ -7,13 +7,12 @@ public class Inventory : MonoBehaviour
 
     public WEAPON_TYPE weapon;
     public GameObject[] weaponsInventory;
-    private int selectedIdWeapond = 0;
+    private int selectedIdWeapond = -1;
 
     public enum AMMO_TYPE
     {
-        SHOTGUNAMMO,
         GUNAMMO,
-        RIFLEAMMO,
+        SHOTGUNAMMO,
         CANONAMMO,
 
         TOTAL_AMMO,
@@ -22,17 +21,18 @@ public class Inventory : MonoBehaviour
 
     public enum WEAPON_TYPE
     {
+        NONE = -1,
+
         GUN,
         SHOTGUN,
-        RIFLE,
         CANON,
 
         TOTAL_WEAPONS,
         NO_WEAPON
     }
 
-    public Dictionary<AMMO_TYPE, int> ammoInvenotry = new Dictionary<AMMO_TYPE, int>();
-    public Dictionary<AMMO_TYPE, int> totalAmmoInvenotry = new Dictionary<AMMO_TYPE, int>();
+    public Dictionary<AMMO_TYPE, int> ammoInventory = new Dictionary<AMMO_TYPE, int>();
+    public Dictionary<AMMO_TYPE, int> totalAmmoInventory = new Dictionary<AMMO_TYPE, int>();
     public bool[] weaponsCarrying;
 
     public HudController hudController;
@@ -40,48 +40,37 @@ public class Inventory : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        gameObject.GetComponent<PlayerMovment>().animator = weaponsInventory[(int)weapon].GetComponentInChildren<Animator>();
+        weapon = WEAPON_TYPE.NONE;
 
-        weapon = WEAPON_TYPE.GUN;
-
-        totalAmmoInvenotry.Add(AMMO_TYPE.SHOTGUNAMMO, 12);
-        totalAmmoInvenotry.Add(AMMO_TYPE.GUNAMMO, 15);
-        totalAmmoInvenotry.Add(AMMO_TYPE.RIFLEAMMO, 35);
-        totalAmmoInvenotry.Add(AMMO_TYPE.CANONAMMO, 5);
-
-        ammoInvenotry.Add(AMMO_TYPE.SHOTGUNAMMO, 12);
-        ammoInvenotry.Add(AMMO_TYPE.GUNAMMO, 15);
-        ammoInvenotry.Add(AMMO_TYPE.RIFLEAMMO, 35);
-        ammoInvenotry.Add(AMMO_TYPE.CANONAMMO, 5);
+        totalAmmoInventory.Add(AMMO_TYPE.GUNAMMO, 1);
+        totalAmmoInventory.Add(AMMO_TYPE.SHOTGUNAMMO, 0);
+        totalAmmoInventory.Add(AMMO_TYPE.CANONAMMO, 0);
 
         weaponsCarrying = new bool[(int)WEAPON_TYPE.TOTAL_WEAPONS];
         weaponsCarrying[(int)WEAPON_TYPE.GUN] = false;
         weaponsCarrying[(int)WEAPON_TYPE.SHOTGUN] = false;
-        weaponsCarrying[(int)WEAPON_TYPE.RIFLE] = false;
         weaponsCarrying[(int)WEAPON_TYPE.CANON] = false;
 
         //test
-        addWeapon(WEAPON_TYPE.GUN);
-        addWeapon(WEAPON_TYPE.SHOTGUN);
-        addWeapon(WEAPON_TYPE.RIFLE);
-        addWeapon(WEAPON_TYPE.CANON);
+        //weapon = WEAPON_TYPE.GUN;
+        //gameObject.GetComponent<PlayerMovment>().animator = weaponsInventory[(int)weapon].GetComponentInChildren<Animator>();
+
+        //addWeapon(WEAPON_TYPE.GUN);
+        //addWeapon(WEAPON_TYPE.SHOTGUN);
+        //addWeapon(WEAPON_TYPE.CANON);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && weapon != WEAPON_TYPE.GUN && weaponsCarrying[(int)WEAPON_TYPE.GUN])
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             switchWeapon(WEAPON_TYPE.GUN);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && weapon != WEAPON_TYPE.SHOTGUN && weaponsCarrying[(int)WEAPON_TYPE.SHOTGUN])
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             switchWeapon(WEAPON_TYPE.SHOTGUN);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3) && weapon != WEAPON_TYPE.RIFLE && weaponsCarrying[(int)WEAPON_TYPE.RIFLE])
-        {
-            switchWeapon(WEAPON_TYPE.RIFLE);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4) && weapon != WEAPON_TYPE.CANON && weaponsCarrying[(int)WEAPON_TYPE.CANON])
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             switchWeapon(WEAPON_TYPE.CANON);
         }
@@ -98,77 +87,95 @@ public class Inventory : MonoBehaviour
 
     void nextWeapond(int direction)
     {
-        bool switched = false;
-        while (switched == false) 
+        int lastWeapon = selectedIdWeapond;
+
+        if (selectedIdWeapond != -1)
         {
-            selectedIdWeapond += direction;
-            if (selectedIdWeapond < 0) selectedIdWeapond = (int)WEAPON_TYPE.TOTAL_WEAPONS-1;
-            selectedIdWeapond %= (int)WEAPON_TYPE.TOTAL_WEAPONS;
-            if (weaponsCarrying[selectedIdWeapond] == true)
+            for (int i = selectedIdWeapond; i < weaponsCarrying.Length; )
             {
-               switchWeapon((WEAPON_TYPE)selectedIdWeapond);
-               switched = true;
+                i += direction;
+
+                if (i < 0)
+                {
+                    i = weaponsCarrying.Length - 1;
+                }
+                i %= weaponsCarrying.Length;
+
+                Debug.Log(i + " " + weaponsCarrying[i]);
+                if (weaponsCarrying[i])
+                {
+                    if (lastWeapon != i)
+                    {
+                        switchWeapon((WEAPON_TYPE)i);
+                    }
+                    break;
+                }
             }
         }
     }
 
     public int getAmmo(AMMO_TYPE typeAmmo)
     {
-        return totalAmmoInvenotry[typeAmmo];
+        return totalAmmoInventory[typeAmmo];
     }
 
     public void decreaseAmmo(AMMO_TYPE typeAmmo, int value)
     {
-        totalAmmoInvenotry[typeAmmo] -= value;
-        if (totalAmmoInvenotry[typeAmmo] < 0)
+        totalAmmoInventory[typeAmmo] -= value;
+        if (totalAmmoInventory[typeAmmo] < 0)
         {
-            totalAmmoInvenotry[typeAmmo] = 0;
+            totalAmmoInventory[typeAmmo] = 0;
         }
-        hudController.setTotalAmmo(typeAmmo, totalAmmoInvenotry[typeAmmo]);
+        hudController.setTotalAmmo(typeAmmo, totalAmmoInventory[typeAmmo]);
     }
 
     public void increaseAmmo(AMMO_TYPE typeAmmo, int value)
     {
-        totalAmmoInvenotry[typeAmmo] += value;
-        hudController.setTotalAmmo(typeAmmo, totalAmmoInvenotry[typeAmmo]);
+        totalAmmoInventory[typeAmmo] += value;
+        hudController.setTotalAmmo(typeAmmo, totalAmmoInventory[typeAmmo]);
     }
 
     public void setAmmo(AMMO_TYPE typeAmmo, int value)
     {
-        if (ammoInvenotry.ContainsKey(typeAmmo)) {
-
-            ammoInvenotry[typeAmmo] = value;
+        if (ammoInventory.ContainsKey(typeAmmo))
+        {
+            ammoInventory[typeAmmo] = value;
         }
         else
         {
-            ammoInvenotry.Add(typeAmmo, value);
+            ammoInventory.Add(typeAmmo, value);
         }
 
-        hudController.setAmmo(ammoInvenotry[typeAmmo]);
+        hudController.setAmmo(ammoInventory[typeAmmo]);
     }
 
     private void switchWeapon(WEAPON_TYPE type)
     {
-        weaponsInventory[(int)weapon].SetActive(false);
-        weapon = type;
-        weaponsInventory[(int)weapon].SetActive(true);
-
-        switch(type)
+        if (weapon != type && weaponsCarrying[(int)type])
         {
-            case WEAPON_TYPE.GUN:
-                hudController.selectWeapon(type, ammoInvenotry[AMMO_TYPE.GUNAMMO], getAmmo(AMMO_TYPE.GUNAMMO));
-                break;
-            case WEAPON_TYPE.SHOTGUN:
-                hudController.selectWeapon(type, ammoInvenotry[AMMO_TYPE.SHOTGUNAMMO], getAmmo(AMMO_TYPE.SHOTGUNAMMO));
-                break;
-            case WEAPON_TYPE.RIFLE:
-                hudController.selectWeapon(type, ammoInvenotry[AMMO_TYPE.RIFLEAMMO], getAmmo(AMMO_TYPE.RIFLEAMMO));
-                break;
-            case WEAPON_TYPE.CANON:
-                hudController.selectWeapon(type, ammoInvenotry[AMMO_TYPE.CANONAMMO], getAmmo(AMMO_TYPE.CANONAMMO));
-                break;
+            selectedIdWeapond = (int)type;
+
+            if (weapon != WEAPON_TYPE.NONE)
+            {
+                weaponsInventory[(int)weapon].SetActive(false);
+            }
+            weapon = type;
+            weaponsInventory[(int)weapon].SetActive(true);
+
+            switch (type)
+            {
+                case WEAPON_TYPE.GUN:
+                    hudController.selectWeapon(type, ammoInventory[AMMO_TYPE.GUNAMMO], getAmmo(AMMO_TYPE.GUNAMMO));
+                    break;
+                case WEAPON_TYPE.SHOTGUN:
+                    hudController.selectWeapon(type, ammoInventory[AMMO_TYPE.SHOTGUNAMMO], getAmmo(AMMO_TYPE.SHOTGUNAMMO));
+                    break;
+                case WEAPON_TYPE.CANON:
+                    hudController.selectWeapon(type, ammoInventory[AMMO_TYPE.CANONAMMO], getAmmo(AMMO_TYPE.CANONAMMO));
+                    break;
+            }
+            gameObject.GetComponent<PlayerMovment>().animator = weaponsInventory[(int)weapon].GetComponentInChildren<Animator>();
         }
-        gameObject.GetComponent<PlayerMovment>().animator = weaponsInventory[(int)weapon].GetComponentInChildren<Animator>();
     }
 
     public bool hasWeapon(WEAPON_TYPE type)
@@ -179,6 +186,25 @@ public class Inventory : MonoBehaviour
     public void addWeapon(WEAPON_TYPE type)
     {
         weaponsCarrying[(int)type] = true;
+
+        int ammunition = weaponsInventory[(int)type].GetComponent<Weapon>().ammunition;
+        switch (type)
+        {
+            case WEAPON_TYPE.GUN:
+                ammoInventory.Add(AMMO_TYPE.GUNAMMO, ammunition);
+                break;
+            case WEAPON_TYPE.SHOTGUN:
+                ammoInventory.Add(AMMO_TYPE.SHOTGUNAMMO, ammunition);
+                break;
+            case WEAPON_TYPE.CANON:
+                ammoInventory.Add(AMMO_TYPE.CANONAMMO, ammunition);
+                break;
+        }
+        
+        if (selectedIdWeapond == -1)
+        {
+            switchWeapon(type);
+        }
         hudController.addWeapon(type);
         //Launch some animation or sound that has bought weapon
     }
