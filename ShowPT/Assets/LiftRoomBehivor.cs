@@ -17,7 +17,7 @@ public class LiftRoomBehivor : MonoBehaviour
     public float timeClimbingSec;
     public AnimationCurve speedCurvelights;
     [Header("Position on appears the lift")]
-    public Vector3 positionLiftInDesert;
+	public Transform liftPlatform;
     public float speedLeave;
     public float reflectionLift;
 
@@ -26,6 +26,8 @@ public class LiftRoomBehivor : MonoBehaviour
     private GameObject doorPos;
     private GameObject doorNeg;
     private GameObject lightSound;
+	private Vector3 positionLiftInDesert;
+	private float altitudeDifference = 0.5f;
     
 
     //For know who collider is touching
@@ -74,6 +76,7 @@ public class LiftRoomBehivor : MonoBehaviour
         initTimeClimibingSec = timeClimbingSec;
         actualState = StateLift.Closed;
         StartCoroutine(delayForOpen());
+		positionLiftInDesert = new Vector3 (liftPlatform.position.x, liftPlatform.position.y + altitudeDifference, liftPlatform.position.z);
     }
 
     IEnumerator delayForOpen()
@@ -216,7 +219,7 @@ public class LiftRoomBehivor : MonoBehaviour
         {
             CtrlVibration.stopVibration();
             lightSound.SetActive(false);
-            transform.localPosition = positionLiftInDesert;
+            transform.position = positionLiftInDesert;
             player.transform.parent = null;
             actualState = StateLift.OpeningAvobe;
             gameObject.GetComponent<MeshCollider>().isTrigger = true;
