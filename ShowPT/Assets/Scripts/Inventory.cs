@@ -208,4 +208,9 @@ public class Inventory : MonoBehaviour
         hudController.addWeapon(type);
         //Launch some animation or sound that has bought weapon
     }
+
+    public void updateStats(float actual, float max)
+    {
+        hudController.updateStats(actual, max);
+    }
 }

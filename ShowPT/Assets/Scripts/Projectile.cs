@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour 
 {
+    [Header("Projectile Properties")]
 	[SerializeField]
 	float speed = 5.0f;
+    [SerializeField]
     float timeLife = 10f;
 
 	public int damage = 1;
 
 	public LayerMask layerMask = -1; //make sure we aren't in this layer 
 	public float skinWidth = 0.1f; //probably doesn't need to be changed 
+    [Header("Explosion Properties")]
+    public bool invokeExplosion;
+    public GameObject explosionType;
 
 	private float minimumExtent; 
 	private float partialExtent; 
@@ -28,8 +33,8 @@ public class Projectile : MonoBehaviour
 		previousPosition = myRigidbody.position; 
 		minimumExtent = Mathf.Min(Mathf.Min(myCollider.bounds.extents.x, myCollider.bounds.extents.y), myCollider.bounds.extents.z); 
 		partialExtent = minimumExtent * (1.0f - skinWidth); 
-		sqrMinimumExtent = minimumExtent * minimumExtent; 
-	} 
+		sqrMinimumExtent = minimumExtent * minimumExtent;
+    } 
 
 	void FixedUpdate() 
 	{ 
@@ -73,7 +78,11 @@ public class Projectile : MonoBehaviour
 
 	void OnTriggerEnter(Collider col)
 	{
-		if (col.gameObject.layer == LayerMask.NameToLayer ("Wall")) 
+        if (invokeExplosion && explosionType != null)
+        {
+            explosionType.SetActive(true);
+        }
+        if (col.gameObject.layer == LayerMask.NameToLayer ("Wall")) 
 		{
 			Destroy (gameObject);
 		}
@@ -89,5 +98,5 @@ public class Projectile : MonoBehaviour
 			col.gameObject.SendMessage ("shotBehavior", dataToPass);
 			Destroy(gameObject);
 		}
-	}
+    }
 }

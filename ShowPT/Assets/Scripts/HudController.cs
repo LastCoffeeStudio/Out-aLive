@@ -6,7 +6,15 @@ using UnityEngine.UI;
 
 public class HudController : MonoBehaviour
 {
+    private enum LabelType
+    {
+        NONE = -1,
 
+        AMMO,
+        ENERGY,
+
+        TOTAL_LABELS
+    }
     private const int MAX_GREEN_LIFE = 60;
     private const int MAX_YELLOW_LIFE = 20;
 
@@ -16,9 +24,13 @@ public class HudController : MonoBehaviour
     private Color32 STATE_DISABLED = new Color32(255, 255, 255, 80);
     private Color32 STATE_SELECTED = new Color32(255, 255, 255, 255);
 
+    [Header("Labels")]
     public Text valueHealth;
     public Text bulletsLabel;
     public Text totalBulletsLabel;
+    public Slider energyLabel;
+    public GameObject Ammo;
+    public GameObject Energy;
 
     private int bullets;
     private int totalBullets;
@@ -27,7 +39,7 @@ public class HudController : MonoBehaviour
     Slider healthBar;
 
     public GameObject fillHealth;
-
+    [Header("States")]
     public GameObject pistolState;
     public GameObject shotGunState;
     public GameObject smgState;
@@ -40,6 +52,7 @@ public class HudController : MonoBehaviour
 
     private GameObject currentWeapon;
     private GameObject currentSelected;
+    private GameObject currentLabel;
 
     public GameObject menDown;
 
@@ -47,6 +60,7 @@ public class HudController : MonoBehaviour
     public GameObject[] weaponsCrosshairs;
 
     private GameObject currentCrosshair;
+    private LabelType currentLabelType;
 
     // Use this for initialization
     void Start ()
@@ -61,7 +75,8 @@ public class HudController : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		
 	}
 
@@ -127,26 +142,23 @@ public class HudController : MonoBehaviour
             case Inventory.WEAPON_TYPE.GUN:
                 currentWeapon = pistolState;
                 currentSelected = pistolSelected;
-                bulletsLabel.text = bullets.ToString();
-                totalBulletsLabel.text = "∞";
                 currentCrosshair = weaponsCrosshairs[(int)Inventory.WEAPON_TYPE.GUN];
                 currentCrosshair.SetActive(true);
+                changeLabel(LabelType.ENERGY);
                 break;
             case Inventory.WEAPON_TYPE.SHOTGUN:
                 currentWeapon = shotGunState;
                 currentSelected = shotGunSelected;
-                bulletsLabel.text = bullets.ToString();
-                totalBulletsLabel.text = totalBullets.ToString();
                 currentCrosshair = weaponsCrosshairs[(int)Inventory.WEAPON_TYPE.SHOTGUN];
                 currentCrosshair.SetActive(true);
+                changeLabel(LabelType.AMMO);
                 break;
             case Inventory.WEAPON_TYPE.CANON:
                 currentWeapon = canonState;
                 currentSelected = canonSelected;
-                bulletsLabel.text = bullets.ToString();
-                totalBulletsLabel.text = totalBullets.ToString();
                 currentCrosshair = weaponsCrosshairs[(int)Inventory.WEAPON_TYPE.CANON];
                 currentCrosshair.SetActive(true);
+                changeLabel(LabelType.AMMO);
                 break;
         }
 
@@ -163,6 +175,44 @@ public class HudController : MonoBehaviour
         else if (!v && menDown.activeSelf)
         {
             menDown.SetActive(false);
+        }
+    }
+
+    public void updateStats(float actual, float max)
+    {
+        switch (currentLabelType)
+        {
+            case LabelType.ENERGY:
+                energyLabel.value = actual / max;
+                break;
+        }
+    }
+
+    private void changeLabel(LabelType LType)
+    {
+        if (currentLabel != null)
+        {
+            currentLabel.SetActive(false);
+        }
+
+        switch (LType)
+        {
+            case LabelType.AMMO:
+                bulletsLabel.text = bullets.ToString();
+                totalBulletsLabel.text = totalBullets.ToString();
+                currentLabel = Ammo;
+                currentLabel.SetActive(true);
+                currentLabelType = LabelType.AMMO;
+                break;
+            case LabelType.ENERGY:
+                currentLabel = Energy;
+                currentLabel.SetActive(true);
+                currentLabelType = LabelType.ENERGY;
+                break;
+            case LabelType.NONE:
+                currentLabel = null;
+                currentLabelType = LabelType.NONE;
+                break;
         }
     }
 }

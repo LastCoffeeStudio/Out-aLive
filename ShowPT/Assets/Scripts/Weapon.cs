@@ -19,7 +19,7 @@ public class Weapon : MonoBehaviour
     public int ammunition;
 
     protected bool firing = false;
-    private bool reloading = false;
+    protected bool reloading = false;
     protected Animator animator;
     private Vector3 initialposition;
 
@@ -32,7 +32,7 @@ public class Weapon : MonoBehaviour
     public GameObject sparks;
 
     protected Inventory inventory;
-    private PlayerMovment playerState;
+    protected PlayerMovment playerState;
     public Inventory.AMMO_TYPE typeAmmo;
     public Inventory.WEAPON_TYPE type;
     public AudioClip shot;
@@ -86,7 +86,7 @@ public class Weapon : MonoBehaviour
         transform.localPosition = Vector3.Lerp(transform.localPosition, finalPosition + initialposition, Time.deltaTime * smoothAmount);
     }
 
-    private void aimAmmo()
+    protected void aimAmmo()
     {
         if ((Input.GetButton("Fire2") || Input.GetAxis("AxisLT") > 0.5f) && !reloading)
         {
@@ -100,7 +100,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private void checkInputAnimations()
+    protected virtual void checkInputAnimations()
     {
         if ((Input.GetButtonDown("Fire1") || Input.GetAxis("AxisRT") > 0.5f) && animator.GetBool("shooting") == false)
         {
@@ -200,6 +200,7 @@ public class Weapon : MonoBehaviour
     {
         reloading = false;
         animator.SetBool("reloading", false);
+        Debug.Log("ends reload");
 
         if (type == Inventory.WEAPON_TYPE.SHOTGUN)
         {

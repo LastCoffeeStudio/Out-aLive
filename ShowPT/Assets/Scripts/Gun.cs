@@ -7,6 +7,30 @@ public class Gun : Weapon
     [Header("Gun Settings")]
     [SerializeField]
     Projectile projectileToShoot;
+    public float chargeWhenShoot;
+    public float maxCharge;
+    [SerializeField]
+    private float actualCharge;
+    public float dischargeSpeed;
+    public float dischargeSpeedOverflow;
+
+    protected override void Update()
+    {
+        if (!firing && !reloading)
+        {
+            aimAmmo();
+            //swagWeaponMovement();
+        }
+
+        if (CtrlPause.gamePaused == false)
+        {
+            if (!playerState.buying)
+            {
+                checkInputAnimations();
+            }
+            updateCharge();
+        }
+    }
 
     protected override void shotBullet(Ray ray)
     {
@@ -21,9 +45,58 @@ public class Gun : Weapon
         }
     }
 
-    public override void increaseAmmo()
+    protected override void checkInputAnimations()
     {
-        ammunition = maxAmmo;
-        inventory.setAmmo(typeAmmo, ammunition);
+        if ((Input.GetButtonDown("Fire1") || Input.GetAxis("AxisRT") > 0.5f) && animator.GetBool("shooting") == false && animator.GetBool("reloading") == false)
+        {
+            if (actualCharge < maxCharge)
+            {
+                firing = true;
+                animator.SetBool("shooting", true);
+            }
+        }
+        if (actualCharge >= maxCharge && animator.GetBool("reloading") == false)
+        {
+            reloading = true;
+            animator.SetBool("reloading", true);
+        }
+    }
+
+    public override void decreaseAmmo()
+    {
+        actualCharge += chargeWhenShoot;
+        Mathf.Clamp(actualCharge, 0, maxCharge);
+        ScoreController.weaponUsed(type);
+        shotBullet(crosshair.getRayCrosshairArea());
+        if (!crosshair.isFixed)
+        {
+            crosshair.increaseSpread(shotSpreadFactor);
+        }
+        recoil.addRecoil();
+    }
+
+    private void updateCharge()
+    {
+        float discharge = dischargeSpeed;
+        if (animator.GetBool("reloading") == true)
+        {
+            discharge = dischargeSpeedOverflow;
+        }
+
+        actualCharge -= discharge * Time.deltaTime;
+        if (actualCharge < 0f)
+        {
+            actualCharge = 0f;
+        }
+        inventory.updateStats(actualCharge, maxCharge);
+    }
+
+    protected override void checkMouseInput()
+    {
+        if ((!Input.GetButton("Fire1") && Input.GetAxis("AxisRT") < 0.5f) || animator.GetBool("reloading") == true)
+        {
+            animator.SetBool("shooting", false);
+            firing = false;
+        }
     }
 }
