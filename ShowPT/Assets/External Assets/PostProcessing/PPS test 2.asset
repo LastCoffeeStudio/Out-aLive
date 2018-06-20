@@ -112,35 +112,35 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       tonemapping:
-        tonemapper: 1
-        neutralBlackIn: 0.012
-        neutralWhiteIn: 2.4
-        neutralBlackOut: -0.036
-        neutralWhiteOut: 5.8
-        neutralWhiteLevel: 11.6
+        tonemapper: 0
+        neutralBlackIn: 0.02
+        neutralWhiteIn: 10
+        neutralBlackOut: 0
+        neutralWhiteOut: 10
+        neutralWhiteLevel: 5.3
         neutralWhiteClip: 10
       basic:
-        postExposure: 1
-        temperature: 24
-        tint: 0
-        hueShift: 0
-        saturation: 1.4
-        contrast: 1
+        postExposure: 0.62
+        temperature: -0.4
+        tint: -1.6
+        hueShift: -7
+        saturation: 1.22
+        contrast: 1.164
       channelMixer:
         red: {x: 1, y: 0, z: 0}
         green: {x: 0, y: 1, z: 0}
         blue: {x: 0, y: 0, z: 1}
         currentEditingChannel: 0
       colorWheels:
-        mode: 1
+        mode: 0
         log:
           slope: {r: 1, g: 1, b: 1, a: 0}
           power: {r: 1, g: 1, b: 1, a: 0}
           offset: {r: 1, g: 1, b: 1, a: 0}
         linear:
-          lift: {r: 1, g: 0.9222042, b: 0.85380137, a: 0}
-          gamma: {r: 1, g: 0.72093314, b: 0.9828371, a: 0}
-          gain: {r: 1, g: 0.87453854, b: 0.84142524, a: 0}
+          lift: {r: 1, g: 0.99697423, b: 0.9735781, a: 0}
+          gamma: {r: 1, g: 1, b: 1, a: 0}
+          gain: {r: 1, g: 1, b: 1, a: 0}
       curves:
         master:
           curve:
@@ -175,12 +175,6 @@ MonoBehaviour:
               outSlope: 1
               tangentMode: 0
             - serializedVersion: 2
-              time: 0.36688313
-              value: 0.36688313
-              inSlope: 1
-              outSlope: 1
-              tangentMode: 0
-            - serializedVersion: 2
               time: 1
               value: 1
               inSlope: 1
@@ -188,7 +182,7 @@ MonoBehaviour:
               tangentMode: 0
             m_PreInfinity: 2
             m_PostInfinity: 2
-            m_RotationOrder: 0
+            m_RotationOrder: 4
           m_Loop: 0
           m_ZeroValue: 0
           m_Range: 1
@@ -278,7 +272,7 @@ MonoBehaviour:
           m_Range: 1
         e_CurrentEditingCurve: 0
         e_CurveY: 1
-        e_CurveR: 1
+        e_CurveR: 0
         e_CurveG: 0
         e_CurveB: 0
   userLut:
