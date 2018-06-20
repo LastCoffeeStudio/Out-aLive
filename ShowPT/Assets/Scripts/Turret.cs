@@ -40,7 +40,14 @@ public class Turret : Enemy
         shootTimerTurret += Time.deltaTime;
         float distWithPlayer = Vector3.Distance(player.transform.position, transform.position);
 
-        if (shootTimerTurret >= timeNoShooting && distWithPlayer < minDistToAtack && !electrified)
+        if (distWithPlayer > minDistToAtack)
+        {
+            shootTimerTurret = 0.0f;
+            laserEffect.SetActive(false);
+            particlesInited = false;
+        }
+
+        else if (shootTimerTurret >= timeNoShooting && !electrified)
         {
             laserEffect.SetActive(true);
             if (!particlesInited)
