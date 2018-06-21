@@ -42,6 +42,9 @@ public class Enemy : MonoBehaviour {
     public float enemyHealth = 10f;
     protected EnemyType enemyType = EnemyType.NONE;
 
+	[SerializeField]
+	GameObject deathAnimation;
+
     [Header("Status parameters")]
     public float paralyzedTotalTime;
     protected float paralyzedActualTime;
@@ -66,6 +69,10 @@ public class Enemy : MonoBehaviour {
     {
         if (enemyHealth <= 0f)
         {
+			if (deathAnimation) 
+			{
+				Instantiate (deathAnimation, transform.position, Quaternion.identity);
+			}
             Destroy(gameObject);
         }
     }
