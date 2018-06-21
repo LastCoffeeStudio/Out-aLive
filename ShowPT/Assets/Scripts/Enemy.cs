@@ -69,13 +69,17 @@ public class Enemy : MonoBehaviour {
     {
         if (enemyHealth <= 0f)
         {
-			if (deathAnimation != null) 
-			{
-				Instantiate (deathAnimation, transform.position, Quaternion.identity);
-			}
             Destroy(gameObject);
         }
     }
+
+	protected virtual void generateDeathEffect()
+	{
+		if (deathAnimation != null) 
+		{
+			GameObject.Instantiate (deathAnimation, transform.position, Quaternion.identity);
+		}
+	}
 
     public virtual void setStatusParalyzed() {}
 
