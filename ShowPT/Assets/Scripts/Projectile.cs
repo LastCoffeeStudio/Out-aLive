@@ -25,6 +25,9 @@ public class Projectile : MonoBehaviour
 	private Rigidbody myRigidbody;
 	private Collider myCollider;
 
+	[SerializeField]
+	GameObject hitEffect;
+
 	//initialize values 
 	void Start() 
 	{ 
@@ -84,19 +87,28 @@ public class Projectile : MonoBehaviour
         }
         if (col.gameObject.layer == LayerMask.NameToLayer ("Wall")) 
 		{
-			Destroy (gameObject);
+			destroyMe ();
 		}
         if (col.tag == "Enemy" || col.tag == "Agent" || col.tag == "Snitch")
         {
             col.gameObject.GetComponent<Enemy>().getHit(damage);
-            Destroy(gameObject);
+			destroyMe ();
         }
 		if (col.gameObject.layer == LayerMask.NameToLayer("PhysicsObjects")) 
 		{
 			Vector4 dataToPass = new Vector4(transform.position.x, transform.position.y, transform.position.z, damage);
 
 			col.gameObject.SendMessage ("shotBehavior", dataToPass);
-			Destroy(gameObject);
+			destroyMe ();
 		}
     }
+
+	void destroyMe()
+	{
+		if (hitEffect) 
+		{
+			Instantiate (hitEffect, transform.position, Quaternion.identity);
+		}
+		Destroy (gameObject);
+	}
 }
