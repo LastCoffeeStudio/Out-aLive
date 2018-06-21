@@ -69,7 +69,7 @@ public class Enemy : MonoBehaviour {
     {
         if (enemyHealth <= 0f)
         {
-			if (deathAnimation) 
+			if (deathAnimation != null) 
 			{
 				Instantiate (deathAnimation, transform.position, Quaternion.identity);
 			}
