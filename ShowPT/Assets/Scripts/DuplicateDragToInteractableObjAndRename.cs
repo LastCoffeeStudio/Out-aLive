@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WCIterable : InteractableObject {
-
+public class DragToInteractableObjectAndRename : InteractableObject
+{
     protected override void executeAction()
     {
         Debug.Log("Executing custom action");
     }
 }
+

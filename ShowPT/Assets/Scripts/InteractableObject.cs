@@ -8,26 +8,19 @@ public class InteractableObject : MonoBehaviour {
     public KeyCode keycodeToInteract;
     public string action;
     public string nameObject;
-
-    private bool active;
     
 	void Start() {
-        active = false;
         InteractableObjectsManager.addInteractableObject(name, keycodeToInteract.ToString(), action, nameObject);
+        enabled = false;
 	}
 	
 	void Update()
     {
-        if (active && Input.GetKeyDown(keycodeToInteract))
+        if (Input.GetKeyDown(keycodeToInteract))
         {
             executeAction();
         }
     }
 
     protected virtual void executeAction() {}
-
-    public void setActive(bool active)
-    {
-        this.active = active;
-    }
 }

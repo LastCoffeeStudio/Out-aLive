@@ -140,7 +140,7 @@ public class PlayerMovment : MonoBehaviour
             if (InteractableObjectsManager.instance.ObjectActive == null ||
                 !InteractableObjectsManager.equalsObjectActive(interactableObject))
             {
-                interactableObject.setActive(true);
+                interactableObject.enabled = true;
                 InteractableObjectsManager.instance.ObjectActive = interactableObject;
                 InteractableObjectsManager.showInteractableObject(hitInfo.collider.gameObject.transform.parent.name);
             }
@@ -148,7 +148,7 @@ public class PlayerMovment : MonoBehaviour
         {
             if (InteractableObjectsManager.instance.ObjectActive != null)
             {
-                InteractableObjectsManager.instance.ObjectActive.setActive(false);
+                InteractableObjectsManager.instance.ObjectActive.enabled = false;
                 InteractableObjectsManager.instance.ObjectActive = null;
                 InteractableObjectsManager.hideInteractableObject();
             }
