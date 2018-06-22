@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -121,7 +122,36 @@ public class PlayerMovment : MonoBehaviour
         noiseValue = 0f;
         if (CtrlPause.gamePaused == false)
         {
+            checkInteract();
             checkInput();
+        }
+    }
+
+    private void checkInteract()
+    {
+        RaycastHit hitInfo;
+
+        int layer_mask = LayerMask.GetMask("InteractableObjects");
+
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hitInfo, interactMaxDistance, layer_mask))
+        {
+            InteractableObject interactableObject = hitInfo.collider.gameObject.GetComponentInParent<InteractableObject>();
+
+            if (InteractableObjectsManager.instance.ObjectActive == null ||
+                !InteractableObjectsManager.equalsObjectActive(interactableObject))
+            {
+                interactableObject.setActive(true);
+                InteractableObjectsManager.instance.ObjectActive = interactableObject;
+                InteractableObjectsManager.showInteractableObject(hitInfo.collider.gameObject.transform.parent.name);
+            }
+        } else
+        {
+            if (InteractableObjectsManager.instance.ObjectActive != null)
+            {
+                InteractableObjectsManager.instance.ObjectActive.setActive(false);
+                InteractableObjectsManager.instance.ObjectActive = null;
+                InteractableObjectsManager.hideInteractableObject();
+            }
         }
     }
 
@@ -390,6 +420,8 @@ public class PlayerMovment : MonoBehaviour
 
         return displacement;
     }
+
+
 
     private void interact()
     {
