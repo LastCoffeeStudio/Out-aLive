@@ -200,7 +200,6 @@ public class Weapon : MonoBehaviour
     {
         reloading = false;
         animator.SetBool("reloading", false);
-        Debug.Log("ends reload");
 
         if (type == Inventory.WEAPON_TYPE.SHOTGUN)
         {

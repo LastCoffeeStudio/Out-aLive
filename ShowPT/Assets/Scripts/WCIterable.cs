@@ -9,9 +9,10 @@ public class WCIterable : InteractableObject {
 
     private ulong idClip = 0;
 
-    protected override void init()
+    protected override void Start()
     {
         ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
+        base.Start();
     }
 
     protected override void executeAction()

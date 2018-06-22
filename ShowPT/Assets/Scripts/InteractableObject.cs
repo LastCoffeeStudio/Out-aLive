@@ -8,10 +8,9 @@ public class InteractableObject : MonoBehaviour {
     public KeyCode keycodeToInteract;
     public string action;
     public string nameObject;
-    
-	void Start() {
+
+    protected virtual void Start() {
         InteractableObjectsManager.addInteractableObject(name, keycodeToInteract.ToString(), action, nameObject);
-        init();
         enabled = false;
 	}
 	
