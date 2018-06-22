@@ -11,6 +11,7 @@ public class InteractableObject : MonoBehaviour {
     
 	void Start() {
         InteractableObjectsManager.addInteractableObject(name, keycodeToInteract.ToString(), action, nameObject);
+        init();
         enabled = false;
 	}
 	
@@ -21,6 +22,8 @@ public class InteractableObject : MonoBehaviour {
             executeAction();
         }
     }
+
+    protected virtual void init() { }
 
     protected virtual void executeAction() {}
 }

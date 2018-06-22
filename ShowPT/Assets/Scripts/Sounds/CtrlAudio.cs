@@ -221,6 +221,21 @@ public class CtrlAudio : MonoBehaviour
 
         return 0;
     }
+
+    public void stopSound(ulong id)
+    {
+        AudioPoolItem activeSound;
+
+        if (activePool.TryGetValue(id, out activeSound))
+        {
+            activeSound.audioSource.Stop();
+            activeSound.audioSource.clip = null;
+            activeSound.gameObj.SetActive(false);
+            activePool.Remove(id);
+            activeSound.isPlaying = false;
+        }
+    }
+
     public IEnumerator playOneSound(string track, AudioClip clip, Vector3 position, float volume, float spatialBlend, float delay, int priority = 128)
     {
         yield return new WaitForSeconds(delay);
