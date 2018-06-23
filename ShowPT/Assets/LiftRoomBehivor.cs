@@ -55,6 +55,7 @@ public class LiftRoomBehivor : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        enabled = true;
         for (int i = 0; i < transform.childCount; i++)
         {
             switch (transform.GetChild(i).name)
@@ -70,20 +71,23 @@ public class LiftRoomBehivor : MonoBehaviour
                     break;
             }
         }
-
+       
         //initialReflectionLight = RenderSettings.reflectionIntensity;
         initPosition = transform.position;
         initTimeClimibingSec = timeClimbingSec;
         actualState = StateLift.Closed;
-        StartCoroutine(delayForOpen());
 		positionLiftInDesert = new Vector3 (liftPlatform.position.x, liftPlatform.position.y + altitudeDifference, liftPlatform.position.z);
+        
     }
+    
 
-    IEnumerator delayForOpen()
+    public void openLift()
     {
-        yield return new WaitForSeconds(timeForOpen);
-        actualState = StateLift.OpeningBelow;
-        StartCoroutine(openDoorsSmooth());
+        if (actualState == StateLift.Closed)
+        {
+            actualState = StateLift.OpeningBelow;
+            StartCoroutine(openDoorsSmooth());
+        }
     }
 
     private bool varPROVISIONAL = true;
@@ -271,6 +275,7 @@ public class LiftRoomBehivor : MonoBehaviour
         timeClimbingSec = initTimeClimibingSec;
         transform.position = initPosition;
         actualState = StateLift.Closed;
+        enabled = false;
 
     }
 }

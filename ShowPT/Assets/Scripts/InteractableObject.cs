@@ -13,8 +13,8 @@ public class InteractableObject : MonoBehaviour {
         InteractableObjectsManager.addInteractableObject(name, keycodeToInteract.ToString(), action, nameObject);
         enabled = false;
 	}
-	
-	void Update()
+
+    protected virtual void Update()
     {
         if (Input.GetKeyDown(keycodeToInteract))
         {
