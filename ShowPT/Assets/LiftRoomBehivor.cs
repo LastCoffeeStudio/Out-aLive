@@ -21,6 +21,9 @@ public class LiftRoomBehivor : MonoBehaviour
     public float speedLeave;
     public float reflectionLift;
 
+    [Header("Audio Clips")]
+    public AudioClip openDoorAudioClip;
+
     private StateLift actualState;
     private GameObject player;
     private GameObject doorPos;
@@ -28,7 +31,7 @@ public class LiftRoomBehivor : MonoBehaviour
     private GameObject lightSound;
 	private Vector3 positionLiftInDesert;
 	private float altitudeDifference = 0.5f;
-    
+    private CtrlAudio ctrlAudio;
 
     //For know who collider is touching
     private int contCollider = 0;
@@ -77,7 +80,7 @@ public class LiftRoomBehivor : MonoBehaviour
         initTimeClimibingSec = timeClimbingSec;
         actualState = StateLift.Closed;
 		positionLiftInDesert = new Vector3 (liftPlatform.position.x, liftPlatform.position.y + altitudeDifference, liftPlatform.position.z);
-        
+        ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
     }
     
 
@@ -108,6 +111,7 @@ public class LiftRoomBehivor : MonoBehaviour
 
     IEnumerator openDoorsSmooth()
     {
+        ctrlAudio.playOneSound("Scene", openDoorAudioClip, transform.position, 1f, 1f, 100);
         float time = 0f;
         Vector3 startRotation = new Vector3(0f, 0f, 0f);
         Vector3 endRotation = new Vector3(0f, 0f, 30f);
