@@ -7,5 +7,6 @@ public class InteractuableLift : InteractableObject
     protected override void executeAction()
     {
         GetComponent<LiftRoomBehivor>().openLift();
+        setState(InteractableObjectState.DISABLE);
     }
 }

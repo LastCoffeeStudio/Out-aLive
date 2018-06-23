@@ -137,8 +137,8 @@ public class PlayerMovment : MonoBehaviour
         {
             InteractableObject interactableObject = hitInfo.collider.gameObject.GetComponentInParent<InteractableObject>();
 
-            if (InteractableObjectsManager.instance.ObjectActive == null ||
-                !InteractableObjectsManager.equalsObjectActive(interactableObject))
+            if ((InteractableObjectsManager.instance.ObjectActive == null ||
+                !InteractableObjectsManager.equalsObjectActive(interactableObject)) && !interactableObject.getState().Equals(InteractableObject.InteractableObjectState.DISABLE))
             {
                 interactableObject.enabled = true;
                 InteractableObjectsManager.instance.ObjectActive = interactableObject;

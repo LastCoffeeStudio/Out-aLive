@@ -9,10 +9,20 @@ public class InteractableObject : MonoBehaviour {
     public string action;
     public string nameObject;
 
+    public enum InteractableObjectState
+    {
+        PREPARED,
+        USING,
+        DISABLE
+    }
+
+    InteractableObjectState objectState;
+
     protected virtual void Start() {
         InteractableObjectsManager.addInteractableObject(name, keycodeToInteract.ToString(), action, nameObject);
+        objectState = InteractableObjectState.PREPARED;
         enabled = false;
-	}
+    }
 
     protected virtual void Update()
     {
@@ -25,4 +35,14 @@ public class InteractableObject : MonoBehaviour {
     protected virtual void init() { }
 
     protected virtual void executeAction() {}
+
+    public void setState(InteractableObjectState interactableObjectState)
+    {
+        objectState = interactableObjectState;
+    }
+
+    public InteractableObjectState getState()
+    {
+        return objectState;
+    }
 }
