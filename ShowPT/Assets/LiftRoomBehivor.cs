@@ -25,7 +25,8 @@ public class LiftRoomBehivor : MonoBehaviour
     public AudioClip openDoorAudioClip;
     public AudioClip closeDoorAudioClip;
     public AudioClip soundBuzzAudioClip;
-    
+    public AudioClip climbingAudioClip;
+
     private StateLift actualState;
     private GameObject player;
     private GameObject doorPos;
@@ -104,10 +105,11 @@ public class LiftRoomBehivor : MonoBehaviour
         {
             if (varPROVISIONAL)
             {
+                ctrlAudio.playOneSound("Scene", climbingAudioClip, transform.position, 0.7f, 0f, 100);
                 varPROVISIONAL = false;
                 lightSound.SetActive(true);
                 initialPositionLightSound = lightSound.transform.localPosition;
-                varidSoundBuzz = ctrlAudio.playOneSound("Scene", soundBuzzAudioClip, lightSound.transform.position, 0.3f, 1f, 100, lightSound);
+                varidSoundBuzz = ctrlAudio.playOneSound("Scene", soundBuzzAudioClip, lightSound.transform.position, 0.6f, 1f, 100, lightSound);
             }
             climbing();
         }
