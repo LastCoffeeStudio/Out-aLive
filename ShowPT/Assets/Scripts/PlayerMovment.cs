@@ -435,9 +435,6 @@ public class PlayerMovment : MonoBehaviour
                     gameUI.enableResourceMachineUI();
                     buying = true;
                     break;
-                case "GateTerminal":
-                    hitInfo.collider.gameObject.GetComponent<GateTerminal>().Activate();
-                    break;
             }
         }
     }
