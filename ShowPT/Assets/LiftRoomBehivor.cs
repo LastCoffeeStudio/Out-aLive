@@ -24,7 +24,8 @@ public class LiftRoomBehivor : MonoBehaviour
     [Header("Audio Clips")]
     public AudioClip openDoorAudioClip;
     public AudioClip closeDoorAudioClip;
-
+    public AudioClip soundBuzzAudioClip;
+    
     private StateLift actualState;
     private GameObject player;
     private GameObject doorPos;
@@ -95,6 +96,7 @@ public class LiftRoomBehivor : MonoBehaviour
     }
 
     private bool varPROVISIONAL = true;
+    private ulong varidSoundBuzz = 0;
     // Update is called once per frame
     void Update()
     {
@@ -105,6 +107,7 @@ public class LiftRoomBehivor : MonoBehaviour
                 varPROVISIONAL = false;
                 lightSound.SetActive(true);
                 initialPositionLightSound = lightSound.transform.localPosition;
+                varidSoundBuzz = ctrlAudio.playOneSound("Scene", soundBuzzAudioClip, lightSound.transform.position, 0.3f, 1f, 100, lightSound);
             }
             climbing();
         }
@@ -158,7 +161,12 @@ public class LiftRoomBehivor : MonoBehaviour
         StartCoroutine(closeDoorsSmooth());
     }
 
-    
+    IEnumerator delayForOpen()
+    {
+        yield return new WaitForSeconds(timeForOpen);
+        StartCoroutine(openDoorsSmooth());
+    }
+
     IEnumerator closeDoorsSmooth()
     {
         ctrlAudio.playOneSound("Scene", closeDoorAudioClip, transform.position, 1f, 1f, 100);
@@ -227,13 +235,14 @@ public class LiftRoomBehivor : MonoBehaviour
         }
         else
         {
+            ctrlAudio.stopSound(varidSoundBuzz);
             CtrlVibration.stopVibration();
             lightSound.SetActive(false);
             transform.position = positionLiftInDesert;
             player.transform.parent = null;
             actualState = StateLift.OpeningAvobe;
             gameObject.GetComponent<MeshCollider>().isTrigger = true;
-            StartCoroutine(openDoorsSmooth());
+            StartCoroutine(delayForOpen());
         }
     }
 

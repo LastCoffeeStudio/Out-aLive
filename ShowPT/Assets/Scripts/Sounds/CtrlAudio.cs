@@ -135,13 +135,12 @@ public class CtrlAudio : MonoBehaviour
 
         audioMixer.SetFloat(track, volume);
     }
-
+    
     protected ulong configPoolObject(int poolIndex, string track, AudioClip clip, Vector3 position, float volume, float spatialBlend, float importance)
     {
         if (poolIndex >= 0 && poolIndex < pool.Count)
         {
             AudioPoolItem poolItem = pool[poolIndex];
-
             nextId++;
             
             AudioSource source = poolItem.audioSource;
@@ -177,6 +176,7 @@ public class CtrlAudio : MonoBehaviour
         
         if (activePool.TryGetValue(id, out activeSound))
         {
+            activeSound.transf.parent = transform;
             activeSound.audioSource.Stop();
             activeSound.audioSource.clip = null;
             activeSound.gameObj.SetActive(false);
@@ -185,7 +185,7 @@ public class CtrlAudio : MonoBehaviour
         }
     }
 
-    public ulong playOneSound(string track, AudioClip clip, Vector3 position, float volume, float spatialBlend, int priority = 128)
+    public ulong playOneSound(string track, AudioClip clip, Vector3 position, float volume, float spatialBlend, int priority = 128, GameObject parentObject = null)
     {
         if (tracks.ContainsKey(track) && clip != null && volume.Equals(0.0f) == false)
         {
@@ -201,6 +201,10 @@ public class CtrlAudio : MonoBehaviour
 
                 if (!poolItem.isPlaying)
                 {
+                    if (parentObject != null)
+                    {
+                        pool[i].gameObj.transform.parent = parentObject.transform;
+                    }
                     return configPoolObject(i, track, clip, position, volume, spatialBlend, importance);
                 }
                 else if (poolItem.importance > leastImportanceValue)
@@ -229,6 +233,7 @@ public class CtrlAudio : MonoBehaviour
         if (activePool.TryGetValue(id, out activeSound))
         {
             activeSound.audioSource.Stop();
+            activeSound.transf.parent = transform;
             activeSound.audioSource.clip = null;
             activeSound.gameObj.SetActive(false);
             activePool.Remove(id);
