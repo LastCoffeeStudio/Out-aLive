@@ -23,6 +23,7 @@ public class LiftRoomBehivor : MonoBehaviour
 
     [Header("Audio Clips")]
     public AudioClip openDoorAudioClip;
+    public AudioClip closeDoorAudioClip;
 
     private StateLift actualState;
     private GameObject player;
@@ -160,6 +161,7 @@ public class LiftRoomBehivor : MonoBehaviour
     
     IEnumerator closeDoorsSmooth()
     {
+        ctrlAudio.playOneSound("Scene", closeDoorAudioClip, transform.position, 1f, 1f, 100);
         float time = 0f;
         Vector3 startRotation = new Vector3(0f, 0f, 30f);
         Vector3 endRotation = new Vector3(0f, 0f, 0f);
