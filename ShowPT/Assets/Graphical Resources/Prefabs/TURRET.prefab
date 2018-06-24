@@ -619,6 +619,7 @@ MonoBehaviour:
   timeBetweenShots: 0.1
   shotPoint: {fileID: 4764462254280930}
   enemyHealth: 6
+  deathAnimation: {fileID: 0}
   paralyzedTotalTime: 3
   laserEffect: {fileID: 1489644668993388}
   lineRenderer: {fileID: 120269702870475804}
@@ -627,7 +628,7 @@ MonoBehaviour:
   timeShooting: 3
   timeNoShooting: 1
   shootDamage: 1
-  minDistToAtack: 10
+  minDistToAtack: 70
 --- !u!120 &120269702870475804
 LineRenderer:
   m_ObjectHideFlags: 1
