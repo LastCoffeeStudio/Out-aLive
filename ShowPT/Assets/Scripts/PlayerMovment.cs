@@ -238,12 +238,20 @@ public class PlayerMovment : MonoBehaviour
             crouched = false;
         }
 
-        if (Input.GetButtonDown("ButtonY") || Input.GetKeyDown(KeyCode.O))
+        if (Input.GetButtonDown("ButtonY") || Input.GetKeyDown(KeyCode.E))
         {
-            interact();
+			if (buying == false) 
+			{
+				interact ();
+			} 
+			else 
+			{
+				gameUI.disableResourceMachineUI ();
+				buying = false;
+			}
         }
 
-        if (Input.GetButtonDown("ButtonB") || Input.GetKeyDown(KeyCode.K))
+        if (Input.GetButtonDown("ButtonB"))
         {
             if (buying)
             {
