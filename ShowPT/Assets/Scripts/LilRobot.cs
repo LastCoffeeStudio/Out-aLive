@@ -52,7 +52,7 @@ public class LilRobot : Enemy
     void Start()
     {
         ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
-        hitAudio = ctrAudio.hit;
+        //hitAudio = ctrAudio.hit;
         target = GameObject.FindGameObjectWithTag("Player").transform;
         obstacleDetector = transform.Find("ObstacleDetector");
         targetHead = target.Find("Head");

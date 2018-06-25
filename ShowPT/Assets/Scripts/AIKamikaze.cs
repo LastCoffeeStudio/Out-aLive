@@ -29,12 +29,9 @@ public class AIKamikaze : MonoBehaviour {
 	[SerializeField]
 	float explodingDistance = 25.0f;
 
-	//[SerializeField]
-	//float alertTime = 6.0f;
-
-	//[SerializeField]
-	//float alertRotationTime = 1.0f;
-
+	CtrlAudio audioCtr;
+	[SerializeField]
+	AudioClip detectSound;
 	
 	public float viewAngle;
 	private GameObject player;
@@ -82,7 +79,7 @@ public class AIKamikaze : MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag("Player");
 	    playerMovment = player.GetComponent<PlayerMovment>();
 	    animKamikaze = gameObject.GetComponent<Animator>();
-
+		audioCtr = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
 	}
 
 	// Update is called once per frame
@@ -95,6 +92,7 @@ public class AIKamikaze : MonoBehaviour {
             case state.WAITING:
                 if (Vector3.Distance(transform.position, player.transform.position) < viewDistance)
                 {
+					audioCtr.playOneSound("Enemies", detectSound, transform.position, 1.0f, 0.0f, 128);
                     NPCstate = state.I_SEE_YOU;
                 }
                 break;

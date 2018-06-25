@@ -44,6 +44,8 @@ public class Enemy : MonoBehaviour {
 
 	[SerializeField]
 	GameObject deathAnimation;
+	[SerializeField]
+	AudioClip deathAudio;
 
     [Header("Status parameters")]
     public float paralyzedTotalTime;
@@ -75,6 +77,10 @@ public class Enemy : MonoBehaviour {
 
 	protected virtual void generateDeathEffect()
 	{
+		if (ctrAudio != null) 
+		{
+			ctrAudio.playOneSound("Enemies", deathAudio, transform.position, 1.0f, 0.0f, 128);
+		}
 		if (deathAnimation != null) 
 		{
 			GameObject.Instantiate (deathAnimation, transform.position, Quaternion.identity);

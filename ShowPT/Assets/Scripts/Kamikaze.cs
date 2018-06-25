@@ -28,7 +28,7 @@ public class Kamikaze : Enemy {
     public override void getHit(int damage)
     {
         ctrAudio.playOneSound("Enemies", hitAudio, transform.position, 1.0f, 0.0f, 128);
-        hitAudio = ctrAudio.hit;
+        //hitAudio = ctrAudio.hit;
         enemyHealth -= damage;
         Debug.Log(enemyHealth);
         if (enemyHealth <= 0)
