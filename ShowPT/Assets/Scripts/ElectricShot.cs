@@ -9,18 +9,8 @@ public class ElectricShot : MonoBehaviour {
 
     private void Start()
     {
-        
+        Destroy(gameObject, lifeTime);
     }
-
-    // Update is called once per frame
-    void Update ()
-    {
-        lifeTime -= Time.deltaTime;
-        if (lifeTime < 0f)
-        {
-            Destroy(gameObject);
-        }
-	}
 
     private void OnTriggerEnter(Collider other)
     {
