@@ -45,6 +45,11 @@ public class LiftRoomBehivor : MonoBehaviour
     private float initialReflectionLight;
     private Vector3 initialPositionLightSound;
 
+	[SerializeField]
+	AudioSource backgroundMusic;
+	[SerializeField]
+	AudioClip levelMusic;
+
     enum StateLift
     {
         Closed,
@@ -228,6 +233,7 @@ public class LiftRoomBehivor : MonoBehaviour
 
     void climbing()
     {
+		backgroundMusic.volume -= 0.15f * Time.deltaTime;
         if (timeClimbingSec > 0)
         {
             CtrlVibration.playVibration(0f, 5f);
@@ -294,5 +300,8 @@ public class LiftRoomBehivor : MonoBehaviour
         actualState = StateLift.Closed;
         enabled = false;
 
+		backgroundMusic.volume = 1f;
+		backgroundMusic.clip = levelMusic;
+		backgroundMusic.Play ();
     }
 }
