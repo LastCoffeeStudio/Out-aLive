@@ -180,7 +180,7 @@ public class LilRobot : Enemy
 
     public override void getHit(int damage)
     {
-        Debug.Log(damage);
+        //Debug.Log(damage);
         ctrAudio.playOneSound("Enemies", hitAudio, transform.position, 1.0f, 0.0f, 128);
         enemyHealth -= damage;
         rb.constraints = RigidbodyConstraints.None;

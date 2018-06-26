@@ -101,7 +101,7 @@ public class Inventory : MonoBehaviour
                 }
                 i %= weaponsCarrying.Length;
 
-                Debug.Log(i + " " + weaponsCarrying[i]);
+                //Debug.Log(i + " " + weaponsCarrying[i]);
                 if (weaponsCarrying[i])
                 {
                     if (lastWeapon != i)

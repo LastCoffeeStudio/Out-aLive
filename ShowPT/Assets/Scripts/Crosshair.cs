@@ -104,7 +104,7 @@ public class Crosshair : MonoBehaviour
     public Ray getRayCrosshairArea()
     {
 
-        Debug.Log(playerCamera);
+        //Debug.Log(playerCamera);
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
         Vector2 centerPoint = playerCamera.ViewportToScreenPoint(new Vector3(0.5f, 0.5f, 0f));
         Vector2 scaledSize = Vector2.Scale(lines[0].rectTransform.rect.size, lines[0].rectTransform.lossyScale);

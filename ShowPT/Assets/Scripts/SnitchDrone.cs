@@ -256,7 +256,7 @@ public class SnitchDrone : Enemy
     {
         ctrAudio.playOneSound("Enemies", hitAudio, transform.position, 1.0f, 0.0f, 128);
         enemyHealth -= damage;
-        Debug.Log(enemyHealth);
+        //Debug.Log(enemyHealth);
         checkHealth();
     }
 

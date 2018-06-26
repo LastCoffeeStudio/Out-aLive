@@ -97,7 +97,6 @@ public class Barrel : MonoBehaviour {
 		int i = 0;
 		while (i < hitColliders.Length)
 		{
-			Debug.Log (hitColliders [i].name);
 			Vector4 dataToPass = new Vector4(transform.position.x, transform.position.y, transform.position.z, explosionDamage);
 			hitColliders[i].SendMessage ("shotBehavior", dataToPass);
 			i++;

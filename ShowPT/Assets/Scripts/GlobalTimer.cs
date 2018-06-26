@@ -66,7 +66,7 @@ public class GlobalTimer : MonoBehaviour
     public void updateSnitches()
     {
         --snitchesLeft;
-        Debug.Log(snitchesLeft);
+        //Debug.Log(snitchesLeft);
         if (snitchesLeft <= 0)
         {
             ctrlGame.setGameState(CtrlGameState.gameStates.WIN);
