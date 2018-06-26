@@ -11,6 +11,9 @@ public class PlayerHealth : MonoBehaviour {
 
     public HudController hudController;
 
+	[SerializeField]
+	DamageFlash damageOverlay;
+
     // Use this for initialization
     void Start ()
     {
@@ -33,6 +36,11 @@ public class PlayerHealth : MonoBehaviour {
     {
         health += value;
         hudController.ChangeHealthBar(health);
+
+		if (value < 0) 
+		{
+			damageOverlay.damageFlash ();
+		}
 
         if (health > maxHealth)
         {
