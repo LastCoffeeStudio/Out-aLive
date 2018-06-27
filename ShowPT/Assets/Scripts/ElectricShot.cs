@@ -14,7 +14,7 @@ public class ElectricShot : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Hey");
+        //Debug.Log("Hey");
         if (other.tag == "Enemy" || other.tag == "Agent" || other.tag == "Snitch")
         {
             other.gameObject.GetComponent<Enemy>().getHit(damage);

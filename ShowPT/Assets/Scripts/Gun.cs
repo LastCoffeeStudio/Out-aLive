@@ -24,10 +24,7 @@ public class Gun : Weapon
 
         if (CtrlPause.gamePaused == false)
         {
-            if (!playerState.buying)
-            {
-                checkInputAnimations();
-            }
+            checkInputAnimations();
             updateCharge();
         }
     }

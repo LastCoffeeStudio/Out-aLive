@@ -33,7 +33,7 @@ MonoBehaviour:
     m_Settings:
       method: 0
       fxaaSettings:
-        preset: 0
+        preset: 2
       taaSettings:
         jitterSpread: 1
         sharpen: 1.85
@@ -42,7 +42,7 @@ MonoBehaviour:
   ambientOcclusion:
     m_Enabled: 1
     m_Settings:
-      intensity: 1.02
+      intensity: 0.45
       radius: 1.23
       sampleCount: 10
       downsampling: 1
@@ -120,12 +120,12 @@ MonoBehaviour:
         neutralWhiteLevel: 5.3
         neutralWhiteClip: 10
       basic:
-        postExposure: 0.62
-        temperature: 10
+        postExposure: 0.97
+        temperature: 23.3
         tint: -1.6
         hueShift: -7
-        saturation: 1.38
-        contrast: 1.15
+        saturation: 1.473
+        contrast: 1.063
       channelMixer:
         red: {x: 1, y: 0, z: 0}
         green: {x: 0, y: 1, z: 0}
@@ -293,7 +293,7 @@ MonoBehaviour:
       size: 0.5
       luminanceContribution: 0.097
   vignette:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
       mode: 0
       color: {r: 0, g: 0.39609516, b: 0.78676474, a: 1}

@@ -33,6 +33,7 @@ public class Crosshair : MonoBehaviour
     private Vector3[] initialSpreads;
     private Camera playerCamera;
     private PlayerMovment playerStats;
+    [SerializeField]
     private GameObject circleUIWithoutWeapon;
 
     private void Start()
@@ -41,7 +42,7 @@ public class Crosshair : MonoBehaviour
         playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovment>();
         circleUIWithoutWeapon = GameObject.FindGameObjectWithTag("CircleWithoutWeapon");
 
-        circleUIWithoutWeapon.SetActive(false);
+        //circleUIWithoutWeapon.SetActive(false);
 
         initialSpreads = new Vector3[lines.Length];
         for (int i = 0; i < lines.Length; ++i)
@@ -104,7 +105,7 @@ public class Crosshair : MonoBehaviour
     public Ray getRayCrosshairArea()
     {
 
-        Debug.Log(playerCamera);
+        //Debug.Log(playerCamera);
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
         Vector2 centerPoint = playerCamera.ViewportToScreenPoint(new Vector3(0.5f, 0.5f, 0f));
         Vector2 scaledSize = Vector2.Scale(lines[0].rectTransform.rect.size, lines[0].rectTransform.lossyScale);

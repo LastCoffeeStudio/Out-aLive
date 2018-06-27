@@ -24,7 +24,6 @@ public class Turret : Enemy
     {
         ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
         player = GameObject.FindGameObjectWithTag("Player");
-        hitAudio = ctrAudio.hit;
         electrified = false;
     }
 
@@ -103,7 +102,7 @@ public class Turret : Enemy
     {
         if (status == Status.NONE && !electrified)
         {
-            Debug.Log("a");
+            //Debug.Log("a");
             shootTimerTurret = 0.0f;
             laserEffect.SetActive(false);
             particlesInited = false;
@@ -119,7 +118,7 @@ public class Turret : Enemy
             paralyzedActualTime -= Time.deltaTime;
             if (paralyzedActualTime <= 0f)
             {
-                Debug.Log("b");
+                //Debug.Log("b");
                 status = Status.NONE;
                 electrified = false;
                 paralyzedActualTime = paralyzedTotalTime;

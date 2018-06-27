@@ -76,7 +76,7 @@ public class Waz : Enemy
     {
 		wazAnimator = gameObject.GetComponent<Animator> ();
         ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
-        hitAudio = ctrAudio.hit;
+
         navMeshAgent = this.GetComponent<NavMeshAgent>();
 
         if (navMeshAgent == null)
@@ -171,7 +171,7 @@ public class Waz : Enemy
         }
         ctrAudio.playOneSound("Enemies", hitAudio, transform.position, 1.0f, 0.0f, 128);
         enemyHealth -= damage;
-        Debug.Log(enemyHealth);
+        //Debug.Log(enemyHealth);
         checkHealth();
     }
 

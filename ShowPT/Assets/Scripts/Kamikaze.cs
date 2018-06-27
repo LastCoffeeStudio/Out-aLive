@@ -30,7 +30,7 @@ public class Kamikaze : Enemy {
         ctrAudio.playOneSound("Enemies", hitAudio, transform.position, 1.0f, 0.0f, 128);
         //hitAudio = ctrAudio.hit;
         enemyHealth -= damage;
-        Debug.Log(enemyHealth);
+        //Debug.Log(enemyHealth);
         if (enemyHealth <= 0)
         {
             forceExplode();

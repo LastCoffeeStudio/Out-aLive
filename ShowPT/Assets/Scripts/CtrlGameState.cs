@@ -81,6 +81,7 @@ public class CtrlGameState : MonoBehaviour
                 loseTitle.SetActive(true);
                 //winState.text = "YOU DIED!";
                 //medal.enabled = false;
+				Time.timeScale = 0;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 break;

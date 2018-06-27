@@ -79,7 +79,6 @@ public class PlayerMovment : MonoBehaviour
 
     [SerializeField]
     private GameUI gameUI;
-    public bool buying;
 
     void Start()
     {
@@ -95,7 +94,6 @@ public class PlayerMovment : MonoBehaviour
         lineStyle.normal.background = tex;
 
         originalCameraPos = cam.transform.localPosition;
-        buying = false;
         ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
 
         state = playerState.IDLE;
@@ -236,28 +234,6 @@ public class PlayerMovment : MonoBehaviour
         {
             jumps = true;
             crouched = false;
-        }
-
-        if (Input.GetButtonDown("ButtonY") || Input.GetKeyDown(KeyCode.E))
-        {
-			if (buying == false) 
-			{
-				interact ();
-			} 
-			else 
-			{
-				gameUI.disableResourceMachineUI ();
-				buying = false;
-			}
-        }
-
-        if (Input.GetButtonDown("ButtonB"))
-        {
-            if (buying)
-            {
-                gameUI.disableResourceMachineUI();
-                buying = false;
-            }
         }
     }
 
@@ -427,23 +403,5 @@ public class PlayerMovment : MonoBehaviour
         }
 
         return displacement;
-    }
-
-
-
-    private void interact()
-    {
-        RaycastHit hitInfo;
-
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hitInfo, interactMaxDistance))
-        {
-            switch (hitInfo.transform.tag)
-            {
-                case "ResourceMachine":
-                    gameUI.enableResourceMachineUI();
-                    buying = true;
-                    break;
-            }
-        }
     }
 }

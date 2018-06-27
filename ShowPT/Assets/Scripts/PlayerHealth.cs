@@ -11,12 +11,33 @@ public class PlayerHealth : MonoBehaviour {
 
     public HudController hudController;
 
+	[SerializeField]
+	DamageFlash damageOverlay;
+
+	bool damageable = true;
+	[SerializeField]
+	float invincibilityTime = 0.5f;
+	float invincibilityCounter = 0f;
+
     // Use this for initialization
     void Start ()
     {
         health = maxHealth;
         ctrlGameState = ctrlGame.GetComponent<CtrlGameState>();
     }
+
+	void Update()
+	{
+		if (damageable == false) 
+		{
+			invincibilityCounter += Time.deltaTime;
+			if (invincibilityCounter >= invincibilityTime) 
+			{
+				invincibilityCounter = 0f;
+				damageable = true;
+			}
+		}
+	}
 
     //TODO: Final version projectiles are going to function with raycasts, so chances are the following method will completely change
     void OnTriggerEnter(Collider collider)
@@ -31,8 +52,17 @@ public class PlayerHealth : MonoBehaviour {
 
     public void ChangeHealth(int value)
     {
-        health += value;
-        hudController.ChangeHealthBar(health);
+		if (value > 0 || damageable == true)
+		{
+        	health += value;
+        	hudController.ChangeHealthBar(health);
+		}
+
+		if (value < 0) 
+		{
+			damageOverlay.damageFlash ();
+			damageable = false;
+		}
 
         if (health > maxHealth)
         {

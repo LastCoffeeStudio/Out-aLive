@@ -24,7 +24,7 @@ public class Main : MonoBehaviour
 
     void OnEnable()
     {
-        Debug.Log("OnEnable called");
+        //Debug.Log("OnEnable called");
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -62,6 +62,7 @@ public class Main : MonoBehaviour
 
     public void goMainMenu()
     {
+		Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 

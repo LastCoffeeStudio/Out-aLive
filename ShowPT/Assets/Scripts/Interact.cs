@@ -7,15 +7,8 @@ public class Interact : MonoBehaviour {
 
     public LayerMask interactables;
     public Camera head;
-
-    [SerializeField]
-    private Button actualButton;
     
-	// Use this for initialization
-	void Start ()
-    {
-		
-	}
+    private Button actualButton;
 	
 	// Update is called once per frame
 	void Update ()
@@ -26,7 +19,7 @@ public class Interact : MonoBehaviour {
 
     private void checkInput()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.E) && actualButton != null)
         {
             actualButton.onClick.Invoke();
         }
@@ -35,8 +28,8 @@ public class Interact : MonoBehaviour {
     private void checkInteractable()
     {
         RaycastHit info;
-        Debug.DrawRay(head.transform.position, head.transform.forward, new Color(255,0,0,255));
-        if (Physics.Raycast(head.transform.position, head.transform.forward, out info, 100f, interactables))
+        Debug.DrawRay(head.transform.position, head.transform.forward * 10f, new Color(255,0,0,255));
+        if (Physics.Raycast(head.transform.position, head.transform.forward, out info, 500f, interactables))
         {
             actualButton = info.transform.GetComponent<Button>();
             actualButton.interactable = true;

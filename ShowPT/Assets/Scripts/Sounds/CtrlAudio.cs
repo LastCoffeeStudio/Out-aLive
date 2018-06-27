@@ -17,10 +17,6 @@ public class CtrlAudio : MonoBehaviour
     private ulong nextId = 0;
     private Transform listenerPos = null;
 
-
-    //REFACTORIZAR!!!!
-    public AudioClip hit;
-
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -241,7 +237,7 @@ public class CtrlAudio : MonoBehaviour
         }
     }
 
-    public IEnumerator playOneSound(string track, AudioClip clip, Vector3 position, float volume, float spatialBlend, float delay, int priority = 128)
+    private IEnumerator playOneSound(string track, AudioClip clip, Vector3 position, float volume, float spatialBlend, float delay, int priority = 128)
     {
         yield return new WaitForSeconds(delay);
         playOneSound(track, clip, position, volume, spatialBlend, priority);

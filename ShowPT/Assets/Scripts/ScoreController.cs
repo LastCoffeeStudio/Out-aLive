@@ -125,7 +125,7 @@ public class ScoreController : MonoBehaviour {
             canonShotsUsedText.text = canonShotsUsed.ToString();
             canonShotsTouchedText.text = canonShotsTouched.ToString();
 
-            if(pistolShotsUsed > 0)
+            if (pistolShotsUsed > 0)
                 pistolAverage.text = (( pistolShotsTouched * 100 ) / pistolShotsUsed).ToString();
             if (SMGShotsUsed > 0)
                 SMGAverage.text = ((SMGShotsTouched * 100) / SMGShotsUsed).ToString();

@@ -110,17 +110,17 @@ public class ResourceMachine : MonoBehaviour {
             case "Gun":
                 type = Inventory.WEAPON_TYPE.GUN;
                 cost = 5;
-                Debug.Log("Buy gun");
+                //Debug.Log("Buy gun");
                 break;
             case "Shotgun":
                 type = Inventory.WEAPON_TYPE.SHOTGUN;
                 cost = 20;
-                Debug.Log("Buy shotgun");
+                //Debug.Log("Buy shotgun");
                 break;
             case "Canon":
                 type = Inventory.WEAPON_TYPE.CANON;
                 cost = 100;
-                Debug.Log("Buy canon");
+                //Debug.Log("Buy canon");
                 break;
             default:
                 break;
@@ -145,7 +145,7 @@ public class ResourceMachine : MonoBehaviour {
                 {
                     playerInventory.increaseAmmo(Inventory.AMMO_TYPE.SHOTGUNAMMO, ammoShotgun);
                     points -= cost;
-                    Debug.Log("Buy shotgun ammo");
+                    //Debug.Log("Buy shotgun ammo");
                 }
                 break;
             case "Canon":
@@ -154,7 +154,7 @@ public class ResourceMachine : MonoBehaviour {
                 {
                     playerInventory.increaseAmmo(Inventory.AMMO_TYPE.CANONAMMO, ammoCanon);
                     points -= cost;
-                    Debug.Log("Buy canon ammo");
+                    //Debug.Log("Buy canon ammo");
                 }
                 break;
         }

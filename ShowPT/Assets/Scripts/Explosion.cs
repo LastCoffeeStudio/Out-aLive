@@ -53,10 +53,10 @@ public class Explosion : MonoBehaviour {
 
     private int calculateDamage(float distance)
     {
-        Debug.Log("Data");
+        /*Debug.Log("Data");
         Debug.Log(Mathf.Clamp01(distance / (expansionDiameter / 2f)));
         Debug.Log((int)(minDamage + (maxDamage - minDamage) * Mathf.Clamp01(distance / (expansionDiameter / 2f))));
-        Debug.Log("End");
+        Debug.Log("End");*/
         return (int)(minDamage + (maxDamage - minDamage) * (1 - Mathf.Clamp01(distance / (expansionDiameter / 2f))));
     }
 }
