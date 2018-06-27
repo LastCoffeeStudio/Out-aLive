@@ -81,25 +81,32 @@ public class Projectile : MonoBehaviour
 
 	void OnTriggerEnter(Collider col)
 	{
-        if (invokeExplosion && explosionType != null)
-        {
-            explosionType.SetActive(true);
-        }
         if (col.gameObject.layer == LayerMask.NameToLayer ("Wall")) 
 		{
-			destroyMe ();
+            if (invokeExplosion && explosionType != null)
+            {
+                explosionType.SetActive(true);
+            }
+            destroyMe();
 		}
         if (col.tag == "Enemy" || col.tag == "Agent" || col.tag == "Snitch")
         {
+            if (invokeExplosion && explosionType != null)
+            {
+                explosionType.SetActive(true);
+            }
             col.gameObject.GetComponent<Enemy>().getHit(damage);
-			destroyMe ();
+			destroyMe();
         }
 		if (col.gameObject.layer == LayerMask.NameToLayer("PhysicsObjects")) 
 		{
-			Vector4 dataToPass = new Vector4(transform.position.x, transform.position.y, transform.position.z, damage);
-
+            if (invokeExplosion && explosionType != null)
+            {
+                explosionType.SetActive(true);
+            }
+            Vector4 dataToPass = new Vector4(transform.position.x, transform.position.y, transform.position.z, damage);
 			col.gameObject.SendMessage ("shotBehavior", dataToPass);
-			destroyMe ();
+			destroyMe();
 		}
     }
 

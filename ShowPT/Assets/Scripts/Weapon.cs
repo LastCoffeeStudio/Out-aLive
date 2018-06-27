@@ -117,7 +117,6 @@ public class Weapon : MonoBehaviour
         }
         if (ammunition == 0 || ((Input.GetKey(KeyCode.R) || Input.GetButton("ButtonX")) && ammunition < maxAmmo && animator.GetBool("reloading") == false))
         {
-            Debug.Log(inventory.getAmmo(typeAmmo));
             if (inventory.getAmmo(typeAmmo) > 0)
             {
                 reloading = true;
