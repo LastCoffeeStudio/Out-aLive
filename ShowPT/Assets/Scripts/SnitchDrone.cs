@@ -29,7 +29,6 @@ public class SnitchDrone : Enemy
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         globalTimer = GameObject.FindGameObjectWithTag("GlobalTimer").GetComponent<GlobalTimer>();
         ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
-        hitAudio = ctrAudio.hit;
     }
 
     void Update()

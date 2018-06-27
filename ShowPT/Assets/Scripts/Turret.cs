@@ -24,7 +24,6 @@ public class Turret : Enemy
     {
         ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
         player = GameObject.FindGameObjectWithTag("Player");
-        hitAudio = ctrAudio.hit;
         electrified = false;
     }
 

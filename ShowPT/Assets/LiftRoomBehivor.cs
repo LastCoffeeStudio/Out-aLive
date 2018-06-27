@@ -46,8 +46,9 @@ public class LiftRoomBehivor : MonoBehaviour
     private Vector3 initialPositionLightSound;
 
 	[SerializeField]
-	AudioSource backgroundMusic;
-	[SerializeField]
+	AudioClip backgroundMusic;
+    private ulong idbackgroundMusic;
+    [SerializeField]
 	AudioClip levelMusic;
 
     enum StateLift
@@ -89,6 +90,7 @@ public class LiftRoomBehivor : MonoBehaviour
         actualState = StateLift.Closed;
 		positionLiftInDesert = new Vector3 (liftPlatform.position.x, liftPlatform.position.y + altitudeDifference, liftPlatform.position.z);
         ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
+        idbackgroundMusic = ctrlAudio.playOneSound("Music", backgroundMusic, Vector3.zero, 0.50f, 1f, 150);
     }
     
 
@@ -233,7 +235,7 @@ public class LiftRoomBehivor : MonoBehaviour
 
     void climbing()
     {
-		backgroundMusic.volume -= 0.15f * Time.deltaTime;
+        ctrlAudio.stopSound(idbackgroundMusic);
         if (timeClimbingSec > 0)
         {
             CtrlVibration.playVibration(0f, 5f);
@@ -299,9 +301,7 @@ public class LiftRoomBehivor : MonoBehaviour
         transform.position = initPosition;
         actualState = StateLift.Closed;
         enabled = false;
-
-		backgroundMusic.volume = 1f;
-		backgroundMusic.clip = levelMusic;
-		backgroundMusic.Play ();
+        
+        ctrlAudio.playOneSound("Music", levelMusic, Vector3.zero, 0.7f, 0f, 150);
     }
 }

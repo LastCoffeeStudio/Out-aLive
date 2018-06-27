@@ -12,7 +12,6 @@ public class Drone1 : Enemy {
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
-        hitAudio = ctrAudio.hit;
     }
 
     // Update is called once per frame

@@ -76,7 +76,7 @@ public class Waz : Enemy
     {
 		wazAnimator = gameObject.GetComponent<Animator> ();
         ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
-        hitAudio = ctrAudio.hit;
+
         navMeshAgent = this.GetComponent<NavMeshAgent>();
 
         if (navMeshAgent == null)
