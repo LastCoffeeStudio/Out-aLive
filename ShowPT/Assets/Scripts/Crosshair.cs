@@ -42,7 +42,10 @@ public class Crosshair : MonoBehaviour
         playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovment>();
         circleUIWithoutWeapon = GameObject.FindGameObjectWithTag("CircleWithoutWeapon");
 
-        //circleUIWithoutWeapon.SetActive(false);
+        if (circleUIWithoutWeapon)
+        {
+            circleUIWithoutWeapon.SetActive(false);
+        }
 
         initialSpreads = new Vector3[lines.Length];
         for (int i = 0; i < lines.Length; ++i)
