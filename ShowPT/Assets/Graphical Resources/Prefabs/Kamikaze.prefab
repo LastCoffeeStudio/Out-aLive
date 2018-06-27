@@ -1699,8 +1699,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1949624788118436}
   m_LocalRotation: {x: -0, y: 0.54335845, z: -0, w: 0.8395009}
-  m_LocalPosition: {x: -2.67, y: 90.91, z: -111.03}
-  m_LocalScale: {x: 0.9999986, y: 1.0000018, z: 1.0000005}
+  m_LocalPosition: {x: -10.75, y: 90.91, z: -140.2}
+  m_LocalScale: {x: 1, y: 1.0000018, z: 1}
   m_Children:
   - {fileID: 4881444856996062}
   - {fileID: 4812470006582230}
@@ -2726,8 +2726,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   switchProbability: 0.5
   nodeList: []
-  viewDistance: 15
-  explodingDistance: 10
+  viewDistance: 27
+  explodingDistance: 3
   detectSound: {fileID: 8300000, guid: 0a55b9b28e63fc346b5bcd774d1a9493, type: 3}
   viewAngle: 90
   viewMask:
@@ -2752,7 +2752,7 @@ MonoBehaviour:
   projectileToShoot: {fileID: 0}
   timeBetweenShots: 0.5
   shotPoint: {fileID: 0}
-  enemyHealth: 5
+  enemyHealth: 4
   deathAnimation: {fileID: 0}
   deathAudio: {fileID: 0}
   paralyzedTotalTime: 0
