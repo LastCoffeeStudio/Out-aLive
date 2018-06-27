@@ -98,17 +98,17 @@ public class HudController : MonoBehaviour
 		if (value < MAX_YELLOW_LIFE) 
 		{
 			rotatingBar.sprite = rotatingRed;
-			fillHealth.GetComponent<Image> ().color = RED;
+			//fillHealth.GetComponent<Image> ().color = RED;
 		} 
 		else if (value < MAX_GREEN_LIFE) 
 		{
 			rotatingBar.sprite = rotatingYellow;
-			fillHealth.GetComponent<Image> ().color = YELLOW;
+			//fillHealth.GetComponent<Image> ().color = YELLOW;
 		} 
 		else 
 		{
 			rotatingBar.sprite = rotatingGreen;
-			fillHealth.GetComponent<Image> ().color = Color.green;
+			//fillHealth.GetComponent<Image> ().color = Color.green;
 		}
     }
 
