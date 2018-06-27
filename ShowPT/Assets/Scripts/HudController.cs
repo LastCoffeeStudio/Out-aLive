@@ -56,6 +56,16 @@ public class HudController : MonoBehaviour
 
     public GameObject menDown;
 
+	[Header("Rotating Health Thingy")]
+	[SerializeField]
+	Image rotatingBar;
+	[SerializeField]
+	Sprite rotatingGreen;
+	[SerializeField]
+	Sprite rotatingYellow;
+	[SerializeField]
+	Sprite rotatingRed;
+
     [Header("Crosshair")]
     public GameObject[] weaponsCrosshairs;
 
@@ -85,14 +95,21 @@ public class HudController : MonoBehaviour
         healthBar.value = value;
         valueHealth.text = value.ToString();
 
-        if (value < MAX_YELLOW_LIFE)
-        {
-            fillHealth.GetComponent<Image>().color = RED;
-        }
-        else if (value < MAX_GREEN_LIFE)
-        {
-            fillHealth.GetComponent<Image>().color = YELLOW;
-        }
+		if (value < MAX_YELLOW_LIFE) 
+		{
+			rotatingBar.sprite = rotatingRed;
+			fillHealth.GetComponent<Image> ().color = RED;
+		} 
+		else if (value < MAX_GREEN_LIFE) 
+		{
+			rotatingBar.sprite = rotatingYellow;
+			fillHealth.GetComponent<Image> ().color = YELLOW;
+		} 
+		else 
+		{
+			rotatingBar.sprite = rotatingGreen;
+			fillHealth.GetComponent<Image> ().color = Color.green;
+		}
     }
 
     public void setAmmo(int value)

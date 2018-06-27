@@ -90,7 +90,7 @@ public class LiftRoomBehivor : MonoBehaviour
         actualState = StateLift.Closed;
 		positionLiftInDesert = new Vector3 (liftPlatform.position.x, liftPlatform.position.y + altitudeDifference, liftPlatform.position.z);
         ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
-        idbackgroundMusic = ctrlAudio.playOneSound("Music", backgroundMusic, Vector3.zero, 0.50f, 1f, 150);
+        idbackgroundMusic = ctrlAudio.playOneSound("Music", backgroundMusic, Vector3.zero, 10f, 1f, 150);
     }
     
 
