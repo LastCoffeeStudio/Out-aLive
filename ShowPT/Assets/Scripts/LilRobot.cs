@@ -66,6 +66,7 @@ public class LilRobot : Enemy
         climbing = false;
         playerDamaged = false;
         destination = target.position;
+        paralyzedActualTime = paralyzedTotalTime;
     }
 
     private void FixedUpdate()
