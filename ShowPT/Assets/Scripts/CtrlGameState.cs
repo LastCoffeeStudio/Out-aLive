@@ -24,6 +24,7 @@ public class CtrlGameState : MonoBehaviour
     public static gameStates gameState;
     public GameObject winTitle;
     public GameObject loseTitle;
+    public GameObject continueButton;
 
     // Use this for initialization
     void Start ()
@@ -32,8 +33,9 @@ public class CtrlGameState : MonoBehaviour
         numSnitchKilled = 0;
         numSnithcObjectives = 1;
         Time.timeScale = 1;
-        //GameObject.FindGameObjectsWithTag("LoseTitle")[0].SetActive(false);
-        //GameObject.FindGameObjectsWithTag("WinTitle")[0].SetActive(false);
+        loseTitle.SetActive(false);
+        winTitle.SetActive(false);
+        continueButton.SetActive(false);
     }
 
     public static gameStates getGameState()
@@ -72,6 +74,7 @@ public class CtrlGameState : MonoBehaviour
                 //medal.enabled = true;
                 //gameObject.GetComponent<CtrlCamerasWin>().enabled = true;
                 winTitle.SetActive(true);
+                continueButton.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 //score.SetActive(true);
@@ -79,9 +82,10 @@ public class CtrlGameState : MonoBehaviour
             case gameStates.DEATH:
                 print("YOU DEATH!!!!");
                 loseTitle.SetActive(true);
+                continueButton.SetActive(true);
                 //winState.text = "YOU DIED!";
                 //medal.enabled = false;
-				Time.timeScale = 0;
+                Time.timeScale = 0;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 break;
