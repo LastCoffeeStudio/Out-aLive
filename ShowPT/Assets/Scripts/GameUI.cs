@@ -10,19 +10,6 @@ public class GameUI : MonoBehaviour {
 
 	Main mainManager;
 
-    public GameObject resourceMachineMenu;
-
-	// Use this for initialization
-	void Start ()
-    {
-        resourceMachineMenu.SetActive(false);
-    }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
 	public void TogglePauseScreen()
 	{
 		if (CtrlPause.gamePaused == false) 
@@ -41,18 +28,6 @@ public class GameUI : MonoBehaviour {
 	{
         Application.Quit();
 	}
-
-    public void enableResourceMachineUI()
-    {
-        resourceMachineMenu.SetActive(true);
-        setCursorScreen(true);
-    }
-
-    public void disableResourceMachineUI()
-    {
-        resourceMachineMenu.SetActive(false);
-        setCursorScreen(false);
-    }
 
     private void setCursorScreen(bool active)
     {

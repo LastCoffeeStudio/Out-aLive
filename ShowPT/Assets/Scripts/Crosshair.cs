@@ -33,6 +33,7 @@ public class Crosshair : MonoBehaviour
     private Vector3[] initialSpreads;
     private Camera playerCamera;
     private PlayerMovment playerStats;
+    [SerializeField]
     private GameObject circleUIWithoutWeapon;
 
     private void Start()
@@ -41,7 +42,7 @@ public class Crosshair : MonoBehaviour
         playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovment>();
         circleUIWithoutWeapon = GameObject.FindGameObjectWithTag("CircleWithoutWeapon");
 
-        circleUIWithoutWeapon.SetActive(false);
+        //circleUIWithoutWeapon.SetActive(false);
 
         initialSpreads = new Vector3[lines.Length];
         for (int i = 0; i < lines.Length; ++i)
