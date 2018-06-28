@@ -25,11 +25,15 @@ public class LaserCanon : Weapon {
     // Update is called once per frame
     protected override void Update ()
     {
-        base.Update();
         if (firing)
         {
             overheatTime += Time.deltaTime;
             checkMouseInput();
+        }
+
+        if (CtrlPause.gamePaused == false)
+        {
+            checkInputAnimations();
         }
     }
 

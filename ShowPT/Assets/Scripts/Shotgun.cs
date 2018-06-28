@@ -13,6 +13,15 @@ public class Shotgun : Weapon
     [SerializeField]
     GameObject projectileToShoot;
 
+    // Update is called once per frame
+    protected override void Update()
+    {
+        if (CtrlPause.gamePaused == false)
+        {
+            checkInputAnimations();
+        }
+    }
+
     protected override void shotBullet(Ray ray)
     {
         GameObject projectile = Instantiate(projectileToShoot, shootPoint.position, Quaternion.LookRotation(Vector3.Normalize((ray.origin + ray.direction * weaponRange) - shootPoint.position)), shootPoint);
