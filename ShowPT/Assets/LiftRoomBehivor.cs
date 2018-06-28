@@ -45,11 +45,9 @@ public class LiftRoomBehivor : MonoBehaviour
     private float initialReflectionLight;
     private Vector3 initialPositionLightSound;
 
+	BGM musicManager;
 	[SerializeField]
-	AudioClip backgroundMusic;
-    private ulong idbackgroundMusic;
-    [SerializeField]
-	AudioClip levelMusic;
+	int levelMusicId;
 
     enum StateLift
     {
@@ -89,8 +87,9 @@ public class LiftRoomBehivor : MonoBehaviour
         initTimeClimibingSec = timeClimbingSec;
         actualState = StateLift.Closed;
 		positionLiftInDesert = new Vector3 (liftPlatform.position.x, liftPlatform.position.y + altitudeDifference, liftPlatform.position.z);
-        ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
-        idbackgroundMusic = ctrlAudio.playOneSound("Music", backgroundMusic, Vector3.zero, 10f, 1f, 150);
+		GameObject audioObject = GameObject.FindGameObjectWithTag ("CtrlAudio");
+        ctrlAudio = audioObject.GetComponent<CtrlAudio>();
+		musicManager = audioObject.GetComponent<BGM>();
     }
     
 
@@ -112,7 +111,7 @@ public class LiftRoomBehivor : MonoBehaviour
         {
             if (varPROVISIONAL)
             {
-                ctrlAudio.playOneSound("Scene", climbingAudioClip, transform.position, 0.7f, 0f, 100);
+                ctrlAudio.playOneSound("Scene", climbingAudioClip, transform.position, 0.5f, 0f, 100);
                 varPROVISIONAL = false;
                 lightSound.SetActive(true);
                 initialPositionLightSound = lightSound.transform.localPosition;
@@ -235,7 +234,7 @@ public class LiftRoomBehivor : MonoBehaviour
 
     void climbing()
     {
-        ctrlAudio.stopSound(idbackgroundMusic);
+		musicManager.fadeOut();
         if (timeClimbingSec > 0)
         {
             CtrlVibration.playVibration(0f, 5f);
@@ -245,6 +244,7 @@ public class LiftRoomBehivor : MonoBehaviour
         }
         else
         {
+			musicManager.stopTheMusic ();
             ctrlAudio.stopSound(varidSoundBuzz);
             CtrlVibration.stopVibration();
             lightSound.SetActive(false);
@@ -302,6 +302,6 @@ public class LiftRoomBehivor : MonoBehaviour
         actualState = StateLift.Closed;
         enabled = false;
         
-        ctrlAudio.playOneSound("Music", levelMusic, Vector3.zero, 0.7f, 0f, 150);
+		musicManager.playMeSomething (1);
     }
 }
