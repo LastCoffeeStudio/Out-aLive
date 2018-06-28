@@ -5,11 +5,11 @@ using UnityEngine;
 public class Drone1 : Enemy {
 
     public Transform player;
-    public float shootingDistance = 20f;
 
 	// Use this for initialization
 	private void Start ()
     {
+        active = false;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
     }
@@ -35,21 +35,14 @@ public class Drone1 : Enemy {
 
     private void checkPlayerDistance()
     {
-        if (player != null && Vector3.Distance(player.position,transform.position) <= shootingDistance)
-        {
-            active = true;
-        }
-        else
-        {
-            active = false;
-        }
+       
     }
 
     public override void checkHealth()
     {
         if (enemyHealth <= 0f)
         {
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
             ScoreController.addDead(ScoreController.Enemy.DRON);
         }
     }

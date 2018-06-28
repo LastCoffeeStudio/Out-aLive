@@ -28,11 +28,7 @@ public class Drone : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         position = transform.position;
         velocity = new Vector3(Random.Range(-3, 3), Random.Range(-3, 3), Random.Range(-3, 3));
-        //***ONLY DOR DEBUG***//
-        //
-        //if (ctrlDrones.debugWonder) debugWanderCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        //
-        //********************//
+
     }
 
     void Update ()
