@@ -62,6 +62,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1096442342775238
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4101489166431650}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1124684187701772
 GameObject:
   m_ObjectHideFlags: 1
@@ -323,6 +338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4279489274724196}
   - component: {fileID: 114024478445392994}
+  - component: {fileID: 114370593981015874}
   m_Layer: 0
   m_Name: GroupShieldSnitch
   m_TagString: Untagged
@@ -427,6 +443,8 @@ GameObject:
   - component: {fileID: 23339679203163094}
   - component: {fileID: 95423108005012926}
   - component: {fileID: 114832883728321898}
+  - component: {fileID: 135955067584901688}
+  - component: {fileID: 114945567268777982}
   m_Layer: 0
   m_Name: snitch_low2
   m_TagString: Enemy
@@ -701,6 +719,19 @@ Transform:
   m_Father: {fileID: 4019398086765832}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -59.284004, y: 148.23601, z: -120.34401}
+--- !u!4 &4101489166431650
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1096442342775238}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2.38}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4346839653801222}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4132054488236100
 Transform:
   m_ObjectHideFlags: 1
@@ -819,7 +850,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1512874091399328}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 63.9, y: 6.62, z: 67.23}
+  m_LocalPosition: {x: 66.34, y: 8.65, z: 69.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4421164159029340}
@@ -867,7 +898,8 @@ Transform:
   m_LocalRotation: {x: 0.000000021855696, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.4644, y: 1.4644, z: 1.4644}
-  m_Children: []
+  m_Children:
+  - {fileID: 4101489166431650}
   m_Father: {fileID: 4279489274724196}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1135,7 +1167,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1927,6 +1959,18 @@ MonoBehaviour:
   deathAudio: {fileID: 0}
   paralyzedTotalTime: 0
   player: {fileID: 0}
+--- !u!114 &114370593981015874
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1512874091399328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aac3ea143c8b601448925d6f9b7db859, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: 0
 --- !u!114 &114382235918620006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1978,7 +2022,7 @@ MonoBehaviour:
   projectileToShoot: {fileID: 0}
   timeBetweenShots: 0.5
   shotPoint: {fileID: 0}
-  enemyHealth: 10
+  enemyHealth: 2
   deathAnimation: {fileID: 0}
   deathAudio: {fileID: 0}
   paralyzedTotalTime: 0
@@ -2000,6 +2044,18 @@ MonoBehaviour:
   ctrlShieldDrones: {fileID: 0}
   player: {fileID: 0}
   shieldTransform: {fileID: 0}
+--- !u!114 &114945567268777982
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1635799829495540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aac3ea143c8b601448925d6f9b7db859, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: 10
 --- !u!114 &114951259791007074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2092,6 +2148,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &135955067584901688
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1635799829495540}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5504589
+  m_Center: {x: 0.003952503, y: -0.087578714, z: -0.13615632}
 --- !u!198 &198062038303458742
 ParticleSystem:
   m_ObjectHideFlags: 1

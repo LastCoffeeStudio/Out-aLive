@@ -45,5 +45,7 @@ public class Shotgun : Weapon
     private void shoot()
     {
         shootEffect.Play();
+        ctrlAudio.playOneSound("Player", shot, transform.position, 1.0f, 0f, 150);
+        shootEffect.Play();
     }
 }
