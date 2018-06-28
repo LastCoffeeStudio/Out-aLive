@@ -194,9 +194,9 @@ public class LilRobot : Enemy
     {
         if (enemyHealth <= 0f)
         {
-			generateDeathEffect ();
-            Destroy(gameObject);
+			generateDeathEffect();
             ScoreController.addDead(ScoreController.Enemy.LIL);
+            Destroy(gameObject);
         }
     }
 

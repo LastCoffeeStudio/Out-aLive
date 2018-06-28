@@ -37,7 +37,7 @@ public class Weapon : MonoBehaviour
     public Inventory.WEAPON_TYPE type;
     public AudioClip shot;
     public AudioClip reload;
-    private CtrlAudio ctrlAudio;
+    protected CtrlAudio ctrlAudio;
 
     [Header("Crosshair Settings")]
     public float shotSpreadFactor;
@@ -206,7 +206,7 @@ public class Weapon : MonoBehaviour
             animator.SetBool("lastBullet", false);
         }
     }
-    private void shoot()
+    protected virtual void shoot()
     {
         ctrlAudio.playOneSound("Player", shot, transform.position, 1.0f, 0f, 150);
         shootEffect.Play();

@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 135426610590644702}
   - component: {fileID: 23306156646717420}
   - component: {fileID: 114688600827932292}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ExplosionArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1713874775655922}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -482,6 +482,8 @@ MonoBehaviour:
   skinWidth: 0.1
   invokeExplosion: 1
   explosionType: {fileID: 1713874775655922}
+  explosionSound: {fileID: 8300000, guid: abcfd8f6267adbc4987640bdfed67f0d, type: 3}
+  hitEffect: {fileID: 1342110407145532, guid: 948c6b174753b4946ae9d52a8e5323b9, type: 2}
 --- !u!114 &114688600827932292
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -495,10 +497,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxDamage: 10
   minDamage: 0
-  timeToExplode: 0.4
+  timeToExplode: 0.3
   expansionDiameter: 10
-  expansionSpeed: 5
-  timeToDie: 3
+  expansionSpeed: 100
+  timeToDie: 0.5
 --- !u!135 &135426610590644702
 SphereCollider:
   m_ObjectHideFlags: 1
