@@ -17,6 +17,7 @@ public class Projectile : MonoBehaviour
     [Header("Explosion Properties")]
     public bool invokeExplosion;
     public GameObject explosionType;
+    public AudioClip explosionSound;
 
 	private float minimumExtent; 
 	private float partialExtent; 
@@ -24,14 +25,16 @@ public class Projectile : MonoBehaviour
 	private Vector3 previousPosition; 
 	private Rigidbody myRigidbody;
 	private Collider myCollider;
+    private CtrlAudio ctrlAudio;
 
 	[SerializeField]
 	GameObject hitEffect;
 
 	//initialize values 
 	void Start() 
-	{ 
-		myRigidbody = GetComponent<Rigidbody>();
+	{
+        ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
+        myRigidbody = GetComponent<Rigidbody>();
 		myCollider = GetComponent<Collider>();
 		previousPosition = myRigidbody.position; 
 		minimumExtent = Mathf.Min(Mathf.Min(myCollider.bounds.extents.x, myCollider.bounds.extents.y), myCollider.bounds.extents.z); 
@@ -83,35 +86,28 @@ public class Projectile : MonoBehaviour
 	{
         if (col.gameObject.layer == LayerMask.NameToLayer ("Wall")) 
 		{
-            if (invokeExplosion && explosionType != null)
-            {
-                explosionType.SetActive(true);
-            }
             destroyMe();
 		}
         if (col.tag == "Enemy" || col.tag == "Agent" || col.tag == "Snitch")
         {
-            if (invokeExplosion && explosionType != null)
-            {
-                explosionType.SetActive(true);
-            }
             col.gameObject.GetComponent<Enemy>().getHit(damage);
-			destroyMe();
+            destroyMe();
         }
 		if (col.gameObject.layer == LayerMask.NameToLayer("PhysicsObjects")) 
 		{
-            if (invokeExplosion && explosionType != null)
-            {
-                explosionType.SetActive(true);
-            }
             Vector4 dataToPass = new Vector4(transform.position.x, transform.position.y, transform.position.z, damage);
 			col.gameObject.SendMessage ("shotBehavior", dataToPass);
-			destroyMe();
-		}
+            destroyMe();
+        }
     }
 
-	void destroyMe()
+    void destroyMe()
 	{
+        if (invokeExplosion && explosionType != null)
+        {
+            ctrlAudio.playOneSound("Player", explosionSound, transform.position, 1.0f, 0.5f, 150);
+            explosionType.SetActive(true);
+        }
 		if (hitEffect) 
 		{
 			Instantiate (hitEffect, transform.position, Quaternion.identity);

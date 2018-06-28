@@ -62,4 +62,10 @@ public class LaserCanon : Weapon {
         projectile.transform.localScale = Vector3.Lerp(minBulletScale, maxBulletScale, overheatTime / overheatMaxTime);
         overheatTime = 0f;
     }
+
+    protected override void shoot()
+    {
+        ctrlAudio.playOneSound("CannonShot", shot, transform.position, 1.0f, 0f, 150);
+        shootEffect.Play();
+    }
 }

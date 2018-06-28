@@ -80,7 +80,7 @@ public class Enemy : MonoBehaviour
 	{
 		if (ctrAudio != null) 
 		{
-			ctrAudio.playOneSound("Enemies", deathAudio, transform.position, 1.0f, 0.0f, 128);
+			ctrAudio.playOneSound("Enemies", deathAudio, transform.position, 1.0f, 1.0f, 128);
 		}
 		if (deathAnimation != null) 
 		{
