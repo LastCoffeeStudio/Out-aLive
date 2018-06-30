@@ -53,6 +53,9 @@ public class AIKamikaze : MonoBehaviour {
 	state NPCstate;
     private Animator animKamikaze;
 
+	[SerializeField]
+	bool aggressiveOnActivation = true;
+
 	// Use this for initialization
 	void Start () {
 		navMeshAgent = this.GetComponent<NavMeshAgent> ();
@@ -80,6 +83,7 @@ public class AIKamikaze : MonoBehaviour {
 	    playerMovment = player.GetComponent<PlayerMovment>();
 	    animKamikaze = gameObject.GetComponent<Animator>();
 		audioCtr = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
+		gameObject.SetActive (false);
 	}
 
 	// Update is called once per frame
@@ -88,17 +92,16 @@ public class AIKamikaze : MonoBehaviour {
         aggressiveDestination = player.transform.position;
         switch (NPCstate)
         {
-
             case state.WAITING:
                 if (Vector3.Distance(transform.position, player.transform.position) < viewDistance)
                 {
-					audioCtr.playOneSound("Enemies", detectSound, transform.position, 1.0f, 0.0f, 128);
                     NPCstate = state.I_SEE_YOU;
                 }
                 break;
 
             case state.I_SEE_YOU:
                 animKamikaze.SetBool("Jump", true);
+				audioCtr.playOneSound("Enemies", detectSound, transform.position, 1.0f, 0.0f, 128);
                 NPCstate = state.JUMPING;
                 break;
             case state.JUMPING:
@@ -115,14 +118,6 @@ public class AIKamikaze : MonoBehaviour {
                 LookAtSomething(aggressiveDestination);
                 navMeshAgent.SetDestination(aggressiveDestination);
 
-                //Vector3 localDesiredVelocity = transform.InverseTransformVector(navMeshAgent.desiredVelocity);
-                //float angle = Mathf.Atan2(localDesiredVelocity.x, localDesiredVelocity.z) * Mathf.Rad2Deg;
-                //float speed = localDesiredVelocity.z;
-                /** Linea comentada para evitar warning, descomentar cuando se haya aplicado la animacion al kamikaze**/
-                //animKamikaze.SetFloat("Speed", speed, 0.1f, Time.deltaTime);
-                
-                //Debug.Log(Mathf.Abs(Vector3.Distance(gameObject.transform.position, player.transform.position)) + "// " + explodingDistance);
-                //Should I explode?
                 if (Mathf.Abs(Vector3.Distance(gameObject.transform.position, player.transform.position)) < explodingDistance )
                 {
                     animKamikaze.SetBool("Explode", true);
@@ -174,6 +169,14 @@ public class AIKamikaze : MonoBehaviour {
 	{
 		var lookPos = something - gameObject.transform.position;
 		transform.rotation = Quaternion.Slerp (gameObject.transform.rotation, Quaternion.LookRotation (lookPos), Time.deltaTime * 6);
+	}
+
+	void OnEnable()
+	{
+		if (aggressiveOnActivation == true) 
+		{
+			NPCstate = state.I_SEE_YOU;
+		}
 	}
 
 	void OnDrawGizmos()
