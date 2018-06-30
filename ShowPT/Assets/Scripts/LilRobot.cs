@@ -48,6 +48,8 @@ public class LilRobot : Enemy
     [SerializeField]
     private Vector3 destination;
 
+	GameObject[] listOfParts;
+
     // Use this for initialization
     void Start()
     {
@@ -196,7 +198,6 @@ public class LilRobot : Enemy
         {
 			generateDeathEffect();
             ScoreController.addDead(ScoreController.Enemy.LIL);
-            Destroy(gameObject);
         }
     }
 

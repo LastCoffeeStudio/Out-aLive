@@ -55,6 +55,7 @@ public class Enemy : MonoBehaviour
 
     public virtual void getHit(int damage) {}
 
+
     public virtual void shoot()
     {
         if (active)
@@ -84,8 +85,10 @@ public class Enemy : MonoBehaviour
 		}
 		if (deathAnimation != null) 
 		{
-			GameObject.Instantiate (deathAnimation, transform.position, Quaternion.identity);
+			deathAnimation.transform.position = transform.position;
+			deathAnimation.SetActive (true);
 		}
+		gameObject.SetActive (false);
 	}
 
     public virtual void setStatusParalyzed() {}
