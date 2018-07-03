@@ -17,6 +17,7 @@ public class AIShieldDrone : MonoBehaviour
     [HideInInspector]
     public Transform shieldTransform;
 
+    private bool updateRotation = false;
     // Use this for initialization
     void Start()
     {
@@ -26,31 +27,43 @@ public class AIShieldDrone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (ctrlShieldDrones.playerInHome)
+        {
+            if (updateRotation)
+            {
+                float t = Time.deltaTime;
+                acceleration = combine();
 
-        float t = Time.deltaTime;
-        acceleration = combine();
+                acceleration = Vector2.ClampMagnitude(acceleration, ctrlShieldDrones.maxAcceleration);
 
-        acceleration = Vector2.ClampMagnitude(acceleration, ctrlShieldDrones.maxAcceleration);
+                velocity = velocity + acceleration * t;
+                velocity = Vector2.ClampMagnitude(velocity, ctrlShieldDrones.maxVelocity);
+                if (transform.rotation.eulerAngles.x > 270f || transform.rotation.eulerAngles.x < 70f)
+                {
+                    transform.Rotate(-velocity.x, velocity.y, 0f);
+                }
+                else if (transform.rotation.eulerAngles.x < 90f)
+                {
+                    transform.Rotate(-1f, velocity.y, 0f);
+                }
+                else if (transform.rotation.eulerAngles.x > 90)
+                {
+                    transform.Rotate(1f, velocity.y, 0f);
+                }
+            }
+            else
+            {
+                transform.Rotate(0f, 0f, -transform.rotation.eulerAngles.z);
+            }
 
-        velocity = velocity + acceleration * t;
-        velocity = Vector2.ClampMagnitude(velocity, ctrlShieldDrones.maxVelocity);
-        
-        transform.Rotate(-velocity.x, velocity.y, -transform.rotation.eulerAngles.z);
+            updateRotation = !updateRotation;
+        }
+
     }
 
     protected Vector2 combine()
     {
-        Vector2 direction;
-        if (ctrlShieldDrones.playerInHome)
-        {
-            direction = ctrlShieldDrones.KSeparation * separation(ctrlShieldDrones.radioSeparation) + ctrlShieldDrones.KPlayer * searchTarget();
-        }
-        else
-        {
-            return Vector2.zero;
-            //direction = ctrlShieldDrones.KSeparation * separation(5f);
-        }
-        return direction;
+        return ctrlShieldDrones.KSeparation * separation(ctrlShieldDrones.radioSeparation) + ctrlShieldDrones.KPlayer * searchTarget();
     }
 
     private Vector2 separation(float radio)
@@ -78,9 +91,9 @@ public class AIShieldDrone : MonoBehaviour
                 direction.y += rotation.y / distance.magnitude;
             }
 
-            return direction.normalized;
+            
         }
-        return Vector2.zero;
+        return direction.normalized;
     }
 
 
@@ -96,6 +109,10 @@ public class AIShieldDrone : MonoBehaviour
         float rotationX = orientation2D(transform.position.y, transform.position.z, shieldTransform.position.y,
             shieldTransform.position.z, position.y, position.z);
         if (transform.position.z > position.z) rotationX *= -1;
+
+       /* if (transform.rotation.eulerAngles.x > 70f && rotationX == 1) rotationX = 0;
+        else if (transform.rotation.eulerAngles.x < -70f && rotationX == -1) rotationX = 0;*/
+
         return new Vector2(rotationX, rotationY).normalized;
     }
 
