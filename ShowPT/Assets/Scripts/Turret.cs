@@ -19,6 +19,8 @@ public class Turret : Enemy
     private bool particlesInited = false;
     private GameObject player;
     private bool electrified;
+	[SerializeField]
+	LayerMask viewMask;
 
     private void Start()
     {
@@ -39,46 +41,51 @@ public class Turret : Enemy
         shootTimerTurret += Time.deltaTime;
         float distWithPlayer = Vector3.Distance(player.transform.position, transform.position);
 
+
         if (distWithPlayer > minDistToAtack)
         {
             shootTimerTurret = 0.0f;
             laserEffect.SetActive(false);
             particlesInited = false;
         }
-
         else if (shootTimerTurret >= timeNoShooting && !electrified)
         {
-            laserEffect.SetActive(true);
-            if (!particlesInited)
-            {
-                particlesInitial.Play();
-                particlesInited = true;
-            }
+			Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
+			if (!Physics.Linecast (transform.position, player.transform.position, viewMask)) {
+				laserEffect.SetActive (true);
+				if (!particlesInited) {
+					particlesInitial.Play ();
+					particlesInited = true;
+				}
 
-            RaycastHit hit;
-            if (Physics.Raycast(shotPoint.position, shotPoint.transform.forward, out hit))
-            {
-                lineRenderer.SetPosition(0, shotPoint.position);
-                lineRenderer.SetPosition(1, hit.point);
+				RaycastHit hit;
+				if (Physics.Raycast (shotPoint.position, shotPoint.transform.forward, out hit)) {
+					lineRenderer.SetPosition (0, shotPoint.position);
+					lineRenderer.SetPosition (1, hit.point);
 
-                particlesCollision.transform.rotation = Quaternion.LookRotation(hit.normal, hit.transform.up);
-                particlesCollision.transform.position = hit.point;
+					particlesCollision.transform.rotation = Quaternion.LookRotation (hit.normal, hit.transform.up);
+					particlesCollision.transform.position = hit.point;
 
-                switch (hit.transform.gameObject.tag)
-                {
-                    case "Player":
-                        PlayerHealth player = hit.transform.gameObject.GetComponent<PlayerHealth>();
-                        player.ChangeHealth(-shootDamage);
-                        break;
-                }
-            }
+					switch (hit.transform.gameObject.tag) {
+					case "Player":
+						PlayerHealth player = hit.transform.gameObject.GetComponent<PlayerHealth> ();
+						player.ChangeHealth (-shootDamage);
+						break;
+					}
+				}
 
-            if (shootTimerTurret >= timeShooting + timeNoShooting)
-            {
-                shootTimerTurret = 0.0f;
-                laserEffect.SetActive(false);
-                particlesInited = false;
-            }
+				if (shootTimerTurret >= timeShooting + timeNoShooting) {
+					shootTimerTurret = 0.0f;
+					laserEffect.SetActive (false);
+					particlesInited = false;
+				}
+			} 
+			else 
+			{
+				shootTimerTurret = 0.0f;
+				laserEffect.SetActive(false);
+				particlesInited = false;
+			}
         }
     }
 

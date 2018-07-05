@@ -230,16 +230,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1965281497583358}
-  m_LocalRotation: {x: 0.0000000018626451, y: -0.96036524, z: -0.000000063329935,
-    w: 0.2787448}
-  m_LocalPosition: {x: 15.87, y: 97.7, z: -131.28}
-  m_LocalScale: {x: 1.0005199, y: 1.0006698, z: 1.0001593}
+  m_LocalRotation: {x: -0.000000014325879, y: -0.8577214, z: -0.00000006171642, w: 0.5141149}
+  m_LocalPosition: {x: -16.290987, y: 96.55, z: -89.9379}
+  m_LocalScale: {x: 1.0000188, y: 1, z: 0.9999407}
   m_Children:
   - {fileID: 4360794568582730}
   - {fileID: 4821587313655328}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -147.62901, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -118.12301, z: 0}
 --- !u!4 &4219400127707792
 Transform:
   m_ObjectHideFlags: 1
@@ -590,8 +589,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeList: []
   viewDistance: 50
-  alertTime: 6
-  alertRotationTime: 1
   rotationSpeed: 1
   burstTime: 2
   coolDownTime: 2
@@ -620,6 +617,7 @@ MonoBehaviour:
   shotPoint: {fileID: 4764462254280930}
   enemyHealth: 6
   deathAnimation: {fileID: 0}
+  deathAudio: {fileID: 0}
   paralyzedTotalTime: 3
   laserEffect: {fileID: 1489644668993388}
   lineRenderer: {fileID: 120269702870475804}
@@ -629,6 +627,9 @@ MonoBehaviour:
   timeNoShooting: 1
   shootDamage: 1
   minDistToAtack: 70
+  viewMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!120 &120269702870475804
 LineRenderer:
   m_ObjectHideFlags: 1

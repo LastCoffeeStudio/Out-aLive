@@ -19,12 +19,6 @@ public class AITurret2 : MonoBehaviour {
 	float viewDistance = 50.0f;
 
 	[SerializeField]
-	float alertTime = 6.0f;
-
-	[SerializeField]
-	float alertRotationTime = 1.0f;
-
-	[SerializeField]
 	float rotationSpeed = 1f;
 
 	[SerializeField]
@@ -95,23 +89,6 @@ public class AITurret2 : MonoBehaviour {
 			}
 
 			attackCountdown += Time.deltaTime;
-			break;
-
-		case state.ALERT:
-			Vector3 rotation = new Vector3 (0f, alertRotation, 0f);
-			gameObject.transform.Rotate (rotation * Time.deltaTime);
-			alertRotationTimer += Time.deltaTime;
-			if (alertRotationTimer >= alertRotationTime) 
-			{
-				alertRotation = alertRotation * (-1);
-				alertRotationTimer = 0;
-			}
-
-			alertTimer += Time.deltaTime;
-			if (alertTimer >= alertTime) 
-			{
-				NPCstate = state.WAITING;
-			}
 			break;
 		}
 
