@@ -38,6 +38,9 @@ public class Barrel : MonoBehaviour {
 	bool immaExplodeNow = false;
 	float explosionTimer = 0f;
 
+	[SerializeField]
+	LayerMask affectedByExplosion;
+
 	//Barrel[] allBarrels;
 
 	void Start() 
@@ -91,27 +94,21 @@ public class Barrel : MonoBehaviour {
 		{
 			player.GetComponent<PlayerHealth>().ChangeHealth(-explosionDamage);
 		}
-
-		int layerMask = 1 << LayerMask.NameToLayer ("PhysicsObjects");
-		Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionDistance, layerMask);
+			
+		Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionDistance, affectedByExplosion);
 		int i = 0;
 		while (i < hitColliders.Length)
 		{
-			Vector4 dataToPass = new Vector4(transform.position.x, transform.position.y, transform.position.z, explosionDamage);
-			hitColliders[i].SendMessage ("shotBehavior", dataToPass);
+			if (hitColliders [i].gameObject.layer == LayerMask.NameToLayer ("PhysicsObjects")) {
+				Vector4 dataToPass = new Vector4 (transform.position.x, transform.position.y, transform.position.z, explosionDamage);
+				hitColliders [i].SendMessage ("shotBehavior", dataToPass);
+			} 
+			else if (hitColliders [i].gameObject.layer == LayerMask.NameToLayer ("Enemy"))
+			{
+				hitColliders [i].SendMessage ("getHit", explosionDamage);
+			}
 			i++;
 		}
-		/*foreach (Barrel barrel in allBarrels) {
-			if (barrel.activable == true && Vector3.Distance (transform.position, barrel.transform.position) < explosionDistance)
-			{
-				if (Physics.Raycast (transform.position, barrel.transform.position - transform.position, out hitInfo, explosionDistance)) {
-					
-					barrel.myRigidBody.AddTorque (new Vector3 (rotationWhenBlasted, rotationWhenBlasted, rotationWhenBlasted));
-					barrel.shotBehavior (hitInfo.point, explosionDamage / 3);
-					//barrel.myRigidBody.AddForce (Vector3.up * explosionDamage);
-				}
-			}
-		}*/
 
 		Destroy(gameObject);
 	}

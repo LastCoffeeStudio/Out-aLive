@@ -53,7 +53,11 @@ public class Enemy : MonoBehaviour
     protected float paralyzedActualTime;
     protected Status status = Status.NONE;
 
-    public virtual void getHit(int damage) {}
+    public virtual void getHit(int damage) 
+	{
+		enemyHealth -= damage;
+		checkHealth ();
+	}
 
 
     public virtual void shoot()
