@@ -195,7 +195,7 @@ public class PlayerMovment : MonoBehaviour
             yRot = Input.GetAxis("Mouse Y");
         }
 
-        if ((Input.GetKey(KeyCode.LeftShift) || Input.GetButton("ButtonL3")) && yMov > runStart && (animator == null || (!animator.GetBool("reloading") && !animator.GetBool("shooting") && !animator.GetBool("aiming"))) && !jumping)
+        if ((Input.GetKey(KeyCode.LeftShift) || Input.GetButton("ButtonL3")) && yMov > runStart && (animator == null || (!animator.GetBool("reloading") && !animator.GetBool("shooting") && !animator.GetBool("aiming"))) && (!jumping || localSpeed == runSpeed))
         {
             localSpeed = runSpeed;
         }
@@ -204,7 +204,7 @@ public class PlayerMovment : MonoBehaviour
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, zoom, Time.deltaTime * zoomSpeed);
             localSpeed = aimingSpeed;
         }
-        else
+        else 
         {
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, originalZoom, Time.deltaTime * zoomSpeed);
             localSpeed = moveSpeed;
