@@ -28,8 +28,6 @@ public class AITurret2 : MonoBehaviour {
 	float attackCountdown = 0f;
 	bool shooting = false;
 
-	private GameObject player;
-
 	[SerializeField]
 	LayerMask viewMask;
 
@@ -40,12 +38,22 @@ public class AITurret2 : MonoBehaviour {
 
 	state NPCstate;
 
+	[SerializeField]
+	GameObject shooter;
 
-	// Use this for initialization
-	void Start () 
+	[SerializeField]
+	GameObject player;
+
+	void Start()
 	{
-		player = GameObject.FindGameObjectWithTag("Player");
-		//myTurrets = gameObject.GetComponentInChildren<Turret> ();
+		if (player == null) 
+		{
+			player = GameObject.FindGameObjectWithTag ("Player");
+		}
+		if (shooter == null)
+		{
+			shooter = this.gameObject;
+		}
 	}
 
 	// Update is called once per frame
@@ -103,8 +111,8 @@ public class AITurret2 : MonoBehaviour {
 	{
 		if (Vector3.Distance (transform.position, player.transform.position) < viewDistance) 
 		{
-			Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
-			if(!Physics.Linecast(transform.position, player.transform.position, viewMask))
+			Vector3 directionToPlayer = (player.transform.position - shooter.transform.position).normalized;
+			if(!Physics.Linecast(shooter.transform.position, player.transform.position, viewMask))
 			{
 				return true;
 			}
@@ -114,8 +122,9 @@ public class AITurret2 : MonoBehaviour {
 
 	void LookAtSomething(Vector3 something)
 	{
-		var lookPos = something - transform.position /*+ new Vector3(0f, 90f, 0f)*/;
+		var lookPos = something - transform.position;
 		transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (lookPos), Time.deltaTime * rotationSpeed);
+		//shooter.transform.rotation = Quaternion.Slerp (shooter.transform.rotation, Quaternion.LookRotation (lookPos), Time.deltaTime * rotationSpeed);
 	}
 
 	void OnDrawGizmos()

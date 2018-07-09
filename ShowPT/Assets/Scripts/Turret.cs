@@ -17,15 +17,20 @@ public class Turret : Enemy
     public float minDistToAtack = 10;
     private float shootTimerTurret = 0.0f;
     private bool particlesInited = false;
-    private GameObject player;
     private bool electrified;
 	[SerializeField]
 	LayerMask viewMask;
 
+	[SerializeField]
+	GameObject player;
+
     private void Start()
     {
         ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
-        player = GameObject.FindGameObjectWithTag("Player");
+		if (player == null) 
+		{
+			player = GameObject.FindGameObjectWithTag ("Player");
+		}
         electrified = false;
     }
 

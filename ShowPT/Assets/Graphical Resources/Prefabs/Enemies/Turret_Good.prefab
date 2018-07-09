@@ -307,14 +307,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1647410152301412}
-  m_LocalRotation: {x: -0.047298163, y: -0.00050104066, z: 0.00007192025, w: 0.99888074}
-  m_LocalPosition: {x: 0, y: 0.912, z: 0.746}
+  m_LocalRotation: {x: 0.048820533, y: 0.0053215344, z: 0.031249003, w: 0.9983044}
+  m_LocalPosition: {x: -0.024, y: 1.224, z: 0.748}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4209850667121630}
   m_Father: {fileID: 4675704522792142}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -5.422, y: -0.058, z: 0.011}
+  m_LocalEulerAnglesHint: {x: 5.5750003, y: 0.78700006, z: 3.624}
 --- !u!4 &4675704522792142
 Transform:
   m_ObjectHideFlags: 1
@@ -336,15 +336,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1952084198941456}
-  m_LocalRotation: {x: 0.02088737, y: -0.82775056, z: 0.030882092, w: 0.55985624}
-  m_LocalPosition: {x: 4.3839693, y: 92.81298, z: -137.71315}
-  m_LocalScale: {x: 0.9998788, y: 0.9993326, z: 0.99940044}
+  m_LocalRotation: {x: -0.021831356, y: -0.81006193, z: 0.030222213, w: -0.5851578}
+  m_LocalPosition: {x: -15.956695, y: 95.94233, z: -88.495964}
+  m_LocalScale: {x: 0.9997842, y: 0.99866563, z: 0.99877495}
   m_Children:
   - {fileID: 4231717694653788}
   - {fileID: 4675704522792142}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 4.2730002, y: -111.854004, z: 0}
+  m_LocalEulerAnglesHint: {x: 4.2730002, y: -251.686, z: 0}
 --- !u!23 &23771619803582798
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -501,6 +501,8 @@ MonoBehaviour:
     m_Bits: 256
   alertRotation: -2
   myTurret: {fileID: 114155559065616700}
+  shooter: {fileID: 1647410152301412}
+  player: {fileID: 0}
 --- !u!114 &114155559065616700
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -523,10 +525,10 @@ MonoBehaviour:
   deathAnimation: {fileID: 0}
   deathAudio: {fileID: 0}
   paralyzedTotalTime: 3
-  laserEffect: {fileID: 0}
-  lineRenderer: {fileID: 0}
-  particlesInitial: {fileID: 0}
-  particlesCollision: {fileID: 0}
+  laserEffect: {fileID: 1817719032992704}
+  lineRenderer: {fileID: 120282188775135280}
+  particlesInitial: {fileID: 198928703022330610}
+  particlesCollision: {fileID: 198634295232521764}
   timeShooting: 3
   timeNoShooting: 1
   shootDamage: 1
@@ -534,6 +536,7 @@ MonoBehaviour:
   viewMask:
     serializedVersion: 2
     m_Bits: 256
+  player: {fileID: 0}
 --- !u!120 &120282188775135280
 LineRenderer:
   m_ObjectHideFlags: 1
