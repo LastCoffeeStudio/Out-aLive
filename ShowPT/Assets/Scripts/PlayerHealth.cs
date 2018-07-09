@@ -50,6 +50,11 @@ public class PlayerHealth : MonoBehaviour {
         }
     }
 
+    public int GetHealth()
+    {
+        return health;
+    }
+
     public void ChangeHealth(int value)
     {
 		if (value > 0 || damageable == true)
