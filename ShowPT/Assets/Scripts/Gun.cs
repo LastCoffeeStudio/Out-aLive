@@ -22,7 +22,7 @@ public class Gun : Weapon
             //swagWeaponMovement();
         }
 
-        if (CtrlPause.gamePaused == false)
+        if (CtrlGameState.gameState == CtrlGameState.gameStates.ACTIVE)
         {
             checkInputAnimations();
             updateCharge();

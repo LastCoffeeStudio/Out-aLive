@@ -16,7 +16,7 @@ public class Shotgun : Weapon
     // Update is called once per frame
     protected override void Update()
     {
-        if (CtrlPause.gamePaused == false)
+        if (CtrlGameState.gameState == CtrlGameState.gameStates.ACTIVE)
         {
             checkInputAnimations();
         }

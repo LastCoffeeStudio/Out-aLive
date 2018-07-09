@@ -118,7 +118,7 @@ public class PlayerMovment : MonoBehaviour
     void Update()
     {
         noiseValue = 0f;
-        if (CtrlPause.gamePaused == false)
+        if (CtrlGameState.gameState == CtrlGameState.gameStates.ACTIVE)
         {
             checkInteract();
             checkInput();
@@ -135,19 +135,19 @@ public class PlayerMovment : MonoBehaviour
         {
             InteractableObject interactableObject = hitInfo.collider.gameObject.GetComponentInParent<InteractableObject>();
 
-            if ((InteractableObjectsManager.instance.ObjectActive == null ||
+            if ((InteractableObjectsManager.interactableObjectsManagerinstance.ObjectActive == null ||
                 !InteractableObjectsManager.equalsObjectActive(interactableObject)) && !interactableObject.getState().Equals(InteractableObject.InteractableObjectState.DISABLE))
             {
                 interactableObject.enabled = true;
-                InteractableObjectsManager.instance.ObjectActive = interactableObject;
+                InteractableObjectsManager.interactableObjectsManagerinstance.ObjectActive = interactableObject;
                 InteractableObjectsManager.showInteractableObject(hitInfo.collider.gameObject.transform.parent.name);
             }
         } else
         {
-            if (InteractableObjectsManager.instance.ObjectActive != null)
+            if (InteractableObjectsManager.interactableObjectsManagerinstance.ObjectActive != null)
             {
-                InteractableObjectsManager.instance.ObjectActive.enabled = false;
-                InteractableObjectsManager.instance.ObjectActive = null;
+                InteractableObjectsManager.interactableObjectsManagerinstance.ObjectActive.enabled = false;
+                InteractableObjectsManager.interactableObjectsManagerinstance.ObjectActive = null;
                 InteractableObjectsManager.hideInteractableObject();
             }
         }

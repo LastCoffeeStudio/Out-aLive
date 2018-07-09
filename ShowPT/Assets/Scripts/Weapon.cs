@@ -69,7 +69,7 @@ public class Weapon : MonoBehaviour
             //swagWeaponMovement();
         }
 
-        if (CtrlPause.gamePaused == false)
+        if (CtrlGameState.gameState == CtrlGameState.gameStates.ACTIVE)
         {
             checkInputAnimations();
         }
@@ -209,6 +209,9 @@ public class Weapon : MonoBehaviour
     protected virtual void shoot()
     {
         ctrlAudio.playOneSound("Player", shot, transform.position, 1.0f, 0f, 150);
-        shootEffect.Play();
+        if (shootEffect != null)
+        {
+            shootEffect.Play();
+        }
     }
 }

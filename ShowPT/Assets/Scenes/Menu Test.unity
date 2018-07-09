@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1136,11 +1136,11 @@ GameObject:
   - component: {fileID: 324646970}
   m_Layer: 5
   m_Name: LoadingScreen
-  m_TagString: Untagged
+  m_TagString: MainUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &324646969
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2570,6 +2570,7 @@ GameObject:
   - component: {fileID: 787075606}
   - component: {fileID: 787075605}
   - component: {fileID: 787075608}
+  - component: {fileID: 787075609}
   m_Layer: 5
   m_Name: Start_btn
   m_TagString: Untagged
@@ -2635,17 +2636,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1547271970}
-        m_MethodName: playGame
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: Game
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 324646968}
         m_MethodName: SetActive
         m_Mode: 6
@@ -2720,6 +2710,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &787075609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 787075603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75b59e0a7ba986f4a9f5942802425a56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actions: 00000000
 --- !u!1 &807021166
 GameObject:
   m_ObjectHideFlags: 0
@@ -2729,7 +2731,6 @@ GameObject:
   m_Component:
   - component: {fileID: 807021168}
   - component: {fileID: 807021167}
-  - component: {fileID: 807021169}
   m_Layer: 5
   m_Name: loadBarSlider
   m_TagString: loadBarSlider
@@ -2804,17 +2805,6 @@ RectTransform:
   m_AnchoredPosition: {x: -6, y: -54}
   m_SizeDelta: {x: 148.3, y: 165.4}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &807021169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 807021166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a877c57884eadb4897427aa654dc131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &881519352
 GameObject:
   m_ObjectHideFlags: 0
@@ -4207,6 +4197,7 @@ GameObject:
   - component: {fileID: 1284515898}
   - component: {fileID: 1284515897}
   - component: {fileID: 1284515896}
+  - component: {fileID: 1284515900}
   m_Layer: 5
   m_Name: Exit_btn
   m_TagString: Untagged
@@ -4288,18 +4279,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1284515898}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1547271970}
-        m_MethodName: quitGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1284515898
@@ -4335,6 +4315,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1284515894}
+--- !u!114 &1284515900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1284515894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75b59e0a7ba986f4a9f5942802425a56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actions: 02000000
 --- !u!1 &1375254928
 GameObject:
   m_ObjectHideFlags: 0
@@ -4730,12 +4722,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1434980862}
---- !u!114 &1547271970 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114003119751239054, guid: 73a811b71265ef7458f52f7b08de4e89,
-    type: 2}
-  m_PrefabInternal: {fileID: 1853281273}
-  m_Script: {fileID: 11500000, guid: 75e6b8378d309e6448d9ba7b8897bc2d, type: 3}
 --- !u!1 &1561522355
 GameObject:
   m_ObjectHideFlags: 0
@@ -5870,7 +5856,7 @@ Prefab:
         type: 2}
       propertyPath: loadBar
       value: 
-      objectReference: {fileID: 807021167}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73a811b71265ef7458f52f7b08de4e89, type: 2}
   m_IsPrefabParent: 0

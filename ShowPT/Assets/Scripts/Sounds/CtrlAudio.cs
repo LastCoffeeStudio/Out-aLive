@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class CtrlAudio : MonoBehaviour
 {
- 
+    public static CtrlAudio ctrlAudioInstance = null;
     public AudioMixer audioMixer = null;
     public int numSounds = 10;
 
@@ -19,7 +19,12 @@ public class CtrlAudio : MonoBehaviour
 
     void Awake()
     {
+        if (ctrlAudioInstance == null)
+            ctrlAudioInstance = this;
+        else if (ctrlAudioInstance != this)
+            Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
+
         if (!audioMixer) return;
 
         AudioMixerGroup[] mixerGroups = audioMixer.FindMatchingGroups(string.Empty);
@@ -65,7 +70,10 @@ public class CtrlAudio : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        listenerPos = GameObject.FindGameObjectWithTag("Player").transform;
+        if (scene.buildIndex == 1)
+        {
+            listenerPos = GameObject.FindGameObjectWithTag("Player").transform;
+        }
     }
 
     public float getTrackVolume(string track)

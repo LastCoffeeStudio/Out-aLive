@@ -25,10 +25,13 @@ public class CtrlGameState : MonoBehaviour
     public GameObject winTitle;
     public GameObject loseTitle;
     public GameObject continueButton;
+    [SerializeField]
+    GameUI gameUI;
 
     // Use this for initialization
     void Start ()
 	{
+        gameUI = GameObject.FindGameObjectWithTag("SceneUI").GetComponent<GameUI>();
         gameState = gameStates.ACTIVE;
         numSnitchKilled = 0;
         numSnithcObjectives = 1;
@@ -55,6 +58,17 @@ public class CtrlGameState : MonoBehaviour
             setGameState(gameStates.DEATH);
             Time.timeScale = 0;
         }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (gameState == gameStates.PAUSE)
+            {
+                setGameState(gameStates.ACTIVE);
+            }
+            else
+            {
+                setGameState(gameStates.PAUSE);
+            }
+        }
     }
 
     public void setGameState(gameStates newGameState)
@@ -63,8 +77,16 @@ public class CtrlGameState : MonoBehaviour
         switch (newGameState)
         {
             case gameStates.ACTIVE:
+                if (gameUI)
+                {
+                    gameUI.TogglePauseScreen(false);
+                }
                 break;
             case gameStates.PAUSE:
+                if (gameUI)
+                {
+                    gameUI.TogglePauseScreen(true);
+                }
                 break;
             case gameStates.DEBUG:
                 break;
@@ -97,5 +119,10 @@ public class CtrlGameState : MonoBehaviour
     public void goToMainMenu()
     {
         Main.instance.goMainMenu();
+    }
+
+    public void resumeGame()
+    {
+        setGameState(gameStates.ACTIVE);
     }
 }

@@ -31,7 +31,7 @@ public class LaserCanon : Weapon {
             checkMouseInput();
         }
 
-        if (CtrlPause.gamePaused == false)
+        if (CtrlGameState.gameState == CtrlGameState.gameStates.ACTIVE)
         {
             checkInputAnimations();
         }

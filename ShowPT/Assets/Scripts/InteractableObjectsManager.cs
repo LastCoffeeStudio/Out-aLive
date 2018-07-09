@@ -27,7 +27,7 @@ public class InteractableObjectsManager : MonoBehaviour {
     private InteractableObject objectActive;
     private static InteractableObjectsManager interactableObjectsMapper;
 
-    public static InteractableObjectsManager instance
+    public static InteractableObjectsManager interactableObjectsManagerinstance
     {
         get
         {
@@ -72,26 +72,26 @@ public class InteractableObjectsManager : MonoBehaviour {
 
     public static void addInteractableObject(string name, string keyCode, string type, string objectName)
     {
-        instance.interactableObjects.Add(name, new InteractableInfo(keyCode, type, objectName));
+        interactableObjectsManagerinstance.interactableObjects.Add(name, new InteractableInfo(keyCode, type, objectName));
     }
 
     public static void showInteractableObject(string name)
     {
-        InteractableInfo interactableInfo = (InteractableInfo)instance.interactableObjects[name];
-        instance.actionText.text = interactableInfo.action;
-        instance.keyText.text = interactableInfo.keyCode;
-        instance.objectNameText.text = interactableInfo.objectName;
+        InteractableInfo interactableInfo = (InteractableInfo)interactableObjectsManagerinstance.interactableObjects[name];
+        interactableObjectsManagerinstance.actionText.text = interactableInfo.action;
+        interactableObjectsManagerinstance.keyText.text = interactableInfo.keyCode;
+        interactableObjectsManagerinstance.objectNameText.text = interactableInfo.objectName;
     }
 
     public static bool equalsObjectActive(InteractableObject interactableObject)
     {
-        return interactableObject.name == instance.objectActive.name;
+        return interactableObject.name == interactableObjectsManagerinstance.objectActive.name;
     }
 
     public static void hideInteractableObject()
     {
-        instance.actionText.text = "";
-        instance.keyText.text = "";
-        instance.objectNameText.text = "";
+        interactableObjectsManagerinstance.actionText.text = "";
+        interactableObjectsManagerinstance.keyText.text = "";
+        interactableObjectsManagerinstance.objectNameText.text = "";
     }
 }

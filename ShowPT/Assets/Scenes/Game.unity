@@ -2114,8 +2114,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1825261449}
-        m_MethodName: PauseUnPause
+      - m_Target: {fileID: 1825261447}
+        m_MethodName: resumeGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -71217,7 +71217,7 @@ GameObject:
   - component: {fileID: 976383457}
   m_Layer: 0
   m_Name: Scene UI
-  m_TagString: Untagged
+  m_TagString: SceneUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124465,7 +124465,8 @@ Prefab:
       propertyPath: continueButton
       value: 
       objectReference: {fileID: 1349912192}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114587176421123022, guid: 020030e7ca02d944eb8625b1fd8c4c5b, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 020030e7ca02d944eb8625b1fd8c4c5b, type: 2}
   m_IsPrefabParent: 0
 --- !u!114 &1825261447 stripped
@@ -124479,12 +124480,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1409320694246080, guid: 020030e7ca02d944eb8625b1fd8c4c5b,
     type: 2}
   m_PrefabInternal: {fileID: 1825261445}
---- !u!114 &1825261449 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114587176421123022, guid: 020030e7ca02d944eb8625b1fd8c4c5b,
-    type: 2}
-  m_PrefabInternal: {fileID: 1825261445}
-  m_Script: {fileID: 11500000, guid: 920519e30d3035e4f8a31dfa0cc11803, type: 3}
 --- !u!1 &1834654168
 GameObject:
   m_ObjectHideFlags: 0

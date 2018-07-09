@@ -10,9 +10,9 @@ public class GameUI : MonoBehaviour {
 
 	Main mainManager;
 
-	public void TogglePauseScreen()
+	public void TogglePauseScreen(bool pause)
 	{
-		if (CtrlPause.gamePaused == false) 
+		if (pause == false) 
 		{
 			pauseScreen.SetActive(false);
             setCursorScreen(false);
