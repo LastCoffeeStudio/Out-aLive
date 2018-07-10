@@ -12,14 +12,22 @@ ModelImporter:
     400002: Object001
     400004: //RootNode
     2100000: No Name
+    2100002: turret
     2300000: Cylinder001
     2300002: Object001
+    2300004: //RootNode
     3300000: Cylinder001
     3300002: Object001
+    3300004: //RootNode
     4300000: Object001
     4300002: Cylinder001
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: turret
+    second: {fileID: 2100000, guid: 22b3105050e5eda4bb5026b07478f4c7, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
