@@ -61,19 +61,7 @@ public class Weapon : MonoBehaviour
     }
 
     // Update is called once per frame
-    protected virtual void Update()
-    {
-        if (!firing && !reloading)
-        {
-            aimAmmo();
-            //swagWeaponMovement();
-        }
-
-        if (CtrlGameState.gameState == CtrlGameState.gameStates.ACTIVE)
-        {
-            checkInputAnimations();
-        }
-    }
+    protected virtual void Update() {}
 
     private void swagWeaponMovement()
     {
