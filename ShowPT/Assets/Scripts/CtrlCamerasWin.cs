@@ -37,6 +37,7 @@ public class CtrlCamerasWin : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        enabled = false;
         if (endCameras.Length > 0)
         {
             timerEndCamera = 0f;
