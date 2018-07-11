@@ -58,12 +58,10 @@ public class ResourceMachineController : MonoBehaviour {
     [Header("Player Data")]
     [SerializeField]
     private Inventory playerInventory;
-<<<<<<< HEAD
     [SerializeField]
     private ScoreController scoreController;
-=======
+    [SerializeField]
     private PlayerHealth playerHealth;
->>>>>>> 7507fa5c6d695f695790eb8fc80e23ee08425f1a
 
     [Header("Resources Data")]
     [SerializeField]
@@ -81,11 +79,8 @@ public class ResourceMachineController : MonoBehaviour {
     private void Start()
     {
         playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
-<<<<<<< HEAD
         ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
-=======
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
->>>>>>> 7507fa5c6d695f695790eb8fc80e23ee08425f1a
         indexActualResource = 0;
         updateSelected(0);
     }

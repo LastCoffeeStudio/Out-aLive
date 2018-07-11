@@ -71171,14 +71171,6 @@ MonoBehaviour:
   kamikazeDeadsLabel: {fileID: 955101046}
   lilDeadsLabel: {fileID: 922792113}
   totalDeadsLabel: {fileID: 0}
-  pistolShotsUsedText: {fileID: 0}
-  shotgunShotsUsedText: {fileID: 0}
-  SMGShotsUsedText: {fileID: 0}
-  canonShotsUsedText: {fileID: 0}
-  pistolShotsTouchedText: {fileID: 0}
-  shotgunShotsTouchedText: {fileID: 0}
-  SMGShotsTouchedText: {fileID: 0}
-  canonShotsTouchedText: {fileID: 0}
   pistolAverage: {fileID: 1417383639}
   shotgunAverage: {fileID: 457575327}
   SMGAverage: {fileID: 0}
@@ -78796,6 +78788,11 @@ Prefab:
       propertyPath: resources.Array.data[2].cost
       value: 400
       objectReference: {fileID: 0}
+    - target: {fileID: 114193786228332570, guid: 761b7f0fee957b349aa1a60a2e6088be,
+        type: 2}
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 1874922493}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 761b7f0fee957b349aa1a60a2e6088be, type: 2}
   m_IsPrefabParent: 0
@@ -129860,6 +129857,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f0d0e42c67fc064479f18a7382631ed6, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1874922493 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114045291391524378, guid: f0d0e42c67fc064479f18a7382631ed6,
+    type: 2}
+  m_PrefabInternal: {fileID: 1874922492}
+  m_Script: {fileID: 11500000, guid: 95c95405cd6451c4bac944b9346ec4b1, type: 3}
 --- !u!1001 &1877779887
 Prefab:
   m_ObjectHideFlags: 0
