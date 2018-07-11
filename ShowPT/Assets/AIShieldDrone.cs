@@ -24,6 +24,11 @@ public class AIShieldDrone : MonoBehaviour
         shieldTransform = transform.GetChild(0);
     }
 
+    private void OnDestroy()
+    {
+        ctrlShieldDrones.dronKilled();
+    }
+
     // Update is called once per frame
     void Update()
     {
