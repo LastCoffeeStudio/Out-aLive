@@ -224,4 +224,9 @@ public class ScoreController : MonoBehaviour {
     {
         totalScoreLabel.text = "Score: " + totalScoreInt.ToString();
     }
+
+    public int getTotalScore()
+    {
+        return totalScoreInt;
+    }
 }

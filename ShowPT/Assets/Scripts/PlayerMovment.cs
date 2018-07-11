@@ -197,6 +197,7 @@ public class PlayerMovment : MonoBehaviour
 
         if ((Input.GetKey(KeyCode.LeftShift) || Input.GetButton("ButtonL3")) && yMov > runStart && (animator == null || (!animator.GetBool("reloading") && !animator.GetBool("shooting") && !animator.GetBool("aiming"))) && (!jumping || localSpeed == runSpeed))
         {
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, originalZoom, Time.deltaTime * zoomSpeed);
             localSpeed = runSpeed;
         }
         else if (animator != null && animator.GetBool("aiming"))

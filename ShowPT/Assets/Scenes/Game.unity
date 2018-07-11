@@ -78771,6 +78771,31 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -202.509
       objectReference: {fileID: 0}
+    - target: {fileID: 114193786228332570, guid: 761b7f0fee957b349aa1a60a2e6088be,
+        type: 2}
+      propertyPath: playerInventory
+      value: 
+      objectReference: {fileID: 1527678893}
+    - target: {fileID: 114193786228332570, guid: 761b7f0fee957b349aa1a60a2e6088be,
+        type: 2}
+      propertyPath: scoreController
+      value: 
+      objectReference: {fileID: 976383457}
+    - target: {fileID: 114193786228332570, guid: 761b7f0fee957b349aa1a60a2e6088be,
+        type: 2}
+      propertyPath: negativeSelection
+      value: 
+      objectReference: {fileID: 8300000, guid: b052610cc82d5cf42838e8c4b0cb603a, type: 3}
+    - target: {fileID: 114193786228332570, guid: 761b7f0fee957b349aa1a60a2e6088be,
+        type: 2}
+      propertyPath: resources.Array.data[1].cost
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 114193786228332570, guid: 761b7f0fee957b349aa1a60a2e6088be,
+        type: 2}
+      propertyPath: resources.Array.data[2].cost
+      value: 400
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 761b7f0fee957b349aa1a60a2e6088be, type: 2}
   m_IsPrefabParent: 0
@@ -105523,6 +105548,12 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1527101275}
   m_Mesh: {fileID: 4300004, guid: 52d94b4846605b6428a9fb9759645791, type: 3}
+--- !u!114 &1527678893 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114623645713180148, guid: f0d0e42c67fc064479f18a7382631ed6,
+    type: 2}
+  m_PrefabInternal: {fileID: 1874922492}
+  m_Script: {fileID: 11500000, guid: 00ab3a4397ffcab43889923a0e67edf8, type: 3}
 --- !u!1 &1530868583
 GameObject:
   m_ObjectHideFlags: 0

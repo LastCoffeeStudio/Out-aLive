@@ -16,17 +16,18 @@ public class Gun : Weapon
 
     protected override void Update()
     {
+        if (CtrlGameState.gameState == CtrlGameState.gameStates.ACTIVE)
+        {
+            checkInputAnimations();
+            updateCharge();
+        }
+
         if (!firing && !reloading)
         {
             aimAmmo();
             //swagWeaponMovement();
         }
 
-        if (CtrlGameState.gameState == CtrlGameState.gameStates.ACTIVE)
-        {
-            checkInputAnimations();
-            updateCharge();
-        }
     }
 
     protected override void shotBullet(Ray ray)

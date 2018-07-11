@@ -56,6 +56,8 @@ public class ResourceMachineController : MonoBehaviour {
     [Header("Player Data")]
     [SerializeField]
     private Inventory playerInventory;
+    [SerializeField]
+    private ScoreController scoreController;
 
     [Header("Resources Data")]
     [SerializeField]
@@ -65,9 +67,15 @@ public class ResourceMachineController : MonoBehaviour {
     [Header("Player stats (Debug)")]
     public int score;
 
+    [Header("Sounds")]
+    public AudioClip negativeSelection;
+
+    private CtrlAudio ctrlAudio;
+
     private void Start()
     {
         playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
         indexActualResource = 0;
         updateSelected(0);
     }
@@ -155,9 +163,13 @@ public class ResourceMachineController : MonoBehaviour {
                 break;
         }
 
-        if (type != Inventory.WEAPON_TYPE.NO_WEAPON && !playerInventory.hasWeapon(type))
+        if (type != Inventory.WEAPON_TYPE.NO_WEAPON && !playerInventory.hasWeapon(type) && resources[indexActualResource].cost <= scoreController.getTotalScore())
         {
             playerInventory.addWeapon(type);
+        }
+        else
+        {
+            ctrlAudio.playOneSound("UI", negativeSelection, transform.position, 1.0f, 0f, 150);
         }
     }
 
