@@ -80,4 +80,9 @@ public class PlayerHealth : MonoBehaviour {
             ctrlGameState.setGameState(CtrlGameState.gameStates.DEATH);
         }
     }
+
+    public void buyHealth()
+    {
+        ChangeHealth(maxHealth);
+    }
 }

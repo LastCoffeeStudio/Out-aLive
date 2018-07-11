@@ -282,14 +282,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1383049976483442}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 5.161812, y: 0.02, z: 41.270744}
-  m_LocalScale: {x: 0.00041117764, y: 0.0004454375, z: 0.00042709653}
+  m_LocalRotation: {x: 0.687903, y: 0.0020765571, z: -0.010557742, w: 0.7257229}
+  m_LocalPosition: {x: -5.47, y: 8.17, z: -4.18}
+  m_LocalScale: {x: 0.00026981006, y: 0.00029885324, z: 0.00044516256}
   m_Children:
   - {fileID: 224848066896838654}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 86.859, y: -12.128, z: -13.152}
 --- !u!23 &23307615133622424
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -681,6 +681,16 @@ MonoBehaviour:
     cost: 0
     locked: 1
     description: 'Ammo for:'
+    ammount: 5
+  - category: 2
+    type: 5
+    image: {fileID: 21300000, guid: fd761d2a81cce7243995dc94cd976d86, type: 3}
+    width: 820
+    height: 230
+    text: HEALTH
+    cost: 0
+    locked: 1
+    description: Recover
     ammount: 5
   score: 100
 --- !u!114 &114256379879336532

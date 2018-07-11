@@ -10,6 +10,7 @@ public class ResourceMachineController : MonoBehaviour {
         NONE = -1,
         WEAPON,
         AMMO,
+        HEALTH,
 
         NUM_CATEGORIES
     }
@@ -22,6 +23,7 @@ public class ResourceMachineController : MonoBehaviour {
         CANNON,
         SHOTGUNAMMO,
         CANNONAMMO,
+        HEALTH,
 
         NUM_TYPES
     }
@@ -56,6 +58,7 @@ public class ResourceMachineController : MonoBehaviour {
     [Header("Player Data")]
     [SerializeField]
     private Inventory playerInventory;
+    private PlayerHealth playerHealth;
 
     [Header("Resources Data")]
     [SerializeField]
@@ -68,6 +71,7 @@ public class ResourceMachineController : MonoBehaviour {
     private void Start()
     {
         playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         indexActualResource = 0;
         updateSelected(0);
     }
@@ -135,6 +139,9 @@ public class ResourceMachineController : MonoBehaviour {
             case ResourceCategory.AMMO:
                 buyAmmo();
                 break;
+            case ResourceCategory.HEALTH:
+                buyHealth();
+                break;
         }
     }
 
@@ -181,5 +188,10 @@ public class ResourceMachineController : MonoBehaviour {
         {
             playerInventory.increaseAmmo(type, ammoIncrease);
         }
+    }
+
+    private void buyHealth()
+    {
+        playerHealth.buyHealth();
     }
 }
