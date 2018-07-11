@@ -15,8 +15,10 @@ public class EndCamera : MonoBehaviour {
     private Quaternion lastRotation;
     private float positionFactor;
     private float rotationFactor;
+
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         actual = (uint)Random.Range(0, path.Length);
         positionFactor = 0f;
         rotationFactor = 0f;
