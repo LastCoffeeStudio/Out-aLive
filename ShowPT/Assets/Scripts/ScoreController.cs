@@ -41,14 +41,14 @@ public class ScoreController : MonoBehaviour {
     public Text lilDeadsLabel;
     public Text totalDeadsLabel;
 
-    public Text pistolShotsUsedText;
+    /*public Text pistolShotsUsedText;
     public Text shotgunShotsUsedText;
     public Text SMGShotsUsedText;
     public Text canonShotsUsedText;
     public Text pistolShotsTouchedText;
     public Text shotgunShotsTouchedText;
     public Text SMGShotsTouchedText;
-    public Text canonShotsTouchedText;
+    public Text canonShotsTouchedText;*/
 
     public Text pistolAverage;
     public Text shotgunAverage;
@@ -65,7 +65,6 @@ public class ScoreController : MonoBehaviour {
     private static int dronsDeads;
     private static int kamikazeDeads;
     private static int LilDeads;
-    private static int totalEnemies;
 
     private static int pistolShotsUsed;
     private static int SMGShotsUsed;
@@ -98,6 +97,7 @@ public class ScoreController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        updateLavels();
         if (Input.GetKey(KeyCode.Tab) || CtrlGameState.getGameState() == CtrlGameState.gameStates.DEATH || CtrlGameState.getGameState() == CtrlGameState.gameStates.WIN)
         {
             stadistics.SetActive(true);
@@ -110,31 +110,7 @@ public class ScoreController : MonoBehaviour {
         }
 
         totalScoreLabel.text = totalScoreInt.ToString();
-        if(updateHud)
-        {
-            updateHud = false;
-            pistolShotsUsedText.text = pistolShotsUsed.ToString();
-            pistolShotsTouchedText.text = pistolShotsTouched.ToString();
-
-            SMGShotsUsedText.text = SMGShotsUsed.ToString();
-            SMGShotsTouchedText.text = SMGShotsTouched.ToString();
-
-            shotgunShotsUsedText.text = shotgunShotsUsed.ToString();
-            shotgunShotsTouchedText.text = shotgunShotsTouched.ToString();
-
-            canonShotsUsedText.text = canonShotsUsed.ToString();
-            canonShotsTouchedText.text = canonShotsTouched.ToString();
-
-            if (pistolShotsUsed > 0)
-                pistolAverage.text = (( pistolShotsTouched * 100 ) / pistolShotsUsed).ToString();
-            if (SMGShotsUsed > 0)
-                SMGAverage.text = ((SMGShotsTouched * 100) / SMGShotsUsed).ToString();
-            if (shotgunShotsUsed > 0)
-                shotgunAverage.text = ((shotgunShotsTouched * 100) / shotgunShotsUsed).ToString();
-            if (canonShotsUsed > 0)
-                canonAverage.text = ((canonShotsTouched * 100) / canonShotsUsed).ToString();
-
-        }
+        
         if (Input.GetKey(KeyCode.Z))
         {
             totalScoreInt += 500;
@@ -203,6 +179,7 @@ public class ScoreController : MonoBehaviour {
                 addScore((int)EnemyScore.LIL);
                 break;
         }
+        updateHud = true;
     }
 
     public void addLikes(int likes)
@@ -225,8 +202,43 @@ public class ScoreController : MonoBehaviour {
         totalScoreLabel.text = "Score: " + totalScoreInt.ToString();
     }
 
+
     public int getTotalScore()
     {
         return totalScoreInt;
+    }
+
+    void updateLavels()
+    {
+        if (updateHud)
+        {
+            updateHud = false;
+            //pistolShotsUsedText.text = pistolShotsUsed.ToString();
+            //pistolShotsTouchedText.text = pistolShotsTouched.ToString();
+
+            //SMGShotsUsedText.text = SMGShotsUsed.ToString();
+            //SMGShotsTouchedText.text = SMGShotsTouched.ToString();
+
+            //shotgunShotsUsedText.text = shotgunShotsUsed.ToString();
+            //shotgunShotsTouchedText.text = shotgunShotsTouched.ToString();
+
+            //canonShotsUsedText.text = canonShotsUsed.ToString();
+            //canonShotsTouchedText.text = canonShotsTouched.ToString();
+
+            if (pistolShotsUsed > 0)
+                pistolAverage.text = ((pistolShotsTouched * 100) / pistolShotsUsed).ToString();
+            if (SMGShotsUsed > 0)
+                SMGAverage.text = ((SMGShotsTouched * 100) / SMGShotsUsed).ToString();
+            if (shotgunShotsUsed > 0)
+                shotgunAverage.text = ((shotgunShotsTouched * 100) / shotgunShotsUsed).ToString();
+            if (canonShotsUsed > 0)
+                canonAverage.text = ((canonShotsTouched * 100) / canonShotsUsed).ToString();
+
+            wazDeadsLabel.text = wazDeads.ToString();
+            turretDeadsLabel.text = torretDeads.ToString();
+            dronsDeadsLabel.text = dronsDeads.ToString();
+            kamikazeDeadsLabel.text = kamikazeDeads.ToString();
+            lilDeadsLabel.text = LilDeads.ToString();
+        }
     }
 }

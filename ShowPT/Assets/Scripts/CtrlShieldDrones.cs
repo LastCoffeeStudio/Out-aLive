@@ -17,12 +17,17 @@ public class CtrlShieldDrones : MonoBehaviour {
     public bool playerInHome = false;
     private List<AIShieldDrone> shieldDrones;
     private GameObject player;
-    private SnitchDrone snitchDrone;
+    private GameObject Snitch;
+
+    private int dronesAlive;
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        dronesAlive = 0;
         shieldDrones = new List<AIShieldDrone>();
         player = GameObject.FindGameObjectWithTag("Player");
+        
         for (int i = 0; i < transform.childCount; ++i)
         {
             if (transform.GetChild(i).tag == "Drone")
@@ -30,6 +35,10 @@ public class CtrlShieldDrones : MonoBehaviour {
                 transform.GetChild(i).GetComponent<AIShieldDrone>().player = player;
                 transform.GetChild(i).GetComponent<AIShieldDrone>().ctrlShieldDrones = this;
                 shieldDrones.Add(transform.GetChild(i).GetComponent<AIShieldDrone>());
+                ++dronesAlive;
+            }else if (transform.GetChild(i).name == "Snitch")
+            {
+                Snitch = transform.GetChild(i).gameObject;
             }
         }
     }
@@ -70,5 +79,14 @@ public class CtrlShieldDrones : MonoBehaviour {
         }
 
         return neightbours;
+    }
+
+    public void dronKilled()
+    {
+        --dronesAlive;
+        if (dronesAlive < 1)
+        {
+            Snitch.GetComponent<SphereCollider>().enabled = true;
+        }
     }
 }
