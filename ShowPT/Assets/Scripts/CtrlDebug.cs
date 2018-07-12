@@ -20,6 +20,9 @@ public class CtrlDebug : MonoBehaviour
 	public GameObject neons;
 	public GameObject enemies;
 
+	[SerializeField]
+	GameObject bridge;
+
     // Use this for initialization
     void Start ()
 	{
@@ -130,6 +133,11 @@ public class CtrlDebug : MonoBehaviour
 			{
 				enemies.SetActive (true);
 			}
+		}
+		//Force bridge activation
+		if (Input.GetKeyDown (KeyCode.O)) 
+		{
+			bridge.SetActive (true);
 		}
     }
 
