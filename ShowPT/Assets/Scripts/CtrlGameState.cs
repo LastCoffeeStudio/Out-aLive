@@ -48,16 +48,6 @@ public class CtrlGameState : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKey(KeyCode.V) || numSnitchKilled >= numSnithcObjectives)
-        {
-            setGameState(gameStates.WIN);
-            Time.timeScale = 0;
-        }
-        if (Input.GetKey(KeyCode.B))
-        {
-            setGameState(gameStates.DEATH);
-            Time.timeScale = 0;
-        }
         if (Input.GetKeyDown(KeyCode.P))
         {
             if (gameState == gameStates.PAUSE)
@@ -102,7 +92,7 @@ public class CtrlGameState : MonoBehaviour
                 //score.SetActive(true);
                 break;
             case gameStates.DEATH:
-                print("YOU DEATH!!!!");
+                print("YOU'RE DEAD!!!!");
                 loseTitle.SetActive(true);
                 continueButton.SetActive(true);
                 //winState.text = "YOU DIED!";

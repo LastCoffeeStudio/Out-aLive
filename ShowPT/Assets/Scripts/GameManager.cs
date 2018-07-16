@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance = null;
-    public static bool debugMode = false;
+    
 
 
     
@@ -23,9 +23,6 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.F1))
-        {
-            debugMode = !debugMode;
-        }
+		
 	}
 }

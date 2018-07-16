@@ -23,6 +23,8 @@ public class CtrlDebug : MonoBehaviour
 	[SerializeField]
 	GameObject bridge;
 
+	public static bool debugMode = false;
+
     // Use this for initialization
     void Start ()
 	{
@@ -42,6 +44,14 @@ public class CtrlDebug : MonoBehaviour
 	            camerasDebug.transform.GetChild(indexChildren).gameObject.SetActive(true);
 	        }
 	    }
+
+		//Activate debug stats
+		if (Input.GetKeyDown(KeyCode.F1))
+		{
+			debugMode = !debugMode;
+		}
+
+		//Activate debug mode
 	    if (Input.GetKeyDown(KeyCode.X))
 	    {
 	        if (activeDebug)
@@ -53,12 +63,16 @@ public class CtrlDebug : MonoBehaviour
 	            enableDebug();
 	        }
         }
+
+		//Activate teleport
 	    if (Input.GetKeyDown(KeyCode.T))
 	    {
 	       Vector3 positionCamera = camerasDebug.transform.GetChild(indexChildren).gameObject.transform.position;
            disableDebug();
 	       player.transform.position = positionCamera;
 	    }
+
+		//Activate god mode
 	    if (Input.GetKeyDown(KeyCode.G))
 	    {
 	        player.GetComponent<PlayerHealth>().maxHealth = Int32.MaxValue;
@@ -134,10 +148,25 @@ public class CtrlDebug : MonoBehaviour
 				enemies.SetActive (true);
 			}
 		}
+
 		//Force bridge activation
 		if (Input.GetKeyDown (KeyCode.O)) 
 		{
 			bridge.SetActive (true);
+		}
+
+		//Force WIN condition
+		if (Input.GetKey(KeyCode.V))
+		{
+			CtrlGameState.gameState = CtrlGameState.gameStates.WIN;
+			Time.timeScale = 0;
+		}
+
+		//Force LOSE condition
+		if (Input.GetKey(KeyCode.B))
+		{
+			CtrlGameState.gameState = CtrlGameState.gameStates.DEATH;
+			Time.timeScale = 0;
 		}
     }
 
