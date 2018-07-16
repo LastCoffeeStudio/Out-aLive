@@ -56,11 +56,8 @@ public class ResourceMachineController : MonoBehaviour {
     public Sprite unlocked;
 
     [Header("Player Data")]
-    [SerializeField]
     private Inventory playerInventory;
-    [SerializeField]
     private ScoreController scoreController;
-    [SerializeField]
     private PlayerHealth playerHealth;
 
     [Header("Resources Data")]
@@ -81,6 +78,7 @@ public class ResourceMachineController : MonoBehaviour {
         playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+        scoreController = GameObject.FindGameObjectWithTag("SceneUI").GetComponent<ScoreController>();
         indexActualResource = 0;
         updateSelected(0);
     }

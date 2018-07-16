@@ -282,14 +282,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1383049976483442}
-  m_LocalRotation: {x: 0.687903, y: 0.0020765571, z: -0.010557742, w: 0.7257229}
-  m_LocalPosition: {x: -5.47, y: 8.17, z: -4.18}
-  m_LocalScale: {x: 0.00026981006, y: 0.00029885324, z: 0.00044516256}
+  m_LocalRotation: {x: -0.058197834, y: 0.68544585, z: -0.72243655, w: -0.069731176}
+  m_LocalPosition: {x: 2.37, y: 6.32, z: -21.806}
+  m_LocalScale: {x: 0.00026700032, y: 0.00030060398, z: 0.00044215648}
   m_Children:
   - {fileID: 224848066896838654}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 86.859, y: -12.128, z: -13.152}
+  m_LocalEulerAnglesHint: {x: 86.86, y: -12.125001, z: -202.509}
 --- !u!23 &23307615133622424
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -630,7 +630,6 @@ MonoBehaviour:
   costLayer: {fileID: 1668713672895644}
   locked: {fileID: 21300000, guid: df79bb3da1e647e43b4dec6ab49938f2, type: 3}
   unlocked: {fileID: 21300000, guid: f945a2b8bffbc3a49989f798e3fafc18, type: 3}
-  playerInventory: {fileID: 0}
   resources:
   - category: 0
     type: 0
@@ -648,7 +647,7 @@ MonoBehaviour:
     width: 1235
     height: 260
     text: SHOTGUN
-    cost: 20
+    cost: 200
     locked: 1
     description: 'Unlock with public impresions:'
     ammount: 0
@@ -658,7 +657,7 @@ MonoBehaviour:
     width: 1255
     height: 180
     text: CANNON
-    cost: 45
+    cost: 400
     locked: 1
     description: 'Unlock with public impresions:'
     ammount: 0
@@ -693,6 +692,7 @@ MonoBehaviour:
     description: Recover
     ammount: 5
   score: 100
+  negativeSelection: {fileID: 8300000, guid: b052610cc82d5cf42838e8c4b0cb603a, type: 3}
 --- !u!114 &114256379879336532
 MonoBehaviour:
   m_ObjectHideFlags: 1
