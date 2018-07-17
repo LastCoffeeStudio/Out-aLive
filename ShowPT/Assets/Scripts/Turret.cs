@@ -99,7 +99,7 @@ public class Turret : Enemy
         ctrAudio.playOneSound("Enemies", hitAudio, transform.position, 1.0f, 0.0f, 128);
         enemyHealth -= damage;
         //Execute properly Animation
-        base.checkHealth();
+        checkHealth();
     }
 
     public override void checkHealth()

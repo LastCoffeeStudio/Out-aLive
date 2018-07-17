@@ -31,10 +31,11 @@ public class Kamikaze : Enemy {
         //hitAudio = ctrAudio.hit;
         enemyHealth -= damage;
         //Debug.Log(enemyHealth);
-        if (enemyHealth <= 0)
+        /*if (enemyHealth <= 0)
         {
             forceExplode();
-        }
+        }*/
+        checkHealth();
     }
 
     private void forceExplode()
