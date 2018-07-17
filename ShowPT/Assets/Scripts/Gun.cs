@@ -62,10 +62,12 @@ public class Gun : Weapon
 
     public override void decreaseAmmo()
     {
+        Ray ray = crosshair.getRayCrosshairArea();
+        base.shotBullet(ray);
         actualCharge += chargeWhenShoot;
         Mathf.Clamp(actualCharge, 0, maxCharge);
         ScoreController.weaponUsed(type);
-        shotBullet(crosshair.getRayCrosshairArea());
+        shotBullet(ray);
         if (!crosshair.isFixed)
         {
             crosshair.increaseSpread(shotSpreadFactor);

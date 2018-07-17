@@ -177,11 +177,11 @@ public class Weapon : MonoBehaviour
         }
 
         //Trail effect
-        if (trailEffect != null)
+        /*if (trailEffect != null)
         {
             trailEffect.transform.LookAt(ray.origin + ray.direction * weaponRange);
             trailEffect.GetComponent<ParticleSystem>().Play();
-        }
+        }*/
     }
 
     private void endReload()

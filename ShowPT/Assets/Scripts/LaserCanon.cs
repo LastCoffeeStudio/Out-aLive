@@ -50,6 +50,8 @@ public class LaserCanon : Weapon {
     {
         RaycastHit hitInfo;
         Projectile projectile;
+        
+        base.shotBullet(ray);
 
         if (Physics.Raycast(ray, out hitInfo, weaponRange, maskBullets))
         {
