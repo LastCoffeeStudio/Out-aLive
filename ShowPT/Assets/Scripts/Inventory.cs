@@ -162,19 +162,25 @@ public class Inventory : MonoBehaviour
             weapon = type;
             weaponsInventory[(int)weapon].SetActive(true);
 
+            AMMO_TYPE typeAmmo = AMMO_TYPE.GUNAMMO;
             switch (type)
             {
                 case WEAPON_TYPE.GUN:
+                    typeAmmo = AMMO_TYPE.GUNAMMO;
                     hudController.selectWeapon(type, ammoInventory[AMMO_TYPE.GUNAMMO], getAmmo(AMMO_TYPE.GUNAMMO));
                     break;
                 case WEAPON_TYPE.SHOTGUN:
+                    typeAmmo = AMMO_TYPE.SHOTGUNAMMO;
                     hudController.selectWeapon(type, ammoInventory[AMMO_TYPE.SHOTGUNAMMO], getAmmo(AMMO_TYPE.SHOTGUNAMMO));
                     break;
                 case WEAPON_TYPE.CANON:
+                    typeAmmo = AMMO_TYPE.CANONAMMO;
                     hudController.selectWeapon(type, ammoInventory[AMMO_TYPE.CANONAMMO], getAmmo(AMMO_TYPE.CANONAMMO));
                     break;
             }
             gameObject.GetComponent<PlayerMovment>().animator = weaponsInventory[(int)weapon].GetComponentInChildren<Animator>();
+            hudController.setAmmo(ammoInventory[typeAmmo]);
+            hudController.setTotalAmmo(typeAmmo, totalAmmoInventory[typeAmmo]);
         }
     }
 
