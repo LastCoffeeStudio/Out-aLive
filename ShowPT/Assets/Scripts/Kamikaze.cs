@@ -47,7 +47,7 @@ public class Kamikaze : Enemy {
             player.GetComponent<PlayerHealth>().ChangeHealth(explosionDamage);
         }
         GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+		generateDeathEffect ();
     }
 
     private void hasExplode()
