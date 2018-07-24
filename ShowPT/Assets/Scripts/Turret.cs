@@ -106,7 +106,7 @@ public class Turret : Enemy
     {
         if (enemyHealth <= 0f)
         {
-            Destroy(gameObject);
+			generateDeathEffect ();
             ScoreController.addDead(ScoreController.Enemy.TURRET);
         }
     }

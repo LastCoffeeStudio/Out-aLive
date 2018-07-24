@@ -77,7 +77,8 @@ public class Enemy : MonoBehaviour
     {
         if (enemyHealth <= 0f)
         {
-            Destroy(gameObject);
+			generateDeathEffect ();
+            //Destroy(gameObject);
         }
     }
 
