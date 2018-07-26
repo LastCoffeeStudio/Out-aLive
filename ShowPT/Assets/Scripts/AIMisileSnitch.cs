@@ -7,7 +7,6 @@ public class AIMisileSnitch : MonoBehaviour
     [HideInInspector]
     public AISnitch aiSnitch;
     private Transform originalTransform;
-    private Transform originalParent;
     public float maxSpeed;
     public float maxAcceleration;
     public float distanceExplosion = 5f;
@@ -24,7 +23,6 @@ public class AIMisileSnitch : MonoBehaviour
         position = transform.position;
         originalTransform = transform;
         player = GameObject.FindGameObjectWithTag("Player");
-        originalParent = transform.parent;
 
     }
 	
@@ -34,7 +32,7 @@ public class AIMisileSnitch : MonoBehaviour
 	    if (trackPlayer)
 	    {
 	        //transform.parent = null;
-	        float t = Time.deltaTime;
+            float t = Time.deltaTime;
 
 	        acceleration = combine();
 	        acceleration = Vector3.ClampMagnitude(acceleration, maxAcceleration);
@@ -89,9 +87,13 @@ public class AIMisileSnitch : MonoBehaviour
                 player.GetComponent<PlayerHealth>().health -= 1;
             }
         }
+
+        //Iff colision player
+        trackPlayer = false;
         transform.position = originalTransform.position;
         transform.rotation = originalTransform.rotation;
         GetComponent<CapsuleCollider>().enabled = false;
+        GetComponent<Animator>().Play("Nothing");
         GetComponent<Animator>().enabled = true;
         aiSnitch.misileFree(gameObject);
     }
@@ -102,6 +104,7 @@ public class AIMisileSnitch : MonoBehaviour
         GetComponent<CapsuleCollider>().enabled = true;
         speed = transform.GetChild(0).transform.position - transform.position;
         speed = Vector3.ClampMagnitude(speed, 0.1f);
+        acceleration = Vector3.zero;
         trackPlayer = true;
         GetComponent<Animator>().enabled = false;
     }
