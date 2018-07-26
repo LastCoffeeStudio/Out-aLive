@@ -11,7 +11,7 @@ public class AISnitch : MonoBehaviour {
 
     private GameObject player;
     private Transform front;
-    private Queue<GameObject> misilesQueue;
+    private Queue<GameObject> misilesQueue = new Queue<GameObject>();
     private float timeForNextAttack;
     // Use this for initialization
     void Start()
@@ -21,8 +21,8 @@ public class AISnitch : MonoBehaviour {
         timeForNextAttack = timeBetweenAttacks;
         for (int i = 1; i < 5; ++i)
         {
-            transform.GetChild(i).GetComponent<AIMisileSnitch>().aiSnitch = this;
-            misilesQueue.Enqueue(transform.GetChild(i).transform.gameObject);
+            transform.GetChild(i).transform.GetChild(0).GetComponent<AIMisileSnitch>().aiSnitch = this;
+            misilesQueue.Enqueue(transform.GetChild(i).transform.GetChild(0).transform.gameObject);
         }
     }
 
