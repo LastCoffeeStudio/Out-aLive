@@ -48,6 +48,7 @@ public class AIKamikaze : MonoBehaviour {
 	float alertRotationTimer;
 	public float alertRotation = -2f;
 	Vector3 aggressiveDestination;
+	bool alreadyOnSuicideJump = false;
 
     [SerializeField]
 	state NPCstate;
@@ -89,7 +90,11 @@ public class AIKamikaze : MonoBehaviour {
 	// Update is called once per frame
     void Update()
     {
-        aggressiveDestination = player.transform.position;
+		if (alreadyOnSuicideJump == false) 
+		{
+			aggressiveDestination = player.transform.position;
+		}
+
         switch (NPCstate)
         {
             case state.WAITING:
@@ -120,6 +125,7 @@ public class AIKamikaze : MonoBehaviour {
 
                 if (Mathf.Abs(Vector3.Distance(gameObject.transform.position, player.transform.position)) < explodingDistance )
                 {
+					alreadyOnSuicideJump = true;
                     animKamikaze.SetBool("Explode", true);
                 }
                 if (animKamikaze.GetCurrentAnimatorStateInfo(0).IsName("die"))

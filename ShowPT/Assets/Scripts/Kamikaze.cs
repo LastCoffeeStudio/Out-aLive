@@ -22,7 +22,7 @@ public class Kamikaze : Enemy {
     // Update is called once per frame
     void Update()
     {
-        hasExplode();
+        //hasExplode();
     }
 
     public override void getHit(int damage)
@@ -61,7 +61,8 @@ public class Kamikaze : Enemy {
                 player.GetComponent<PlayerHealth>().ChangeHealth(explosionDamage);
             }
 			GameObject.Instantiate (explosion, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+			generateDeathEffect ();
+            //Destroy(gameObject);
         }
     }
 
