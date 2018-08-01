@@ -9,6 +9,7 @@ public class AudioPoolItem
     public AudioSource audioSource = null;
     public float importance = float.MaxValue;
     public bool isPlaying = false;
+    public bool loop = false;
     public IEnumerator coroutine = null;
     public ulong ID = 0;
 }

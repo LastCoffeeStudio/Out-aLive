@@ -51,6 +51,7 @@ public class CtrlAudio : MonoBehaviour
             poolItem.audioSource = audioSource;
             poolItem.transf = go.transform;
             poolItem.isPlaying = false;
+            poolItem.loop = false;
             go.SetActive(false);
             pool.Add(poolItem);
 
@@ -162,9 +163,17 @@ public class CtrlAudio : MonoBehaviour
             poolItem.ID = nextId;
             poolItem.gameObj.SetActive(true);
             source.Play();
-            poolItem.coroutine = stopSoundDelayed(nextId, source.clip.length);
-            StartCoroutine(poolItem.coroutine);
-            
+            if (poolItem.loop == false)
+            {
+                poolItem.coroutine = stopSoundDelayed(nextId, source.clip.length);
+
+                StartCoroutine(poolItem.coroutine);
+            }
+            else
+            {
+                poolItem.audioSource.loop = true;
+            }
+
             activePool[nextId] = poolItem;
             
             return nextId;
@@ -189,7 +198,7 @@ public class CtrlAudio : MonoBehaviour
         }
     }
 
-    public ulong playOneSound(string track, AudioClip clip, Vector3 position, float volume, float spatialBlend, int priority = 128, GameObject parentObject = null)
+    public ulong playOneSound(string track, AudioClip clip, Vector3 position, float volume, float spatialBlend, int priority = 128, bool loop = false, GameObject parentObject = null)
     {
         if (tracks.ContainsKey(track) && clip != null && volume.Equals(0.0f) == false)
         {
@@ -202,7 +211,7 @@ public class CtrlAudio : MonoBehaviour
             for (int i = 0; i < pool.Count; i++)
             {
                 AudioPoolItem poolItem = pool[i];
-
+                poolItem.loop = loop;
                 if (!poolItem.isPlaying)
                 {
                     if (parentObject != null)
