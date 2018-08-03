@@ -91,6 +91,7 @@ public class Enemy : MonoBehaviour
 		if (deathAnimation != null) 
 		{
 			deathAnimation.transform.position = transform.position;
+			deathAnimation.transform.rotation = transform.rotation;
 			deathAnimation.SetActive (true);
 		}
 		gameObject.SetActive (false);
