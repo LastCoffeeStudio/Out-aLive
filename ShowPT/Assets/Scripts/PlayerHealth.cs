@@ -66,7 +66,8 @@ public class PlayerHealth : MonoBehaviour {
 		if (value < 0) 
 		{
 			damageOverlay.damageFlash ();
-			damageable = false;
+            ScoreController.addLoseLife(-value);
+            damageable = false;
 		}
 
         if (health > maxHealth)

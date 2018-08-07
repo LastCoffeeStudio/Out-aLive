@@ -37,6 +37,7 @@ public class ScoreController : MonoBehaviour {
 
     private const float SECONDS_TO_BORING = 20;
     private const int POINTS_OF_BORING = 1;
+    private const int MULTIUPLAY_DAMAGE_POINTS = 3;
 
     //Public GUI objects
     public Text likesLabel;
@@ -201,29 +202,37 @@ public class ScoreController : MonoBehaviour {
                 break;
             case Enemy.TV:
                 ++tvDeads;
-                addScore((int)EnemyScore.TV);
+                addScore((int)EnemyScore.TV, false);
                 break;
             case Enemy.CAMERA:
                 ++cameraDeads;
-                addScore((int)EnemyScore.CAMERA);
+                addScore((int)EnemyScore.CAMERA, false);
                 break;
         }
         updateHud = true;
     }
 
-    public void addLikes(int likes)
+    public static void addLikes(int likes)
     {
         likesInt += likes;
     }
 
-    public void addDislikes(int likes)
+    public static void addDislikes(int likes)
     {
-        likesInt += likes;
+        disLikesInt += likes;
     }
 
-    public static void addScore(int score)
+    public static void addScore(int score, bool isLike = true)
     {
         totalScoreInt += score;
+        if (isLike)
+        {
+            addLikes(score);
+        }
+        else
+        {
+            addDislikes(score);
+        }
     }
 
     void gameFinished()
@@ -263,5 +272,12 @@ public class ScoreController : MonoBehaviour {
             boringTimeLabel.text = boringTime.ToString();
             lifeLostLabel.text = lifeLost.ToString();
         }
+    }
+
+    public static void addLoseLife(int damage)
+    {
+        lifeLost += damage;
+        addScore(damage * MULTIUPLAY_DAMAGE_POINTS, false);
+        updateHud = true;
     }
 }
