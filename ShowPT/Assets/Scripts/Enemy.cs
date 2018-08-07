@@ -78,6 +78,7 @@ public class Enemy : MonoBehaviour
         if (enemyHealth <= 0f)
         {
 			generateDeathEffect ();
+            ScoreController.addDead(GetScoreControllerEnemyByName());
             //Destroy(gameObject);
         }
     }
@@ -102,5 +103,12 @@ public class Enemy : MonoBehaviour
     public bool isDeath()
     {
         return enemyHealth <= 0f;
+    }
+
+    private ScoreController.Enemy GetScoreControllerEnemyByName()
+    {
+        if (this.name == "TV") return ScoreController.Enemy.TV;
+        else if(this.name == "Camera Head") return ScoreController.Enemy.CAMERA;
+        else return ScoreController.Enemy.UNDEFINED;
     }
 }

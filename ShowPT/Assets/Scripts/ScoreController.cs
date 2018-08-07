@@ -11,7 +11,11 @@ public class ScoreController : MonoBehaviour {
         TURRET,
         DRON,
         KAMIKAZE,
-        LIL
+        LIL,
+        TV,
+        CAMERA,
+
+        UNDEFINED
     }
 
     public enum EnemyScore
@@ -20,7 +24,9 @@ public class ScoreController : MonoBehaviour {
         TURRET = 20,
         DRON = 30,
         KAMIKAZE = 40,
-        LIL = 50
+        LIL = 50,
+        TV = 10,
+        CAMERA = 10
     }
 
     public enum ActionScore
@@ -28,6 +34,9 @@ public class ScoreController : MonoBehaviour {
         JUMP = 100,
         DEAD = 2000
     }
+
+    private const float SECONDS_TO_BORING = 20;
+    private const int POINTS_OF_BORING = 1;
 
     //Public GUI objects
     public Text likesLabel;
@@ -41,15 +50,11 @@ public class ScoreController : MonoBehaviour {
     public Text lilDeadsLabel;
     public Text totalDeadsLabel;
 
-    /*public Text pistolShotsUsedText;
-    public Text shotgunShotsUsedText;
-    public Text SMGShotsUsedText;
-    public Text canonShotsUsedText;
-    public Text pistolShotsTouchedText;
-    public Text shotgunShotsTouchedText;
-    public Text SMGShotsTouchedText;
-    public Text canonShotsTouchedText;*/
-
+    public Text tvDeadsLabel;
+    public Text cameraDeadsLabel;
+    public Text boringTimeLabel;
+    public Text lifeLostLabel;
+    
     public Text pistolAverage;
     public Text shotgunAverage;
     public Text SMGAverage;
@@ -60,11 +65,18 @@ public class ScoreController : MonoBehaviour {
     private static int disLikesInt;
     private static int totalScoreInt;
 
+    //Likes
     private static int wazDeads;
     private static int torretDeads;
     private static int dronsDeads;
     private static int kamikazeDeads;
     private static int LilDeads;
+
+    //Dislikes
+    private static int tvDeads;
+    private static int cameraDeads;
+    private static int boringTime;
+    private static int lifeLost;
 
     private static int pistolShotsUsed;
     private static int SMGShotsUsed;
@@ -90,6 +102,7 @@ public class ScoreController : MonoBehaviour {
     public GameObject hud;
 
     private static bool updateHud = false;
+    public static float timeSinceLastAction = 0.0f;
 
     // Use this for initialization
     void Start () {}
@@ -97,6 +110,13 @@ public class ScoreController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        timeSinceLastAction += Time.deltaTime;
+        if(timeSinceLastAction > SECONDS_TO_BORING)
+        {
+            updateHud = true;
+            timeSinceLastAction = 0;
+            boringTime += POINTS_OF_BORING;
+        }
         updateLavels();
         if (Input.GetKey(KeyCode.Tab) || CtrlGameState.getGameState() == CtrlGameState.gameStates.DEATH || CtrlGameState.getGameState() == CtrlGameState.gameStates.WIN)
         {
@@ -156,6 +176,7 @@ public class ScoreController : MonoBehaviour {
 
     public static void addDead(Enemy enemy)
     {
+        timeSinceLastAction = 0.0f;
         switch (enemy)
         {
             case Enemy.WAZ:
@@ -177,6 +198,14 @@ public class ScoreController : MonoBehaviour {
             case Enemy.LIL:
                 ++LilDeads;
                 addScore((int)EnemyScore.LIL);
+                break;
+            case Enemy.TV:
+                ++tvDeads;
+                addScore((int)EnemyScore.TV);
+                break;
+            case Enemy.CAMERA:
+                ++cameraDeads;
+                addScore((int)EnemyScore.CAMERA);
                 break;
         }
         updateHud = true;
@@ -213,17 +242,6 @@ public class ScoreController : MonoBehaviour {
         if (updateHud)
         {
             updateHud = false;
-            //pistolShotsUsedText.text = pistolShotsUsed.ToString();
-            //pistolShotsTouchedText.text = pistolShotsTouched.ToString();
-
-            //SMGShotsUsedText.text = SMGShotsUsed.ToString();
-            //SMGShotsTouchedText.text = SMGShotsTouched.ToString();
-
-            //shotgunShotsUsedText.text = shotgunShotsUsed.ToString();
-            //shotgunShotsTouchedText.text = shotgunShotsTouched.ToString();
-
-            //canonShotsUsedText.text = canonShotsUsed.ToString();
-            //canonShotsTouchedText.text = canonShotsTouched.ToString();
 
             if (pistolShotsUsed > 0)
                 pistolAverage.text = ((pistolShotsTouched * 100) / pistolShotsUsed).ToString();
@@ -239,6 +257,11 @@ public class ScoreController : MonoBehaviour {
             dronsDeadsLabel.text = dronsDeads.ToString();
             kamikazeDeadsLabel.text = kamikazeDeads.ToString();
             lilDeadsLabel.text = LilDeads.ToString();
+
+            tvDeadsLabel.text = tvDeads.ToString();
+            cameraDeadsLabel.text = cameraDeads.ToString();
+            boringTimeLabel.text = boringTime.ToString();
+            lifeLostLabel.text = lifeLost.ToString();
         }
     }
 }
