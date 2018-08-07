@@ -18,7 +18,7 @@ public class CtrlShieldDrones : MonoBehaviour {
     private List<AIShieldDrone> shieldDrones;
     private GameObject player;
     private GameObject Snitch;
-
+    private GameObject sphere;
     private int dronesAlive;
 
     // Use this for initialization
@@ -39,6 +39,10 @@ public class CtrlShieldDrones : MonoBehaviour {
             }else if (transform.GetChild(i).name == "Snitch")
             {
                 Snitch = transform.GetChild(i).gameObject;
+            }
+            else if (transform.GetChild(i).name == "Sphere")
+            {
+                sphere = transform.GetChild(i).gameObject;
             }
         }
     }
@@ -86,6 +90,7 @@ public class CtrlShieldDrones : MonoBehaviour {
         --dronesAlive;
         if (dronesAlive < 1)
         {
+            sphere.SetActive(false);
             Snitch.GetComponent<SphereCollider>().enabled = true;
         }
     }
