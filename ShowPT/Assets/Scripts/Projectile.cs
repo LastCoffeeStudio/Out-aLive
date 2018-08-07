@@ -84,7 +84,7 @@ public class Projectile : MonoBehaviour
 
 	void OnTriggerEnter(Collider col)
 	{
-        if (col.gameObject.layer == LayerMask.NameToLayer ("Wall")) 
+        if (col.gameObject.layer == LayerMask.NameToLayer ("Wall") || col.tag == "Sphere") 
 		{
             destroyMe();
 		}

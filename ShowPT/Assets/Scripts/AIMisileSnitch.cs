@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,21 +10,22 @@ public class AIMisileSnitch : MonoBehaviour
     private Transform originalTransform;
     public float maxSpeed;
     public float maxAcceleration;
-    public float distanceExplosion = 5f;
+    public int distanceExplosion = 5;
     public int animationBlast;
     private bool trackPlayer = false;
     private Vector3 position;
     private Vector3 speed = Vector3.zero;
     private Vector3 acceleration = Vector3.zero;
     private GameObject player;
-    
+    private Transform parentObj;
+
     // Use this for initialization
     void Start ()
     {
         position = transform.position;
         originalTransform = transform;
         player = GameObject.FindGameObjectWithTag("Player");
-
+        parentObj = gameObject.transform.parent;
     }
 	
 	// Update is called once per frame
@@ -80,16 +82,26 @@ public class AIMisileSnitch : MonoBehaviour
     {
         RaycastHit hit;
         // Does the ray intersect any objects excluding the player layer
+        //Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.green);
+
         if (Physics.Raycast(transform.position, player.transform.position - transform.position, out hit, distanceExplosion))
         {
             if (hit.transform.tag == "Player")
             {
-                player.GetComponent<PlayerHealth>().health -= 1;
+                int value = (int) Math.Abs(Vector3.Distance(player.transform.position, transform.position));
+                player.GetComponent<PlayerHealth>().ChangeHealth(value-distanceExplosion);
             }
         }
-
         //Iff colision player
         trackPlayer = false;
+        if (parentObj != null)
+        {
+            gameObject.transform.parent = parentObj;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         transform.position = originalTransform.position;
         transform.rotation = originalTransform.rotation;
         GetComponent<CapsuleCollider>().enabled = false;
@@ -107,6 +119,7 @@ public class AIMisileSnitch : MonoBehaviour
         acceleration = Vector3.zero;
         trackPlayer = true;
         GetComponent<Animator>().enabled = false;
+        gameObject.transform.parent = null;
     }
     
     
