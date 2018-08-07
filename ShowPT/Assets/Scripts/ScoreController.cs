@@ -185,7 +185,7 @@ public class ScoreController : MonoBehaviour {
                 addScore((int)EnemyScore.WAZ);
                 break;
             case Enemy.DRON:
-                ++torretDeads;
+                ++dronsDeads;
                 addScore((int)EnemyScore.DRON);
                 break;
             case Enemy.TURRET:
