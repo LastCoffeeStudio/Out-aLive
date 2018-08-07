@@ -271,6 +271,9 @@ public class ScoreController : MonoBehaviour {
             cameraDeadsLabel.text = cameraDeads.ToString();
             boringTimeLabel.text = boringTime.ToString();
             lifeLostLabel.text = lifeLost.ToString();
+
+            likesLabel.text = likesInt.ToString();
+            disLikesLabel.text = disLikesInt.ToString();
         }
     }
 
