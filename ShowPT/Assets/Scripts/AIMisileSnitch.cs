@@ -18,6 +18,8 @@ public class AIMisileSnitch : MonoBehaviour
     private Vector3 acceleration = Vector3.zero;
     private GameObject player;
     private Transform parentObj;
+    private ParticleSystem fire;
+    private ParticleSystem trail;
 
     // Use this for initialization
     void Start ()
@@ -26,6 +28,10 @@ public class AIMisileSnitch : MonoBehaviour
         originalTransform = transform;
         player = GameObject.FindGameObjectWithTag("Player");
         parentObj = gameObject.transform.parent;
+        fire = transform.GetChild(1).gameObject.GetComponent<ParticleSystem>();
+        trail = transform.GetChild(2).gameObject.GetComponent<ParticleSystem>();
+        fire.Stop();
+        trail.Stop();
     }
 	
 	// Update is called once per frame
@@ -102,6 +108,8 @@ public class AIMisileSnitch : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        fire.Stop();
+        trail.Stop();
         transform.position = originalTransform.position;
         transform.rotation = originalTransform.rotation;
         GetComponent<CapsuleCollider>().enabled = false;
@@ -121,6 +129,9 @@ public class AIMisileSnitch : MonoBehaviour
         GetComponent<Animator>().enabled = false;
         gameObject.transform.parent = null;
     }
-    
-    
+    public void startBlast()
+    {
+       fire.Play();
+       trail.Play();
+    }
 }
