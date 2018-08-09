@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class DestroyByTime : MonoBehaviour {
@@ -13,7 +14,8 @@ public class DestroyByTime : MonoBehaviour {
 	enum destroyWhat
 	{
 		MYSELF,
-		FATHER
+		FATHER,
+        SHIELD
 	}
 	[SerializeField]
 	destroyWhat whatToDestroy = destroyWhat.MYSELF;
@@ -40,14 +42,22 @@ public class DestroyByTime : MonoBehaviour {
 	{
 		GameObject objectToDealWith;
 
-		if (whatToDestroy == destroyWhat.FATHER) 
-		{
-			objectToDealWith = transform.parent.gameObject;
-		} 
-		else 
-		{
-			objectToDealWith = gameObject;
-		}
+	    switch (whatToDestroy)
+	    {
+            case destroyWhat.MYSELF:
+                objectToDealWith = gameObject;
+            break;
+	        case destroyWhat.FATHER:
+	            objectToDealWith = transform.parent.gameObject;
+	            break;
+	        case destroyWhat.SHIELD:
+	            objectToDealWith = transform.parent.gameObject;
+	            break;
+            default:
+                objectToDealWith = transform.parent.parent.parent.parent.gameObject;
+                break;
+        }
+		
 
 		if (destroyOrDisable == destroyOptions.DESTROY) 
 		{

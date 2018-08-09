@@ -129,4 +129,10 @@ public class AIShieldDrone : MonoBehaviour
         else if (result < 0) return 1;
         return 0;
     }
+
+    public void dead()
+    {
+        
+    }
+
 }
