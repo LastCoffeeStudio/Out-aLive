@@ -38,5 +38,12 @@ public class ElectricShot : MonoBehaviour {
             other.gameObject.GetComponent<Enemy>().getHit(damage);
             other.gameObject.GetComponent<Enemy>().setStatusParalyzed();
         }
+        if (other.tag == "BossArm")
+        {
+            projectilesList.Add(Instantiate(lightToEnemy, transform.position, Quaternion.identity, gameObject.transform));
+            positionList.Add(other.gameObject.transform.position);
+
+            other.gameObject.GetComponent<BossArmController>().getHit(damage);
+        }
     }
 }

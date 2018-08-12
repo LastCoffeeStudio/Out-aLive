@@ -84,7 +84,7 @@ public class Projectile : MonoBehaviour
 
 	void OnTriggerEnter(Collider col)
 	{
-        if (col.gameObject.layer == LayerMask.NameToLayer ("Wall") || col.tag == "Sphere") 
+        if (col.gameObject.layer == LayerMask.NameToLayer ("Wall") || col.tag == "Sphere" || col.gameObject.layer == LayerMask.NameToLayer("BossWall")) 
 		{
             destroyMe();
 		}
@@ -97,6 +97,11 @@ public class Projectile : MonoBehaviour
 		{
             Vector4 dataToPass = new Vector4(transform.position.x, transform.position.y, transform.position.z, damage);
 			col.gameObject.SendMessage ("shotBehavior", dataToPass);
+            destroyMe();
+        }
+        if (col.tag == "BossArm")
+        {
+            col.gameObject.GetComponent<BossArmController>().getHit(damage);
             destroyMe();
         }
     }
