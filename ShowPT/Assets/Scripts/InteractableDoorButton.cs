@@ -7,5 +7,6 @@ public class InteractableDoorButton : InteractableObject {
     protected override void executeAction()
     {
         GetComponent<GateTerminal>().Activate();
+		setState(InteractableObjectState.DISABLE);
     }
 }

@@ -11,11 +11,18 @@ public class GateTerminal : MonoBehaviour {
 	GameObject openedPosition;
 
 	bool gateOpened = false;
+
+	Animator myAnimator;
     
-	void Start () {}
+	void Start () 
+	{
+		myAnimator = GetComponent<Animator> ();
+	}
 	
-	void Update () {
-		if (gateOpened) {
+	void Update () 
+	{
+		if (gateOpened) 
+		{
 			gate.transform.position = Vector3.Lerp (gate.transform.position, openedPosition.transform.position, Time.deltaTime);
 		}
 	}
@@ -23,6 +30,7 @@ public class GateTerminal : MonoBehaviour {
 	public void Activate()
 	{
 		gateOpened = true;
+		myAnimator.SetTrigger ("activation");
 		gameObject.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
 	}
 }
