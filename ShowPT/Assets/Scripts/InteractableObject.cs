@@ -9,6 +9,14 @@ public class InteractableObject : MonoBehaviour {
     public string action;
     public string nameObject;
 
+	public enum ObjectMaster
+	{
+		SAME_OBJECT,
+		PARENT
+	}
+		
+	public ObjectMaster masterObject = ObjectMaster.SAME_OBJECT;
+
     public enum InteractableObjectState
     {
         PREPARED,

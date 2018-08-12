@@ -140,7 +140,14 @@ public class PlayerMovment : MonoBehaviour
             {
                 interactableObject.enabled = true;
                 InteractableObjectsManager.interactableObjectsManagerinstance.ObjectActive = interactableObject;
-                InteractableObjectsManager.showInteractableObject(hitInfo.collider.gameObject.transform.parent.name);
+				if (interactableObject.masterObject == InteractableObject.ObjectMaster.SAME_OBJECT) 
+				{
+					InteractableObjectsManager.showInteractableObject (hitInfo.collider.gameObject.transform.name);
+				} 
+				else 
+				{
+					InteractableObjectsManager.showInteractableObject (hitInfo.collider.gameObject.transform.parent.name);
+				}
             }
         } else
         {

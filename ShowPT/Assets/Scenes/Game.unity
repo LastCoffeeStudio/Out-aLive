@@ -21310,6 +21310,7 @@ MonoBehaviour:
   keycodeToInteract: 101
   action: Open
   nameObject: Lift
+  masterObject: 1
 --- !u!64 &344744473
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -40759,6 +40760,7 @@ MonoBehaviour:
   keycodeToInteract: 101
   action: Use object
   nameObject: Toilet
+  masterObject: 0
   clip: {fileID: 8300000, guid: a790fa245e9d1ec4d8094ca591899ff3, type: 3}
 --- !u!64 &626249973
 MeshCollider:
@@ -47422,7 +47424,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &760720654
 Transform:
   m_ObjectHideFlags: 0
@@ -64891,6 +64893,7 @@ MonoBehaviour:
   keycodeToInteract: 101
   action: '[Blocked]'
   nameObject: Door
+  masterObject: 0
   lockedDoor: {fileID: 11400000, guid: d6aaf721a44637043a8d1f615e73c344, type: 2}
 --- !u!64 &903422172
 MeshCollider:
@@ -67280,6 +67283,7 @@ MonoBehaviour:
   keycodeToInteract: 101
   action: Push
   nameObject: Door button
+  masterObject: 0
 --- !u!114 &953259174
 MonoBehaviour:
   m_ObjectHideFlags: 0
