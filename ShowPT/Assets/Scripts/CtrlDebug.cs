@@ -165,9 +165,11 @@ public class CtrlDebug : MonoBehaviour
 		//Force LOSE condition
 		if (Input.GetKey(KeyCode.B))
 		{
-			CtrlGameState.gameState = CtrlGameState.gameStates.DEATH;
-			Time.timeScale = 0;
+			player.GetComponent<PlayerHealth> ().ChangeHealth (-100);
+			//CtrlGameState.gameState = CtrlGameState.gameStates.DEATH;
+			//Time.timeScale = 0;
 		}
+			
     }
 
     void enableDebug()

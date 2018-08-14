@@ -10450,7 +10450,7 @@ Animator:
   m_GameObject: {fileID: 177247958}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 35588fd2343055e4eaf193e3a1b7c47d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -133388,6 +133388,11 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114045291391524378, guid: f0d0e42c67fc064479f18a7382631ed6,
+        type: 2}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 177247958}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f0d0e42c67fc064479f18a7382631ed6, type: 2}
   m_IsPrefabParent: 0

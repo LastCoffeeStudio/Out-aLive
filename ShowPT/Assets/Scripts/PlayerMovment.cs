@@ -13,6 +13,8 @@ public class PlayerMovment : MonoBehaviour
         JUMPING
     }
 
+	public static bool overrideControls = false;
+
     [Header("Speed Settings")]
     public float moveSpeed = 5f;
     public float runSpeed = 10f;
@@ -121,7 +123,10 @@ public class PlayerMovment : MonoBehaviour
         if (CtrlGameState.gameState == CtrlGameState.gameStates.ACTIVE)
         {
             checkInteract();
-            checkInput();
+			if (overrideControls == false) 
+			{
+				checkInput ();
+			}
         }
     }
 

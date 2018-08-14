@@ -16,7 +16,7 @@ public class LavaScriptTrigger : MonoBehaviour {
             GameObject thePlayer = other.gameObject;
             PlayerHealth playerScript = thePlayer.GetComponent<PlayerHealth>();
             playerScript.ChangeHealth(-playerScript.GetHealth());
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
         }
     }
 }

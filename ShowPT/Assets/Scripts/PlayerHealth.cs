@@ -19,27 +19,48 @@ public class PlayerHealth : MonoBehaviour {
 	float invincibilityTime = 0.5f;
 	float invincibilityCounter = 0f;
 
+	bool isDead = false;
+	[SerializeField]
+	float secondsBeforeGameOver = 4f;
+	float gameOverTimer = 0f;
+
+	[SerializeField]
+	GameObject playerCamera;
+	Animator deathAnimation;
+
     // Use this for initialization
     void Start ()
     {
         health = maxHealth;
         ctrlGameState = ctrlGame.GetComponent<CtrlGameState>();
+		deathAnimation = playerCamera.GetComponent<Animator> ();
     }
 
 	void Update()
 	{
-		if (damageable == false) 
+		if (isDead == true) 
 		{
-			invincibilityCounter += Time.deltaTime;
-			if (invincibilityCounter >= invincibilityTime) 
+			gameOverTimer += Time.deltaTime;
+			if (gameOverTimer >= secondsBeforeGameOver) 
 			{
-				invincibilityCounter = 0f;
-				damageable = true;
+				ctrlGameState.setGameState (CtrlGameState.gameStates.DEATH);
+			}
+		} 
+		else 
+		{
+			//Manage invincibility timer
+			if (damageable == false) 
+			{
+				invincibilityCounter += Time.deltaTime;
+				if (invincibilityCounter >= invincibilityTime) 
+				{
+					invincibilityCounter = 0f;
+					damageable = true;
+				}
 			}
 		}
 	}
 
-    //TODO: Final version projectiles are going to function with raycasts, so chances are the following method will completely change
     void OnTriggerEnter(Collider collider)
     {
 		Projectile bullet = collider.GetComponent<Projectile> ();
@@ -63,23 +84,28 @@ public class PlayerHealth : MonoBehaviour {
         	hudController.ChangeHealthBar(health);
 		}
 
-		if (value < 0) 
+		if (damageable == true) 
 		{
-			damageOverlay.damageFlash ();
-            ScoreController.addLoseLife(-value);
-            damageable = false;
-		}
+			if (value < 0) 
+			{
+				damageOverlay.damageFlash (health <= 0);
+				ScoreController.addLoseLife (-value);
+				damageable = false;
+			}
 
-        if (health > maxHealth)
-        {
-            health = maxHealth;
-            hudController.ChangeHealthBar(health);
-        }
-        else if (health <= 0)
-        {
-            //TODO: Call for Game Over
-            ctrlGameState.setGameState(CtrlGameState.gameStates.DEATH);
-        }
+			if (health > maxHealth) 
+			{
+				health = maxHealth;
+				hudController.ChangeHealthBar (health);
+			} 
+			else if (health <= 0) 
+			{
+				//Player DIES; Start dying sequence
+				PlayerMovment.overrideControls = true;
+				deathAnimation.SetTrigger ("playerDied");
+				isDead = true;
+			}
+		}
     }
 
     public void buyHealth()

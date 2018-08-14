@@ -14,6 +14,7 @@ public class DamageFlash : MonoBehaviour {
 	Image redOverlay;
 
 	bool damaged = false;
+	bool playerDied = false;
 
 	// Use this for initialization
 	void Start () {
@@ -22,21 +23,24 @@ public class DamageFlash : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-		if (damaged) 
+		if (playerDied == false) 
 		{
-			redOverlay.color = Color.Lerp (redOverlay.color, Color.clear, flashSpeed * Time.deltaTime);
-
-			if (redOverlay.color.a <= 0) 
+			if (damaged) 
 			{
-				damaged = false;
+				redOverlay.color = Color.Lerp (redOverlay.color, Color.clear, flashSpeed * Time.deltaTime);
+
+				if (redOverlay.color.a <= 0) 
+				{
+					damaged = false;
+				}
 			}
 		}
 	}
 
-	public void damageFlash()
+	public void damageFlash(bool dead)
 	{
 		redOverlay.color = damageColor;
 		damaged = true;
+		playerDied = dead;
 	}
 }

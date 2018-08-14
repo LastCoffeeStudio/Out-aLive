@@ -48,7 +48,7 @@ public class CtrlGameState : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+		if (Input.GetKeyDown(KeyCode.P) && PlayerMovment.overrideControls == false)
         {
             if (gameState == gameStates.PAUSE)
             {
