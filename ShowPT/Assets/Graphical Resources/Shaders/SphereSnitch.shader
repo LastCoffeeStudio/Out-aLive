@@ -1,9 +1,12 @@
-﻿Shader "Unlit/SphereSnitch"
+﻿// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+
+Shader "Unlit/SphereSnitch"
 {
 	Properties
 	{
 		[Enum(Off,0,Front,1,Back,2)] _CullMode("Culling Mode", int) = 0
 		[Enum(Off,0,On,1)] _ZWrite("ZWrite", int) = 0
+		_Color("Diffuse Material Color", Color) = (1,1,1,1)
 		_Progress("Progress",Range(0,1)) = 0
 		_MainTex("Main Texture", 2D) = "white" {}
 		_DissolveTex("Dissolve Texture", 2D) = "white" {}
@@ -21,10 +24,11 @@
 	
 	SubShader
 	{
-		Tags{ "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Opaque" }
+		Tags{ "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Opaque" "LightMode" = "ForwardBase" }
 
 		Pass
 		{
+
 			Blend SrcAlpha OneMinusSrcAlpha //Alpha Blend
 			Cull[_CullMode] Lighting Off ZWrite[_ZWrite]
 
@@ -34,11 +38,13 @@
 			#pragma shader_feature EDGE_COLOR
 
 			#include "UnityCG.cginc"
+			#include "Lighting.cginc"
 
 			struct appdata
 			{
 				float4 vertex : POSITION;
 				float2 uv : TEXCOORD0;
+				float3 normal : NORMAL;
 				fixed4 color : COLOR;
 			};
 
@@ -50,6 +56,7 @@
 				fixed4 color : COLOR;
 			};
 
+			float4 _Color;
 			sampler2D _MainTex;
 			sampler2D _DissolveTex;
 			float4 _MainTex_ST;
@@ -70,10 +77,21 @@
 			{
 				v2f o;
 
+
+				float4x4 modelMatrixInverse = unity_WorldToObject;
+
+				float3 normalDirection = normalize(mul(float4 (v.normal, 0.0), modelMatrixInverse));
+
+				float3 lightDirection = normalize(_WorldSpaceLightPos0.xyz);
+
+				float3 diffuseReflection = _LightColor0.rgb * _Color.rgb * max(0.0, dot(normalDirection, lightDirection));
+
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 				o.uv3 = TRANSFORM_TEX(v.uv, _DissolveTex);
 				o.color = v.color;
+
+				o.color = float4(diffuseReflection, 1.0) + UNITY_LIGHTMODEL_AMBIENT;
 				o.color.a *= _Progress;
 				return o;
 			}
