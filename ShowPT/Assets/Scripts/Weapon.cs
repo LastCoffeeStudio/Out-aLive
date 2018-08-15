@@ -184,7 +184,7 @@ public class Weapon : MonoBehaviour
         }*/
     }
 
-    private void endReload()
+    public void endReload()
     {
         reloading = false;
         animator.SetBool("reloading", false);

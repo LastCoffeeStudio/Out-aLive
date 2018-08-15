@@ -19,6 +19,7 @@ public class Gun : Weapon
         if (CtrlGameState.gameState == CtrlGameState.gameStates.ACTIVE)
         {
             checkInputAnimations();
+            checkMouseInput();
             updateCharge();
         }
 
@@ -55,6 +56,7 @@ public class Gun : Weapon
         }
         if (actualCharge >= maxCharge && animator.GetBool("reloading") == false)
         {
+            animator.SetBool("aiming", false);
             reloading = true;
             animator.SetBool("reloading", true);
         }
