@@ -6,6 +6,9 @@ public class SnitchEnemy : Enemy {
     
     public Transform player;
 
+	[SerializeField]
+	GameObject bridge;
+
     // Use this for initialization
     private void Start()
     {
@@ -42,6 +45,7 @@ public class SnitchEnemy : Enemy {
         if (enemyHealth <= 0f)
         {
             ScoreController.addDead(ScoreController.Enemy.DRON);
+			bridge.SetActive (true);
             Destroy(transform.parent.gameObject);
         }
     }
