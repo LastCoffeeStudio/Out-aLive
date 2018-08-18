@@ -34,6 +34,7 @@ public class LaserCanon : Weapon {
         if (CtrlGameState.gameState == CtrlGameState.gameStates.ACTIVE)
         {
             checkInputAnimations();
+            swagWeaponMovement();
         }
     }
 

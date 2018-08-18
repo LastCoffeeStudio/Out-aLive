@@ -22,7 +22,10 @@ public class Gun : Weapon
             checkMouseInput();
             updateCharge();
             aimAmmo();
-            //swagWeaponMovement();
+            if (!animator.GetBool("aiming"))
+            {
+                swagWeaponMovement();
+            }
         }
     }
 

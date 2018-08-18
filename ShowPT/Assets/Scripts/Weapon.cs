@@ -63,7 +63,7 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update() {}
 
-    private void swagWeaponMovement()
+    protected void swagWeaponMovement()
     {
         float movX = -Input.GetAxis("Mouse X") * amount;
         float movY = -Input.GetAxis("Mouse Y") * amount;
