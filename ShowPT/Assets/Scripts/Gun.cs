@@ -21,14 +21,9 @@ public class Gun : Weapon
             checkInputAnimations();
             checkMouseInput();
             updateCharge();
-        }
-
-        if (!firing && !reloading)
-        {
             aimAmmo();
             //swagWeaponMovement();
         }
-
     }
 
     protected override void shotBullet(Ray ray)
