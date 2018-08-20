@@ -81,6 +81,10 @@ public class PlayerHealth : MonoBehaviour {
 		if (value > 0 || damageable == true)
 		{
         	health += value;
+			if (health < 0) 
+			{
+				health = 0;
+			}
         	hudController.ChangeHealthBar(health);
 		}
 
