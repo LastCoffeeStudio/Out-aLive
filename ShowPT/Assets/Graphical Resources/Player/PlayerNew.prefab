@@ -656,7 +656,7 @@ GameObject:
   - component: {fileID: 114137068971340946}
   m_Layer: 0
   m_Name: Gun
-  m_TagString: Untagged
+  m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2126,6 +2126,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4866713762041342}
+  - component: {fileID: 95656689463978486}
   m_Layer: 0
   m_Name: Camera anim
   m_TagString: Untagged
@@ -7921,7 +7922,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1015626004004706}
   m_LocalRotation: {x: -0, y: 0.69716954, z: -0, w: -0.71690637}
-  m_LocalPosition: {x: 42.697, y: -21.29, z: -9.315}
+  m_LocalPosition: {x: 64.05, y: 0.884, z: 52.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4355732254777820}
@@ -11063,6 +11064,23 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95656689463978486
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1383158488270562}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 35588fd2343055e4eaf193e3a1b7c47d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &95717476485720790
 Animator:
   serializedVersion: 3
@@ -11205,6 +11223,8 @@ MonoBehaviour:
   hudController: {fileID: 0}
   damageOverlay: {fileID: 0}
   invincibilityTime: 0.2
+  secondsBeforeGameOver: 4
+  playerCamera: {fileID: 1383158488270562}
 --- !u!114 &114096344868049022
 MonoBehaviour:
   m_ObjectHideFlags: 1
