@@ -58,7 +58,7 @@ public class AIShieldDrone : MonoBehaviour
             }
             else
             {
-                transform.Rotate(0f, 0f, -transform.rotation.eulerAngles.z);
+                //transform.Rotate(0f, 0f, -transform.rotation.eulerAngles.z);
             }
 
             updateRotation = !updateRotation;
