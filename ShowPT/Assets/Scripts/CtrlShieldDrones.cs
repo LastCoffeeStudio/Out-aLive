@@ -1,20 +1,23 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CtrlShieldDrones : MonoBehaviour {
+public class CtrlShieldDrones : MonoBehaviour
+{
 
     //Distance betwen Target and player for drones start to search player.
-    public float radioHomeEnter;
+    //public float radioHomeEnter;
     //Distance betwen Target and player for drones comeback to target.
-    public float radioHomeExit;
+    //public float radioHomeExit;
     [Header("Shield Behaivor, movment and speed")]
     public float radioSeparation;
     public float KSeparation;
     public float KPlayer;
     public float maxAcceleration;
     public float maxVelocity;
-    
+
+    [NonSerialized]
     public bool playerInHome = false;
     private List<AIShieldDrone> shieldDrones;
     private GameObject player;
@@ -22,14 +25,21 @@ public class CtrlShieldDrones : MonoBehaviour {
     private GameObject sphere;
     private int dronesAlive;
     private List<GameObject> shieldsObjects;
-    // Use this for initialization
-    void Start ()
+
+    [Header("Animation Event")]
+    public AnimationCurve curve;
+    public float timeDown = 5f;
+    public float angleSpeed = 50f;
+    [NonSerialized]
+    public bool rotateShieldsAnimation = true;
+
+    void Start()
     {
         dronesAlive = 0;
         shieldDrones = new List<AIShieldDrone>();
         shieldsObjects = new List<GameObject>();
         player = GameObject.FindGameObjectWithTag("Player");
-        
+
         for (int i = 0; i < transform.childCount; ++i)
         {
             if (transform.GetChild(i).tag == "Drone")
@@ -39,10 +49,10 @@ public class CtrlShieldDrones : MonoBehaviour {
                 shieldDrones.Add(transform.GetChild(i).GetComponent<AIShieldDrone>());
                 shieldsObjects.Add(transform.GetChild(i).gameObject);
                 ++dronesAlive;
-            }else if (transform.GetChild(i).name == "Snitch")
+            }
+            else if (transform.GetChild(i).name == "Snitch")
             {
                 Snitch = transform.GetChild(i).gameObject;
-                Snitch.transform.parent = null;
             }
             else if (transform.GetChild(i).name == "Sphere")
             {
@@ -53,7 +63,9 @@ public class CtrlShieldDrones : MonoBehaviour {
         {
             shieldsObjects[i].transform.GetChild(0).Translate(0f, 0f, 10f);
         }
+        Snitch.transform.parent = null;
         transform.Translate(0f, 30f, 0f);
+        sphere.SetActive(false);
     }
 
     bool trigerFinish = false;
@@ -61,27 +73,16 @@ public class CtrlShieldDrones : MonoBehaviour {
     {
         if (trigerFinish == false)
         {
-            
-            StartCoroutine(closeDoorsSmooth());
+            startEventDrones();
+
             trigerFinish = true;
         }
-        if (playerInHome == false)
-        {
-            if (Vector3.Distance(player.transform.position, transform.position) <= radioHomeEnter)
-            {
-                //playerInHome = true;
-            }
+    }
 
-          
-        }
-        else
-        {
-            if (Vector3.Distance(player.transform.position, transform.position) >= radioHomeExit)
-            {
-                //playerInHome = false;
-            }
-        }
-        
+    public void startEventDrones()
+    {
+        StartCoroutine(downShieldDrones());
+        StartCoroutine(rotateShieldDrones());
     }
 
     public List<AIShieldDrone> getNeightbours(AIShieldDrone agent, float radious)
@@ -113,29 +114,50 @@ public class CtrlShieldDrones : MonoBehaviour {
         }
     }
 
-    public AnimationCurve curve;
-    public float timeClosing = 5f;
-    IEnumerator closeDoorsSmooth()
+    
+    IEnumerator downShieldDrones()
     {
         float time = 0f;
-        float speed = -3f;
-        float angleSpeed = 30f;
-        Vector3 startRotation = transform.position;
-        Vector3 endRotation = Snitch.transform.position;
-        Vector3 startPosition = shieldsObjects[0].transform.GetChild(0).transform.localPosition;
-        Vector3 endPosition = startPosition;
-        endPosition.z = 3f;
-        while (time <= timeClosing)
+        Vector3 startDownPosition= transform.position;
+        Vector3 endDownPosition = Snitch.transform.position;
+
+        //Drones Join in sphere
+        Vector3 startChildsPosition = shieldsObjects[0].transform.GetChild(0).transform.localPosition;
+        Vector3 endstChildsPosition = startChildsPosition;
+        endstChildsPosition.z = 3f;
+        while (time <= timeDown)
         {
             time += Time.deltaTime;
-            float t = time / timeClosing;
-            transform.position = Vector3.Lerp(startRotation, endRotation, curve.Evaluate(t));
+            float t = time / timeDown;
+            transform.position = Vector3.Lerp(startDownPosition, endDownPosition, curve.Evaluate(t));
             for (int i = 0; i < shieldsObjects.Count; i++)
             {
-                shieldsObjects[i].transform.Rotate(0f, angleSpeed*Time.deltaTime, 0f);
-                shieldsObjects[i].transform.GetChild(0).transform.localPosition = Vector3.Lerp(startPosition, endPosition, curve.Evaluate(t));
+                shieldsObjects[i].transform.GetChild(0).transform.localPosition = Vector3.Lerp(startChildsPosition, endstChildsPosition, curve.Evaluate(t));
             }
             yield return null;
         }
+        Snitch.transform.parent = transform;
+        yield return new WaitForSeconds(1);
+        sphere.SetActive(true);
+        sphere.GetComponent<SphereSnitchController>().apearBarrier();
+    }
+
+    IEnumerator rotateShieldDrones()
+    {
+        
+        while (rotateShieldsAnimation)
+        {
+            for (int i = 0; i < shieldsObjects.Count; i++)
+            {
+                shieldsObjects[i].transform.Rotate(0f, angleSpeed * Time.deltaTime, 0f);
+            }
+            yield return null;
+        }
+    }
+
+    public void finishRotationAnimation()
+    {
+        rotateShieldsAnimation = false;
+        playerInHome = true;
     }
 }

@@ -9,12 +9,13 @@ public class SphereSnitchController : MonoBehaviour
     public float speedLava;
     private Renderer rend;
     private float prog;
+    private bool alive = true;
     // Use this for initialization
     void Start()
     {
         rend = GetComponent<Renderer>();
         rend.material.shader = Shader.Find("Unlit/SphereSnitch");
-        prog = 0.0f;
+        prog = 0.1f;
 
 
     }
@@ -22,11 +23,33 @@ public class SphereSnitchController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        prog += speedApear * Time.deltaTime;
-        rend.material.SetFloat("_Progress", prog);
-        if (prog > 0.6f && prog < 2f)
+        
+    }
+
+    public void apearBarrier()
+    {
+        StartCoroutine(_apearBarrier());
+    }
+
+    private IEnumerator _apearBarrier()
+    {
+        while (prog < 0.6f)
         {
-            speedApear = speedLava;
+            prog += speedApear * Time.deltaTime;
+            rend.material.SetFloat("_Progress", prog);
+            yield return null;
+        }
+        StartCoroutine(moveLava());
+        transform.parent.GetComponent<CtrlShieldDrones>().finishRotationAnimation();
+    }
+
+    private IEnumerator moveLava()
+    {
+        while (alive)
+        {
+            prog += speedLava * Time.deltaTime;
+            rend.material.SetFloat("_Progress", prog);
+            yield return null;
         }
     }
 }
