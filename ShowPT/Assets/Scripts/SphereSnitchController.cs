@@ -31,6 +31,12 @@ public class SphereSnitchController : MonoBehaviour
         StartCoroutine(_apearBarrier());
     }
 
+    public void disolveBarrier(GameObject snitch)
+    {
+        StartCoroutine(_disolveBarrier(snitch));
+    }
+
+
     private IEnumerator _apearBarrier()
     {
         while (prog < 0.6f)
@@ -51,5 +57,19 @@ public class SphereSnitchController : MonoBehaviour
             rend.material.SetFloat("_Progress", prog);
             yield return null;
         }
+    }
+
+    private IEnumerator _disolveBarrier(GameObject snitch)
+    {
+        prog = 0.7f;
+        alive = false;
+        while (prog > 0.1f)
+        {
+            prog -= speedApear * Time.deltaTime;
+            rend.material.SetFloat("_Progress", prog);
+            yield return null;
+        }
+        snitch.GetComponent<SphereCollider>().enabled = true;
+        gameObject.SetActive(false);
     }
 }

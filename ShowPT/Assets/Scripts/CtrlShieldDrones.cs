@@ -109,8 +109,7 @@ public class CtrlShieldDrones : MonoBehaviour
         --dronesAlive;
         if (dronesAlive < 1)
         {
-            sphere.SetActive(false);
-            Snitch.GetComponent<SphereCollider>().enabled = true;
+            sphere.GetComponent<SphereSnitchController>().disolveBarrier(Snitch);
         }
     }
 
