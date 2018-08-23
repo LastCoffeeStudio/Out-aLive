@@ -95,7 +95,7 @@ public class HudController : MonoBehaviour
         healthBar.value = value;
         valueHealth.text = value.ToString();
 
-		if (value < MAX_YELLOW_LIFE) 
+		/*if (value < MAX_YELLOW_LIFE) 
 		{
 			rotatingBar.sprite = rotatingRed;
 			//fillHealth.GetComponent<Image> ().color = RED;
@@ -109,7 +109,7 @@ public class HudController : MonoBehaviour
 		{
 			rotatingBar.sprite = rotatingGreen;
 			//fillHealth.GetComponent<Image> ().color = Color.green;
-		}
+		}*/
     }
 
     public void setAmmo(int value)
