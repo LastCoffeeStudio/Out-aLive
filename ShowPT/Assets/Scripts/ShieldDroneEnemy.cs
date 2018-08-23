@@ -11,7 +11,8 @@ public class ShieldDroneEnemy : Enemy {
     private ParticleSystem particleSmoke1;
     private ParticleSystem particleSmoke2;
     private bool exploted = false;
-
+    private GameObject effectHit;
+    private GameObject propShield;
     // Use this for initialization
     private void Start ()
     {
@@ -21,7 +22,19 @@ public class ShieldDroneEnemy : Enemy {
         smoke2 = transform.GetChild(1).gameObject;
         particleSmoke1 = smoke1.GetComponent<ParticleSystem>();
         particleSmoke2 = smoke2.GetComponent<ParticleSystem>();
-        //ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
+        //ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>()
+        for (int i = 0; i < transform.childCount;++i)
+        {
+            if (transform.GetChild(i).name == "prop_sheld")
+            {
+                propShield = transform.GetChild(i).gameObject;
+            }
+            else if (transform.GetChild(i).name == "effectHit")
+            {
+                effectHit = transform.GetChild(i).gameObject;
+                effectHit.SetActive(false);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -61,7 +74,12 @@ public class ShieldDroneEnemy : Enemy {
 
     public override void checkHealth()
     {
-        if (enemyHealth <= 0f)
+        if (enemyHealth > 1)
+        {
+            effectHit.SetActive(true);
+            StartCoroutine(playEffectHit());
+        }
+        else if(enemyHealth <= 0f)
         {
             ScoreController.addDead(ScoreController.Enemy.DRON);
             smoke1.SetActive(true);
@@ -78,4 +96,13 @@ public class ShieldDroneEnemy : Enemy {
         }
     }
 
+    IEnumerator playEffectHit()
+    {
+        yield return new WaitForSeconds(1);
+        effectHit.SetActive(false);
+        if (enemyHealth < 2)
+        {
+            propShield.SetActive(false);
+        }
+    }
 }
