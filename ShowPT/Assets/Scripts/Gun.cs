@@ -63,7 +63,7 @@ public class Gun : Weapon
     public override void decreaseAmmo()
     {
         Ray ray = crosshair.getRayCrosshairArea();
-        base.shotBullet(ray);
+        //base.shotBullet(ray);
         actualCharge += chargeWhenShoot;
         Mathf.Clamp(actualCharge, 0, maxCharge);
         ScoreController.weaponUsed(type);

@@ -5,7 +5,8 @@ using UnityEngine;
 public class Projectile : MonoBehaviour 
 {
     [Header("Projectile Properties")]
-	[SerializeField]
+    public Inventory.WEAPON_TYPE projectileWeaponType = Inventory.WEAPON_TYPE.NONE;
+    [SerializeField]
 	float speed = 5.0f;
     [SerializeField]
     float timeLife = 10f;
@@ -90,17 +91,20 @@ public class Projectile : MonoBehaviour
 		}
         if (col.tag == "Enemy" || col.tag == "Agent" || col.tag == "Snitch")
         {
+            ScoreController.weaponHit(projectileWeaponType);
             col.gameObject.GetComponent<Enemy>().getHit(damage);
             destroyMe();
         }
 		if (col.gameObject.layer == LayerMask.NameToLayer("PhysicsObjects")) 
 		{
+            ScoreController.weaponHit(projectileWeaponType);
             Vector4 dataToPass = new Vector4(transform.position.x, transform.position.y, transform.position.z, damage);
 			col.gameObject.SendMessage ("shotBehavior", dataToPass);
             destroyMe();
         }
         if (col.tag == "BossArm")
         {
+            ScoreController.weaponHit(projectileWeaponType);
             col.gameObject.GetComponent<BossArmController>().getHit(damage);
             destroyMe();
         }
