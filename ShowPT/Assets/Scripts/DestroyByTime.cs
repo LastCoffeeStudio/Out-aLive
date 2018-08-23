@@ -28,17 +28,36 @@ public class DestroyByTime : MonoBehaviour {
 	[SerializeField]
 	destroyOptions destroyOrDisable = destroyOptions.DESTROY;
 
+	[SerializeField]
+	bool fade = true;
+	[SerializeField]
+	float fadeTime = 3f;
+
+	Renderer[] listOfChildren;
+
+	void Start()
+	{
+		listOfChildren = GetComponentsInChildren<Renderer>();
+	}
+
 	void Update()
 	{
 		timer += Time.deltaTime;
 
 		if (timer >= lifetime) 
 		{
-			doIt ();
+			if (fade == false) 
+			{
+				destroyMe ();
+			} 
+			else 
+			{
+				fadeAway ();
+			}
 		}
 	}
 
-	void doIt()
+	void destroyMe()
 	{
 		GameObject objectToDealWith;
 
@@ -57,7 +76,6 @@ public class DestroyByTime : MonoBehaviour {
                 objectToDealWith = transform.parent.parent.parent.parent.gameObject;
                 break;
         }
-		
 
 		if (destroyOrDisable == destroyOptions.DESTROY) 
 		{
@@ -66,6 +84,31 @@ public class DestroyByTime : MonoBehaviour {
 		else 
 		{
 			objectToDealWith.SetActive (false);
+		}
+	}
+
+	void fadeAway()
+	{
+		if (timer < lifetime + fadeTime) 
+		{
+			float fadingCounter = timer - lifetime;
+			float newAlpha = Mathf.Lerp (1, 0, fadingCounter / fadeTime);
+
+			foreach (Renderer renderer in listOfChildren) 
+			{
+				foreach (Material material in renderer.materials)
+				{
+					if (material.HasProperty ("_Color")) 
+					{
+						Color newColor = new Color (material.color.r, material.color.g, material.color.b, newAlpha);
+						material.SetColor ("_Color", newColor);
+					}
+				}
+			}
+		} 
+		else 
+		{
+			destroyMe ();
 		}
 	}
 }
