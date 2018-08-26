@@ -5613,6 +5613,12 @@ MonoBehaviour:
   explosionDistance: 2
   explosionDamage: -10
   explosion: {fileID: 1660948848680200, guid: 04aaa1d59e48d74429585d10386fc055, type: 2}
+  maxDistancePlayer: 15
+  shakeTime: 0.1
+  fadeInTime: 0.05
+  fadeOutTime: 0.3
+  speed: 15
+  magnitude: 0.5
 --- !u!114 &114545549642048716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5627,6 +5633,8 @@ MonoBehaviour:
   lifetime: 5
   whatToDestroy: 0
   destroyOrDisable: 0
+  fade: 1
+  fadeTime: 3
 --- !u!114 &114736142948819192
 MonoBehaviour:
   m_ObjectHideFlags: 1

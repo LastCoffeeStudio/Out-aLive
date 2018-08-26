@@ -53,11 +53,13 @@ public class PlayerMovment : MonoBehaviour
     private CtrlAudio ctrlAudio;
 
     [Header("Crouch Settings")]
-    public float smoothCrouch = 0.05f;
     [Range(0.1f, 0.9f)]
     public float crouchAmount;
     [HideInInspector]
     public bool crouched = false;
+    public float timeToCrouch = 1f;
+    private float crouchTime = 0f;
+    private float actualCrouchAmount = 0f;
     private CapsuleCollider playerCollider;
 
     private Texture2D tex;
@@ -81,6 +83,14 @@ public class PlayerMovment : MonoBehaviour
 
     [SerializeField]
     private GameUI gameUI;
+
+    [Header("Walk Settings")]
+    public AnimationCurve cameraMovementX;
+    public AnimationCurve cameraMovementY;
+    public float recoverTime;
+    [Range(0f,1f)]
+    public float movementMagnitude;
+    private float cameraIndex;
 
     void Start()
     {
@@ -113,8 +123,8 @@ public class PlayerMovment : MonoBehaviour
     //Calcule 
     private void FixedUpdate()
     {
-        movePlayer();
-        rotateCamera();
+        updatePlayer();
+        updateCamera();
     }
 
     void Update()
@@ -224,33 +234,36 @@ public class PlayerMovment : MonoBehaviour
         }
         if ((Input.GetButtonDown("ButtonB") || Input.GetKeyDown(KeyCode.C)) && !jumping)
         {
-            crouched = !crouched;
+            updateCrouchState(!crouched);
         }
         if (crouched && !jumping)
         {
             hudController.setMenDown(true);
             localSpeed = agacSpeed;
-            Vector3 endPosition = new Vector3(originalCameraPos.x, originalCameraPos.y - originalCapsuleHeight * crouchAmount, originalCameraPos.z);
-            cam.transform.localPosition = Vector3.Lerp(cam.transform.localPosition, endPosition, Time.deltaTime * smoothCrouch);
-            playerCollider.center = new Vector3(originalCapsuleCenter.x, originalCapsuleCenter.y - (originalCapsuleHeight * crouchAmount) / 2f, originalCapsuleCenter.z);
-            playerCollider.height = originalCapsuleHeight - originalCapsuleHeight * crouchAmount;
         }
         else
         {
             hudController.setMenDown(false);
-            cam.transform.localPosition = Vector3.Lerp(cam.transform.localPosition, originalCameraPos, Time.deltaTime * smoothCrouch);
-            playerCollider.center = originalCapsuleCenter;
-            playerCollider.height = originalCapsuleHeight;
         }
 
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("ButtonA")) && isGrounded && !jumping)
         {
             jumps = true;
-            crouched = false;
+            if (crouched)
+            {
+                updateCrouchState(false);
+            }
         }
     }
 
-    private void movePlayer()
+    private void updateCrouchState(bool crouch)
+    {
+        crouched = crouch;
+        crouchTime = timeToCrouch - crouchTime;
+        crouchTime = Mathf.Clamp(crouchTime, 0f, timeToCrouch);
+    }
+
+    private void updatePlayer()
     {
         RaycastHit hitInfo;
         isGrounded = Physics.Raycast(transform.position, -Vector3.up, out hitInfo, groundDistance, layerMask);
@@ -325,7 +338,7 @@ public class PlayerMovment : MonoBehaviour
         }
     }
 
-    private void rotateCamera()
+    private void updateCamera()
     {
         //Calculate Rotation
         rotation = new Vector3(0f, xRot, 0f) * lookSensivity;
@@ -343,6 +356,69 @@ public class PlayerMovment : MonoBehaviour
             currentRotation.x = Mathf.Clamp(currentRotation.x + Quaternion.Euler(rotation).x, -0.7f, 0.7f);
             cam.transform.localRotation = currentRotation;
         }
+
+        //Update Camera
+        if (crouched && !jumping)
+        {
+            if (crouchTime < timeToCrouch)
+            {
+                crouchTime += Time.deltaTime;
+
+                actualCrouchAmount = Mathf.Lerp(0f, crouchAmount, crouchTime / timeToCrouch);
+            }
+            playerCollider.center = new Vector3(originalCapsuleCenter.x, originalCapsuleCenter.y - (originalCapsuleHeight * crouchAmount) / 2f, originalCapsuleCenter.z);
+            playerCollider.height = originalCapsuleHeight - originalCapsuleHeight * crouchAmount;
+        }
+        else
+        {
+            if (crouchTime < timeToCrouch)
+            {
+                crouchTime += Time.deltaTime;
+
+                actualCrouchAmount = Mathf.Lerp(crouchAmount, 0f, crouchTime / timeToCrouch);
+            }
+            playerCollider.center = originalCapsuleCenter;
+            playerCollider.height = originalCapsuleHeight;
+        }
+        
+        //Update CameraPivot
+        if (!jumping && velocity.magnitude > 0.5f)
+        {
+            float movementFactor = 4f;
+
+            if (localSpeed == moveSpeed || localSpeed == agacSpeed)
+            {
+                movementFactor = 3f;
+            }
+            cameraIndex += Time.deltaTime * velocity.magnitude / movementFactor;
+
+            Keyframe k = cameraMovementX[cameraMovementX.length - 1];
+            while (cameraIndex > k.time)
+            {
+                cameraIndex -= k.time;
+            }
+        }
+        else
+        {
+            if (cameraIndex != 0f)
+            {
+                Keyframe k = cameraMovementX[cameraMovementX.length - 1];
+                
+                float nextCameraIndex = cameraIndex + Time.deltaTime * 2f;
+                if (cameraIndex >= k.time || (cameraIndex < k.time / 2f && nextCameraIndex > k.time / 2f))
+                {
+                    cameraIndex = 0f;
+                }
+                else
+                {
+                    cameraIndex = nextCameraIndex;
+                }
+            }
+        }
+
+        float movementX = cameraMovementX.Evaluate(cameraIndex) * movementMagnitude;
+        float movementY = cameraMovementY.Evaluate(cameraIndex) * movementMagnitude;
+        cam.transform.localPosition = originalCameraPos + new Vector3(movementX, originalCapsuleHeight * -actualCrouchAmount + movementY, 0f);
     }
 
     /*If axis is a valid Axis, returns a value between -1 and 1*/

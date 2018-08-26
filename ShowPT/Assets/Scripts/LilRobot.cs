@@ -48,12 +48,11 @@ public class LilRobot : Enemy
     [SerializeField]
     private Vector3 destination;
 
-	GameObject[] listOfParts;
-
     // Use this for initialization
     void Start()
     {
         ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
+        cameraShake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
         //hitAudio = hit;
         target = GameObject.FindGameObjectWithTag("Player").transform;
         obstacleDetector = transform.Find("ObstacleDetector");
@@ -196,7 +195,11 @@ public class LilRobot : Enemy
     {
         if (enemyHealth <= 0f)
         {
-			generateDeathEffect();
+            //Camera Shake
+            float playerDistance = Vector3.Distance(transform.position, target.position);
+            cameraShake.startShake(shakeTime, fadeInTime, fadeOutTime, speed, (magnitude * (1 - Mathf.Clamp01(playerDistance / maxDistancePlayer))));
+
+            generateDeathEffect();
             ScoreController.addDead(ScoreController.Enemy.LIL);
         }
     }

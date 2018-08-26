@@ -600,8 +600,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1874274719114816}
   m_LocalRotation: {x: 0.010038072, y: -0.98690647, z: -0.009766372, w: -0.16068444}
-  m_LocalPosition: {x: -6.952, y: 4.84, z: 4.722}
-  m_LocalScale: {x: 0.99978405, y: 0.9986655, z: 0.99877506}
+  m_LocalPosition: {x: -16.56055, y: 95.97586, z: -90.01154}
+  m_LocalScale: {x: 0.9991598, y: 0.9979987, z: 0.99867916}
   m_Children:
   - {fileID: 4151326174512314}
   - {fileID: 4580271792646788}
@@ -2467,6 +2467,8 @@ MonoBehaviour:
   lifetime: 5
   whatToDestroy: 1
   destroyOrDisable: 1
+  fade: 1
+  fadeTime: 3
 --- !u!114 &114832623235760016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2489,6 +2491,12 @@ MonoBehaviour:
   deathAnimation: {fileID: 1488164872927492}
   deathAudio: {fileID: 0}
   paralyzedTotalTime: 3
+  maxDistancePlayer: 15
+  shakeTime: 0.1
+  fadeInTime: 0.05
+  fadeOutTime: 0.3
+  speed: 15
+  magnitude: 0.5
   laserEffect: {fileID: 1143656914057128}
   lineRenderer: {fileID: 120644275144726404}
   particlesInitial: {fileID: 198677614080143254}

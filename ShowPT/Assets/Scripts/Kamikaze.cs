@@ -17,6 +17,7 @@ public class Kamikaze : Enemy {
 	{
 		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform>();
 	    ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
+        cameraShake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
     }
 
     // Update is called once per frame
@@ -47,7 +48,12 @@ public class Kamikaze : Enemy {
             player.GetComponent<PlayerHealth>().ChangeHealth(explosionDamage);
         }
         GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
-		generateDeathEffect ();
+
+        //Camera Shake
+        float playerDistance = Vector3.Distance(transform.position, player.position);
+        cameraShake.startShake(shakeTime, fadeInTime, fadeOutTime, speed, (magnitude * (1 - Mathf.Clamp01(playerDistance / maxDistancePlayer))));
+
+        generateDeathEffect ();
     }
 
     private void hasExplode()

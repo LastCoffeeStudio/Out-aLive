@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-
     public enum EnemyType
     {
         NONE = 0,
@@ -52,6 +51,22 @@ public class Enemy : MonoBehaviour
     public float paralyzedTotalTime;
     protected float paralyzedActualTime;
     protected Status status = Status.NONE;
+
+    [Header("Player Shake Settings")]
+    [SerializeField]
+    protected float maxDistancePlayer;
+    [SerializeField]
+    protected float shakeTime;
+    [SerializeField]
+    protected float fadeInTime;
+    [SerializeField]
+    protected float fadeOutTime;
+    [SerializeField]
+    protected float speed;
+    [SerializeField]
+    protected float magnitude;
+
+    protected CameraShake cameraShake;
 
     public virtual void getHit(int damage) 
 	{

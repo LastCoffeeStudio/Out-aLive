@@ -27,7 +27,8 @@ public class Turret : Enemy
     private void Start()
     {
         ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
-		if (player == null) 
+        cameraShake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
+        if (player == null) 
 		{
 			player = GameObject.FindGameObjectWithTag ("Player");
 		}
@@ -106,7 +107,11 @@ public class Turret : Enemy
     {
         if (enemyHealth <= 0f)
         {
-			generateDeathEffect ();
+            //Camera Shake
+            float playerDistance = Vector3.Distance(transform.position, player.transform.position);
+            cameraShake.startShake(shakeTime, fadeInTime, fadeOutTime, speed, (magnitude * (1 - Mathf.Clamp01(playerDistance / maxDistancePlayer))));
+
+            generateDeathEffect ();
             ScoreController.addDead(ScoreController.Enemy.TURRET);
         }
     }

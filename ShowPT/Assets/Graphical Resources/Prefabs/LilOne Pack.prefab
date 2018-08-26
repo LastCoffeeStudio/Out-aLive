@@ -671,7 +671,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1153448325105200}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.268837, y: 0.55, z: 0.70895386}
+  m_LocalPosition: {x: 72.86377, y: 88.22794, z: -132.01353}
   m_LocalScale: {x: 0.99930775, y: 0.99933404, z: 0.9999711}
   m_Children:
   - {fileID: 4825454150463418}
@@ -1762,6 +1762,12 @@ MonoBehaviour:
   jumpForceHorizontal: 150
   rotationSpeed: 8
   damage: 3
+  maxDistancePlayer: 15
+  shakeTime: 0.1
+  fadeInTime: 0.05
+  fadeOutTime: 0.3
+  speed: 15
+  magnitude: 0.5
   detectionLayer:
     serializedVersion: 2
     m_Bits: 256

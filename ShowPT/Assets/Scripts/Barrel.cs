@@ -41,16 +41,33 @@ public class Barrel : MonoBehaviour {
 	[SerializeField]
 	LayerMask affectedByExplosion;
 
+    [Header("Player Shake Settings")]
+    [SerializeField]
+    float maxDistancePlayer;
+    [SerializeField]
+    float shakeTime;
+    [SerializeField]
+    float fadeInTime;
+    [SerializeField]
+    float fadeOutTime;
+    [SerializeField]
+    float speed;
+    [SerializeField]
+    float magnitude;
+    
+    CameraShake cameraShake;
+
 	//Barrel[] allBarrels;
 
 	void Start() 
 	{
 		myRigidBody = gameObject.GetComponent<Rigidbody>();
 		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform>();
-		//ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
+        cameraShake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
+        //ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
 
-		//allBarrels = FindObjectsOfType<Barrel> ();
-	}
+        //allBarrels = FindObjectsOfType<Barrel> ();
+    }
 
 	void Update()
 	{
@@ -110,7 +127,11 @@ public class Barrel : MonoBehaviour {
 			i++;
 		}
 
-		Destroy(gameObject);
+        //Camera Shake
+        float playerDistance = Vector3.Distance(transform.position, player.position);
+        cameraShake.startShake(shakeTime, fadeInTime, fadeOutTime, speed, (magnitude * (1 - Mathf.Clamp01(playerDistance / maxDistancePlayer))));
+
+        Destroy(gameObject);
 	}
 
 	/*void OnDrawGizmos()
