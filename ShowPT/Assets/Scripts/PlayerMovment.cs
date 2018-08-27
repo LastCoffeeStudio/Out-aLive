@@ -124,7 +124,10 @@ public class PlayerMovment : MonoBehaviour
     private void FixedUpdate()
     {
         updatePlayer();
-        updateCamera();
+		if (overrideControls == false) 
+		{
+			updateCamera ();
+		}
     }
 
     void Update()

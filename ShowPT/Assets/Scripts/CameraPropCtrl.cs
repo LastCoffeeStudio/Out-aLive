@@ -13,7 +13,7 @@ public class CameraPropCtrl : MonoBehaviour
 
     void Update()
     {
-        if (targetPosition != null)
+        if (targetPosition != null && PlayerMovment.overrideControls == false)
         {
             transform.LookAt(targetPosition);
             transform.Rotate( new Vector3(-90.0f, 0.0f, 0.0f));

@@ -25,7 +25,9 @@ public class PlayerHealth : MonoBehaviour {
 	float gameOverTimer = 0f;
 
 	[SerializeField]
-	GameObject playerCamera;
+	Transform playerCamera;
+	[SerializeField]
+	Transform deathPose;
 	Animator deathAnimation;
 
     // Use this for initialization
@@ -41,6 +43,7 @@ public class PlayerHealth : MonoBehaviour {
 		if (isDead == true) 
 		{
 			gameOverTimer += Time.deltaTime;
+			playerCamera.rotation = Quaternion.Lerp (playerCamera.rotation, deathPose.rotation, Time.deltaTime);
 			if (gameOverTimer >= secondsBeforeGameOver) 
 			{
 				ctrlGameState.setGameState (CtrlGameState.gameStates.DEATH);
@@ -106,7 +109,7 @@ public class PlayerHealth : MonoBehaviour {
 			{
 				//Player DIES; Start dying sequence
 				PlayerMovment.overrideControls = true;
-				deathAnimation.SetTrigger ("playerDied");
+				//deathAnimation.SetTrigger ("playerDied");
 				isDead = true;
 			}
 		}
