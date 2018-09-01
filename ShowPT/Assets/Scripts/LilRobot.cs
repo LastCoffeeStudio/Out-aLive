@@ -6,13 +6,15 @@ using UnityEngine.AI;
 public class LilRobot : Enemy
 {
 
-    enum LilRobotState
+    public enum LilRobotState
     {
         IDLE,
         ATTACK,
         JUMP,
         RECOVER,
-        PARALYZED
+        PARALYZED,
+
+        NONE = -1
     }
 
     [Header("LilRobot parameters")]
@@ -99,31 +101,8 @@ public class LilRobot : Enemy
                     destination = target.position;
                 }
 
-                if (agent.SetDestination(destination))
-                {
-                    Vector3 nextPosition = transform.position;
-                    if (agent.path.corners.Length > 1)
-                    {
-                        nextPosition = agent.path.corners[1];
-                    }
-                    //Move Lil
-                    Vector3 dir = nextPosition - transform.position;
-                    rb.AddForce(dir.normalized * maxSpeed * Time.deltaTime);
-
-                    //Climb if necessary
-                    obstacleDetector.LookAt(new Vector3(nextPosition.x, obstacleDetector.position.y, nextPosition.z));
-                    if (Physics.Raycast(obstacleDetector.position, obstacleDetector.forward, obstacleDetectorDistance))
-                    {
-                        climbing = true;
-                        rb.useGravity = false;
-                        rb.AddForce(new Vector3(-rb.velocity.x, climbForce, -rb.velocity.z));
-                    }
-                    else
-                    {
-                        climbing = false;
-                        rb.useGravity = true;
-                    }
-                }
+                moveLil(destination);
+                
                 if (!climbing && agent.remainingDistance <= agent.stoppingDistance && !detectPlayer())
                 {
                     state = LilRobotState.IDLE;
@@ -228,6 +207,46 @@ public class LilRobot : Enemy
             rb.angularVelocity = Vector3.zero;
             state = LilRobotState.PARALYZED;
             status = Status.PARALYZED;
+        }
+    }
+
+    public void setState(LilRobotState newState)
+    {
+        state = newState;
+        switch (newState)
+        {
+            case LilRobotState.NONE:
+                rb.constraints = RigidbodyConstraints.None;
+                break;
+        }
+    }
+
+    public void moveLil(Vector3 dest)
+    {
+        if (agent.SetDestination(dest))
+        {
+            Vector3 nextPosition = transform.position;
+            if (agent.path.corners.Length > 1)
+            {
+                nextPosition = agent.path.corners[1];
+            }
+            //Move Lil
+            Vector3 dir = nextPosition - transform.position;
+            rb.AddForce(dir.normalized * maxSpeed * Time.deltaTime);
+
+            //Climb if necessary
+            obstacleDetector.LookAt(new Vector3(nextPosition.x, obstacleDetector.position.y, nextPosition.z));
+            if (Physics.Raycast(obstacleDetector.position, obstacleDetector.forward, obstacleDetectorDistance))
+            {
+                climbing = true;
+                rb.useGravity = false;
+                rb.AddForce(new Vector3(-rb.velocity.x, climbForce, -rb.velocity.z));
+            }
+            else
+            {
+                climbing = false;
+                rb.useGravity = true;
+            }
         }
     }
 }
