@@ -2153,7 +2153,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: c0e1a8c888444bc478ef08ef33f63cfb, type: 2}
+  - {fileID: 2100000, guid: 9b1a4b31d1ba2d54fb3b2f45569e7eed, type: 2}
   - {fileID: 2100000, guid: 17a3d0d456a48474085aeac1082d584b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -3323,7 +3323,7 @@ Animator:
   m_GameObject: {fileID: 1121433318302474}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c35e93cda50ab2a4dad69ee097b98a49, type: 2}
+  m_Controller: {fileID: 9100000, guid: baf9d9bcad855fe49bb5e909a1076015, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3364,6 +3364,12 @@ MonoBehaviour:
   deathAnimation: {fileID: 1765011962927602}
   deathAudio: {fileID: 8300000, guid: 9e43b7d9c0c0c004db206d25cef27b30, type: 3}
   paralyzedTotalTime: 0
+  maxDistancePlayer: 0
+  shakeTime: 0
+  fadeInTime: 0
+  fadeOutTime: 0
+  speed: 0
+  magnitude: 0
 --- !u!114 &114973874958867586
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3378,6 +3384,8 @@ MonoBehaviour:
   lifetime: 5
   whatToDestroy: 0
   destroyOrDisable: 0
+  fade: 1
+  fadeTime: 3
 --- !u!198 &198170335814933718
 ParticleSystem:
   m_ObjectHideFlags: 1
