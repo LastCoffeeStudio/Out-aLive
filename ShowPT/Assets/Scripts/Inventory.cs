@@ -214,10 +214,7 @@ public class Inventory : MonoBehaviour
                 break;
         }
         
-        if (selectedIdWeapond == -1)
-        {
-            switchWeapon(type);
-        }
+        switchWeapon(type);
         hudController.addWeapon(type);
         //Launch some animation or sound that has bought weapon
     }

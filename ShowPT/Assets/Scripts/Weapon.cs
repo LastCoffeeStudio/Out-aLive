@@ -9,9 +9,6 @@ using UnityEngine.UI;
 public class Weapon : MonoBehaviour
 {
     public LayerMask maskBullets;
-    public float amount;
-    public float maxAmount;
-    public float smoothAmount;
     public int damage;
     public Transform shootPoint;
     public Transform cameraPlayer;
@@ -38,6 +35,11 @@ public class Weapon : MonoBehaviour
     public AudioClip shot;
     public AudioClip reload;
     protected CtrlAudio ctrlAudio;
+
+    [Header("Swag Weapon Settings")]
+    public float amount;
+    public float maxAmount;
+    public float smoothAmount;
 
     [Header("Crosshair Settings")]
     public float shotSpreadFactor;
@@ -78,11 +80,13 @@ public class Weapon : MonoBehaviour
     {
         if ((Input.GetButton("Fire2") || Input.GetAxis("AxisLT") > 0.5f) && !reloading)
         {
-            transform.localPosition = Vector3.Lerp(transform.localPosition, aimPosition, Time.deltaTime * aimSpeed);
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, aimPosition, Time.deltaTime * 2);
+            //transform.localPosition = Vector3.Lerp(transform.localPosition, aimPosition, Time.deltaTime * aimSpeed);
             animator.SetBool("aiming", true);
         }
         else
         {
+           // transform.localPosition = Vector3.MoveTowards(transform.localPosition, originalPosition, Time.deltaTime * 2);
             transform.localPosition = Vector3.Lerp(transform.localPosition, originalPosition, Time.deltaTime * aimSpeed);
             animator.SetBool("aiming", false);
         }

@@ -80,9 +80,11 @@ public class HudController : MonoBehaviour
             weaponsCrosshairs[i].SetActive(false);
         }
 
+        currentLabel = Ammo;
+
         //Test
         //selectWeapon(Inventory.WEAPON_TYPE.GUN, 15, 0);
-	}
+    }
 	
 	// Update is called once per frame
 	void Update ()
