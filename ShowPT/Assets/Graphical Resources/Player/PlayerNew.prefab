@@ -11406,9 +11406,6 @@ MonoBehaviour:
   maskBullets:
     serializedVersion: 2
     m_Bits: 4294966271
-  amount: 0.06
-  maxAmount: 0.1
-  smoothAmount: 3
   damage: 1
   shootPoint: {fileID: 4549826885147054}
   cameraPlayer: {fileID: 4265720775127786}
@@ -11423,8 +11420,11 @@ MonoBehaviour:
   sparks: {fileID: 1149727948857286, guid: 81170b26490e59a45b57295281371104, type: 2}
   typeAmmo: 1
   type: 1
-  shot: {fileID: 8300000, guid: 0c76b6ada9383bd4498e9b7f75b886be, type: 3}
-  reload: {fileID: 8300000, guid: 518e3804bc77c9b4cadc7d7a534031d2, type: 3}
+  shotAudio: {fileID: 0}
+  reloadAudio: {fileID: 0}
+  amount: 0.06
+  maxAmount: 0.1
+  smoothAmount: 3
   shotSpreadFactor: 20
   projectileToShoot: {fileID: 1871852692606098, guid: ea6acf8164ba0a342af947445d99dec1,
     type: 2}
@@ -11567,9 +11567,6 @@ MonoBehaviour:
   maskBullets:
     serializedVersion: 2
     m_Bits: 4294966271
-  amount: 0.06
-  maxAmount: 0.1
-  smoothAmount: 3
   damage: 2
   shootPoint: {fileID: 4684163790237840}
   cameraPlayer: {fileID: 4265720775127786}
@@ -11584,8 +11581,11 @@ MonoBehaviour:
   sparks: {fileID: 1149727948857286, guid: 81170b26490e59a45b57295281371104, type: 2}
   typeAmmo: 2
   type: 2
-  shot: {fileID: 8300000, guid: 1883d1a90a941f2488436dd45b9f3868, type: 3}
-  reload: {fileID: 8300000, guid: acd47db0d8d41aa4f820275ae2302f9b, type: 3}
+  shotAudio: {fileID: 0}
+  reloadAudio: {fileID: 0}
+  amount: 0.06
+  maxAmount: 0.1
+  smoothAmount: 3
   shotSpreadFactor: 10
   overheatMaxTime: 2
   minBulletSize: 1
@@ -11721,9 +11721,6 @@ MonoBehaviour:
   maskBullets:
     serializedVersion: 2
     m_Bits: 4294966271
-  amount: 0.06
-  maxAmount: 0.1
-  smoothAmount: 3
   damage: 1
   shootPoint: {fileID: 4980555381683326}
   cameraPlayer: {fileID: 4265720775127786}
@@ -11738,8 +11735,11 @@ MonoBehaviour:
   sparks: {fileID: 1149727948857286, guid: 81170b26490e59a45b57295281371104, type: 2}
   typeAmmo: 0
   type: 0
-  shot: {fileID: 8300000, guid: 5ed6fb9160c7c7c43b61d58a8c964d44, type: 3}
-  reload: {fileID: 8300000, guid: acd47db0d8d41aa4f820275ae2302f9b, type: 3}
+  shotAudio: {fileID: 8300000, guid: 5ed6fb9160c7c7c43b61d58a8c964d44, type: 3}
+  reloadAudio: {fileID: 8300000, guid: 41b2c48fbb291ad448dbd858ac045d1c, type: 3}
+  amount: 0.06
+  maxAmount: 0.1
+  smoothAmount: 3
   shotSpreadFactor: 10
   projectileToShoot: {fileID: 114746525181282946, guid: 60eaf786cb3611144bb20f7b695528cf,
     type: 2}

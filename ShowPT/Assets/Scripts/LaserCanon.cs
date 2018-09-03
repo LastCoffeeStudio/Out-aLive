@@ -68,7 +68,7 @@ public class LaserCanon : Weapon {
 
     protected override void shoot()
     {
-        ctrlAudio.playOneSound("CannonShot", shot, transform.position, 1.0f, 0f, 150);
+        ctrlAudio.playOneSound("CannonShot", shotAudio, transform.position, 1.0f, 0f, 150);
         shootEffect.Play();
     }
 }

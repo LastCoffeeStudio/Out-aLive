@@ -32,8 +32,10 @@ public class Weapon : MonoBehaviour
     protected PlayerMovment playerState;
     public Inventory.AMMO_TYPE typeAmmo;
     public Inventory.WEAPON_TYPE type;
-    public AudioClip shot;
-    public AudioClip reload;
+
+	[Header("Audio")]
+    public AudioClip shotAudio;
+    public AudioClip reloadAudio;
     protected CtrlAudio ctrlAudio;
 
     [Header("Swag Weapon Settings")]
@@ -200,7 +202,7 @@ public class Weapon : MonoBehaviour
     }
     protected virtual void shoot()
     {
-        ctrlAudio.playOneSound("Player", shot, transform.position, 1.0f, 0f, 150);
+        ctrlAudio.playOneSound("Player", shotAudio, transform.position, 1.0f, 0f, 150);
         if (shootEffect != null)
         {
             shootEffect.Play();
