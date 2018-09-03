@@ -44,9 +44,16 @@ public class AITurret2 : MonoBehaviour {
 	[SerializeField]
 	GameObject player;
 
-	void Start()
+    [Header("Sounds")]
+    public AudioClip gyro;
+    private ulong idGyro;
+    private bool playedGyro = false;
+    private CtrlAudio ctrlAudio;
+
+    void Start()
 	{
-		if (player == null) 
+	    ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
+        if (player == null) 
 		{
 			player = GameObject.FindGameObjectWithTag ("Player");
 		}
@@ -123,9 +130,25 @@ public class AITurret2 : MonoBehaviour {
 	void LookAtSomething(Vector3 something)
 	{
 		var lookPos = something - transform.position;
-		transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (lookPos), Time.deltaTime * rotationSpeed);
-		//shooter.transform.rotation = Quaternion.Slerp (shooter.transform.rotation, Quaternion.LookRotation (lookPos), Time.deltaTime * rotationSpeed);
-	}
+
+	    Quaternion targetRotation = Quaternion.LookRotation(lookPos);
+        transform.rotation = Quaternion.Slerp (transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+        //shooter.transform.rotation = Quaternion.Slerp (shooter.transform.rotation, Quaternion.LookRotation (lookPos), Time.deltaTime * rotationSpeed);
+	    targetRotation.x = -targetRotation.x;
+	    targetRotation.y = -targetRotation.y;
+	    targetRotation.z = -targetRotation.z;
+	    targetRotation.w = -targetRotation.w;
+        if (targetRotation != transform.rotation && playedGyro == false)
+	    {
+	        playedGyro = true;
+            idGyro = ctrlAudio.playOneSound("Enemies", gyro, transform.position, 0.2f, 1.0f, 60, true, null, 25f, 0f, AudioRolloffMode.Linear);
+        }
+	    else if (targetRotation == transform.rotation && playedGyro == true)
+	    {
+	        ctrlAudio.stopSound(idGyro);
+	        playedGyro = false;
+        }
+    }
 
 	void OnDrawGizmos()
 	{

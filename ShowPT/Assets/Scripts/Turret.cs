@@ -24,6 +24,14 @@ public class Turret : Enemy
 	[SerializeField]
 	GameObject player;
 
+    [Header("Sounds")]
+    public AudioClip sparks;
+    public AudioClip laserAttak;
+    private ulong idSparks;
+    private ulong idLaserAttak;
+    private bool soundAttackingActive = false;
+    private GameObject soundParticle;
+
     private void Start()
     {
         ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
@@ -33,6 +41,9 @@ public class Turret : Enemy
 			player = GameObject.FindGameObjectWithTag ("Player");
 		}
         electrified = false;
+        soundParticle = new GameObject();
+        soundParticle.name = "soundParticle";
+        soundParticle.active = false;
     }
 
     // Update is called once per frame
@@ -51,6 +62,10 @@ public class Turret : Enemy
         if (distWithPlayer > minDistToAtack)
         {
             shootTimerTurret = 0.0f;
+            soundParticle.active = false;
+            ctrAudio.stopSound(idSparks);
+            ctrAudio.stopSound(idLaserAttak);
+            soundAttackingActive = false;
             laserEffect.SetActive(false);
             particlesInited = false;
         }
@@ -58,7 +73,12 @@ public class Turret : Enemy
         {
 			Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
 			if (!Physics.Linecast (transform.position, player.transform.position, viewMask)) {
-				laserEffect.SetActive (true);
+			    if (soundAttackingActive == false)
+			    {
+			        idLaserAttak = ctrAudio.playOneSound("Enemies", laserAttak, transform.position, 0.3f, 1.0f, 60, true, null, 25f, 0f, AudioRolloffMode.Linear);
+			        soundAttackingActive = true;
+			    }
+                laserEffect.SetActive (true);
 				if (!particlesInited) {
 					particlesInitial.Play ();
 					particlesInited = true;
@@ -66,10 +86,17 @@ public class Turret : Enemy
 
 				RaycastHit hit;
 				if (Physics.Raycast (shotPoint.position, shotPoint.transform.forward, out hit)) {
+				    if (soundParticle.active == false)
+				    {
+				        soundParticle.active = true;
+				        idSparks = ctrAudio.playOneSound("Enemies", sparks, soundParticle.transform.position, 0.3f, 1.0f, 60, true, soundParticle, 25f, 0f, AudioRolloffMode.Linear);
+                    }
 					lineRenderer.SetPosition (0, shotPoint.position);
 					lineRenderer.SetPosition (1, hit.point);
 
-					particlesCollision.transform.rotation = Quaternion.LookRotation (hit.normal, hit.transform.up);
+				    soundParticle.transform.position = hit.point;
+
+                    particlesCollision.transform.rotation = Quaternion.LookRotation (hit.normal, hit.transform.up);
 					particlesCollision.transform.position = hit.point;
 
 					switch (hit.transform.gameObject.tag) {
@@ -82,14 +109,22 @@ public class Turret : Enemy
 
 				if (shootTimerTurret >= timeShooting + timeNoShooting) {
 					shootTimerTurret = 0.0f;
-					laserEffect.SetActive (false);
+				    soundAttackingActive = false;
+				    soundParticle.active = false;
+				    ctrAudio.stopSound(idSparks);
+                    ctrAudio.stopSound(idLaserAttak);
+                    laserEffect.SetActive (false);
 					particlesInited = false;
 				}
 			} 
 			else 
 			{
 				shootTimerTurret = 0.0f;
-				laserEffect.SetActive(false);
+			    soundParticle.active = false;
+			    ctrAudio.stopSound(idSparks);
+                soundAttackingActive = false;
+                ctrAudio.stopSound(idLaserAttak);
+                laserEffect.SetActive(false);
 				particlesInited = false;
 			}
         }
@@ -121,6 +156,10 @@ public class Turret : Enemy
         {
             //Debug.Log("a");
             shootTimerTurret = 0.0f;
+            soundParticle.active = false;
+            ctrAudio.stopSound(idSparks);
+            soundAttackingActive = false;
+            ctrAudio.stopSound(idLaserAttak);
             laserEffect.SetActive(false);
             particlesInited = false;
             electrified = true;
