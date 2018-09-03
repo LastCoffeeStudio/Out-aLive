@@ -96,7 +96,7 @@ public class Kamikaze : Enemy {
 
 	public void makeStepSounds()
 	{
-		ctrAudio.playOneSound("Weaponds", openDoorAudio, transform.position, 0.5f, 0f, 150);
+		//ctrAudio.playOneSound("Weaponds", openDoorAudio, transform.position, 0.5f, 0f, 150);
 		idClip = ctrAudio.playOneSound(stepSounds.audioGroup, stepSounds[0], transform.position, stepSounds.volume, stepSounds.spatialBlend, stepSounds.priority);
 	}
 }
