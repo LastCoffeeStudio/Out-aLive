@@ -36,7 +36,9 @@ public class Weapon : MonoBehaviour
 	[Header("Audio")]
     public AudioClip shotAudio;
     public AudioClip reloadAudio;
+	public AudioClip noBulletsAudio;
     protected CtrlAudio ctrlAudio;
+	ulong idReloadSound;
 
     [Header("Swag Weapon Settings")]
     public float amount;
@@ -98,22 +100,31 @@ public class Weapon : MonoBehaviour
     {
         if ((Input.GetButtonDown("Fire1") || Input.GetAxis("AxisRT") > 0.5f) && animator.GetBool("shooting") == false)
         {
-            if (ammunition > 0)
-            {
-                firing = true;
-                animator.SetBool("shooting", true);
-                if (animator.GetBool("reloading"))
-                {
-                    reloading = false;
-                    animator.SetBool("reloading", false);
-                }
-            }
+			if (ammunition > 0) 
+			{
+				firing = true;
+				endReload ();
+				animator.SetBool ("shooting", true);
+				if (animator.GetBool ("reloading")) 
+				{
+					reloading = false;
+					animator.SetBool ("reloading", false);
+				}
+			} 
+			else 
+			{
+				ctrlAudio.playOneSound("Weaponds", noBulletsAudio, transform.position, 0.5f, 0f, 150, true);
+			}
         }
         if (ammunition == 0 || ((Input.GetKey(KeyCode.R) || Input.GetButton("ButtonX")) && ammunition < maxAmmo && animator.GetBool("reloading") == false))
         {
             if (inventory.getAmmo(typeAmmo) > 0)
             {
-                reloading = true;
+				if (reloading == false) 
+				{
+					//idReloadSound = ctrlAudio.playOneSound("Weaponds", reloadAudio, transform.position, 0.5f, 0f, 150, true);
+					reloading = true;
+				}
                 animator.SetBool("reloading", true);
             }
 
@@ -161,6 +172,8 @@ public class Weapon : MonoBehaviour
 
         inventory.setAmmo(typeAmmo, ammunition);
         inventory.decreaseAmmo(typeAmmo, maxAmmo - ammunition);
+
+		ctrlAudio.playOneSound("Weaponds", reloadAudio, transform.position, 0.5f, 0f, 150);
     }
 
     protected virtual void shotBullet(Ray ray)
@@ -171,7 +184,7 @@ public class Weapon : MonoBehaviour
         {
             if (hitInfo.transform.tag == "Enemy" || hitInfo.transform.tag == "Drone" || hitInfo.transform.tag == "Snitch")
             {
-                //hitInfo.collider.gameObject.GetComponent<Enemy>().getHit(damage);
+                hitInfo.collider.gameObject.GetComponent<Enemy>().getHit(damage);
                 ScoreController.weaponHit(type);
                 GameObject spark = Instantiate(sparks, hitInfo.point, Quaternion.Euler(0f, 0f, 0f));
                 spark.transform.up = hitInfo.normal;
@@ -194,6 +207,7 @@ public class Weapon : MonoBehaviour
     {
         reloading = false;
         animator.SetBool("reloading", false);
+		ctrlAudio.stopSound (idReloadSound);
 
         if (type == Inventory.WEAPON_TYPE.SHOTGUN)
         {
@@ -202,7 +216,7 @@ public class Weapon : MonoBehaviour
     }
     protected virtual void shoot()
     {
-        ctrlAudio.playOneSound("Player", shotAudio, transform.position, 1.0f, 0f, 150);
+        ctrlAudio.playOneSound("Weaponds", shotAudio, transform.position, 1.0f, 0f, 150);
         if (shootEffect != null)
         {
             shootEffect.Play();

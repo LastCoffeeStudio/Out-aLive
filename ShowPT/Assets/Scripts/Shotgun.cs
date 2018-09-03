@@ -35,6 +35,7 @@ public class Shotgun : Weapon
         ++ammunition;
         inventory.decreaseAmmo(typeAmmo, 1);
         inventory.setAmmo(typeAmmo, (int)ammunition);
+		ctrlAudio.playOneSound("Weaponds", reloadAudio, transform.position, 0.5f, 0f, 150);
     }
 
     private void reloadAndCheck()
@@ -47,7 +48,7 @@ public class Shotgun : Weapon
     private void shoot()
     {
         shootEffect.Play();
-        ctrlAudio.playOneSound("Player", shotAudio, transform.position, 1.0f, 0f, 150);
+        ctrlAudio.playOneSound("Weaponds", shotAudio, transform.position, 1.0f, 0f, 150);
         shootEffect.Play();
     }
 }

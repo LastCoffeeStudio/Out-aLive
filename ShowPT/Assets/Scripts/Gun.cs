@@ -40,7 +40,7 @@ public class Gun : Weapon
         {
             Instantiate(projectileToShoot, shootPoint.position, Quaternion.LookRotation(Vector3.Normalize((ray.origin + ray.direction * weaponRange) - shootPoint.position)));
         }
-		ctrlAudio.playOneSound("Player", shotAudio, transform.position, 0.5f, 0.0f, 128);
+		ctrlAudio.playOneSound("Weaponds", shotAudio, transform.position, 0.5f, 0.0f, 128);
     }
 
     protected override void checkInputAnimations()
@@ -58,7 +58,7 @@ public class Gun : Weapon
             animator.SetBool("aiming", false);
             reloading = true;
             animator.SetBool("reloading", true);
-			ctrlAudio.playOneSound("Player", reloadAudio, transform.position, 0.9f, 0.0f, 128);
+			ctrlAudio.playOneSound("Weaponds", reloadAudio, transform.position, 0.9f, 0.0f, 128);
         }
     }
 
