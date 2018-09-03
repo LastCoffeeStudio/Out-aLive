@@ -40,13 +40,30 @@ public class DestroyByTime : MonoBehaviour {
 		listOfChildren = GetComponentsInChildren<Renderer>();
 	}
 
-	void Update()
+
+    private void OnEnable()
+    {
+        switch (whatToDestroy)
+        {
+            case destroyWhat.SHIELD:
+                GameObject gameObj = transform.parent.gameObject;
+                transform.parent = null;
+                Destroy(gameObj);
+                break;
+            default:
+                break;
+        }
+    }
+
+    void Update()
 	{
-		timer += Time.deltaTime;
+	    
+        timer += Time.deltaTime;
 
 		if (timer >= lifetime) 
 		{
-			if (fade == false) 
+		   
+            if (fade == false) 
 			{
 				destroyMe ();
 			} 
@@ -70,10 +87,10 @@ public class DestroyByTime : MonoBehaviour {
 	            objectToDealWith = transform.parent.gameObject;
 	            break;
 	        case destroyWhat.SHIELD:
-	            objectToDealWith = transform.parent.gameObject;
+	            objectToDealWith = gameObject;
 	            break;
             default:
-                objectToDealWith = transform.parent.parent.parent.parent.gameObject;
+                objectToDealWith = transform.parent.gameObject;
                 break;
         }
 

@@ -63,11 +63,6 @@ public class ShieldDroneEnemy : Enemy {
         if (exploted == false)
         {
             exploted = true;
-
-            //WHILE DONT WORK GENERATEDEATHEFFECT
-            Destroy(transform.parent.parent.parent.gameObject);
-            /////////////////////////////////////////
-            
             generateDeathEffect();
         }
     }
