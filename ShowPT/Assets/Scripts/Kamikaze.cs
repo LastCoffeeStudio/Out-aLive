@@ -9,6 +9,11 @@ public class Kamikaze : Enemy {
     public float explosionDistance = 20f;
     public int explosionDamage = 3;
 
+	public AudioCollection stepSounds;
+	ulong idClip;
+
+	public AudioClip openDoorAudio;
+
 	[SerializeField]
 	GameObject explosion;
 
@@ -88,4 +93,10 @@ public class Kamikaze : Enemy {
             ScoreController.addDead(ScoreController.Enemy.KAMIKAZE);
         }
     }
+
+	public void makeStepSounds()
+	{
+		ctrAudio.playOneSound("Weaponds", openDoorAudio, transform.position, 0.5f, 0f, 150);
+		idClip = ctrAudio.playOneSound(stepSounds.audioGroup, stepSounds[0], transform.position, stepSounds.volume, stepSounds.spatialBlend, stepSounds.priority);
+	}
 }

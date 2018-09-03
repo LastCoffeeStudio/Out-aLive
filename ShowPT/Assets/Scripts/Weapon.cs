@@ -38,7 +38,6 @@ public class Weapon : MonoBehaviour
     public AudioClip reloadAudio;
 	public AudioClip noBulletsAudio;
     protected CtrlAudio ctrlAudio;
-	ulong idReloadSound;
 
     [Header("Swag Weapon Settings")]
     public float amount;
@@ -113,7 +112,7 @@ public class Weapon : MonoBehaviour
 			} 
 			else 
 			{
-				ctrlAudio.playOneSound("Weaponds", noBulletsAudio, transform.position, 0.5f, 0f, 150, true);
+				ctrlAudio.playOneSound("Weaponds", noBulletsAudio, transform.position, 0.5f, 0f, 150);
 			}
         }
         if (ammunition == 0 || ((Input.GetKey(KeyCode.R) || Input.GetButton("ButtonX")) && ammunition < maxAmmo && animator.GetBool("reloading") == false))
@@ -207,7 +206,6 @@ public class Weapon : MonoBehaviour
     {
         reloading = false;
         animator.SetBool("reloading", false);
-		ctrlAudio.stopSound (idReloadSound);
 
         if (type == Inventory.WEAPON_TYPE.SHOTGUN)
         {

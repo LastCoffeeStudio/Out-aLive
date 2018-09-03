@@ -13,10 +13,16 @@ public class GateTerminal : MonoBehaviour {
 	bool gateOpened = false;
 
 	Animator myAnimator;
+
+	[Header("Audio")]
+	public AudioClip doorOpenAudio;
+	public AudioClip buttonAudio;
+	protected CtrlAudio ctrlAudio;
     
 	void Start () 
 	{
 		myAnimator = GetComponent<Animator> ();
+		ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
 	}
 	
 	void Update () 
@@ -29,6 +35,8 @@ public class GateTerminal : MonoBehaviour {
 
 	public void Activate()
 	{
+		ctrlAudio.playOneSound("Scene", doorOpenAudio, transform.position, 0.5f, 0f, 150);
+		ctrlAudio.playOneSound("Scene", buttonAudio, transform.position, 0.5f, 0f, 150);
 		gateOpened = true;
 		myAnimator.SetTrigger ("activation");
 		gameObject.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);

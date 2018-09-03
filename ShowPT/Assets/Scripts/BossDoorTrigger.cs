@@ -10,6 +10,16 @@ public class BossDoorTrigger : MonoBehaviour {
 	[SerializeField]
 	bool opensDoor = true;
 
+	[Header("Audio")]
+	public AudioClip doorOpenAudio;
+	public AudioClip doorCloseAudio;
+	protected CtrlAudio ctrlAudio;
+
+	void Start()
+	{
+		ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
+	}
+
 	void OnTriggerEnter(Collider col)
 	{
 		if (col.tag == "Player") 
@@ -17,9 +27,11 @@ public class BossDoorTrigger : MonoBehaviour {
 			if (opensDoor == true) 
 			{
 				bossDoor.OpenSesame ();
+				ctrlAudio.playOneSound("Weaponds", doorOpenAudio, bossDoor.transform.position, 0.5f, 0f, 150);
 			} 
 			else 
 			{
+				ctrlAudio.playOneSound("Weaponds", doorCloseAudio, bossDoor.transform.position, 0.5f, 0f, 150);
 				bossDoor.CloseSesame ();
 			}
 
