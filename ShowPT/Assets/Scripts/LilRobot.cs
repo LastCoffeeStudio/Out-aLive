@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class LilRobot : Enemy
 {
 
+    
     public enum LilRobotState
     {
         IDLE,
@@ -50,6 +51,16 @@ public class LilRobot : Enemy
     [SerializeField]
     private Vector3 destination;
 
+    [Header("Sounds")]
+    public AudioClip rollLil;
+    public AudioClip jumpLil;
+    public AudioClip finishJumpLil;
+    public AudioClip electricLil;
+    private ulong idRollLil;
+    private ulong idJumpLil;
+    private ulong idElectricLil;
+    private ulong idFinishJumpLil;
+
     // Use this for initialization
     void Start()
     {
@@ -70,6 +81,7 @@ public class LilRobot : Enemy
         playerDamaged = false;
         destination = target.position;
         paralyzedActualTime = paralyzedTotalTime;
+        idElectricLil = ctrAudio.playOneSound("Enemies", electricLil, transform.position, 0.3f, 1.0f, 60, true, gameObject);
     }
 
     private void FixedUpdate()
@@ -79,7 +91,6 @@ public class LilRobot : Enemy
         switch (state)
         {
             case LilRobotState.IDLE:
-
                 rb.angularVelocity = new Vector3(rb.angularVelocity.x * deceleration, rb.angularVelocity.y, rb.angularVelocity.z * deceleration);
                 rb.velocity = new Vector3(rb.velocity.x * deceleration, rb.velocity.y, rb.velocity.z * deceleration);
                 if (rb.velocity.magnitude < 0.1f)
@@ -89,6 +100,7 @@ public class LilRobot : Enemy
                 }
                 if (distance < detectionDistance && detectPlayer())
                 {
+                    idRollLil = ctrAudio.playOneSound("Enemies", rollLil, transform.position, 1.0f, 1.0f, 60, true, gameObject);
                     destination = target.position;
                     rb.constraints = RigidbodyConstraints.None;
                     state = LilRobotState.ATTACK;
@@ -96,6 +108,7 @@ public class LilRobot : Enemy
                 break;
             case LilRobotState.ATTACK:
                 //Update destination
+               
                 if (detectPlayer() && distance < detectionDistance)
                 {
                     destination = target.position;
@@ -111,6 +124,8 @@ public class LilRobot : Enemy
                 {
                     climbing = false;
                     rb.useGravity = true;
+                    ctrAudio.stopSound(idRollLil);
+                    idJumpLil = ctrAudio.playOneSound("Enemies", jumpLil, transform.position, 1.0f, 1.0f, 60, false, gameObject);
                     state = LilRobotState.JUMP;
                 }
                 break;
@@ -128,6 +143,8 @@ public class LilRobot : Enemy
                 }
                 else
                 {
+                    ctrAudio.stopSound(idJumpLil);
+                    idFinishJumpLil = ctrAudio.playOneSound("Enemies", finishJumpLil, transform.position, 1.0f, 1.0f, 60, false, gameObject);
                     recoverTime = recoverResetTime;
                     state = LilRobotState.IDLE;
                     playerDamaged = false;
@@ -146,6 +163,7 @@ public class LilRobot : Enemy
                 break;
         }
     }
+    
 
     // Update is called once per frame
     void Update()
@@ -174,6 +192,10 @@ public class LilRobot : Enemy
     {
         if (enemyHealth <= 0f)
         {
+            ctrAudio.stopSound(idElectricLil);
+            ctrAudio.stopSound(idRollLil);
+            ctrAudio.stopSound(idFinishJumpLil);
+            ctrAudio.stopSound(idJumpLil);
             //Camera Shake
             float playerDistance = Vector3.Distance(transform.position, target.position);
             cameraShake.startShake(shakeTime, fadeInTime, fadeOutTime, speed, (magnitude * (1 - Mathf.Clamp01(playerDistance / maxDistancePlayer))));
