@@ -27,14 +27,16 @@ public class Enemy : MonoBehaviour
 
     public bool active = false;
     [SerializeField]
-    public AudioClip hitAudio;
-    [SerializeField]
-    public CtrlAudio ctrAudio;
-    [SerializeField]
     Projectile projectileToShoot;
     [SerializeField]
     float timeBetweenShots = 0.5f;
     float shootTimer = 0.0f;
+
+	[Header("General Audio")]
+	[SerializeField]
+	public AudioClip hitAudio;
+	[SerializeField]
+	public CtrlAudio ctrAudio;
 
     public Transform shotPoint;
 
@@ -42,6 +44,7 @@ public class Enemy : MonoBehaviour
     public float enemyHealth = 10f;
     protected EnemyType enemyType = EnemyType.NONE;
 
+	[Header("Death Config")]
 	[SerializeField]
 	GameObject deathAnimation;
 	[SerializeField]
@@ -68,9 +71,15 @@ public class Enemy : MonoBehaviour
 
     protected CameraShake cameraShake;
 
+	void Start()
+	{
+		ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
+	}
+
     public virtual void getHit(int damage) 
 	{
 		enemyHealth -= damage;
+		ctrAudio.playOneSound("Enemies", hitAudio, transform.position, 0.5f, 0.0f, 128);
 		checkHealth ();
 	}
 

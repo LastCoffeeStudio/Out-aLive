@@ -171,7 +171,7 @@ public class Weapon : MonoBehaviour
         {
             if (hitInfo.transform.tag == "Enemy" || hitInfo.transform.tag == "Drone" || hitInfo.transform.tag == "Snitch")
             {
-                hitInfo.collider.gameObject.GetComponent<Enemy>().getHit(damage);
+                //hitInfo.collider.gameObject.GetComponent<Enemy>().getHit(damage);
                 ScoreController.weaponHit(type);
                 GameObject spark = Instantiate(sparks, hitInfo.point, Quaternion.Euler(0f, 0f, 0f));
                 spark.transform.up = hitInfo.normal;
