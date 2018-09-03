@@ -181,4 +181,11 @@ public class Turret : Enemy
             }
         }
     }
+
+    private void OnDestroy()
+    {
+        ctrAudio.stopSound(idLaserAttak);
+        ctrAudio.stopSound(idSparks);
+        soundParticle.active = false;
+    }
 }

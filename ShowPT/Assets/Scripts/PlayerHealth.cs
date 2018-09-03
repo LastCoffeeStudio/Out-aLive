@@ -30,12 +30,17 @@ public class PlayerHealth : MonoBehaviour {
 	Transform deathPose;
 	Animator deathAnimation;
 
+    [Header("Sounds")]
+    private CtrlAudio ctrlAudio;
+    public AudioCollection damageCollection;
+    private ulong idClip = 0;
     // Use this for initialization
     void Start ()
     {
         health = maxHealth;
         ctrlGameState = ctrlGame.GetComponent<CtrlGameState>();
 		deathAnimation = playerCamera.GetComponent<Animator> ();
+        ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
     }
 
 	void Update()
@@ -97,7 +102,12 @@ public class PlayerHealth : MonoBehaviour {
 			{
 				damageOverlay.damageFlash (health <= 0);
 				ScoreController.addLoseLife (-value);
-				damageable = false;
+			    AudioSource audioSource = ctrlAudio.getSoundAudiSource(idClip);
+			    if (audioSource == null)
+			    {
+			        idClip = ctrlAudio.playOneSound(damageCollection.audioGroup, damageCollection[0], transform.position, damageCollection.volume, damageCollection.spatialBlend, damageCollection.priority);
+                }
+                damageable = false;
 			}
 
 			if (health > maxHealth) 

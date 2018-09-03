@@ -200,6 +200,17 @@ public class CtrlAudio : MonoBehaviour
         }
     }
 
+    public AudioSource getSoundAudiSource(ulong idSound)
+    {
+        AudioPoolItem activeSound;
+        if (activePool.TryGetValue(idSound, out activeSound))
+        {
+            return activeSound.audioSource;
+        }
+
+        return null;
+    }
+
     public ulong playOneSound(string track, AudioClip clip, Vector3 position, float volume, float spatialBlend, int priority = 128,  bool loop = false, GameObject parentObject = null, float maxDistance = 500.0f, float spread = 0f, AudioRolloffMode audioRolloff = AudioRolloffMode.Logarithmic)
     {
         if (tracks.ContainsKey(track) && clip != null && volume.Equals(0.0f) == false)

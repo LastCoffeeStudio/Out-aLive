@@ -63,8 +63,13 @@ public class AITurret2 : MonoBehaviour {
 		}
 	}
 
-	// Update is called once per frame
-	void Update () 
+    private void OnDestroy()
+    {
+        ctrlAudio.stopSound(idGyro);
+    }
+
+    // Update is called once per frame
+    void Update () 
 	{
 		switch (NPCstate) 
 		{
