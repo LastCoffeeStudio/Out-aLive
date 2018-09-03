@@ -63,7 +63,12 @@ public class AITurret2 : MonoBehaviour {
 		}
 	}
 
-    private void OnDestroy()
+    private void OnDisable()
+    {
+        ctrlAudio.stopSound(idGyro);
+    }
+
+    private void OnA()
     {
         ctrlAudio.stopSound(idGyro);
     }

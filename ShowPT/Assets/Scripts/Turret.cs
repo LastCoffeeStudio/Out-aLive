@@ -142,6 +142,9 @@ public class Turret : Enemy
     {
         if (enemyHealth <= 0f)
         {
+            ctrAudio.stopSound(idLaserAttak);
+            ctrAudio.stopSound(idSparks);
+            soundParticle.active = false;
             //Camera Shake
             float playerDistance = Vector3.Distance(transform.position, player.transform.position);
             cameraShake.startShake(shakeTime, fadeInTime, fadeOutTime, speed, (magnitude * (1 - Mathf.Clamp01(playerDistance / maxDistancePlayer))));
