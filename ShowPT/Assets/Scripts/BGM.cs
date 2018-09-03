@@ -24,6 +24,7 @@ public class BGM : MonoBehaviour {
 	void Start () 
 	{
 		ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
+		stopTheMusic ();
 		idbackgroundMusic = ctrlAudio.playOneSound("Music", musicList[0], Vector3.zero, 0.6f, 0f, 150);
 		trackVolume = ctrlAudio.getTrackVolume("Music");
 	}
