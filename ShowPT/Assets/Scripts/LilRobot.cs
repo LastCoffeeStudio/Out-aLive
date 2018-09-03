@@ -81,7 +81,7 @@ public class LilRobot : Enemy
         playerDamaged = false;
         destination = target.position;
         paralyzedActualTime = paralyzedTotalTime;
-        idElectricLil = ctrAudio.playOneSound("Enemies", electricLil, transform.position, 0.3f, 1.0f, 60, true, gameObject);
+        idElectricLil = ctrAudio.playOneSound("Enemies", electricLil, transform.position, 0.3f, 1.0f, 60, true, gameObject, 15f, 0f, AudioRolloffMode.Linear);
     }
 
     private void FixedUpdate()
@@ -100,7 +100,7 @@ public class LilRobot : Enemy
                 }
                 if (distance < detectionDistance && detectPlayer())
                 {
-                    idRollLil = ctrAudio.playOneSound("Enemies", rollLil, transform.position, 1.0f, 1.0f, 60, true, gameObject);
+                    idRollLil = ctrAudio.playOneSound("Enemies", rollLil, transform.position, 0.6f, 1.0f, 60, true, gameObject, 15f, 0f, AudioRolloffMode.Linear);
                     destination = target.position;
                     rb.constraints = RigidbodyConstraints.None;
                     state = LilRobotState.ATTACK;
@@ -125,7 +125,7 @@ public class LilRobot : Enemy
                     climbing = false;
                     rb.useGravity = true;
                     ctrAudio.stopSound(idRollLil);
-                    idJumpLil = ctrAudio.playOneSound("Enemies", jumpLil, transform.position, 1.0f, 1.0f, 60, false, gameObject);
+                    idJumpLil = ctrAudio.playOneSound("Enemies", jumpLil, transform.position, 1.0f, 1.0f, 60, false, gameObject, 15f, 0f, AudioRolloffMode.Linear);
                     state = LilRobotState.JUMP;
                 }
                 break;
@@ -144,7 +144,7 @@ public class LilRobot : Enemy
                 else
                 {
                     ctrAudio.stopSound(idJumpLil);
-                    idFinishJumpLil = ctrAudio.playOneSound("Enemies", finishJumpLil, transform.position, 1.0f, 1.0f, 60, false, gameObject);
+                    idFinishJumpLil = ctrAudio.playOneSound("Enemies", finishJumpLil, transform.position, 0.8f, 1.0f, 60, false, gameObject, 15f, 0f, AudioRolloffMode.Linear);
                     recoverTime = recoverResetTime;
                     state = LilRobotState.IDLE;
                     playerDamaged = false;

@@ -184,7 +184,7 @@ public class Inventory : MonoBehaviour
                     hudController.selectWeapon(type, ammoInventory[AMMO_TYPE.CANONAMMO], getAmmo(AMMO_TYPE.CANONAMMO));
                     break;
             }
-			audioCtr.playOneSound("Player", changeWeaponAudio, transform.position, 1.0f, 0.0f, 128);
+			audioCtr.playOneSound("Player", changeWeaponAudio, transform.position, 0.5f, 0.0f, 128);
             gameObject.GetComponent<PlayerMovment>().animator = weaponsInventory[(int)weapon].GetComponentInChildren<Animator>();
             hudController.setAmmo(ammoInventory[typeAmmo]);
             hudController.setTotalAmmo(typeAmmo, totalAmmoInventory[typeAmmo]);
