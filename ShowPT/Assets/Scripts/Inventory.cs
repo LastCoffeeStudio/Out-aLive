@@ -35,6 +35,10 @@ public class Inventory : MonoBehaviour
     public Dictionary<AMMO_TYPE, int> totalAmmoInventory = new Dictionary<AMMO_TYPE, int>();
     public bool[] weaponsCarrying;
 
+	CtrlAudio audioCtr;
+	[SerializeField]
+	AudioClip changeWeaponAudio;
+
     public HudController hudController;
 
     // Use this for initialization
@@ -50,6 +54,8 @@ public class Inventory : MonoBehaviour
         weaponsCarrying[(int)WEAPON_TYPE.GUN] = false;
         weaponsCarrying[(int)WEAPON_TYPE.SHOTGUN] = false;
         weaponsCarrying[(int)WEAPON_TYPE.CANON] = false;
+
+		audioCtr = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
 
         //test
         //weapon = WEAPON_TYPE.GUN;
@@ -178,6 +184,7 @@ public class Inventory : MonoBehaviour
                     hudController.selectWeapon(type, ammoInventory[AMMO_TYPE.CANONAMMO], getAmmo(AMMO_TYPE.CANONAMMO));
                     break;
             }
+			audioCtr.playOneSound("Player", changeWeaponAudio, transform.position, 1.0f, 0.0f, 128);
             gameObject.GetComponent<PlayerMovment>().animator = weaponsInventory[(int)weapon].GetComponentInChildren<Animator>();
             hudController.setAmmo(ammoInventory[typeAmmo]);
             hudController.setTotalAmmo(typeAmmo, totalAmmoInventory[typeAmmo]);
