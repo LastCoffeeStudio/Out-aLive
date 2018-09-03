@@ -189,6 +189,9 @@ public class Turret : Enemy
     {
         ctrAudio.stopSound(idLaserAttak);
         ctrAudio.stopSound(idSparks);
-        soundParticle.active = false;
+        if (soundParticle != null)
+        {
+            soundParticle.active = false;
+        }
     }
 }

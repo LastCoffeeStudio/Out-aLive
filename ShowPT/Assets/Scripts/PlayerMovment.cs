@@ -49,8 +49,11 @@ public class PlayerMovment : MonoBehaviour
 
     public HudController hudController;
 
+    [Header("Sounds")]
     public AudioCollection steps;
     private CtrlAudio ctrlAudio;
+    private float lastMovx = 0f;
+    private bool increas = true;
 
     [Header("Crouch Settings")]
     [Range(0.1f, 0.9f)]
@@ -419,6 +422,17 @@ public class PlayerMovment : MonoBehaviour
             }
         }
 
+        if (jumping == false && increas == true && lastMovx > cameraMovementX.Evaluate(cameraIndex) )
+        {
+            increas = false;
+            PlayStep();
+        }
+        else if(jumping == false && increas == false && lastMovx < cameraMovementX.Evaluate(cameraIndex))
+        {
+            increas = true;
+            PlayStep();
+        }
+        lastMovx = cameraMovementX.Evaluate(cameraIndex);
         float movementX = cameraMovementX.Evaluate(cameraIndex) * movementMagnitude;
         float movementY = cameraMovementY.Evaluate(cameraIndex) * movementMagnitude;
         cam.transform.localPosition = originalCameraPos + new Vector3(movementX, originalCapsuleHeight * -actualCrouchAmount + movementY, 0f);
