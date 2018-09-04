@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class AIShieldDrone : MonoBehaviour
 {
+    [Header("Sounds")]
+    public AudioClip audioShield;
+    private ulong idAudioShield;
+    private CtrlAudio ctrlAudio;
+
     [HideInInspector]
     public Vector3 position;
     [HideInInspector]
@@ -22,10 +27,15 @@ public class AIShieldDrone : MonoBehaviour
     void Start()
     {
         shieldTransform = transform.GetChild(0);
+        ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
+        GameObject shieldGameObje = gameObject.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(3).gameObject;
+        idAudioShield = ctrlAudio.playOneSound("Enemies", audioShield, transform.position, 0.6f, 1f, 90, true, shieldGameObje, 30, 0f,
+            AudioRolloffMode.Linear);
     }
 
     private void OnDestroy()
     {
+        ctrlAudio.stopSound(idAudioShield);
         ctrlShieldDrones.dronKilled();
     }
 
