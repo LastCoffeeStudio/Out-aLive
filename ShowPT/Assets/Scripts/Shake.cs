@@ -42,7 +42,6 @@ public class Shake
 
     public Vector3 shakeCamera()
     {
-        Debug.Log(elapsedTime);
         elapsedTime += Time.deltaTime;
 
         switch (state)

@@ -160,6 +160,8 @@ public class Weapon : MonoBehaviour
     {
         int ammoTemp = inventory.getAmmo(typeAmmo);
 
+        inventory.decreaseAmmo(typeAmmo, maxAmmo - ammunition);
+
         if ((maxAmmo - ammunition) > ammoTemp)
         {
             ammunition += ammoTemp;
@@ -168,9 +170,8 @@ public class Weapon : MonoBehaviour
         {
             ammunition = maxAmmo;
         }
-
+        
         inventory.setAmmo(typeAmmo, ammunition);
-        inventory.decreaseAmmo(typeAmmo, maxAmmo - ammunition);
 
 		ctrlAudio.playOneSound("Weaponds", reloadAudio, transform.position, 0.5f, 0f, 150);
     }
