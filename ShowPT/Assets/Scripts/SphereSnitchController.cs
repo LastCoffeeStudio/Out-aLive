@@ -42,7 +42,10 @@ public class SphereSnitchController : MonoBehaviour
         while (prog < 0.6f)
         {
             prog += speedApear * Time.deltaTime;
-            rend.material.SetFloat("_Progress", prog);
+            if (rend != null && rend.material != null)
+            {
+                rend.material.SetFloat("_Progress", prog);
+            }
             yield return null;
         }
         StartCoroutine(moveLava());
