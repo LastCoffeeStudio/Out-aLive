@@ -27,7 +27,6 @@ public class LilEvent : GenericEvent
             }
             else
             {
-                Debug.Log("mves lil");
                 lilController.moveLil(path[nextPoint].transform.position);
                 if (Vector3.Distance(Lil.transform.position, path[nextPoint].transform.position) <= 0.5f)
                 {
