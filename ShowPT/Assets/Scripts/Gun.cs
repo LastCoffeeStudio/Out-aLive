@@ -42,6 +42,7 @@ public class Gun : Weapon
         {
             Instantiate(projectileToShoot, shootPoint.position, Quaternion.LookRotation(Vector3.Normalize((ray.origin + ray.direction * weaponRange) - shootPoint.position)));
         }
+        projectileToShoot.GetComponent<Collider>().enabled = false;
 		ctrlAudio.playOneSound("Weaponds", shotAudio, transform.position, 0.5f, 0.0f, 128);
     }
 
