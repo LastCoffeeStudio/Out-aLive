@@ -17,6 +17,7 @@ public class IntroCinematicController : MonoBehaviour {
 
     private void playGame(VideoPlayer vp)
     {
+        GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<BGM>().stopTheMusic();
         ctrlMain.activateSceneGame();
     }
 }

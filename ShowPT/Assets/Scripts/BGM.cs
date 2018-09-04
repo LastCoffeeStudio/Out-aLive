@@ -44,7 +44,7 @@ public class BGM : MonoBehaviour {
 	{
 		stopTheMusic ();
 		ctrlAudio.setTrackVolume ("Music", trackVolume);
-		ctrlAudio.playOneSound("Music", musicList[musicId], Vector3.zero, 0.6f, 0f, 1, true);
+	    idbackgroundMusic = ctrlAudio.playOneSound("Music", musicList[musicId], Vector3.zero, 0.6f, 0f, 1, true);
     }
 
 	public void stopTheMusic()
