@@ -15,7 +15,6 @@ public class Main : MonoBehaviour
     }
 
     public static Main instance = null;
-    public Slider loadBar;
     AsyncOperation async;
 
     public bool shouldLoadSceneOne = false;
@@ -47,7 +46,6 @@ public class Main : MonoBehaviour
     {
         if(SceneManager.GetActiveScene().buildIndex == 0)
         {
-            loadBar = GameObject.FindGameObjectWithTag("loadBarSlider").GetComponent<Slider>();
             disableGameObjects();
             shouldLoadSceneOne = true;
             Time.timeScale = 1;
@@ -71,7 +69,6 @@ public class Main : MonoBehaviour
     IEnumerator loadLevel(int numScene)
     {
         async = SceneManager.LoadSceneAsync(numScene);
-        loadBar.value = async.progress;
         async.allowSceneActivation = false;
         yield return async;
     }
@@ -97,7 +94,7 @@ public class Main : MonoBehaviour
     {
         if (async != null)
         {
-            async.allowSceneActivation = true;
+            //async.allowSceneActivation = true;
         }
     }
 
@@ -117,5 +114,10 @@ public class Main : MonoBehaviour
         UnityAction UAction = null;
         actionsDictionary.TryGetValue(action, out UAction);
         return UAction;
+    }
+
+    public void activateSceneGame()
+    {
+        async.allowSceneActivation = true;
     }
 }
