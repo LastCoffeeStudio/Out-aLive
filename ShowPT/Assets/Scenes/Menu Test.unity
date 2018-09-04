@@ -663,12 +663,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 169679986}
---- !u!114 &185070486 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114795185686054574, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0,
-    type: 2}
-  m_PrefabInternal: {fileID: 204032055}
-  m_Script: {fileID: 11500000, guid: bfc7bfe7202e0f043b6016c72141b114, type: 3}
 --- !u!1001 &204032055
 Prefab:
   m_ObjectHideFlags: 0
@@ -708,22 +702,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 114795185686054574, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0,
-        type: 2}
-      propertyPath: selectedAudioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 7616f434b93505a4588ba9f0e0b61cde, type: 3}
-    - target: {fileID: 114795185686054574, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0,
-        type: 2}
-      propertyPath: canceledAudioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 91a0b0727b19a6f4fa64643cf394b4c0, type: 3}
-    - target: {fileID: 114795185686054574, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0,
-        type: 2}
-      propertyPath: highlightedAudioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: f756d1e2f2544c34c96b5832bb7d5d28, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114795185686054574, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &210353330
@@ -1535,7 +1515,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 185070486}
+        - m_Target: {fileID: 715118404}
           m_MethodName: playHiglight
           m_Mode: 1
           m_Arguments:
@@ -1552,7 +1532,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 185070486}
+        - m_Target: {fileID: 715118404}
           m_MethodName: playSelected
           m_Mode: 1
           m_Arguments:
@@ -2621,6 +2601,7 @@ GameObject:
   - component: {fileID: 715118400}
   - component: {fileID: 715118399}
   - component: {fileID: 715118403}
+  - component: {fileID: 715118404}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2703,6 +2684,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profile: {fileID: 11400000, guid: ab7f6691c62c995449ec6aaa10d38d55, type: 2}
+--- !u!114 &715118404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 715118398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc7bfe7202e0f043b6016c72141b114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightedAudioClip: {fileID: 8300000, guid: f756d1e2f2544c34c96b5832bb7d5d28,
+    type: 3}
+  selectedAudioClip: {fileID: 8300000, guid: 7616f434b93505a4588ba9f0e0b61cde, type: 3}
+  canceledAudioClip: {fileID: 8300000, guid: 91a0b0727b19a6f4fa64643cf394b4c0, type: 3}
 --- !u!1 &745572135
 GameObject:
   m_ObjectHideFlags: 0
@@ -2982,7 +2978,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 185070486}
+        - m_Target: {fileID: 715118404}
           m_MethodName: playHiglight
           m_Mode: 1
           m_Arguments:
@@ -2999,7 +2995,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 185070486}
+        - m_Target: {fileID: 715118404}
           m_MethodName: playSelected
           m_Mode: 1
           m_Arguments:
@@ -3462,7 +3458,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 185070486}
+        - m_Target: {fileID: 715118404}
           m_MethodName: playHiglight
           m_Mode: 1
           m_Arguments:
@@ -3479,7 +3475,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 185070486}
+        - m_Target: {fileID: 715118404}
           m_MethodName: playCancel
           m_Mode: 1
           m_Arguments:
@@ -3805,7 +3801,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 185070486}
+        - m_Target: {fileID: 715118404}
           m_MethodName: playHiglight
           m_Mode: 1
           m_Arguments:
@@ -3822,7 +3818,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 185070486}
+        - m_Target: {fileID: 715118404}
           m_MethodName: playSelected
           m_Mode: 1
           m_Arguments:
@@ -4999,7 +4995,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 185070486}
+        - m_Target: {fileID: 715118404}
           m_MethodName: playHiglight
           m_Mode: 1
           m_Arguments:
@@ -5016,7 +5012,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 185070486}
+        - m_Target: {fileID: 715118404}
           m_MethodName: playCancel
           m_Mode: 1
           m_Arguments:
@@ -5321,7 +5317,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 185070486}
+        - m_Target: {fileID: 715118404}
           m_MethodName: playHiglight
           m_Mode: 1
           m_Arguments:
@@ -5338,7 +5334,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 185070486}
+        - m_Target: {fileID: 715118404}
           m_MethodName: playCancel
           m_Mode: 1
           m_Arguments:

@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4689495464855942}
   - component: {fileID: 114103367934453112}
   - component: {fileID: 114632354977813408}
-  - component: {fileID: 114795185686054574}
   m_Layer: 0
   m_Name: CtrlAudio
   m_TagString: CtrlAudio
@@ -72,17 +71,3 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6cbd673fe622e7e4eb29a43b212d7196, type: 3}
   - {fileID: 8300000, guid: 51b2825b6c2ed1c4d99cb5c4a10c6d82, type: 3}
   fadeSpeed: 3
---- !u!114 &114795185686054574
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1683263640354146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfc7bfe7202e0f043b6016c72141b114, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highlightedAudioClip: {fileID: 0}
-  selectedAudioClip: {fileID: 0}
-  canceledAudioClip: {fileID: 0}

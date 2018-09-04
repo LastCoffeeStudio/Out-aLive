@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 114045291391524378}
   - component: {fileID: 114623645713180148}
   - component: {fileID: 114254431410303142}
+  - component: {fileID: 114297118422762486}
   m_Layer: 0
   m_Name: PlayerNew
   m_TagString: Player
@@ -11422,6 +11423,7 @@ MonoBehaviour:
   type: 1
   shotAudio: {fileID: 8300000, guid: d97de43f1cc6b974b8115ad8b5a8a03d, type: 3}
   reloadAudio: {fileID: 8300000, guid: acd9615de6f02444fbaf1a6616e645e4, type: 3}
+  noBulletsAudio: {fileID: 8300000, guid: 1b98e856acb35184c8d52f864a6ff281, type: 3}
   amount: 0.06
   maxAmount: 0.1
   smoothAmount: 3
@@ -11448,6 +11450,7 @@ MonoBehaviour:
   secondsBeforeGameOver: 4
   playerCamera: {fileID: 4647786508045602}
   deathPose: {fileID: 4518209196712016}
+  damageCollection: {fileID: 11400000, guid: 57b49291daa92404f968e8b7e36e9c7c, type: 2}
 --- !u!114 &114096344868049022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11541,6 +11544,21 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 131072
   head: {fileID: 20949150660808694}
+--- !u!114 &114297118422762486
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1015626004004706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc7bfe7202e0f043b6016c72141b114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightedAudioClip: {fileID: 8300000, guid: f756d1e2f2544c34c96b5832bb7d5d28,
+    type: 3}
+  selectedAudioClip: {fileID: 8300000, guid: 7616f434b93505a4588ba9f0e0b61cde, type: 3}
+  canceledAudioClip: {fileID: 8300000, guid: 91a0b0727b19a6f4fa64643cf394b4c0, type: 3}
 --- !u!114 &114335640710939872
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11581,8 +11599,9 @@ MonoBehaviour:
   sparks: {fileID: 1149727948857286, guid: 81170b26490e59a45b57295281371104, type: 2}
   typeAmmo: 2
   type: 2
-  shotAudio: {fileID: 8300000, guid: abcfd8f6267adbc4987640bdfed67f0d, type: 3}
+  shotAudio: {fileID: 8300000, guid: 1883d1a90a941f2488436dd45b9f3868, type: 3}
   reloadAudio: {fileID: 8300000, guid: 518e3804bc77c9b4cadc7d7a534031d2, type: 3}
+  noBulletsAudio: {fileID: 8300000, guid: 1b98e856acb35184c8d52f864a6ff281, type: 3}
   amount: 0.06
   maxAmount: 0.1
   smoothAmount: 3
@@ -11737,6 +11756,7 @@ MonoBehaviour:
   type: 0
   shotAudio: {fileID: 8300000, guid: 5ed6fb9160c7c7c43b61d58a8c964d44, type: 3}
   reloadAudio: {fileID: 8300000, guid: 41b2c48fbb291ad448dbd858ac045d1c, type: 3}
+  noBulletsAudio: {fileID: 0}
   amount: 0.06
   maxAmount: 0.1
   smoothAmount: 3
