@@ -83,7 +83,7 @@ public class Projectile : MonoBehaviour
 		}
 	}
 
-	void OnTriggerEnter(Collider col)
+	public void touchedEnemy(Collider col)
 	{
         if (col.gameObject.layer == LayerMask.NameToLayer ("Wall") || col.tag == "Sphere" || col.gameObject.layer == LayerMask.NameToLayer("BossWall")) 
 		{

@@ -34,7 +34,9 @@ public class Gun : Weapon
         RaycastHit hitInfo;
         if (Physics.Raycast(ray, out hitInfo, weaponRange, maskBullets))
         {
+            //hitInfo.distance
             Instantiate(projectileToShoot, shootPoint.position, Quaternion.LookRotation(Vector3.Normalize(hitInfo.point - shootPoint.position)));
+            projectileToShoot.touchedEnemy(hitInfo.collider);
         }
         else
         {
