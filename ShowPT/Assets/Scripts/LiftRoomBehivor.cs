@@ -302,6 +302,6 @@ public class LiftRoomBehivor : MonoBehaviour
         actualState = StateLift.Closed;
         enabled = false;
         
-		musicManager.playMeSomething (1);
+		musicManager.playMeSomething (2);
     }
 }

@@ -27,6 +27,7 @@ public class Main : MonoBehaviour
     public AudioClip selectSound;
     public AudioClip highlightedSound;
     private CtrlAudio ctrlAudio;
+    private BGM bgm;
 
     private void Awake()
     {
@@ -38,6 +39,12 @@ public class Main : MonoBehaviour
         ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
         actionsDictionary = new Dictionary<Actions, UnityAction>();
         initializeActions();
+    }
+
+    private void Start()
+    {
+        bgm = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<BGM>();
+        bgm.playMeSomething(0);
     }
 
     void OnEnable()
