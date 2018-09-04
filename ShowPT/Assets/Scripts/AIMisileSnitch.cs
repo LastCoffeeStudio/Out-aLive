@@ -21,9 +21,19 @@ public class AIMisileSnitch : MonoBehaviour
     private ParticleSystem fire;
     private ParticleSystem trail;
 
+    [Header("Sounds")]
+    public AudioClip audioBlast;
+    public AudioClip audioMisile;
+    public AudioClip audioExplode;
+    private ulong idAudioBlast;
+    private ulong idAudioMisile;
+    private ulong idAudioExplode;
+    private CtrlAudio ctrlAudio;
+
     // Use this for initialization
     void Start ()
     {
+
         position = transform.position;
         originalTransform = transform;
         player = GameObject.FindGameObjectWithTag("Player");
@@ -32,6 +42,7 @@ public class AIMisileSnitch : MonoBehaviour
         trail = transform.GetChild(2).gameObject.GetComponent<ParticleSystem>();
         fire.Stop();
         trail.Stop();
+        ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
     }
 	
 	// Update is called once per frame
@@ -66,6 +77,7 @@ public class AIMisileSnitch : MonoBehaviour
     }
     public void blast()
     {
+        ctrlAudio.playOneSound("Enemies", audioBlast, transform.position, 1f, 1f, 70, false, null, 500f, 0f, AudioRolloffMode.Linear);
         switch (animationBlast)
         {
             case 0:
@@ -86,6 +98,8 @@ public class AIMisileSnitch : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+        ctrlAudio.stopSound(idAudioMisile);
+        ctrlAudio.playOneSound("Enemies", audioExplode, transform.position, 1f, 1f, 70, false, null, 500f, 0f, AudioRolloffMode.Linear);
         RaycastHit hit;
         // Does the ray intersect any objects excluding the player layer
         //Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.green);
@@ -131,6 +145,7 @@ public class AIMisileSnitch : MonoBehaviour
     }
     public void startBlast()
     {
+       idAudioMisile = ctrlAudio.playOneSound("Enemies", audioMisile, transform.position, 1f, 1f, 70, true, gameObject, 500f, 0f, AudioRolloffMode.Linear);
        fire.Play();
        trail.Play();
     }
