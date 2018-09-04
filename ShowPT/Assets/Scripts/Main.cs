@@ -23,6 +23,11 @@ public class Main : MonoBehaviour
     private GameObject[] UIToDisable;
     private Dictionary<Actions, UnityAction> actionsDictionary;
 
+    [Header("Sounds")]
+    public AudioClip selectSound;
+    public AudioClip highlightedSound;
+    private CtrlAudio ctrlAudio;
+
     private void Awake()
     {
         if (instance == null)
@@ -30,7 +35,7 @@ public class Main : MonoBehaviour
         else if (instance != this)
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
-
+        ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
         actionsDictionary = new Dictionary<Actions, UnityAction>();
         initializeActions();
     }

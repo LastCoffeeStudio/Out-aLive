@@ -663,6 +663,69 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 169679986}
+--- !u!114 &185070486 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114795185686054574, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0,
+    type: 2}
+  m_PrefabInternal: {fileID: 204032055}
+  m_Script: {fileID: 11500000, guid: bfc7bfe7202e0f043b6016c72141b114, type: 3}
+--- !u!1001 &204032055
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4689495464855942, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -11.034362
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689495464855942, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3.3548477
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689495464855942, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -12.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689495464855942, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689495464855942, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689495464855942, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689495464855942, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689495464855942, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114795185686054574, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0,
+        type: 2}
+      propertyPath: selectedAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7616f434b93505a4588ba9f0e0b61cde, type: 3}
+    - target: {fileID: 114795185686054574, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0,
+        type: 2}
+      propertyPath: canceledAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 91a0b0727b19a6f4fa64643cf394b4c0, type: 3}
+    - target: {fileID: 114795185686054574, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0,
+        type: 2}
+      propertyPath: highlightedAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f756d1e2f2544c34c96b5832bb7d5d28, type: 3}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &210353330
 GameObject:
   m_ObjectHideFlags: 0
@@ -1316,6 +1379,7 @@ GameObject:
   - component: {fileID: 364460703}
   - component: {fileID: 364460702}
   - component: {fileID: 364460701}
+  - component: {fileID: 364460705}
   m_Layer: 5
   m_Name: Credits_btn
   m_TagString: Untagged
@@ -1455,6 +1519,53 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 364460699}
+--- !u!114 &364460705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 364460699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 185070486}
+          m_MethodName: playHiglight
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 185070486}
+          m_MethodName: playSelected
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &405746426
 GameObject:
   m_ObjectHideFlags: 0
@@ -2681,6 +2792,7 @@ GameObject:
   - component: {fileID: 787075605}
   - component: {fileID: 787075608}
   - component: {fileID: 787075609}
+  - component: {fileID: 787075610}
   m_Layer: 5
   m_Name: Start_btn
   m_TagString: Untagged
@@ -2854,6 +2966,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actions: 00000000
+--- !u!114 &787075610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 787075603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 185070486}
+          m_MethodName: playHiglight
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 185070486}
+          m_MethodName: playSelected
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &807021166
 GameObject:
   m_ObjectHideFlags: 0
@@ -3164,6 +3323,7 @@ GameObject:
   - component: {fileID: 959086805}
   - component: {fileID: 959086804}
   - component: {fileID: 959086803}
+  - component: {fileID: 959086806}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -3286,6 +3446,53 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 959086801}
+--- !u!114 &959086806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 959086801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 185070486}
+          m_MethodName: playHiglight
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 185070486}
+          m_MethodName: playCancel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &973962392
 GameObject:
   m_ObjectHideFlags: 0
@@ -3442,6 +3649,7 @@ GameObject:
   - component: {fileID: 1000048788}
   - component: {fileID: 1000048787}
   - component: {fileID: 1000048786}
+  - component: {fileID: 1000048790}
   m_Layer: 5
   m_Name: Options_btn
   m_TagString: Untagged
@@ -3581,6 +3789,53 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1000048784}
+--- !u!114 &1000048790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1000048784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 185070486}
+          m_MethodName: playHiglight
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 185070486}
+          m_MethodName: playSelected
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &1000329753
 GameObject:
   m_ObjectHideFlags: 0
@@ -4598,6 +4853,7 @@ GameObject:
   - component: {fileID: 1284515897}
   - component: {fileID: 1284515896}
   - component: {fileID: 1284515900}
+  - component: {fileID: 1284515901}
   m_Layer: 5
   m_Name: Exit_btn
   m_TagString: Untagged
@@ -4727,6 +4983,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actions: 02000000
+--- !u!114 &1284515901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1284515894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 185070486}
+          m_MethodName: playHiglight
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 185070486}
+          m_MethodName: playCancel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &1372920248
 GameObject:
   m_ObjectHideFlags: 0
@@ -4879,6 +5182,7 @@ GameObject:
   - component: {fileID: 1386194726}
   - component: {fileID: 1386194725}
   - component: {fileID: 1386194724}
+  - component: {fileID: 1386194727}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -5001,6 +5305,53 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1386194722}
+--- !u!114 &1386194727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1386194722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 185070486}
+          m_MethodName: playHiglight
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 185070486}
+          m_MethodName: playCancel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &1391852315
 GameObject:
   m_ObjectHideFlags: 0
@@ -6348,6 +6699,16 @@ Prefab:
       propertyPath: loadBar
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114003119751239054, guid: 73a811b71265ef7458f52f7b08de4e89,
+        type: 2}
+      propertyPath: selectSound
+      value: 
+      objectReference: {fileID: 8300000, guid: b58b884c8d237654dbd0217b4b7052dd, type: 3}
+    - target: {fileID: 114003119751239054, guid: 73a811b71265ef7458f52f7b08de4e89,
+        type: 2}
+      propertyPath: highlightedSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c57b69b66b24fae4cb6c8fa38ebb8017, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73a811b71265ef7458f52f7b08de4e89, type: 2}
   m_IsPrefabParent: 0

@@ -25,7 +25,7 @@ public class BGM : MonoBehaviour {
 	{
 		ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
 		stopTheMusic ();
-		idbackgroundMusic = ctrlAudio.playOneSound("Music", musicList[0], Vector3.zero, 0.6f, 0f, 150);
+		idbackgroundMusic = ctrlAudio.playOneSound("Music", musicList[0], Vector3.zero, 0.6f, 0f, 1, true);
 		trackVolume = ctrlAudio.getTrackVolume("Music");
 	}
 	
@@ -46,8 +46,8 @@ public class BGM : MonoBehaviour {
 	{
 		stopTheMusic ();
 		ctrlAudio.setTrackVolume ("Music", trackVolume);
-		ctrlAudio.playOneSound("Music", musicList[musicId], Vector3.zero, 0.7f, 0f, 150);
-	}
+		ctrlAudio.playOneSound("Music", musicList[musicId], Vector3.zero, 0.6f, 0f, 1, true);
+    }
 
 	public void stopTheMusic()
 	{
