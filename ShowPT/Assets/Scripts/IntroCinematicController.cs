@@ -11,13 +11,22 @@ public class IntroCinematicController : MonoBehaviour {
 
     private void Start()
     {
+        GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<BGM>().stopTheMusic();
         videoPlayer = GetComponent<VideoPlayer>();
         videoPlayer.loopPointReached += playGame;
+        ctrlMain = GameObject.Find("CtrlMain").GetComponent<Main>();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ctrlMain.activateSceneGame();
+        }
     }
 
     private void playGame(VideoPlayer vp)
     {
-        GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<BGM>().stopTheMusic();
         ctrlMain.activateSceneGame();
     }
 }

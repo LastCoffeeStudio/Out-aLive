@@ -23,7 +23,6 @@ public class CtrlAudio : MonoBehaviour
             ctrlAudioInstance = this;
         else if (ctrlAudioInstance != this)
             Destroy(gameObject);
-        DontDestroyOnLoad(gameObject);
 
         if (!audioMixer) return;
 
