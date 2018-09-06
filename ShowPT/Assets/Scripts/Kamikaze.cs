@@ -25,12 +25,6 @@ public class Kamikaze : Enemy {
         cameraShake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //hasExplode();
-    }
-
     public override void getHit(int damage)
     {
         ctrAudio.playOneSound("Enemies", hitAudio, transform.position, 1.0f, 0.0f, 128);
@@ -44,11 +38,11 @@ public class Kamikaze : Enemy {
         checkHealth();
     }
 
-    private void forceExplode()
+    public void forceExplode()
     {
         //Explosion animation
         RaycastHit hitInfo;
-        if (Physics.Raycast(transform.position, player.position - transform.position, out hitInfo, explosionDistance) && hitInfo.transform.tag == "Player")
+		if (Vector3.Distance(transform.position, player.transform.position) <= explosionDistance)
         {
             player.GetComponent<PlayerHealth>().ChangeHealth(explosionDamage);
         }
@@ -59,30 +53,6 @@ public class Kamikaze : Enemy {
         cameraShake.startShake(shakeTime, fadeInTime, fadeOutTime, speed, (magnitude * (1 - Mathf.Clamp01(playerDistance / maxDistancePlayer))));
 
         generateDeathEffect ();
-    }
-
-    private void hasExplode()
-    {
-        if (player != null && Vector3.Distance(player.position, transform.position) <= explosionDistance)
-        {
-            //Explosion animation
-            RaycastHit hitInfo;
-            if (Physics.Raycast(transform.position, player.position - transform.position, out hitInfo, explosionDistance) && hitInfo.transform.tag == "Player")
-            {
-                player.GetComponent<PlayerHealth>().ChangeHealth(explosionDamage);
-            }
-			GameObject.Instantiate (explosion, transform.position, Quaternion.identity);
-			generateDeathEffect ();
-            //Destroy(gameObject);
-        }
-    }
-
-    public void explode()
-    {
-       // if (player != null && Vector3.Distance(player.position, transform.position) <= explosionDistance)
-       // {
-            forceExplode();
-       // }
     }
 
     public override void checkHealth()

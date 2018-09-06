@@ -11,7 +11,6 @@ public class AIKamikaze : MonoBehaviour {
 		I_SEE_YOU,
 	    JUMPING,
         WALKING
-
     }
 
 	//[SerializeField]
@@ -125,25 +124,11 @@ public class AIKamikaze : MonoBehaviour {
 
                 if (Mathf.Abs(Vector3.Distance(gameObject.transform.position, player.transform.position)) < explodingDistance )
                 {
-					alreadyOnSuicideJump = true;
-                    animKamikaze.SetBool("Explode", true);
-                }
-                if (animKamikaze.GetCurrentAnimatorStateInfo(0).IsName("die"))
-                {
-                    gameObject.GetComponent<Kamikaze>().explode();
+					gameObject.GetComponent<Kamikaze>().forceExplode();
                 }
                 break;
-
         }
     }
-
-    bool CanHearPlayer(){
-		if (playerMovment.noiseValue > Vector3.Distance (transform.position, player.transform.position)) 
-		{
-			return true;
-		}
-		return false;
-	}
 
 	private void SetDestination()
 	{
