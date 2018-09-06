@@ -2473,13 +2473,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1860223244566560}
-  m_LocalRotation: {x: -0, y: -0.44896352, z: -0, w: 0.8935501}
-  m_LocalPosition: {x: -27.1, y: 1.4300003, z: 0.04}
+  m_LocalRotation: {x: -0, y: 0.20734319, z: -0, w: 0.97826827}
+  m_LocalPosition: {x: -10.06, y: 1.4300003, z: 13.39}
   m_LocalScale: {x: 0.9993091, y: 0.99933225, z: 0.9999706}
   m_Children: []
   m_Father: {fileID: 4946595713369678}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: -53.354004, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 23.933, z: 0}
 --- !u!4 &4396986611859376
 Transform:
   m_ObjectHideFlags: 1
@@ -3261,8 +3261,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1767376176805106}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 48.048077, y: 91.70049, z: -148.4278}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.48, y: 90.89, z: -110.41}
   m_LocalScale: {x: 0.9993091, y: 0.99933225, z: 0.9999706}
   m_Children:
   - {fileID: 4866955480233244}
@@ -5450,7 +5450,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 14.12, y: 4.41, z: 2.6}
+  m_Size: {x: 20.7, y: 4.41, z: 2.73}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &82064570756664992
 AudioSource:
@@ -5580,7 +5580,7 @@ MonoBehaviour:
   switchProbability: 0.5
   nodeList: []
   viewDistance: 25
-  explodingDistance: 10
+  explodingDistance: 2
   detectSound: {fileID: 8300000, guid: 0a55b9b28e63fc346b5bcd774d1a9493, type: 3}
   viewAngle: 90
   viewMask:
@@ -5616,7 +5616,7 @@ MonoBehaviour:
   fadeOutTime: 0.3
   speed: 15
   magnitude: 0.5
-  explosionDistance: 2
+  explosionDistance: 3
   explosionDamage: -10
   stepSounds: {fileID: 11400000, guid: eed58cc04b5809a4f924d96f451469ae, type: 2}
   openDoorAudio: {fileID: 8300000, guid: eba2a5b7be178b042b2477624eccde55, type: 3}

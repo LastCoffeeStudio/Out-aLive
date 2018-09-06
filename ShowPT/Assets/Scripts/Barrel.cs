@@ -107,7 +107,7 @@ public class Barrel : MonoBehaviour {
 		GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
 
 		RaycastHit hitInfo;
-		if (Physics.Raycast(transform.position, player.transform.position - transform.position, out hitInfo, explosionDistance) && hitInfo.transform.tag == "Player")
+		if (Vector3.Distance(transform.position, player.transform.position) <= explosionDistance)
 		{
 			player.GetComponent<PlayerHealth>().ChangeHealth(-explosionDamage);
 		}
