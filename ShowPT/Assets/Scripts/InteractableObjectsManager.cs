@@ -14,12 +14,18 @@ public class InteractableObjectsManager : MonoBehaviour {
         public string keyCode;
         public string action;
         public string objectName;
+        public bool showKey;
+        public bool showAction;
+        public bool showName;
 
-        public InteractableInfo(string keyCode, string action, string objectName)
+        public InteractableInfo(string keyCode, string action, string objectName, bool showKey, bool showAction, bool showName)
         {
             this.keyCode = keyCode;
             this.action = action;
             this.objectName = objectName;
+            this.showKey = showKey;
+            this.showAction = showAction;
+            this.showName = showName;
         }
     }
 
@@ -70,17 +76,26 @@ public class InteractableObjectsManager : MonoBehaviour {
         }
     }
 
-    public static void addInteractableObject(string name, string keyCode, string type, string objectName)
+    public static void addInteractableObject(string name, string keyCode, string type, string objectName, bool showKey, bool showAction, bool showName)
     {
-        interactableObjectsManagerinstance.interactableObjects.Add(name, new InteractableInfo(keyCode, type, objectName));
+        interactableObjectsManagerinstance.interactableObjects.Add(name, new InteractableInfo(keyCode, type, objectName, showKey, showAction, showName));
     }
 
     public static void showInteractableObject(string name)
     {
         InteractableInfo interactableInfo = (InteractableInfo)interactableObjectsManagerinstance.interactableObjects[name];
-        interactableObjectsManagerinstance.actionText.text = interactableInfo.action;
-        interactableObjectsManagerinstance.keyText.text = interactableInfo.keyCode;
-        interactableObjectsManagerinstance.objectNameText.text = interactableInfo.objectName;
+        if (interactableInfo.showAction)
+        {
+            interactableObjectsManagerinstance.actionText.text = interactableInfo.action;
+        }
+        if (interactableInfo.showKey)
+        {
+            interactableObjectsManagerinstance.keyText.text = interactableInfo.keyCode;
+        }
+        if (interactableInfo.showName)
+        {
+            interactableObjectsManagerinstance.objectNameText.text = interactableInfo.objectName;
+        }
     }
 
     public static bool equalsObjectActive(InteractableObject interactableObject)

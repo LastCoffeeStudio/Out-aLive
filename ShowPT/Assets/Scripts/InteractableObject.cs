@@ -8,6 +8,9 @@ public class InteractableObject : MonoBehaviour {
     public KeyCode keycodeToInteract;
     public string action;
     public string nameObject;
+    public bool showKey;
+    public bool showAction;
+    public bool showName;
 
 	public enum ObjectMaster
 	{
@@ -27,7 +30,7 @@ public class InteractableObject : MonoBehaviour {
     InteractableObjectState objectState;
 
     protected virtual void Start() {
-        InteractableObjectsManager.addInteractableObject(name, keycodeToInteract.ToString(), action, nameObject);
+        InteractableObjectsManager.addInteractableObject(name, keycodeToInteract.ToString(), action, nameObject, showKey, showAction, showName);
         objectState = InteractableObjectState.PREPARED;
         enabled = false;
     }
