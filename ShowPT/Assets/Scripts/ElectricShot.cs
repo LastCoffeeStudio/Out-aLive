@@ -45,5 +45,10 @@ public class ElectricShot : MonoBehaviour {
 
             other.gameObject.GetComponent<BossArmController>().getHit(damage);
         }
+        if (other.gameObject.layer == LayerMask.NameToLayer("PhysicsObjects"))
+        {
+            Vector4 dataToPass = new Vector4(transform.position.x, transform.position.y, transform.position.z, damage);
+            other.gameObject.SendMessage("shotBehavior", dataToPass);
+        }
     }
 }
