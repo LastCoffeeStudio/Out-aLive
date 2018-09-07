@@ -97,7 +97,12 @@ ModelImporter:
     7400002: mixamo.com
     9500000: //RootNode
     13700000: male_low
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 01 - Default
+    second: {fileID: 2100000, guid: a60aac6193b34844bbf548dbcc1e384a, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -129,7 +134,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1.8
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
