@@ -19,7 +19,7 @@ public class IntroCinematicController : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("ButtonA"))
         {
             ctrlMain.activateSceneGame();
         }
