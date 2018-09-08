@@ -18,8 +18,11 @@ public class Shotgun : Weapon
     {
         if (CtrlGameState.gameState == CtrlGameState.gameStates.ACTIVE)
         {
-            checkInputAnimations();
-            swagWeaponMovement();
+			if (PlayerMovment.overrideControls == false) 
+			{
+				checkInputAnimations ();
+				swagWeaponMovement ();
+			}
         }
     }
 

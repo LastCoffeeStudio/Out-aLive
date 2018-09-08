@@ -126,9 +126,9 @@ public class PlayerMovment : MonoBehaviour
     //Calcule 
     private void FixedUpdate()
     {
-        updatePlayer();
 		if (overrideControls == false) 
 		{
+			updatePlayer();
 			updateCamera ();
 		}
     }
@@ -138,9 +138,9 @@ public class PlayerMovment : MonoBehaviour
         noiseValue = 0f;
         if (CtrlGameState.gameState == CtrlGameState.gameStates.ACTIVE)
         {
-            checkInteract();
 			if (overrideControls == false) 
 			{
+				checkInteract();
 				checkInput ();
 			}
         }

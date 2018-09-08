@@ -25,17 +25,19 @@ public class LaserCanon : Weapon {
     // Update is called once per frame
     protected override void Update ()
     {
-        if (firing)
-        {
-            overheatTime += Time.deltaTime;
-            checkMouseInput();
-        }
+		if (PlayerMovment.overrideControls == false) {
+			if (firing) 
+			{
+				overheatTime += Time.deltaTime;
+				checkMouseInput ();
+			}
 
-        if (CtrlGameState.gameState == CtrlGameState.gameStates.ACTIVE)
-        {
-            checkInputAnimations();
-            swagWeaponMovement();
-        }
+			if (CtrlGameState.gameState == CtrlGameState.gameStates.ACTIVE) 
+			{
+				checkInputAnimations ();
+				swagWeaponMovement ();
+			}
+		}
     }
 
     protected override void checkMouseInput()

@@ -37,7 +37,7 @@ public class InteractableObject : MonoBehaviour {
 
     protected virtual void Update()
     {
-        if (Input.GetKeyDown(keycodeToInteract))
+        if (Input.GetKeyDown(keycodeToInteract) && PlayerMovment.overrideControls == false)
         {
             executeAction();
         }

@@ -18,29 +18,31 @@ public class CameraShake : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
+		if (PlayerMovment.overrideControls == false) 
+		{
+			if (Input.GetKeyDown (KeyCode.H)) 
+			{
+				startShake (10f, 0.1f, 0.2f, 10, 0.5f);
+			}
 
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            startShake(10f, 0.1f, 0.2f, 10, 0.5f);
-        }
+			Vector3 cameraPivotPosition = new Vector3 ();
 
-        Vector3 cameraPivotPosition = new Vector3();
+			for (int i = 0; i < activeShakes.Count; ++i) 
+			{
+				cameraPivotPosition += activeShakes [i].shakeCamera ();
 
-        for (int i = 0; i < activeShakes.Count; ++i)
-        {
-            cameraPivotPosition += activeShakes[i].shakeCamera();
+				if (activeShakes [i].state == Shake.ShakeState.END) 
+				{
+					activeShakes.RemoveAt (i);
+					if (activeShakes.Count == 0) 
+					{
+						cameraPivot.transform.localPosition = originalCameraPosition;
+					}
+				}
+			}
 
-            if (activeShakes[i].state == Shake.ShakeState.END)
-            {
-                activeShakes.RemoveAt(i);
-                if (activeShakes.Count == 0)
-                {
-                    cameraPivot.transform.localPosition = originalCameraPosition;
-                }
-            }
-        }
-
-        cameraPivot.transform.localPosition = cameraPivotPosition;
+			cameraPivot.transform.localPosition = cameraPivotPosition;
+		}
     }
 
     public void startShake(float shakeTime, float timeToFadeIn, float timeToFadeOut, float speed, float magnitude)

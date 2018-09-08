@@ -18,14 +18,17 @@ public class Gun : Weapon
     {
         if (CtrlGameState.gameState == CtrlGameState.gameStates.ACTIVE)
         {
-            checkInputAnimations();
-            checkMouseInput();
-            updateCharge();
-            aimAmmo();
-            if (!animator.GetBool("aiming"))
-            {
-                swagWeaponMovement();
-            }
+			if (PlayerMovment.overrideControls == false) 
+			{
+				checkInputAnimations ();
+				checkMouseInput ();
+				updateCharge ();
+				aimAmmo ();
+				if (!animator.GetBool ("aiming")) 
+				{
+					swagWeaponMovement ();
+				}
+			}
         }
     }
 
