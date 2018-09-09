@@ -49,10 +49,12 @@ public class BossController : MonoBehaviour
     private int totalRepeat = 0;
     private int armsStopped = 0;
     private int armsDead = 0;
+    private int rouletteRoll = 0;
     private float chaseSpeed = 0f;
     private float timeElapsed = 0f;
     private bool armsActive = false;
     private bool chasePlayer = false;
+    private bool[] spawns;
 
     private enum STATES
     {
@@ -104,8 +106,7 @@ public class BossController : MonoBehaviour
         Vector3 combatZoneSize = (minLimit.transform.position - maxLimit.transform.position);
         combatZoneSize = new Vector3(Mathf.Abs(combatZoneSize.x), Mathf.Abs(combatZoneSize.y), Mathf.Abs(combatZoneSize.z));
         combatZone = new Bounds((maxLimit.transform.position - minLimit.transform.position) / 2f + minLimit.transform.position, combatZoneSize);
-        Debug.Log(combatZone.min + " " + combatZone.max);
-        Debug.Log(combatZone.Contains(new Vector3(-10f, 5f, 76f)));
+        spawns = new bool[points.Length];
         setArms();
         createRotationCurve();
     }
@@ -259,8 +260,8 @@ public class BossController : MonoBehaviour
 
     public void calculateRollData()
     {
-        calculateDirectionFromPlayerPosition();
-        checkRoll();
+        //calculateDirectionFromPlayerPosition();
+        //checkRoll();
         StartCoroutine("rollBoss");
     }
 
@@ -333,8 +334,8 @@ public class BossController : MonoBehaviour
 
         if (boolParam != 0)
         {
-            bossAnimator.SetInteger("RouletteRoll", Random.Range(1, 4));
-            calculateDirectionFromPlayerPosition();
+            rouletteRoll = Random.Range(1,5);
+            //calculateDirectionFromPlayerPosition();
         }
         else
         {
@@ -345,9 +346,8 @@ public class BossController : MonoBehaviour
 
     public void summonEnemies(AnimationEvent animationEvent)
     {
-        int typeParam = animationEvent.intParameter;
         Enemy.EnemyType type = Enemy.EnemyType.NONE;
-        switch (typeParam)
+        switch (rouletteRoll)
         {
             case 1:
                 type = Enemy.EnemyType.LILONE;
@@ -358,38 +358,33 @@ public class BossController : MonoBehaviour
             case 3:
                 type = Enemy.EnemyType.KAMIKAZE;
                 break;
+            case 4:
+                type = Enemy.EnemyType.ALL;
+                break;
         }
-
-        bool[] spawns = new bool[points.Length];
+        
         for (int i = 0; i < spawns.Length; ++i)
         {
             spawns[i] = false;
         }
 
         EnemySpawn enemySpawn = findEnemySpawn(type);
+        int numberSpawns = Random.Range(enemySpawn.minNumEnemies, enemySpawn.maxNumEnemies + 1);
 
-        if (enemySpawn.type != Enemy.EnemyType.NONE)
+        if (enemySpawn.type == Enemy.EnemyType.ALL)
         {
-            int numberSpawns = Random.Range(enemySpawn.minNumEnemies, enemySpawn.maxNumEnemies+1);
-
             for (int i = 0; i < numberSpawns; ++i)
             {
-                int randomPoint = Random.Range(0,spawns.Length);
-                //Number of spawnpoints must be greater than maximum num enemies of any enemy!
-                while (spawns[randomPoint])
-                {
-                    ++randomPoint;
-                    if (randomPoint >= spawns.Length)
-                    {
-                        randomPoint = 0;
-                    }
-                }
+                enemySpawn = findRandomEnemySpawn();
+                spawnEnemy(enemySpawn);
+            }
 
-                if (!spawns[randomPoint] && !body.GetComponent<BoxCollider>().bounds.Contains(points[randomPoint].transform.position))
-                {
-                    spawns[randomPoint] = true;
-                    Instantiate(enemySpawn.enemy, points[randomPoint].transform.position, Quaternion.identity);
-                }
+        }
+        else if (enemySpawn.type != Enemy.EnemyType.NONE)
+        {
+            for (int i = 0; i < numberSpawns; ++i)
+            {
+                spawnEnemy(enemySpawn);
             }
         }
     }
@@ -472,6 +467,41 @@ public class BossController : MonoBehaviour
 
         return spawn;
     }
+
+    private EnemySpawn findRandomEnemySpawn()
+    {
+        int index = Random.Range(0, enemies.Length);
+        EnemySpawn spawn = enemies[index];
+        while (enemies.Length > 1 && spawn.type == Enemy.EnemyType.ALL)
+        {
+            index = Random.Range(0, enemies.Length);
+            spawn = enemies[index];
+        }
+
+        return spawn;
+    }
+
+    private void spawnEnemy(EnemySpawn enemySpawn)
+    {
+        int randomPoint = Random.Range(0, spawns.Length);
+        int checkedPoints = 0;
+        //Number of spawnpoints must be greater than maximum num enemies of any enemy!
+        while (spawns[randomPoint] && checkedPoints < spawns.Length)
+        {
+            ++checkedPoints;
+            ++randomPoint;
+            if (randomPoint >= spawns.Length)
+            {
+                randomPoint = 0;
+            }
+        }
+
+        if (!spawns[randomPoint] && !body.GetComponent<BoxCollider>().bounds.Contains(points[randomPoint].transform.position))
+        {
+            spawns[randomPoint] = true;
+            Instantiate(enemySpawn.enemy, points[randomPoint].transform.position, Quaternion.identity);
+        }
+    }
     
     /**Initialization**/
 
@@ -490,7 +520,7 @@ public class BossController : MonoBehaviour
 
     private void createRotationCurve()
     {
-        Keyframe[] frames = new Keyframe[(int)rotateAnim.length * 60];
+        Keyframe[] frames = new Keyframe[(int)(rotateAnim.length * 60f)];
         rotateAnim.SampleAnimation(gameObject, rotateAnim.length);
         float lastPos = body.transform.rotation.x;
 

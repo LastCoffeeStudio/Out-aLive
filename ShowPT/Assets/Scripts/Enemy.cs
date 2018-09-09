@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public enum EnemyType
     {
+        ALL = -1,
         NONE = 0,
 
         TURRET,
@@ -15,6 +16,7 @@ public class Enemy : MonoBehaviour
         KAMIKAZE,
 
         TOTAL_DRONES
+        
     }
 
     public enum Status
