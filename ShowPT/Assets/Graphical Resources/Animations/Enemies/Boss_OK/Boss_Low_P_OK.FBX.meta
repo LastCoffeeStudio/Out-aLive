@@ -45,6 +45,8 @@ ModelImporter:
     100074: Quarts_1_Low026
     100076: Quarts_1_Low027
     100078: Quarts_1_Low028
+    100080: Puertas_Base
+    100082: Puertas_Cabeza
     400000: 1_BODY_Boss_ok
     400002: 5_Estructura_Cap_Boss
     400004: 6_Pantalla_Cap_Boss
@@ -85,6 +87,8 @@ ModelImporter:
     400074: Quarts_1_Low026
     400076: Quarts_1_Low027
     400078: Quarts_1_Low028
+    400080: Puertas_Base
+    400082: Puertas_Cabeza
     2100000: No Name
     2100002: Projectil
     2100004: deco_Esquinas
@@ -133,6 +137,8 @@ ModelImporter:
     2300074: Quarts_1_Low026
     2300076: Quarts_1_Low027
     2300078: Quarts_1_Low028
+    2300080: Puertas_Base
+    2300082: Puertas_Cabeza
     3300000: 1_BODY_Boss_ok
     3300002: 5_Estructura_Cap_Boss
     3300004: 6_Pantalla_Cap_Boss
@@ -173,6 +179,8 @@ ModelImporter:
     3300074: Quarts_1_Low026
     3300076: Quarts_1_Low027
     3300078: Quarts_1_Low028
+    3300080: Puertas_Base
+    3300082: Puertas_Cabeza
     4300000: Cubito_Boss_Low_poly
     4300002: Proyectil_Low_Poly
     4300004: Proyectil_Low_Poly001
@@ -213,8 +221,45 @@ ModelImporter:
     4300074: Quarts_1_Low010
     4300076: Quarts_1_Low011
     4300078: Quarts_1_Low012
+    4300080: Puertas_Base
+    4300082: Puertas_Cabeza
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Comporta
+    second: {fileID: 2100000, guid: a96514cb95bb342439f879815783da46, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cuerpo_boss
+    second: {fileID: 2100000, guid: f1dba6bc6032bc642950a337712e0a13, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Projectil
+    second: {fileID: 2100000, guid: f03044d436e2b3b49b9bce14c87d4309, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cabeza
+    second: {fileID: 2100000, guid: 8688f7d9a216982409532934b534a240, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: deco_Esquinas
+    second: {fileID: 2100000, guid: a2f96a1c78b0e4e40be3a5a2f41ac742, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pantalla
+    second: {fileID: 2100000, guid: 3b1db17c2f51a9749bd34c0fd0bcb4a3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: parta
+    second: {fileID: 2100000, guid: b86c63193c9a3d248bd458dcbfc4f009, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -251,7 +296,7 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
-    swapUVChannels: 0
+    swapUVChannels: 1
     generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
