@@ -41,6 +41,9 @@ public class Inventory : MonoBehaviour
 
     public HudController hudController;
 
+	[SerializeField]
+	GateTerminal gateTerminal;
+
     // Use this for initialization
     void Start ()
     {
@@ -216,6 +219,7 @@ public class Inventory : MonoBehaviour
         
         switchWeapon(type);
         hudController.addWeapon(type);
+		gateTerminal.activateButton ();
         //Launch some animation or sound that has bought weapon
     }
 

@@ -6,6 +6,10 @@ public class GateTerminal : MonoBehaviour {
 
 	[SerializeField]
 	GameObject gate;
+	[SerializeField]
+	GameObject deactivatedButton;
+	[SerializeField]
+	GameObject activatedButton;
 
 	[SerializeField]
 	GameObject openedPosition;
@@ -21,7 +25,7 @@ public class GateTerminal : MonoBehaviour {
     
 	void Start () 
 	{
-		myAnimator = GetComponent<Animator> ();
+		myAnimator = activatedButton.GetComponent<Animator> ();
 		ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
 	}
 	
@@ -39,6 +43,12 @@ public class GateTerminal : MonoBehaviour {
 		ctrlAudio.playOneSound("Scene", buttonAudio, transform.position, 0.5f, 0f, 150);
 		gateOpened = true;
 		myAnimator.SetTrigger ("activation");
-		gameObject.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
+		activatedButton.GetComponent<Renderer> ().material.SetColor ("_Color", Color.green);
+	}
+
+	public void activateButton()
+	{
+		deactivatedButton.SetActive (false);
+		activatedButton.SetActive (true);
 	}
 }

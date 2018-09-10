@@ -27,7 +27,7 @@ public class InteractableObject : MonoBehaviour {
         DISABLE
     }
 
-    InteractableObjectState objectState;
+    protected InteractableObjectState objectState;
 
     protected virtual void Start() {
         InteractableObjectsManager.addInteractableObject(name, keycodeToInteract.ToString(), action, nameObject, showKey, showAction, showName);
