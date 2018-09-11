@@ -23,8 +23,7 @@ public class BossBodyController : MonoBehaviour {
             collider.GetComponent<Rigidbody>().AddForceAtPosition(Vector3.up, collider.transform.position);
             collider.GetComponent<Rigidbody>().AddForce(forceDir * forceQuantity, ForceMode.Impulse);
 
-            collider.GetComponent<PlayerHealth>().ChangeHealth(bossCtrl.getBossDamage());
-            Debug.Log(bossCtrl.getBossDamage());
+            collider.GetComponent<PlayerHealth>().ChangeHealth(-bossCtrl.getBossDamage());
         }
 
         if (collider.tag == "Enemy" || collider.tag == "Agent" || collider.tag == "Snitch")
