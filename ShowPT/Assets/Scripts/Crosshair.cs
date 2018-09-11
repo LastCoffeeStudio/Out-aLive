@@ -143,11 +143,11 @@ public class Crosshair : MonoBehaviour
 
     public void enemyDeath()
     {
-        killedCross.GetComponent<Animator>().Play("ShowKilled");
+        killedCross.GetComponent<Animator>().Play("ShowKilled", -1, 0f);
     }
 
     public void enemyReached()
     {
-        touchedCross.GetComponent<Animator>().Play("ShowTouched");
+        touchedCross.GetComponent<Animator>().Play("ShowTouched", -1, 0f);
     }
 }
