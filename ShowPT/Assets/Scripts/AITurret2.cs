@@ -13,9 +13,6 @@ public class AITurret2 : MonoBehaviour {
 	}
 
 	[SerializeField]
-	List<Waypoint> nodeList;
-
-	[SerializeField]
 	float viewDistance = 50.0f;
 
 	[SerializeField]
@@ -41,8 +38,8 @@ public class AITurret2 : MonoBehaviour {
 	[SerializeField]
 	GameObject shooter;
 
-	[SerializeField]
 	GameObject player;
+	GameObject playerHead;
 
     [Header("Sounds")]
     public AudioClip gyro;
@@ -56,6 +53,10 @@ public class AITurret2 : MonoBehaviour {
         if (player == null) 
 		{
 			player = GameObject.FindGameObjectWithTag ("Player");
+		}
+		if (playerHead == null) 
+		{
+			playerHead = GameObject.FindGameObjectWithTag ("PlayerHead");
 		}
 		if (shooter == null)
 		{
@@ -128,8 +129,8 @@ public class AITurret2 : MonoBehaviour {
 	{
 		if (Vector3.Distance (transform.position, player.transform.position) < viewDistance) 
 		{
-			Vector3 directionToPlayer = (player.transform.position - shooter.transform.position).normalized;
-			if(!Physics.Linecast(shooter.transform.position, player.transform.position, viewMask))
+			//Vector3 directionToPlayer = (player.transform.position - shooter.transform.position).normalized;
+			if(!Physics.Linecast(shooter.transform.position, player.transform.position, viewMask) || !Physics.Linecast(shooter.transform.position, playerHead.transform.position, viewMask))
 			{
 				return true;
 			}

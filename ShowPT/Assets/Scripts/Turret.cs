@@ -21,8 +21,8 @@ public class Turret : Enemy
 	[SerializeField]
 	LayerMask viewMask;
 
-	[SerializeField]
 	GameObject player;
+	GameObject playerHead;
 
     [Header("Sounds")]
     public AudioClip sparks;
@@ -39,6 +39,10 @@ public class Turret : Enemy
         if (player == null) 
 		{
 			player = GameObject.FindGameObjectWithTag ("Player");
+		}
+		if (playerHead == null) 
+		{
+			playerHead = GameObject.FindGameObjectWithTag ("PlayerHead");
 		}
         electrified = false;
         soundParticle = new GameObject();
@@ -71,8 +75,9 @@ public class Turret : Enemy
         }
         else if (shootTimerTurret >= timeNoShooting && !electrified)
         {
-			Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
-			if (!Physics.Linecast (transform.position, player.transform.position, viewMask)) {
+			//Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
+			if (!Physics.Linecast (transform.position, player.transform.position, viewMask) || !Physics.Linecast (transform.position, playerHead.transform.position, viewMask)) 
+			{
 			    if (soundAttackingActive == false)
 			    {
 			        idLaserAttak = ctrAudio.playOneSound("Enemies", laserAttak, transform.position, 0.3f, 1.0f, 60, true, null, 25f, 0f, AudioRolloffMode.Linear);
