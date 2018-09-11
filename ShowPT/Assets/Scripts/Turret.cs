@@ -130,12 +130,13 @@ public class Turret : Enemy
         }
     }
 
-    public override void getHit(int damage)
+    public override float getHit(int damage)
     {
         ctrAudio.playOneSound("Enemies", hitAudio, transform.position, 1.0f, 0.0f, 128);
         enemyHealth -= damage;
         //Execute properly Animation
         checkHealth();
+        return enemyHealth;
     }
 
     public override void checkHealth()

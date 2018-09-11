@@ -78,11 +78,12 @@ public class Enemy : MonoBehaviour
 		ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
 	}
 
-    public virtual void getHit(int damage) 
+    public virtual float getHit(int damage) 
 	{
 		enemyHealth -= damage;
 		ctrAudio.playOneSound("Enemies", hitAudio, transform.position, 0.5f, 0.0f, 128);
 		checkHealth ();
+        return enemyHealth;
 	}
 
 

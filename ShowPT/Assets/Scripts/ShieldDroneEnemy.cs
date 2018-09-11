@@ -47,10 +47,11 @@ public class ShieldDroneEnemy : Enemy {
         
     }
 
-    public override void getHit(int damage)
+    public override float getHit(int damage)
     {
         enemyHealth -= damage;
         checkHealth();
+        return enemyHealth;
     }
 
     private void checkPlayerDistance()

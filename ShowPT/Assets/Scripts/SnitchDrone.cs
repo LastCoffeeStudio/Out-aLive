@@ -251,12 +251,13 @@ public class SnitchDrone : Enemy
 
         return direction.normalized;
     }
-    public override void getHit(int damage)
+    public override float getHit(int damage)
     {
         ctrAudio.playOneSound("Enemies", hitAudio, transform.position, 1.0f, 0.0f, 128);
         enemyHealth -= damage;
         //Debug.Log(enemyHealth);
         checkHealth();
+        return enemyHealth;
     }
 
     public override void checkHealth()

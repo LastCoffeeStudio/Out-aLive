@@ -25,7 +25,7 @@ public class Kamikaze : Enemy {
         cameraShake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
     }
 
-    public override void getHit(int damage)
+    public override float getHit(int damage)
     {
         ctrAudio.playOneSound("Enemies", hitAudio, transform.position, 1.0f, 0.0f, 128);
         //hitAudio = ctrAudio.hit;
@@ -36,6 +36,7 @@ public class Kamikaze : Enemy {
             forceExplode();
         }*/
         checkHealth();
+        return enemyHealth;
     }
 
     public void forceExplode()

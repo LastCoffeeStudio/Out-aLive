@@ -162,7 +162,7 @@ public class Waz : Enemy
         navMeshAgent.SetDestination(aggressiveDestination);
         
     }
-    public override void getHit(int damage)
+    public override float getHit(int damage)
     {
         if (state.SHOOTING != NPCstate && state.I_SEE_YOU != NPCstate)
         {
@@ -173,6 +173,7 @@ public class Waz : Enemy
         enemyHealth -= damage;
         //Debug.Log(enemyHealth);
         checkHealth();
+        return enemyHealth;
     }
 
     public override void checkHealth()

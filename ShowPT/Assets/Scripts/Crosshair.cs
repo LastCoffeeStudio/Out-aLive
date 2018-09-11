@@ -148,6 +148,6 @@ public class Crosshair : MonoBehaviour
 
     public void enemyReached()
     {
-        killedCross.GetComponent<Animator>().Play("ShowTouched");
+        touchedCross.GetComponent<Animator>().Play("ShowTouched");
     }
 }

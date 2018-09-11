@@ -177,7 +177,7 @@ public class LilRobot : Enemy
         agent.nextPosition = transform.position;
     }
 
-    public override void getHit(int damage)
+    public override float getHit(int damage)
     {
         //Debug.Log(damage);
         ctrAudio.playOneSound("Enemies", hitAudio, transform.position, 1.0f, 0.0f, 128);
@@ -186,6 +186,7 @@ public class LilRobot : Enemy
         state = LilRobotState.ATTACK;
         destination = target.position;
         checkHealth();
+        return enemyHealth;
     }
 
     public override void checkHealth()

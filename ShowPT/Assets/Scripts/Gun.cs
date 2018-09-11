@@ -14,6 +14,24 @@ public class Gun : Weapon
     public float dischargeSpeed;
     public float dischargeSpeedOverflow;
 
+    public class EnemiesCallback : TouchEnemyCallback
+    {
+        private Gun gun;
+
+        public EnemiesCallback(Gun gun)
+        {
+            this.gun = gun;
+        }
+
+        public void touched() {
+            gun.crosshair.enemyReached();
+        }
+
+        public void sunk() {
+            gun.crosshair.enemyDeath();
+        }
+    }
+
     protected override void Update()
     {
         if (CtrlGameState.gameState == CtrlGameState.gameStates.ACTIVE)
@@ -35,15 +53,17 @@ public class Gun : Weapon
     protected override void shotBullet(Ray ray)
     {
         RaycastHit hitInfo;
+        TouchEnemyCallback callback = new EnemiesCallback(this);
         if (Physics.Raycast(ray, out hitInfo, weaponRange, maskBullets))
         {
             //hitInfo.distance
             Instantiate(projectileToShoot, shootPoint.position, Quaternion.LookRotation(Vector3.Normalize(hitInfo.point - shootPoint.position)));
-            projectileToShoot.touchedEnemy(hitInfo.collider);
+            projectileToShoot.touchedEnemy(hitInfo.collider, callback);
         }
         else
         {
             Instantiate(projectileToShoot, shootPoint.position, Quaternion.LookRotation(Vector3.Normalize((ray.origin + ray.direction * weaponRange) - shootPoint.position)));
+            projectileToShoot.touchedEnemy(hitInfo.collider, callback);
         }
         projectileToShoot.GetComponent<Collider>().enabled = false;
 		ctrlAudio.playOneSound("Weaponds", shotAudio, transform.position, 0.5f, 0.0f, 128);

@@ -46,7 +46,7 @@ public class Weapon : MonoBehaviour
 
     [Header("Crosshair Settings")]
     public float shotSpreadFactor;
-    protected Crosshair crosshair;
+    public Crosshair crosshair;
 
     protected Recoil recoil;
 

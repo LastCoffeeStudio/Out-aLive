@@ -85,10 +85,10 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        touchedEnemy(col);
+        touchedEnemy(col, null);
     }
 
-    public void touchedEnemy(Collider col)
+    public void touchedEnemy(Collider col, TouchEnemyCallback touchEnemyCallback)
 	{
         if (col.gameObject.layer == LayerMask.NameToLayer ("Wall") || col.tag == "Sphere" || col.gameObject.layer == LayerMask.NameToLayer("BossWall")) 
 		{
@@ -96,9 +96,22 @@ public class Projectile : MonoBehaviour
 		}
         if (col.tag == "Enemy" || col.tag == "Agent" || col.tag == "Snitch")
         {
+            
             ScoreController.weaponHit(projectileWeaponType);
-            col.gameObject.GetComponent<Enemy>().getHit(damage);
+            float enemyHealth = col.gameObject.GetComponent<Enemy>().getHit(damage);
             destroyMe();
+
+            if (touchEnemyCallback != null)
+            {
+                if (enemyHealth <= 0f)
+                {
+                    touchEnemyCallback.sunk();
+                }
+                else
+                {
+                    touchEnemyCallback.touched();
+                }
+            }
         }
 		if (col.gameObject.layer == LayerMask.NameToLayer("PhysicsObjects")) 
 		{
