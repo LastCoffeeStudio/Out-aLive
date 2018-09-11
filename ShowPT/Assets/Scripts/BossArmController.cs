@@ -27,7 +27,6 @@ public class BossArmController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("Collides trigger with: " + collider.name);
         if (collider.tag == "Player")
         {
             Vector3 forceDir = (collider.transform.position - transform.position).normalized;
