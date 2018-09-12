@@ -35,9 +35,11 @@ public class Crosshair : MonoBehaviour
     private PlayerMovment playerStats;
     [SerializeField]
     private GameObject circleUIWithoutWeapon;
+    private bool showing;
 
     private void Start()
     {
+        showing = true;
         playerCamera = GameObject.FindGameObjectWithTag("CameraPlayer").GetComponent<Camera>();
         playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovment>();
         circleUIWithoutWeapon = GameObject.FindGameObjectWithTag("CircleWithoutWeapon");
@@ -149,5 +151,32 @@ public class Crosshair : MonoBehaviour
     public void enemyReached()
     {
         touchedCross.GetComponent<Animator>().Play("ShowTouched", -1, 0f);
+    }
+
+    public void hide()
+    {
+        if (showing)
+        {
+            spread = 0;
+            isFixed = true;
+            for (int i = 0; i < lines.Length; ++i)
+            {
+                lines[i].enabled = false;
+            }
+            showing = false;
+        }
+    }
+
+    public void show()
+    {
+        if (!showing)
+        {
+            isFixed = false;
+            for (int i = 0; i < lines.Length; ++i)
+            {
+                lines[i].enabled = true;
+            }
+            showing = true;
+        }
     }
 }
