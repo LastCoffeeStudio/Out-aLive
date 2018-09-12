@@ -260,8 +260,8 @@ public class BossController : MonoBehaviour
 
     public void calculateRollData()
     {
-        //calculateDirectionFromPlayerPosition();
-        //checkRoll();
+        calculateDirectionFromPlayerPosition();
+        checkRoll();
         StartCoroutine("rollBoss");
     }
 
