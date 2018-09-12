@@ -9,6 +9,9 @@ public class InteractableObjectsManager : MonoBehaviour {
     public Text actionText;
     public Text keyText;
     public Text objectNameText;
+    public Image line;
+    public Image keyCircle;
+    public Image background;
 
     public struct InteractableInfo {
         public string keyCode;
@@ -87,15 +90,19 @@ public class InteractableObjectsManager : MonoBehaviour {
         if (interactableInfo.showAction)
         {
             interactableObjectsManagerinstance.actionText.text = interactableInfo.action;
+            interactableObjectsManagerinstance.background.gameObject.SetActive(true);
         }
         if (interactableInfo.showKey)
         {
             interactableObjectsManagerinstance.keyText.text = interactableInfo.keyCode;
+            interactableObjectsManagerinstance.keyCircle.gameObject.SetActive(true);
+            interactableObjectsManagerinstance.background.gameObject.SetActive(true);
         }
         if (interactableInfo.showName)
         {
             interactableObjectsManagerinstance.objectNameText.text = interactableInfo.objectName;
         }
+        interactableObjectsManagerinstance.line.gameObject.SetActive(true);
     }
 
     public static bool equalsObjectActive(InteractableObject interactableObject)
@@ -108,5 +115,8 @@ public class InteractableObjectsManager : MonoBehaviour {
         interactableObjectsManagerinstance.actionText.text = "";
         interactableObjectsManagerinstance.keyText.text = "";
         interactableObjectsManagerinstance.objectNameText.text = "";
+        interactableObjectsManagerinstance.background.gameObject.SetActive(false);
+        interactableObjectsManagerinstance.line.gameObject.SetActive(false);
+        interactableObjectsManagerinstance.keyCircle.gameObject.SetActive(false);
     }
 }

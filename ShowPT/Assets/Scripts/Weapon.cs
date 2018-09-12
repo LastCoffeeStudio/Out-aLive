@@ -84,13 +84,11 @@ public class Weapon : MonoBehaviour
         if ((Input.GetButton("Fire2") || Input.GetAxis("AxisLT") > 0.5f) && !reloading)
         {
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, aimPosition, Time.deltaTime * 2);
-            //transform.localPosition = Vector3.Lerp(transform.localPosition, aimPosition, Time.deltaTime * aimSpeed);
             crosshair.hide();
             animator.SetBool("aiming", true);
         }
         else
         {
-           // transform.localPosition = Vector3.MoveTowards(transform.localPosition, originalPosition, Time.deltaTime * 2);
             transform.localPosition = Vector3.Lerp(transform.localPosition, originalPosition, Time.deltaTime * aimSpeed);
             crosshair.show();
             animator.SetBool("aiming", false);
