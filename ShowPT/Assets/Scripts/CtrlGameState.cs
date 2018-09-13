@@ -72,35 +72,32 @@ public class CtrlGameState : MonoBehaviour
                     gameUI.TogglePauseScreen(false);
                 }
                 break;
+
             case gameStates.PAUSE:
                 if (gameUI)
                 {
                     gameUI.TogglePauseScreen(true);
                 }
                 break;
+
             case gameStates.DEBUG:
                 break;
+
             case gameStates.WIN:
-                print("YOU WIIIIINNN!!!!");
-                //winState.text = "YOU WIN!";
-                //medal.enabled = true;
-                //gameObject.GetComponent<CtrlCamerasWin>().enabled = true;
                 winTitle.SetActive(true);
                 continueButton.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
-                //score.SetActive(true);
                 break;
+
             case gameStates.DEATH:
-                print("YOU'RE DEAD!!!!");
                 loseTitle.SetActive(true);
                 continueButton.SetActive(true);
-                //winState.text = "YOU DIED!";
-                //medal.enabled = false;
                 Time.timeScale = 0;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 break;
+
             case gameStates.EXIT:
                 break;
         }
@@ -108,6 +105,8 @@ public class CtrlGameState : MonoBehaviour
     
     public void goToMainMenu()
     {
+		setGameState(gameStates.ACTIVE);
+		PlayerMovment.overrideControls = false;
         Main.instance.goMainMenu();
     }
 
