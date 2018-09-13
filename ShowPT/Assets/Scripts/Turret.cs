@@ -76,7 +76,7 @@ public class Turret : Enemy
         else if (shootTimerTurret >= timeNoShooting && !electrified)
         {
 			//Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
-			if (!Physics.Linecast (transform.position, player.transform.position, viewMask) || !Physics.Linecast (transform.position, playerHead.transform.position, viewMask)) 
+			if (!Physics.Linecast (shotPoint.transform.position, player.transform.position, viewMask) || !Physics.Linecast (shotPoint.transform.position, playerHead.transform.position, viewMask)) 
 			{
 			    if (soundAttackingActive == false)
 			    {
