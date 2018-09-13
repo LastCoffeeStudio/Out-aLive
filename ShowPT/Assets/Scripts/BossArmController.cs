@@ -34,7 +34,7 @@ public class BossArmController : MonoBehaviour {
             collider.GetComponent<Rigidbody>().AddForceAtPosition(Vector3.up, collider.transform.position);
             collider.GetComponent<Rigidbody>().AddForce(forceDir * forceQuantity, ForceMode.Impulse);
 
-            collider.GetComponent<PlayerHealth>().ChangeHealth(bossCtrl.getBossDamage(id));
+            collider.GetComponent<PlayerHealth>().ChangeHealth(-bossCtrl.getBossDamage(id));
             Debug.Log(bossCtrl.getBossDamage(id));
             //Enable particle effects here if any
         }
