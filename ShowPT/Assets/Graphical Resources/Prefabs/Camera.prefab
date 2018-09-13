@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4053246256036776}
   - component: {fileID: 198585200650370552}
   - component: {fileID: 199119208481742410}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: ShockWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4541495750916174}
   - component: {fileID: 198090429158871518}
   - component: {fileID: 199122784920344988}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Embers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4940436028269334}
   - component: {fileID: 198184634145478820}
   - component: {fileID: 199200212165611014}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 4777546519330014}
   - component: {fileID: 198153681912974772}
   - component: {fileID: 199465434657409048}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: ExplosionEffectLil (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 4015165840734694}
   - component: {fileID: 198740487622389444}
   - component: {fileID: 199607849125913330}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 23417285067414502}
   - component: {fileID: 64162872472966106}
   - component: {fileID: 54804929330547030}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: prop_camera01_Part_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 23581912168990492}
   - component: {fileID: 64824264419559262}
   - component: {fileID: 54394108859845564}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: prop_camera01_Part_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4508467477222142}
   - component: {fileID: 114724883579530236}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Destroy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 23113478339280378}
   - component: {fileID: 64631856718191554}
   - component: {fileID: 54405271401446986}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: prop_camera01_Part_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 4958762553764946}
   - component: {fileID: 95191576383425436}
   - component: {fileID: 114483394448795116}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: prop_camera_destroy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 23649423941979636}
   - component: {fileID: 64292189885785364}
   - component: {fileID: 54417833002764366}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: prop_camera01_Part_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,15 +361,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1680669885341230}
-  m_LocalRotation: {x: -0.551357, y: 0.38754165, z: 0.3211584, w: 0.66533774}
-  m_LocalPosition: {x: 17.243, y: 5.183057, z: 19.541203}
+  m_LocalRotation: {x: 0.06628534, y: -0.7039931, z: -0.7039931, w: -0.06628534}
+  m_LocalPosition: {x: 32.131, y: 4.576, z: -47.011}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4801204474848228}
   - {fileID: 4958762553764946}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -79.297005, y: 60.437004, z: 0.003}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 111.293, z: -190.758}
 --- !u!4 &4801204474848228
 Transform:
   m_ObjectHideFlags: 1
@@ -830,15 +830,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
-  hitAudio: {fileID: 8300000, guid: 163afc43290298041b0d7df4cb752280, type: 3}
-  ctrAudio: {fileID: 0}
   projectileToShoot: {fileID: 0}
   timeBetweenShots: 0.5
+  hitAudio: {fileID: 8300000, guid: 163afc43290298041b0d7df4cb752280, type: 3}
+  ctrAudio: {fileID: 0}
   shotPoint: {fileID: 0}
   enemyHealth: 1
   deathAnimation: {fileID: 1947670485025382}
   deathAudio: {fileID: 8300000, guid: 9e43b7d9c0c0c004db206d25cef27b30, type: 3}
   paralyzedTotalTime: 0
+  maxDistancePlayer: 0
+  shakeTime: 0
+  fadeInTime: 0
+  fadeOutTime: 0
+  speed: 0
+  magnitude: 0
 --- !u!114 &114483394448795116
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -853,6 +859,8 @@ MonoBehaviour:
   lifetime: 3
   whatToDestroy: 0
   destroyOrDisable: 1
+  fade: 1
+  fadeTime: 3
 --- !u!114 &114724883579530236
 MonoBehaviour:
   m_ObjectHideFlags: 1
