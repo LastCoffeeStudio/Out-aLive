@@ -28,7 +28,6 @@ public class Shotgun : Weapon
 
     protected override void shotBullet(Ray ray)
     {
-        base.shotBullet(ray);
         GameObject projectile = Instantiate(projectileToShoot, shootPoint.position, Quaternion.LookRotation(Vector3.Normalize((ray.origin + ray.direction * weaponRange) - shootPoint.position)), shootPoint);
         projectile.transform.Rotate(0f, 180f, 0f);
     }
