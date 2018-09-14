@@ -37,6 +37,7 @@ public class AITurret2 : MonoBehaviour {
 
 	[SerializeField]
 	GameObject shooter;
+	float turretShooterOffset;
 
 	GameObject player;
 	GameObject playerHead;
@@ -62,6 +63,8 @@ public class AITurret2 : MonoBehaviour {
 		{
 			shooter = this.gameObject;
 		}
+
+		turretShooterOffset = shooter.transform.position.y - this.transform.position.y;
 	}
 
     private void OnDisable()
@@ -140,15 +143,14 @@ public class AITurret2 : MonoBehaviour {
 
 	void LookAtSomething(Vector3 something)
 	{
-		var lookPos = something - transform.position;
+		Vector3 lookPos = something - transform.position;
+		float distanceToTarget = Vector3.Distance (this.transform.position, something);
+		float offSetAngle = Mathf.Asin(turretShooterOffset * Mathf.Sin(90f) / distanceToTarget) * Mathf.Rad2Deg;
+		Quaternion targetRotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(lookPos) * 
+			Quaternion.AngleAxis(offSetAngle , Vector3.right), Time.deltaTime);
 
-	    Quaternion targetRotation = Quaternion.LookRotation(lookPos);
-        transform.rotation = Quaternion.Slerp (transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
-        //shooter.transform.rotation = Quaternion.Slerp (shooter.transform.rotation, Quaternion.LookRotation (lookPos), Time.deltaTime * rotationSpeed);
-	    targetRotation.x = -targetRotation.x;
-	    targetRotation.y = -targetRotation.y;
-	    targetRotation.z = -targetRotation.z;
-	    targetRotation.w = -targetRotation.w;
+		transform.rotation = targetRotation;
+
         if (targetRotation != transform.rotation && playedGyro == false)
 	    {
 	        playedGyro = true;
