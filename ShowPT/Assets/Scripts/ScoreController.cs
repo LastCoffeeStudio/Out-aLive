@@ -104,16 +104,14 @@ public class ScoreController : MonoBehaviour {
 
     private static bool updateHud = false;
     public static float timeSinceLastAction = 0.0f;
-
-    public GameObject likeParticles;
-    public GameObject DislikeParticles;
-
+    
     // Use this for initialization
     void Start () {}
 	
 	// Update is called once per frame
 	void Update ()
     {
+
         timeSinceLastAction += Time.deltaTime;
         if(timeSinceLastAction > SECONDS_TO_BORING)
         {
