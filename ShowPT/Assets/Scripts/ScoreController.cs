@@ -102,6 +102,8 @@ public class ScoreController : MonoBehaviour {
     public GameObject stadistics;
     public GameObject hud;
 
+    public GameObject likeParticles;
+
     private static bool updateHud = false;
     public static float timeSinceLastAction = 0.0f;
     
@@ -274,6 +276,9 @@ public class ScoreController : MonoBehaviour {
             lifeLostLabel.text = lifeLost.ToString();
 
             likesLabel.text = likesInt.ToString();
+
+            likeParticles.GetComponent<UIParticleSystem>().Play();
+
             disLikesLabel.text = disLikesInt.ToString();
         }
     }
