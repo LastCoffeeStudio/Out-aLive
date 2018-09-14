@@ -27,6 +27,8 @@ public class LiftRoomBehivor : MonoBehaviour
     public AudioClip soundBuzzAudioClip;
     public AudioClip climbingAudioClip;
 
+    public GameObject scuttle;
+    private Animator scuttleAnimator;
     private StateLift actualState;
     private GameObject player;
     private GameObject doorPos;
@@ -81,7 +83,8 @@ public class LiftRoomBehivor : MonoBehaviour
                     break;
             }
         }
-       
+
+        scuttleAnimator = scuttle.GetComponent<Animator>();
         //initialReflectionLight = RenderSettings.reflectionIntensity;
         initPosition = transform.position;
         initTimeClimibingSec = timeClimbingSec;
@@ -290,8 +293,14 @@ public class LiftRoomBehivor : MonoBehaviour
 
     IEnumerator leaving()
     {
-        while (transform.position.y > -5)
+        bool playedAnimation = false;
+        while (transform.position.y > -5f)
         {
+            if (transform.position.y < -1.5f && playedAnimation == false)
+            {
+                scuttleAnimator.Play("Close");
+                playedAnimation = true;
+            }
             transform.Translate(0f, 0f, -speedLeave * Time.deltaTime);
             yield return null;
         }

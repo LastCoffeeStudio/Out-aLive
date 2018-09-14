@@ -14642,6 +14642,7 @@ MonoBehaviour:
   closeDoorAudioClip: {fileID: 8300000, guid: 67e3c310c541ad54f9061e4af287db2a, type: 3}
   soundBuzzAudioClip: {fileID: 8300000, guid: b89c30674abd5ae45a7060a4dfa0a54f, type: 3}
   climbingAudioClip: {fileID: 8300000, guid: f4f0f1ca03bc59e4e8f014b6d9a34f85, type: 3}
+  scuttle: {fileID: 1062920661}
   levelMusicId: 0
 --- !u!64 &344744476
 MeshCollider:
@@ -89961,6 +89962,39 @@ Prefab:
     - target: {fileID: 4443110619156826, guid: e001da57f41007742922c02d3c9a1a13, type: 2}
       propertyPath: m_LocalPosition.y
       value: 0.531
+      objectReference: {fileID: 0}
+    - target: {fileID: 4464249868297222, guid: e001da57f41007742922c02d3c9a1a13, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4464249868297222, guid: e001da57f41007742922c02d3c9a1a13, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4464249868297222, guid: e001da57f41007742922c02d3c9a1a13, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4731590942161198, guid: e001da57f41007742922c02d3c9a1a13, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4731590942161198, guid: e001da57f41007742922c02d3c9a1a13, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4731590942161198, guid: e001da57f41007742922c02d3c9a1a13, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 95720620098203788, guid: e001da57f41007742922c02d3c9a1a13,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e7df0de03a7a52f42b9b6343a03a2385, type: 2}
+    - target: {fileID: 4800951723126248, guid: e001da57f41007742922c02d3c9a1a13, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.58000183
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e001da57f41007742922c02d3c9a1a13, type: 2}
