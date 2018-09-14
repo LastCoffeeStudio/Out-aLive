@@ -105,6 +105,9 @@ public class ScoreController : MonoBehaviour {
     private static bool updateHud = false;
     public static float timeSinceLastAction = 0.0f;
 
+    public GameObject likeParticles;
+    public GameObject DislikeParticles;
+
     // Use this for initialization
     void Start () {}
 	
