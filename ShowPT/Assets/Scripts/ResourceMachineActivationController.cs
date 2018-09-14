@@ -30,6 +30,7 @@ public class ResourceMachineActivationController : MonoBehaviour
     {
         for (int i = 0; i < elements.Length; ++i)
         {
+            Debug.Log("a");
             Color color = elements[i].UIElement.GetComponent<MaskableGraphic>().color;
             color.a = (active) ? 1f : 0f;
             elements[i].UIElement.GetComponent<MaskableGraphic>().color = color;
