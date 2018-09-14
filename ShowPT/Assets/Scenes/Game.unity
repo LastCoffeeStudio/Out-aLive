@@ -14459,6 +14459,7 @@ GameObject:
   - component: {fileID: 344744473}
   - component: {fileID: 344744472}
   - component: {fileID: 344744474}
+  - component: {fileID: 344744479}
   m_Layer: 11
   m_Name: Cylinder007
   m_TagString: Untagged
@@ -14692,6 +14693,39 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 344744470}
   m_Mesh: {fileID: 4300000, guid: 44a70be7a0d2ac24c9c7a99de5aa92a6, type: 3}
+--- !u!215 &344744479
+ReflectionProbe:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 344744470}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Type: 0
+  m_Mode: 2
+  m_RefreshMode: 0
+  m_TimeSlicingMode: 0
+  m_Resolution: 128
+  m_UpdateFrequency: 0
+  m_BoxSize: {x: 2.79, y: 3.38, z: 2.82}
+  m_BoxOffset: {x: 0, y: 1.54, z: 0}
+  m_NearClip: 0.3
+  m_FarClip: 1000
+  m_ShadowDistance: 100
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IntensityMultiplier: 1
+  m_BlendDistance: 1
+  m_HDR: 1
+  m_BoxProjection: 0
+  m_RenderDynamicObjects: 0
+  m_UseOcclusionCulling: 1
+  m_Importance: 1
+  m_CustomBakedTexture: {fileID: 8900000, guid: d4cf7615c92f1df40a9f389acf86235a,
+    type: 3}
 --- !u!1 &350330592
 GameObject:
   m_ObjectHideFlags: 0
@@ -40816,6 +40850,44 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1062920661 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1684116060414750, guid: e001da57f41007742922c02d3c9a1a13,
+    type: 2}
+  m_PrefabInternal: {fileID: 2139028095}
+--- !u!215 &1062920666
+ReflectionProbe:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1062920661}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Type: 0
+  m_Mode: 2
+  m_RefreshMode: 0
+  m_TimeSlicingMode: 0
+  m_Resolution: 128
+  m_UpdateFrequency: 0
+  m_BoxSize: {x: 0.72, y: 1.08, z: 3.99}
+  m_BoxOffset: {x: 0, y: 0, z: 0}
+  m_NearClip: 0.3
+  m_FarClip: 1000
+  m_ShadowDistance: 100
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IntensityMultiplier: 1
+  m_BlendDistance: 1
+  m_HDR: 1
+  m_BoxProjection: 0
+  m_RenderDynamicObjects: 0
+  m_UseOcclusionCulling: 1
+  m_Importance: 1
+  m_CustomBakedTexture: {fileID: 8900000, guid: d4cf7615c92f1df40a9f389acf86235a,
+    type: 3}
 --- !u!1 &1063008959
 GameObject:
   m_ObjectHideFlags: 0
