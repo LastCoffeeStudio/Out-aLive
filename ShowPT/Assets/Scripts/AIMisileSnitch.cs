@@ -135,6 +135,7 @@ public class AIMisileSnitch : MonoBehaviour
     public void finishBlast()
     {
         position = transform.position;
+        transform.localScale = new Vector3(2f, 2f, 3f);
         GetComponent<CapsuleCollider>().enabled = true;
         speed = transform.GetChild(0).transform.position - transform.position;
         speed = Vector3.ClampMagnitude(speed, 0.1f);
