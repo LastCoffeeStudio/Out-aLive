@@ -189,7 +189,8 @@ public class CtrlAudio : MonoBehaviour
 
     protected IEnumerator stopSoundDelayed(ulong id, float duration)
     {
-        yield return new WaitForSeconds(duration);
+
+        yield return StartCoroutine(waitForRealSeconds(duration));
         AudioPoolItem activeSound;
         
         if (activePool.TryGetValue(id, out activeSound))
@@ -259,7 +260,7 @@ public class CtrlAudio : MonoBehaviour
     {
         AudioPoolItem activeSound;
 
-        if (activePool.TryGetValue(id, out activeSound))
+        if (activePool != null && activePool.TryGetValue(id, out activeSound))
         {
             activeSound.audioSource.Stop();
             activeSound.transf.parent = transform;
@@ -274,5 +275,14 @@ public class CtrlAudio : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         playOneSound(track, clip, position, volume, spatialBlend, priority);
+    }
+
+    public static IEnumerator waitForRealSeconds(float time)
+    {
+        float start = Time.realtimeSinceStartup;
+        while (Time.realtimeSinceStartup < start + time)
+        {
+            yield return null;
+        }
     }
 }

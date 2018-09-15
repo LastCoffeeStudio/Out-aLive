@@ -87,7 +87,11 @@ public class ShieldDroneEnemy : Enemy {
             transform.parent.GetComponent<Animator>().enabled = true;
             transform.parent.GetComponent<Animator>().Play("ShieldDead");
             GetComponent<SphereCollider>().isTrigger = true;
-            Rigidbody rbody = gameObject.AddComponent<Rigidbody>();
+            Rigidbody rbody = gameObject.GetComponent<Rigidbody>();
+            if (rbody == null)
+            {
+                rbody = gameObject.AddComponent<Rigidbody>();
+            }
             rbody.useGravity = false;
         }
     }

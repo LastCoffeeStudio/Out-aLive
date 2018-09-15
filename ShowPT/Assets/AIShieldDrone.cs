@@ -35,7 +35,10 @@ public class AIShieldDrone : MonoBehaviour
 
     private void OnDestroy()
     {
-        ctrlAudio.stopSound(idAudioShield);
+        if (ctrlAudio != null)
+        {
+            ctrlAudio.stopSound(idAudioShield);
+        }
         ctrlShieldDrones.dronKilled();
     }
 
