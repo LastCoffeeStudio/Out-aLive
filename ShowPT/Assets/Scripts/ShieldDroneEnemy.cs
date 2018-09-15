@@ -77,6 +77,7 @@ public class ShieldDroneEnemy : Enemy {
         }
         else if(enemyHealth <= 0f)
         {
+            propShield.SetActive(false);
             ScoreController.addDead(ScoreController.Enemy.DRON);
             smoke1.SetActive(true);
             particleSmoke1.Play();

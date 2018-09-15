@@ -21,7 +21,7 @@ public class RotateShieldDead : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (enabled && other.gameObject.layer != LayerMask.GetMask("Drone") && other.gameObject.name != "GunProjectile(Clone)")
+        if (enabled && other.gameObject.layer == LayerMask.GetMask("Wall"))
         {
            GetComponent<ShieldDroneEnemy>().explode();
         }
