@@ -21,6 +21,9 @@ public class AIMisileSnitch : MonoBehaviour
     private ParticleSystem fire;
     private ParticleSystem trail;
 
+	[SerializeField]
+	GameObject explosionEffect;
+
     [Header("Sounds")]
     public AudioClip audioBlast;
     public AudioClip audioMisile;
@@ -100,6 +103,7 @@ public class AIMisileSnitch : MonoBehaviour
     {
         ctrlAudio.stopSound(idAudioMisile);
         ctrlAudio.playOneSound("Enemies", audioExplode, transform.position, 1f, 1f, 70, false, null, 500f, 0f, AudioRolloffMode.Linear);
+		Instantiate (explosionEffect, transform.position, Quaternion.identity);
         RaycastHit hit;
         // Does the ray intersect any objects excluding the player layer
         //Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.green);
