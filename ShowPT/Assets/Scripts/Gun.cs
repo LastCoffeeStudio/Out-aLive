@@ -58,12 +58,12 @@ public class Gun : Weapon
         {
             //hitInfo.distance
             Instantiate(projectileToShoot, shootPoint.position, Quaternion.LookRotation(Vector3.Normalize(hitInfo.point - shootPoint.position)));
-            projectileToShoot.touchedEnemy(hitInfo.collider, callback);
+            projectileToShoot.touchedEnemy(hitInfo.collider, callback, hitInfo.point);
         }
         else
         {
             Instantiate(projectileToShoot, shootPoint.position, Quaternion.LookRotation(Vector3.Normalize((ray.origin + ray.direction * weaponRange) - shootPoint.position)));
-            projectileToShoot.touchedEnemy(hitInfo.collider, callback);
+            projectileToShoot.touchedEnemy(hitInfo.collider, callback, hitInfo.point);
         }
         projectileToShoot.GetComponent<Collider>().enabled = false;
 		ctrlAudio.playOneSound("Weaponds", shotAudio, transform.position, 0.5f, 0.0f, 128);

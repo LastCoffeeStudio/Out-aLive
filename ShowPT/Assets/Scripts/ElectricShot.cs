@@ -8,6 +8,7 @@ public class ElectricShot : MonoBehaviour {
     public float lifeTime;
     public int damage;
     public GameObject lightToEnemy;
+    public GameObject decalLed;
 
     private List<Vector3> positionList;
     private List<GameObject> projectilesList;

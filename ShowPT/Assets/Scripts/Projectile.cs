@@ -86,10 +86,10 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        touchedEnemy(col, null);
+        touchedEnemy(col, null, Vector3.zero);
     }
 
-    public void touchedEnemy(Collider col, TouchEnemyCallback touchEnemyCallback)
+    public void touchedEnemy(Collider col, TouchEnemyCallback touchEnemyCallback, Vector3 hitPoint)
 	{
         if (col.gameObject.layer == LayerMask.NameToLayer ("Wall") || col.tag == "Sphere" || col.gameObject.layer == LayerMask.NameToLayer("BossWall")) 
 		{
@@ -129,7 +129,16 @@ public class Projectile : MonoBehaviour
         }
 	    if (col.gameObject.layer == LayerMask.NameToLayer("LedsWall"))
 	    {
-	        Instantiate(ledsDecall, col.transform);
+	        Transform transf = col.transform;
+            transf.Rotate(0f, 90f,0f);
+	        if (hitPoint == Vector3.zero)
+	        {
+	            Instantiate(ledsDecall, transform.position, transf.rotation);
+            }
+	        else
+	        {
+	            Instantiate(ledsDecall, hitPoint, transf.rotation);
+            }
 	        destroyMe();
         }
     }
