@@ -55,7 +55,7 @@ public class SnitchEnemy : Enemy {
             ctrAudio.stopSound(idSnichSound);
             ScoreController.addDead(ScoreController.Enemy.DRON);
 			bridge.SetActive (true);
-            Destroy(transform.parent.gameObject);
+			generateDeathEffect ();
         }
     }
     
