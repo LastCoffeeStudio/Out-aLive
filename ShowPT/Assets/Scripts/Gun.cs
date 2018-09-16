@@ -53,13 +53,19 @@ public class Gun : Weapon
 
     protected override void shotBullet(Ray ray)
     {
+        StartCoroutine(shotBulletRoutine(ray));
+    }
+
+    private IEnumerator shotBulletRoutine(Ray ray)
+    {
         RaycastHit hitInfo;
         TouchEnemyCallback callback = new EnemiesCallback(this);
         GameObject projectile;
         if (Physics.Raycast(ray, out hitInfo, weaponRange, maskBullets))
         {
-            //hitInfo.distance
+            float time = hitInfo.distance / 80f;
             projectile = Instantiate(projectileToShoot, shootPoint.position, Quaternion.LookRotation(Vector3.Normalize(hitInfo.point - shootPoint.position)));
+            yield return new WaitForSeconds(time);
             projectileToShoot.GetComponent<Projectile>().touchedEnemy(hitInfo.collider, callback, hitInfo.point);
         }
         else
@@ -67,10 +73,10 @@ public class Gun : Weapon
             projectile = Instantiate(projectileToShoot, shootPoint.position, Quaternion.LookRotation(Vector3.Normalize((ray.origin + ray.direction * weaponRange) - shootPoint.position)));
             projectileToShoot.GetComponent<Projectile>().touchedEnemy(hitInfo.collider, callback, hitInfo.point);
         }
-		ctrlAudio.playOneSound("Weaponds", shotAudio, transform.position, 0.5f, 0.0f, 128);
+        ctrlAudio.playOneSound("Weaponds", shotAudio, transform.position, 0.5f, 0.0f, 128);
         pools.activeProjectiles.Add(projectile);
     }
-
+    
     protected override void checkInputAnimations()
     {
         if ((Input.GetButtonDown("Fire1") || Input.GetAxis("AxisRT") > 0.5f) && animator.GetBool("shooting") == false && animator.GetBool("reloading") == false)

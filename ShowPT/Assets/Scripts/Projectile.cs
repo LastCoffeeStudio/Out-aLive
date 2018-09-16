@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
     [Header("Projectile Properties")]
     public Inventory.WEAPON_TYPE projectileWeaponType = Inventory.WEAPON_TYPE.NONE;
     [SerializeField]
-	float speed = 5.0f;
+	public float speed = 5.0f;
     [SerializeField]
     float timeLife = 10f;
 
