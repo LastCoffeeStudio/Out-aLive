@@ -29,7 +29,7 @@ public class Projectile : MonoBehaviour
 	private Collider myCollider;
     private CtrlAudio ctrlAudio;
     [HideInInspector]
-    public bool toDelete = false;
+    public bool toDelete;
 
 	[SerializeField]
 	GameObject hitEffect;
@@ -37,7 +37,7 @@ public class Projectile : MonoBehaviour
 	//initialize values 
 	void Start() 
 	{
-        Debug.Log("uo");
+        Debug.Log(transform.position);
         ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
         myRigidbody = GetComponent<Rigidbody>();
 		myCollider = GetComponent<Collider>();
@@ -45,11 +45,11 @@ public class Projectile : MonoBehaviour
 		minimumExtent = Mathf.Min(Mathf.Min(myCollider.bounds.extents.x, myCollider.bounds.extents.y), myCollider.bounds.extents.z); 
 		partialExtent = minimumExtent * (1.0f - skinWidth); 
 		sqrMinimumExtent = minimumExtent * minimumExtent;
+        toDelete = false;
     } 
 
 	void FixedUpdate() 
 	{
-        Debug.Log("fixedUpdate");
         transform.Translate (Vector3.forward * speed * Time.deltaTime);
 
 		//have we moved more than our minimum extent? 
