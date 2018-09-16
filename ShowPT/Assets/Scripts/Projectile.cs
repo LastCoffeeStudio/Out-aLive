@@ -18,6 +18,7 @@ public class Projectile : MonoBehaviour
     [Header("Explosion Properties")]
     public bool invokeExplosion;
     public GameObject explosionType;
+    public GameObject ledsDecall;
     public AudioClip explosionSound;
 
 	private float minimumExtent; 
@@ -125,6 +126,11 @@ public class Projectile : MonoBehaviour
             ScoreController.weaponHit(projectileWeaponType);
             col.gameObject.GetComponent<BossArmController>().getHit(damage);
             destroyMe();
+        }
+	    if (col.gameObject.layer == LayerMask.NameToLayer("LedsWall"))
+	    {
+	        Instantiate(ledsDecall, col.transform);
+	        destroyMe();
         }
     }
 
