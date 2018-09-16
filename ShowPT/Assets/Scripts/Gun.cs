@@ -6,7 +6,7 @@ public class Gun : Weapon
 {
     [Header("Gun Settings")]
     [SerializeField]
-    Projectile projectileToShoot;
+    GameObject projectileToShoot;
     public float chargeWhenShoot;
     public float maxCharge;
     [SerializeField]
@@ -34,6 +34,7 @@ public class Gun : Weapon
 
     protected override void Update()
     {
+        base.Update();
         if (CtrlGameState.gameState == CtrlGameState.gameStates.ACTIVE)
         {
 			if (PlayerMovment.overrideControls == false) 
@@ -54,19 +55,20 @@ public class Gun : Weapon
     {
         RaycastHit hitInfo;
         TouchEnemyCallback callback = new EnemiesCallback(this);
+        GameObject projectile;
         if (Physics.Raycast(ray, out hitInfo, weaponRange, maskBullets))
         {
             //hitInfo.distance
-            Instantiate(projectileToShoot, shootPoint.position, Quaternion.LookRotation(Vector3.Normalize(hitInfo.point - shootPoint.position)));
-            projectileToShoot.touchedEnemy(hitInfo.collider, callback);
+            projectile = Instantiate(projectileToShoot, shootPoint.position, Quaternion.LookRotation(Vector3.Normalize(hitInfo.point - shootPoint.position)));
+            //projectileToShoot.GetComponent<Projectile>().touchedEnemy(hitInfo.collider, callback);
         }
         else
         {
-            Instantiate(projectileToShoot, shootPoint.position, Quaternion.LookRotation(Vector3.Normalize((ray.origin + ray.direction * weaponRange) - shootPoint.position)));
-            projectileToShoot.touchedEnemy(hitInfo.collider, callback);
+            projectile = Instantiate(projectileToShoot, shootPoint.position, Quaternion.LookRotation(Vector3.Normalize((ray.origin + ray.direction * weaponRange) - shootPoint.position)));
+            //projectileToShoot.GetComponent<Projectile>().touchedEnemy(hitInfo.collider, callback);
         }
-        projectileToShoot.GetComponent<Collider>().enabled = false;
 		ctrlAudio.playOneSound("Weaponds", shotAudio, transform.position, 0.5f, 0.0f, 128);
+        pools.activeProjectiles.Add(projectile);
     }
 
     protected override void checkInputAnimations()

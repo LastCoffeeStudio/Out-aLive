@@ -70026,6 +70026,18 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114782836643875848, guid: f0d0e42c67fc064479f18a7382631ed6,
+        type: 2}
+      propertyPath: projectileToShoot
+      value: 
+      objectReference: {fileID: 1541823304122952, guid: 60eaf786cb3611144bb20f7b695528cf,
+        type: 2}
+    - target: {fileID: 114519003255608786, guid: f0d0e42c67fc064479f18a7382631ed6,
+        type: 2}
+      propertyPath: projectileToShoot
+      value: 
+      objectReference: {fileID: 1762319473384610, guid: d2858f23448027f4a81363c5c9c9152c,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f0d0e42c67fc064479f18a7382631ed6, type: 2}
   m_IsPrefabParent: 0
@@ -76531,6 +76543,17 @@ GameObject:
   m_PrefabParentObject: {fileID: 1409320694246080, guid: 020030e7ca02d944eb8625b1fd8c4c5b,
     type: 2}
   m_PrefabInternal: {fileID: 1825261445}
+--- !u!114 &1825261449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1825261448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8390cf725abb9b4595d25a459b5f830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1826423428 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: c64526971ed91c6409eb7c2085ab225f, type: 3}
@@ -88154,6 +88177,26 @@ Prefab:
         type: 2}
       propertyPath: m_Center.z
       value: -3.0829835
+      objectReference: {fileID: 0}
+    - target: {fileID: 114848250859662396, guid: 93a6c15518400ae478bba9a29fd1dd68,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114092483856527376, guid: 93a6c15518400ae478bba9a29fd1dd68,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114852089376370904, guid: 93a6c15518400ae478bba9a29fd1dd68,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114418299383092498, guid: 93a6c15518400ae478bba9a29fd1dd68,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114332720934139536, guid: 93a6c15518400ae478bba9a29fd1dd68, type: 2}

@@ -38,6 +38,7 @@ public class Weapon : MonoBehaviour
     public AudioClip reloadAudio;
 	public AudioClip noBulletsAudio;
     protected CtrlAudio ctrlAudio;
+    protected ObjectPools pools;
 
     [Header("Swag Weapon Settings")]
     public float amount;
@@ -60,6 +61,7 @@ public class Weapon : MonoBehaviour
         ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
         crosshair = gameObject.GetComponent<Crosshair>();
         recoil = gameObject.GetComponent<Recoil>();
+        pools = GameObject.FindGameObjectWithTag("CtrlGame").GetComponent<ObjectPools>();
 
         aimPosition = new Vector3(-0.204f, -1.07f, 0);
         aimSpeed = 10;

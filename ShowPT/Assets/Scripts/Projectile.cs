@@ -28,6 +28,8 @@ public class Projectile : MonoBehaviour
 	private Rigidbody myRigidbody;
 	private Collider myCollider;
     private CtrlAudio ctrlAudio;
+    [HideInInspector]
+    public bool toDelete = false;
 
 	[SerializeField]
 	GameObject hitEffect;
@@ -35,6 +37,7 @@ public class Projectile : MonoBehaviour
 	//initialize values 
 	void Start() 
 	{
+        Debug.Log("uo");
         ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
         myRigidbody = GetComponent<Rigidbody>();
 		myCollider = GetComponent<Collider>();
@@ -45,8 +48,9 @@ public class Projectile : MonoBehaviour
     } 
 
 	void FixedUpdate() 
-	{ 
-		transform.Translate (Vector3.forward * speed * Time.deltaTime);
+	{
+        Debug.Log("fixedUpdate");
+        transform.Translate (Vector3.forward * speed * Time.deltaTime);
 
 		//have we moved more than our minimum extent? 
 		Vector3 movementThisStep = myRigidbody.position - previousPosition; 
@@ -79,13 +83,14 @@ public class Projectile : MonoBehaviour
 			timeLife -= Time.deltaTime;
 		} 
 		else 
-		{	
-			Destroy (gameObject);
+		{
+            toDelete = true;
 		}
 	}
 
     private void OnTriggerEnter(Collider col)
     {
+        Debug.Log("Trigger");
         touchedEnemy(col, null);
     }
 
@@ -145,6 +150,6 @@ public class Projectile : MonoBehaviour
 		{
 			Instantiate (hitEffect, transform.position, Quaternion.identity);
 		}
-		Destroy(gameObject);
+        toDelete = true;
 	}
 }

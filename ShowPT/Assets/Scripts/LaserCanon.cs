@@ -9,7 +9,7 @@ public class LaserCanon : Weapon {
     public float minBulletSize;
     public float maxBulletSize;
     [SerializeField]
-    Projectile projectileToShoot;
+    GameObject projectileToShoot;
 
     private float overheatTime;
     private Vector3 minBulletScale;
@@ -25,6 +25,7 @@ public class LaserCanon : Weapon {
     // Update is called once per frame
     protected override void Update ()
     {
+        base.Update();
 		if (PlayerMovment.overrideControls == false) {
 			if (firing) 
 			{
@@ -52,7 +53,7 @@ public class LaserCanon : Weapon {
     protected override void shotBullet(Ray ray)
     {
         RaycastHit hitInfo;
-        Projectile projectile;
+        GameObject projectile;
 
         if (Physics.Raycast(ray, out hitInfo, weaponRange, maskBullets))
         {
@@ -64,6 +65,7 @@ public class LaserCanon : Weapon {
         }
         projectile.transform.localScale = Vector3.Lerp(minBulletScale, maxBulletScale, overheatTime / overheatMaxTime);
         overheatTime = 0f;
+        pools.activeProjectiles.Add(projectile);
     }
 
     protected override void shoot()
