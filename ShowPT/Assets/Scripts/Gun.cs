@@ -60,12 +60,12 @@ public class Gun : Weapon
         {
             //hitInfo.distance
             projectile = Instantiate(projectileToShoot, shootPoint.position, Quaternion.LookRotation(Vector3.Normalize(hitInfo.point - shootPoint.position)));
-            //projectileToShoot.GetComponent<Projectile>().touchedEnemy(hitInfo.collider, callback);
+            projectileToShoot.GetComponent<Projectile>().touchedEnemy(hitInfo.collider, callback, hitInfo.point);
         }
         else
         {
             projectile = Instantiate(projectileToShoot, shootPoint.position, Quaternion.LookRotation(Vector3.Normalize((ray.origin + ray.direction * weaponRange) - shootPoint.position)));
-            //projectileToShoot.GetComponent<Projectile>().touchedEnemy(hitInfo.collider, callback);
+            projectileToShoot.GetComponent<Projectile>().touchedEnemy(hitInfo.collider, callback, hitInfo.point);
         }
 		ctrlAudio.playOneSound("Weaponds", shotAudio, transform.position, 0.5f, 0.0f, 128);
         pools.activeProjectiles.Add(projectile);
