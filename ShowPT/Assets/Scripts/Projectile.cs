@@ -129,15 +129,13 @@ public class Projectile : MonoBehaviour
         }
 	    if (col.gameObject.layer == LayerMask.NameToLayer("LedsWall"))
 	    {
-	        Transform transf = col.transform;
-            transf.Rotate(0f, 90f,0f);
 	        if (hitPoint == Vector3.zero)
 	        {
-	            Instantiate(ledsDecall, transform.position, transf.rotation);
+	            Instantiate(ledsDecall, transform.position, col.transform.rotation);
             }
 	        else
 	        {
-	            Instantiate(ledsDecall, hitPoint, transf.rotation);
+	            Instantiate(ledsDecall, hitPoint, col.transform.rotation);
             }
 	        destroyMe();
         }
