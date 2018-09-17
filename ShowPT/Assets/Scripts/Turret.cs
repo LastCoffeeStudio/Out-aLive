@@ -9,13 +9,16 @@ public class Turret : Enemy
     public LineRenderer lineRenderer;
     public ParticleSystem particlesInitial;
     public ParticleSystem particlesCollision;
+	[SerializeField]
+	AITurret2 myAI;
 
     [Header("Shoot Info")]
-    public float timeShooting = 3.0f;
+	/*public float timeShooting = 3.0f;
     public float timeNoShooting = 1.0f;
-    public int shootDamage = 1;
+
     public float minDistToAtack = 10;
-    private float shootTimerTurret = 0.0f;
+    private float shootTimerTurret = 0.0f;*/
+	public int shootDamage = 1;
     private bool particlesInited = false;
     private bool electrified;
 	[SerializeField]
@@ -53,17 +56,20 @@ public class Turret : Enemy
     // Update is called once per frame
 	private void Update()
     {
-        shoot();
+		if (myAI.shooting == true) 
+		{
+			shoot ();
+		}
         checkStatus();
     }
 
     public override void shoot()
     {
-        shootTimerTurret += Time.deltaTime;
+        //shootTimerTurret += Time.deltaTime;
         float distWithPlayer = Vector3.Distance(player.transform.position, transform.position);
 
 
-        if (distWithPlayer > minDistToAtack)
+        /*if (distWithPlayer > minDistToAtack)
         {
             shootTimerTurret = 0.0f;
             soundParticle.active = false;
@@ -74,7 +80,7 @@ public class Turret : Enemy
             particlesInited = false;
         }
         else if (shootTimerTurret >= timeNoShooting && !electrified)
-        {
+        {*/
 			//Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
 			if (!Physics.Linecast (shotPoint.transform.position, player.transform.position, viewMask) || !Physics.Linecast (shotPoint.transform.position, playerHead.transform.position, viewMask)) 
 			{
@@ -90,7 +96,8 @@ public class Turret : Enemy
 				}
 
 				RaycastHit hit;
-				if (Physics.Raycast (shotPoint.position, shotPoint.transform.forward, out hit)) {
+				int layerMask = (1 << 8) | (1 << 24);
+				if (Physics.Raycast (shotPoint.position, shotPoint.transform.forward, out hit, 100f, layerMask)) {
 				    if (soundParticle.active == false)
 				    {
 				        soundParticle.active = true;
@@ -112,7 +119,7 @@ public class Turret : Enemy
 					}
 				}
 
-				if (shootTimerTurret >= timeShooting + timeNoShooting) {
+				/*if (shootTimerTurret >= timeShooting + timeNoShooting) {
 					shootTimerTurret = 0.0f;
 				    soundAttackingActive = false;
 				    soundParticle.active = false;
@@ -122,7 +129,7 @@ public class Turret : Enemy
 					particlesInited = false;
 				}
 			} 
-			else 
+			/*else 
 			{
 				shootTimerTurret = 0.0f;
 			    soundParticle.active = false;
@@ -131,7 +138,7 @@ public class Turret : Enemy
                 ctrAudio.stopSound(idLaserAttak);
                 laserEffect.SetActive(false);
 				particlesInited = false;
-			}
+			}*/
         }
     }
 
@@ -159,7 +166,7 @@ public class Turret : Enemy
             ScoreController.addDead(ScoreController.Enemy.TURRET);
         }
     }
-    public override void setStatusParalyzed()
+    /*public override void setStatusParalyzed()
     {
         if (status == Status.NONE && !electrified)
         {
@@ -174,7 +181,7 @@ public class Turret : Enemy
             electrified = true;
             status = Status.PARALYZED;
         }
-    }
+    }*/
 
     private void checkStatus()
     {

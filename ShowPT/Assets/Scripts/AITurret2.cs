@@ -23,7 +23,7 @@ public class AITurret2 : MonoBehaviour {
 	[SerializeField]
 	float coolDownTime = 2f;
 	float attackCountdown = 0f;
-	bool shooting = false;
+	public bool shooting = false;
 
 	[SerializeField]
 	LayerMask viewMask;
@@ -93,7 +93,7 @@ public class AITurret2 : MonoBehaviour {
 				{
 					attackCountdown = 0f;
 					shooting = true;
-					myTurret.active = true;
+					shooter.active = true;
 				}
 			}
 			else if (shooting && attackCountdown >= burstTime) 
@@ -102,7 +102,7 @@ public class AITurret2 : MonoBehaviour {
 				{
 					attackCountdown = 0f;
 					shooting = false;
-					myTurret.active = false;
+					shooter.active = false;
 				}
 			}
 
@@ -110,7 +110,7 @@ public class AITurret2 : MonoBehaviour {
 			{
 				if (myTurret != null) 
 				{
-					myTurret.active = false;
+					shooter.active = false;
 				}
 				attackCountdown = 0f;
 				shooting = false;

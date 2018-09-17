@@ -685,7 +685,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1993841752440158
 GameObject:
   m_ObjectHideFlags: 1
@@ -2748,10 +2748,8 @@ MonoBehaviour:
   lineRenderer: {fileID: 120644275144726404}
   particlesInitial: {fileID: 198677614080143254}
   particlesCollision: {fileID: 198434294808903916}
-  timeShooting: 3
-  timeNoShooting: 1
+  myAI: {fileID: 114218948729745482}
   shootDamage: 1
-  minDistToAtack: 70
   viewMask:
     serializedVersion: 2
     m_Bits: 256
