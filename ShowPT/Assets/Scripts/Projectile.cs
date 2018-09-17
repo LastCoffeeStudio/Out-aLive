@@ -137,13 +137,11 @@ public class Projectile : MonoBehaviour
 	        if (hitPoint == Vector3.zero)
 	        {
 	            Instantiate(ledsDecall, transform.position, col.transform.rotation);
-	            ledsDecall.transform.localScale = new Vector3(6f, 6f,6f);
 
             }
 	        else
 	        {
 	            Instantiate(ledsDecall, hitPoint, col.transform.rotation);
-	            ledsDecall.transform.localScale = new Vector3(3f, 3f, 3f);
             }
 	        destroyMe();
         }

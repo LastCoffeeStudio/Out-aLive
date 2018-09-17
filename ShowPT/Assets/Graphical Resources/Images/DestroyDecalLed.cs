@@ -7,13 +7,12 @@ public class DestroyDecalLed : MonoBehaviour
 
     public float speedDesappear;
     public float secondsLife;
-
+    [SerializeField]
     private float size;
+
     // Update is called once per frame
     private void Start()
     {
-        size = transform.localScale.x;
-        transform.localScale = Vector3.zero;
         StartCoroutine(destryMe());
     }
 
