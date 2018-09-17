@@ -103,8 +103,12 @@ public class ScoreController : MonoBehaviour {
     public GameObject hud;
 
     public GameObject likeParticles;
+    public GameObject dislikeParticles;
 
     private static bool updateHud = false;
+    private static bool shouldShowLikePArticle = false;
+    private static bool shouldShowDislikePArticle = false;
+
     public static float timeSinceLastAction = 0.0f;
     
     // Use this for initialization
@@ -217,11 +221,13 @@ public class ScoreController : MonoBehaviour {
 
     public static void addLikes(int likes)
     {
+        shouldShowLikePArticle = true;
         likesInt += likes;
     }
 
     public static void addDislikes(int likes)
     {
+        shouldShowDislikePArticle = true;
         disLikesInt += likes;
     }
 
@@ -277,7 +283,18 @@ public class ScoreController : MonoBehaviour {
 
             likesLabel.text = likesInt.ToString();
 
-            likeParticles.GetComponent<UIParticleSystem>().Play();
+            if (shouldShowLikePArticle)
+            {
+                likeParticles.GetComponent<UIParticleSystem>().Play();
+                shouldShowLikePArticle = false;
+            }
+
+            if (shouldShowDislikePArticle)
+            {
+                dislikeParticles.GetComponent<UIParticleSystem>().Play();
+                shouldShowDislikePArticle = false;
+            }
+
 
             disLikesLabel.text = disLikesInt.ToString();
         }
