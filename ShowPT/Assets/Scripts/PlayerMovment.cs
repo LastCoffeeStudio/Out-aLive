@@ -298,7 +298,20 @@ public class PlayerMovment : MonoBehaviour
                     animator.SetFloat("speed", localSpeed);
                 }
 
-                rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+                RaycastHit hit;
+                bool hitbool = Physics.Raycast(transform.position, velocity, out hit, 1f);
+                if (hitbool == false || (hit.transform.gameObject.layer !=  LayerMask.NameToLayer("Wall") 
+                                     && hit.transform.root.name != "prop_room"
+                                     && hit.transform.root.name != "Scene"))
+                {
+                        Debug.DrawRay(transform.position, velocity, new Color(1f, 0f, 1f), 0.1f, true);
+                    rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+                }
+                else
+                {
+                    Debug.DrawRay(transform.position, velocity, new Color(0f, 01f, 1f), 0.1f, true);
+                }
+
                 if (!jumping)
                 {
                     if (localSpeed >= runSpeed)
