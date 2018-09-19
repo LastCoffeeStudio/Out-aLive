@@ -14,69 +14,41 @@ public class Gun : Weapon
     public float dischargeSpeed;
     public float dischargeSpeedOverflow;
 
-    public class EnemiesCallback : TouchEnemyCallback
-    {
-        private Gun gun;
-
-        public EnemiesCallback(Gun gun)
-        {
-            this.gun = gun;
-        }
-
-        public void touched() {
-            gun.crosshair.enemyReached();
-        }
-
-        public void sunk() {
-            gun.crosshair.enemyDeath();
-        }
-    }
-
     protected override void Update()
     {
         base.Update();
         if (CtrlGameState.gameState == CtrlGameState.gameStates.ACTIVE)
         {
-			if (PlayerMovment.overrideControls == false) 
-			{
-				checkInputAnimations ();
-				checkMouseInput ();
-				updateCharge ();
-				aimAmmo ();
-				if (!animator.GetBool ("aiming")) 
-				{
-					swagWeaponMovement ();
-				}
-			}
+            if (PlayerMovment.overrideControls == false)
+            {
+                checkInputAnimations();
+                checkMouseInput();
+                updateCharge();
+                aimAmmo();
+                if (!animator.GetBool("aiming"))
+                {
+                    swagWeaponMovement();
+                }
+            }
         }
     }
 
     protected override void shotBullet(Ray ray)
     {
-        StartCoroutine(shotBulletRoutine(ray));
-    }
-
-    private IEnumerator shotBulletRoutine(Ray ray)
-    {
         RaycastHit hitInfo;
-        TouchEnemyCallback callback = new EnemiesCallback(this);
         GameObject projectile;
         if (Physics.Raycast(ray, out hitInfo, weaponRange, maskBullets))
         {
-            float time = hitInfo.distance / 80f;
             projectile = Instantiate(projectileToShoot, shootPoint.position, Quaternion.LookRotation(Vector3.Normalize(hitInfo.point - shootPoint.position)));
-            yield return new WaitForSeconds(time);
-            projectileToShoot.GetComponent<Projectile>().touchedEnemy(hitInfo.collider, callback, hitInfo.point);
         }
         else
         {
             projectile = Instantiate(projectileToShoot, shootPoint.position, Quaternion.LookRotation(Vector3.Normalize((ray.origin + ray.direction * weaponRange) - shootPoint.position)));
-            projectileToShoot.GetComponent<Projectile>().touchedEnemy(hitInfo.collider, callback, hitInfo.point);
         }
         ctrlAudio.playOneSound("Weaponds", shotAudio, transform.position, 0.5f, 0.0f, 128);
         pools.activeProjectiles.Add(projectile);
     }
-    
+
     protected override void checkInputAnimations()
     {
         if ((Input.GetButtonDown("Fire1") || Input.GetAxis("AxisRT") > 0.5f) && animator.GetBool("shooting") == false && animator.GetBool("reloading") == false)
@@ -92,14 +64,13 @@ public class Gun : Weapon
             animator.SetBool("aiming", false);
             reloading = true;
             animator.SetBool("reloading", true);
-			ctrlAudio.playOneSound("Weaponds", reloadAudio, transform.position, 0.9f, 0.0f, 128);
+            ctrlAudio.playOneSound("Weaponds", reloadAudio, transform.position, 0.9f, 0.0f, 128);
         }
     }
 
     public override void decreaseAmmo()
     {
         Ray ray = crosshair.getRayCrosshairArea();
-        //base.shotBullet(ray);
         actualCharge += chargeWhenShoot;
         Mathf.Clamp(actualCharge, 0, maxCharge);
         ScoreController.weaponUsed(type);

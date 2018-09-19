@@ -227,4 +227,9 @@ public class Inventory : MonoBehaviour
     {
         hudController.updateStats(actual, max);
     }
+
+    public GameObject getCarryingWeapon()
+    {
+        return weaponsInventory[(int)weapon];
+    }
 }

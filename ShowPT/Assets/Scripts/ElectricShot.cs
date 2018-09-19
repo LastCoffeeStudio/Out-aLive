@@ -43,7 +43,8 @@ public class ElectricShot : MonoBehaviour {
             projectilesList.Add(Instantiate(lightToEnemy, transform.position, Quaternion.identity, gameObject.transform));
             positionList.Add(other.gameObject.transform.position);
 
-            other.gameObject.GetComponent<BossArmController>().getHit(damage);
+            bool armActive;
+            other.gameObject.GetComponent<BossArmController>().getHit(damage, out armActive);
         }
         if (other.gameObject.layer == LayerMask.NameToLayer("PhysicsObjects"))
         {

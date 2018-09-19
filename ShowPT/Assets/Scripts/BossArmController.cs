@@ -17,12 +17,17 @@ public class BossArmController : MonoBehaviour {
         bossCtrl = boss.GetComponent<BossController>();
     }
 
-    public void getHit(int damage)
+    public float getHit(int damage, out bool active)
     {
+        active = false;
+        float health = 0;
         if (vulnerable)
         {
-            bossCtrl.getHitArm(id, damage);
+            active = true;
+            health = bossCtrl.getHitArm(id, damage);
         }
+
+        return health;
     }
 
     private void OnTriggerEnter(Collider collider)

@@ -21,6 +21,7 @@ public class ObjectPools : MonoBehaviour {
 
     protected void cleanUnusedProjectiles()
     {
+        Debug.Log(activeProjectiles.Count);
         for (int i = 0; i < activeProjectiles.Count;)
         {
             if (activeProjectiles[i].GetComponent<Projectile>().toDelete)

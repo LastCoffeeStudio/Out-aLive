@@ -235,7 +235,7 @@ public class BossController : MonoBehaviour
         }
     }
 
-    public void getHitArm(int id, int damage)
+    public float getHitArm(int id, int damage)
     {
         arms[id].health -= damage;
         Debug.Log(arms[id].health);
@@ -246,6 +246,8 @@ public class BossController : MonoBehaviour
             arms[id].arm.SetActive(false);
             //Activate death effect (activate another "Arm" broken, stays on the ground)
         }
+
+        return arms[id].health;
     }
 
     
