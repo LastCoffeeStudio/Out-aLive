@@ -112,6 +112,8 @@ public class Main : MonoBehaviour
 
     public void goMainMenu()
     {
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
