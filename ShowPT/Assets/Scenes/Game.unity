@@ -763,9 +763,10 @@ GameObject:
   - component: {fileID: 42084071}
   - component: {fileID: 42084070}
   - component: {fileID: 42084069}
-  m_Layer: 0
+  - component: {fileID: 42084073}
+  m_Layer: 15
   m_Name: p_down_leg1 (1)
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -804,12 +805,12 @@ MeshCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 42084067}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cee594abbadf4545b9b549c9ba99ccd, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300014, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
 --- !u!23 &42084071
@@ -856,6 +857,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 42084067}
   m_Mesh: {fileID: 4300014, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
+--- !u!114 &42084073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 42084067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b020dc467980745ac8a859d8dd8407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrelType: 0
+  floatiness: 40
+  rotationWhenBlasted: 180
+  explosion: {fileID: 1660948848680200, guid: 04aaa1d59e48d74429585d10386fc055, type: 2}
+  timeBeforeExploding: 0.5
+  explosionDamage: 10
+  explosionDistance: 20
+  myRigidBody: {fileID: 42084069}
+  activable: 1
+  affectedByExplosion:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistancePlayer: 0
+  shakeTime: 0
+  fadeInTime: 0
+  fadeOutTime: 0
+  speed: 0
+  magnitude: 0
 --- !u!1 &42449074
 GameObject:
   m_ObjectHideFlags: 0
@@ -13032,9 +13062,10 @@ GameObject:
   - component: {fileID: 272218477}
   - component: {fileID: 272218476}
   - component: {fileID: 272218475}
-  m_Layer: 0
+  - component: {fileID: 272218479}
+  m_Layer: 15
   m_Name: P_Head
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13124,6 +13155,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 272218473}
   m_Mesh: {fileID: 4300002, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
+--- !u!114 &272218479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 272218473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b020dc467980745ac8a859d8dd8407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrelType: 0
+  floatiness: 40
+  rotationWhenBlasted: 180
+  explosion: {fileID: 1660948848680200, guid: 04aaa1d59e48d74429585d10386fc055, type: 2}
+  timeBeforeExploding: 0.5
+  explosionDamage: 10
+  explosionDistance: 20
+  myRigidBody: {fileID: 272218475}
+  activable: 1
+  affectedByExplosion:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistancePlayer: 0
+  shakeTime: 0
+  fadeInTime: 0
+  fadeOutTime: 0
+  speed: 0
+  magnitude: 0
 --- !u!1 &273275535
 GameObject:
   m_ObjectHideFlags: 0
@@ -14256,9 +14316,10 @@ GameObject:
   - component: {fileID: 334251380}
   - component: {fileID: 334251379}
   - component: {fileID: 334251378}
-  m_Layer: 0
+  - component: {fileID: 334251382}
+  m_Layer: 15
   m_Name: P_Head (1)
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14348,6 +14409,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 334251376}
   m_Mesh: {fileID: 4300002, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
+--- !u!114 &334251382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 334251376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b020dc467980745ac8a859d8dd8407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrelType: 0
+  floatiness: 40
+  rotationWhenBlasted: 180
+  explosion: {fileID: 1660948848680200, guid: 04aaa1d59e48d74429585d10386fc055, type: 2}
+  timeBeforeExploding: 0.5
+  explosionDamage: 10
+  explosionDistance: 20
+  myRigidBody: {fileID: 334251378}
+  activable: 1
+  affectedByExplosion:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistancePlayer: 0
+  shakeTime: 0
+  fadeInTime: 0
+  fadeOutTime: 0
+  speed: 0
+  magnitude: 0
 --- !u!1 &338853365
 GameObject:
   m_ObjectHideFlags: 0
@@ -15082,11 +15172,11 @@ GameObject:
   - component: {fileID: 357115806}
   - component: {fileID: 357115805}
   - component: {fileID: 357115804}
-  - component: {fileID: 357115803}
   - component: {fileID: 357115802}
-  m_Layer: 0
+  - component: {fileID: 357115807}
+  m_Layer: 15
   m_Name: p_arm1
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15119,32 +15209,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &357115803
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 357115800}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300004, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
 --- !u!64 &357115804
 MeshCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 357115800}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cee594abbadf4545b9b549c9ba99ccd, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300004, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
 --- !u!23 &357115805
@@ -15191,6 +15267,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 357115800}
   m_Mesh: {fileID: 4300004, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
+--- !u!114 &357115807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 357115800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b020dc467980745ac8a859d8dd8407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrelType: 0
+  floatiness: 40
+  rotationWhenBlasted: 180
+  explosion: {fileID: 1660948848680200, guid: 04aaa1d59e48d74429585d10386fc055, type: 2}
+  timeBeforeExploding: 0.5
+  explosionDamage: 10
+  explosionDistance: 20
+  myRigidBody: {fileID: 357115802}
+  activable: 1
+  affectedByExplosion:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistancePlayer: 0
+  shakeTime: 0
+  fadeInTime: 0
+  fadeOutTime: 0
+  speed: 0
+  magnitude: 0
 --- !u!1 &359361248
 GameObject:
   m_ObjectHideFlags: 0
@@ -22611,9 +22716,10 @@ GameObject:
   - component: {fileID: 526149873}
   - component: {fileID: 526149872}
   - component: {fileID: 526149871}
-  m_Layer: 0
+  - component: {fileID: 526149875}
+  m_Layer: 15
   m_Name: p_arm2 (2)
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22652,12 +22758,12 @@ MeshCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 526149869}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cee594abbadf4545b9b549c9ba99ccd, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300006, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
 --- !u!23 &526149873
@@ -22704,6 +22810,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 526149869}
   m_Mesh: {fileID: 4300006, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
+--- !u!114 &526149875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 526149869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b020dc467980745ac8a859d8dd8407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrelType: 0
+  floatiness: 40
+  rotationWhenBlasted: 180
+  explosion: {fileID: 1660948848680200, guid: 04aaa1d59e48d74429585d10386fc055, type: 2}
+  timeBeforeExploding: 0.5
+  explosionDamage: 10
+  explosionDistance: 20
+  myRigidBody: {fileID: 526149871}
+  activable: 1
+  affectedByExplosion:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistancePlayer: 0
+  shakeTime: 0
+  fadeInTime: 0
+  fadeOutTime: 0
+  speed: 0
+  magnitude: 0
 --- !u!1001 &544515454
 Prefab:
   m_ObjectHideFlags: 0
@@ -26909,9 +27044,10 @@ GameObject:
   - component: {fileID: 719430722}
   - component: {fileID: 719430721}
   - component: {fileID: 719430720}
-  m_Layer: 0
+  - component: {fileID: 719430724}
+  m_Layer: 15
   m_Name: p_down_leg2
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26950,12 +27086,12 @@ MeshCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 719430718}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cee594abbadf4545b9b549c9ba99ccd, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300012, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
 --- !u!23 &719430722
@@ -27002,6 +27138,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 719430718}
   m_Mesh: {fileID: 4300012, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
+--- !u!114 &719430724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 719430718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b020dc467980745ac8a859d8dd8407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrelType: 0
+  floatiness: 40
+  rotationWhenBlasted: 180
+  explosion: {fileID: 1660948848680200, guid: 04aaa1d59e48d74429585d10386fc055, type: 2}
+  timeBeforeExploding: 0.5
+  explosionDamage: 10
+  explosionDistance: 20
+  myRigidBody: {fileID: 719430720}
+  activable: 1
+  affectedByExplosion:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistancePlayer: 0
+  shakeTime: 0
+  fadeInTime: 0
+  fadeOutTime: 0
+  speed: 0
+  magnitude: 0
 --- !u!4 &723063937 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 8918ffae76f4d5d43897164d4804bd7f, type: 3}
@@ -36165,9 +36330,10 @@ GameObject:
   - component: {fileID: 819775117}
   - component: {fileID: 819775116}
   - component: {fileID: 819775115}
-  m_Layer: 0
+  - component: {fileID: 819775119}
+  m_Layer: 15
   m_Name: P_Head (2)
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36257,6 +36423,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 819775113}
   m_Mesh: {fileID: 4300002, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
+--- !u!114 &819775119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 819775113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b020dc467980745ac8a859d8dd8407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrelType: 0
+  floatiness: 40
+  rotationWhenBlasted: 180
+  explosion: {fileID: 1660948848680200, guid: 04aaa1d59e48d74429585d10386fc055, type: 2}
+  timeBeforeExploding: 0.5
+  explosionDamage: 10
+  explosionDistance: 20
+  myRigidBody: {fileID: 819775115}
+  activable: 1
+  affectedByExplosion:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistancePlayer: 0
+  shakeTime: 0
+  fadeInTime: 0
+  fadeOutTime: 0
+  speed: 0
+  magnitude: 0
 --- !u!1001 &821364747
 Prefab:
   m_ObjectHideFlags: 0
@@ -36693,9 +36888,10 @@ GameObject:
   - component: {fileID: 840190799}
   - component: {fileID: 840190798}
   - component: {fileID: 840190797}
-  m_Layer: 0
+  - component: {fileID: 840190801}
+  m_Layer: 15
   m_Name: p_arm2 (1)
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36734,12 +36930,12 @@ MeshCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 840190795}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cee594abbadf4545b9b549c9ba99ccd, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300006, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
 --- !u!23 &840190799
@@ -36786,6 +36982,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 840190795}
   m_Mesh: {fileID: 4300006, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
+--- !u!114 &840190801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 840190795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b020dc467980745ac8a859d8dd8407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrelType: 0
+  floatiness: 40
+  rotationWhenBlasted: 180
+  explosion: {fileID: 1660948848680200, guid: 04aaa1d59e48d74429585d10386fc055, type: 2}
+  timeBeforeExploding: 0.5
+  explosionDamage: 10
+  explosionDistance: 20
+  myRigidBody: {fileID: 840190797}
+  activable: 1
+  affectedByExplosion:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistancePlayer: 0
+  shakeTime: 0
+  fadeInTime: 0
+  fadeOutTime: 0
+  speed: 0
+  magnitude: 0
 --- !u!1 &841117246
 GameObject:
   m_ObjectHideFlags: 0
@@ -38183,9 +38408,10 @@ GameObject:
   - component: {fileID: 920145417}
   - component: {fileID: 920145416}
   - component: {fileID: 920145415}
-  m_Layer: 0
+  - component: {fileID: 920145419}
+  m_Layer: 15
   m_Name: p_up_leg1 (1)
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38224,12 +38450,12 @@ MeshCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 920145413}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cee594abbadf4545b9b549c9ba99ccd, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300008, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
 --- !u!23 &920145417
@@ -38276,6 +38502,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 920145413}
   m_Mesh: {fileID: 4300008, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
+--- !u!114 &920145419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 920145413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b020dc467980745ac8a859d8dd8407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrelType: 0
+  floatiness: 40
+  rotationWhenBlasted: 180
+  explosion: {fileID: 1660948848680200, guid: 04aaa1d59e48d74429585d10386fc055, type: 2}
+  timeBeforeExploding: 0.5
+  explosionDamage: 10
+  explosionDistance: 20
+  myRigidBody: {fileID: 920145415}
+  activable: 1
+  affectedByExplosion:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistancePlayer: 0
+  shakeTime: 0
+  fadeInTime: 0
+  fadeOutTime: 0
+  speed: 0
+  magnitude: 0
 --- !u!1001 &922866710
 Prefab:
   m_ObjectHideFlags: 0
@@ -38526,9 +38781,10 @@ GameObject:
   - component: {fileID: 933537561}
   - component: {fileID: 933537560}
   - component: {fileID: 933537559}
-  m_Layer: 0
+  - component: {fileID: 933537563}
+  m_Layer: 15
   m_Name: p_down_leg1
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38567,12 +38823,12 @@ MeshCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 933537557}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cee594abbadf4545b9b549c9ba99ccd, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300014, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
 --- !u!23 &933537561
@@ -38619,6 +38875,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 933537557}
   m_Mesh: {fileID: 4300014, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
+--- !u!114 &933537563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 933537557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b020dc467980745ac8a859d8dd8407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrelType: 0
+  floatiness: 40
+  rotationWhenBlasted: 180
+  explosion: {fileID: 1660948848680200, guid: 04aaa1d59e48d74429585d10386fc055, type: 2}
+  timeBeforeExploding: 0.5
+  explosionDamage: 10
+  explosionDistance: 20
+  myRigidBody: {fileID: 933537559}
+  activable: 1
+  affectedByExplosion:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistancePlayer: 0
+  shakeTime: 0
+  fadeInTime: 0
+  fadeOutTime: 0
+  speed: 0
+  magnitude: 0
 --- !u!4 &936468647 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4586558217571490, guid: 85312d28f45a9234098bcd3ae18f2239,
@@ -38636,9 +38921,10 @@ GameObject:
   - component: {fileID: 937058309}
   - component: {fileID: 937058308}
   - component: {fileID: 937058307}
-  m_Layer: 0
+  - component: {fileID: 937058311}
+  m_Layer: 15
   m_Name: p_down_leg1 (2)
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38677,12 +38963,12 @@ MeshCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 937058305}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cee594abbadf4545b9b549c9ba99ccd, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300014, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
 --- !u!23 &937058309
@@ -38729,6 +39015,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 937058305}
   m_Mesh: {fileID: 4300014, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
+--- !u!114 &937058311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 937058305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b020dc467980745ac8a859d8dd8407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrelType: 0
+  floatiness: 40
+  rotationWhenBlasted: 180
+  explosion: {fileID: 1660948848680200, guid: 04aaa1d59e48d74429585d10386fc055, type: 2}
+  timeBeforeExploding: 0.5
+  explosionDamage: 10
+  explosionDistance: 20
+  myRigidBody: {fileID: 937058307}
+  activable: 1
+  affectedByExplosion:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistancePlayer: 0
+  shakeTime: 0
+  fadeInTime: 0
+  fadeOutTime: 0
+  speed: 0
+  magnitude: 0
 --- !u!1 &944318078
 GameObject:
   m_ObjectHideFlags: 0
@@ -40665,9 +40980,10 @@ GameObject:
   - component: {fileID: 1022684532}
   - component: {fileID: 1022684531}
   - component: {fileID: 1022684530}
-  m_Layer: 0
+  - component: {fileID: 1022684534}
+  m_Layer: 15
   m_Name: p_down_leg2 (2)
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40706,12 +41022,12 @@ MeshCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1022684528}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cee594abbadf4545b9b549c9ba99ccd, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300012, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
 --- !u!23 &1022684532
@@ -40758,6 +41074,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1022684528}
   m_Mesh: {fileID: 4300012, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
+--- !u!114 &1022684534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1022684528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b020dc467980745ac8a859d8dd8407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrelType: 0
+  floatiness: 40
+  rotationWhenBlasted: 180
+  explosion: {fileID: 1660948848680200, guid: 04aaa1d59e48d74429585d10386fc055, type: 2}
+  timeBeforeExploding: 0.5
+  explosionDamage: 10
+  explosionDistance: 20
+  myRigidBody: {fileID: 1022684530}
+  activable: 1
+  affectedByExplosion:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistancePlayer: 0
+  shakeTime: 0
+  fadeInTime: 0
+  fadeOutTime: 0
+  speed: 0
+  magnitude: 0
 --- !u!1 &1029380992
 GameObject:
   m_ObjectHideFlags: 0
@@ -42075,9 +42420,10 @@ GameObject:
   - component: {fileID: 1102565712}
   - component: {fileID: 1102565711}
   - component: {fileID: 1102565710}
-  m_Layer: 0
+  - component: {fileID: 1102565714}
+  m_Layer: 15
   m_Name: p_torso
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42116,12 +42462,12 @@ MeshCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1102565708}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cee594abbadf4545b9b549c9ba99ccd, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
 --- !u!23 &1102565712
@@ -42168,6 +42514,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1102565708}
   m_Mesh: {fileID: 4300000, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
+--- !u!114 &1102565714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1102565708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b020dc467980745ac8a859d8dd8407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrelType: 0
+  floatiness: 40
+  rotationWhenBlasted: 180
+  explosion: {fileID: 1660948848680200, guid: 04aaa1d59e48d74429585d10386fc055, type: 2}
+  timeBeforeExploding: 0.5
+  explosionDamage: 10
+  explosionDistance: 20
+  myRigidBody: {fileID: 1102565710}
+  activable: 1
+  affectedByExplosion:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistancePlayer: 0
+  shakeTime: 0
+  fadeInTime: 0
+  fadeOutTime: 0
+  speed: 0
+  magnitude: 0
 --- !u!1001 &1105089323
 Prefab:
   m_ObjectHideFlags: 0
@@ -42507,9 +42882,10 @@ GameObject:
   - component: {fileID: 1120863681}
   - component: {fileID: 1120863680}
   - component: {fileID: 1120863679}
-  m_Layer: 0
+  - component: {fileID: 1120863683}
+  m_Layer: 15
   m_Name: p_up_leg2
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42548,12 +42924,12 @@ MeshCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1120863677}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cee594abbadf4545b9b549c9ba99ccd, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300010, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
 --- !u!23 &1120863681
@@ -42600,6 +42976,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1120863677}
   m_Mesh: {fileID: 4300010, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
+--- !u!114 &1120863683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1120863677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b020dc467980745ac8a859d8dd8407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrelType: 0
+  floatiness: 40
+  rotationWhenBlasted: 180
+  explosion: {fileID: 1660948848680200, guid: 04aaa1d59e48d74429585d10386fc055, type: 2}
+  timeBeforeExploding: 0.5
+  explosionDamage: 10
+  explosionDistance: 20
+  myRigidBody: {fileID: 1120863679}
+  activable: 1
+  affectedByExplosion:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistancePlayer: 0
+  shakeTime: 0
+  fadeInTime: 0
+  fadeOutTime: 0
+  speed: 0
+  magnitude: 0
 --- !u!4 &1126963306 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4586558217571490, guid: 85312d28f45a9234098bcd3ae18f2239,
@@ -46114,11 +46519,11 @@ GameObject:
   - component: {fileID: 1134710722}
   - component: {fileID: 1134710721}
   - component: {fileID: 1134710720}
-  - component: {fileID: 1134710719}
   - component: {fileID: 1134710718}
-  m_Layer: 0
+  - component: {fileID: 1134710723}
+  m_Layer: 15
   m_Name: p_arm1 (1)
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46151,32 +46556,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &1134710719
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1134710716}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300004, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
 --- !u!64 &1134710720
 MeshCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1134710716}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cee594abbadf4545b9b549c9ba99ccd, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300004, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
 --- !u!23 &1134710721
@@ -46223,6 +46614,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1134710716}
   m_Mesh: {fileID: 4300004, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
+--- !u!114 &1134710723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1134710716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b020dc467980745ac8a859d8dd8407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrelType: 0
+  floatiness: 40
+  rotationWhenBlasted: 180
+  explosion: {fileID: 1660948848680200, guid: 04aaa1d59e48d74429585d10386fc055, type: 2}
+  timeBeforeExploding: 0.5
+  explosionDamage: 10
+  explosionDistance: 20
+  myRigidBody: {fileID: 1134710718}
+  activable: 1
+  affectedByExplosion:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistancePlayer: 0
+  shakeTime: 0
+  fadeInTime: 0
+  fadeOutTime: 0
+  speed: 0
+  magnitude: 0
 --- !u!4 &1144423625 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4980999399488472, guid: 6a930d74f4381f84ab14bfbea83efe25,
@@ -48452,9 +48872,10 @@ GameObject:
   - component: {fileID: 1223048480}
   - component: {fileID: 1223048479}
   - component: {fileID: 1223048478}
-  m_Layer: 0
+  - component: {fileID: 1223048482}
+  m_Layer: 15
   m_Name: p_arm2
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48493,12 +48914,12 @@ MeshCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1223048476}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cee594abbadf4545b9b549c9ba99ccd, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300006, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
 --- !u!23 &1223048480
@@ -48545,6 +48966,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1223048476}
   m_Mesh: {fileID: 4300006, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
+--- !u!114 &1223048482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1223048476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b020dc467980745ac8a859d8dd8407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrelType: 0
+  floatiness: 40
+  rotationWhenBlasted: 180
+  explosion: {fileID: 1660948848680200, guid: 04aaa1d59e48d74429585d10386fc055, type: 2}
+  timeBeforeExploding: 0.5
+  explosionDamage: 10
+  explosionDistance: 20
+  myRigidBody: {fileID: 1223048478}
+  activable: 1
+  affectedByExplosion:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistancePlayer: 0
+  shakeTime: 0
+  fadeInTime: 0
+  fadeOutTime: 0
+  speed: 0
+  magnitude: 0
 --- !u!1 &1231162625
 GameObject:
   m_ObjectHideFlags: 0
@@ -48556,11 +49006,11 @@ GameObject:
   - component: {fileID: 1231162631}
   - component: {fileID: 1231162630}
   - component: {fileID: 1231162629}
-  - component: {fileID: 1231162628}
   - component: {fileID: 1231162627}
-  m_Layer: 0
+  - component: {fileID: 1231162632}
+  m_Layer: 15
   m_Name: p_arm1 (2)
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48593,32 +49043,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &1231162628
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1231162625}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300004, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
 --- !u!64 &1231162629
 MeshCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1231162625}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cee594abbadf4545b9b549c9ba99ccd, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300004, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
 --- !u!23 &1231162630
@@ -48665,6 +49101,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1231162625}
   m_Mesh: {fileID: 4300004, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
+--- !u!114 &1231162632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1231162625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b020dc467980745ac8a859d8dd8407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrelType: 0
+  floatiness: 40
+  rotationWhenBlasted: 180
+  explosion: {fileID: 1660948848680200, guid: 04aaa1d59e48d74429585d10386fc055, type: 2}
+  timeBeforeExploding: 0.5
+  explosionDamage: 10
+  explosionDistance: 20
+  myRigidBody: {fileID: 1231162627}
+  activable: 1
+  affectedByExplosion:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistancePlayer: 0
+  shakeTime: 0
+  fadeInTime: 0
+  fadeOutTime: 0
+  speed: 0
+  magnitude: 0
 --- !u!1 &1241674329
 GameObject:
   m_ObjectHideFlags: 0
@@ -48771,9 +49236,10 @@ GameObject:
   - component: {fileID: 1245664055}
   - component: {fileID: 1245664054}
   - component: {fileID: 1245664053}
-  m_Layer: 0
+  - component: {fileID: 1245664057}
+  m_Layer: 15
   m_Name: p_torso (1)
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48812,12 +49278,12 @@ MeshCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1245664051}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cee594abbadf4545b9b549c9ba99ccd, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
 --- !u!23 &1245664055
@@ -48864,6 +49330,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1245664051}
   m_Mesh: {fileID: 4300000, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
+--- !u!114 &1245664057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1245664051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b020dc467980745ac8a859d8dd8407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrelType: 0
+  floatiness: 40
+  rotationWhenBlasted: 180
+  explosion: {fileID: 1660948848680200, guid: 04aaa1d59e48d74429585d10386fc055, type: 2}
+  timeBeforeExploding: 0.5
+  explosionDamage: 10
+  explosionDistance: 20
+  myRigidBody: {fileID: 1245664053}
+  activable: 1
+  affectedByExplosion:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistancePlayer: 0
+  shakeTime: 0
+  fadeInTime: 0
+  fadeOutTime: 0
+  speed: 0
+  magnitude: 0
 --- !u!43 &1254724420
 Mesh:
   m_ObjectHideFlags: 0
@@ -57951,9 +58446,10 @@ GameObject:
   - component: {fileID: 1365870141}
   - component: {fileID: 1365870140}
   - component: {fileID: 1365870139}
-  m_Layer: 0
+  - component: {fileID: 1365870143}
+  m_Layer: 15
   m_Name: p_up_leg1
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57992,12 +58488,12 @@ MeshCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1365870137}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cee594abbadf4545b9b549c9ba99ccd, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300008, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
 --- !u!23 &1365870141
@@ -58044,6 +58540,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1365870137}
   m_Mesh: {fileID: 4300008, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
+--- !u!114 &1365870143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1365870137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b020dc467980745ac8a859d8dd8407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrelType: 0
+  floatiness: 40
+  rotationWhenBlasted: 180
+  explosion: {fileID: 1660948848680200, guid: 04aaa1d59e48d74429585d10386fc055, type: 2}
+  timeBeforeExploding: 0.5
+  explosionDamage: 10
+  explosionDistance: 20
+  myRigidBody: {fileID: 1365870139}
+  activable: 1
+  affectedByExplosion:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistancePlayer: 0
+  shakeTime: 0
+  fadeInTime: 0
+  fadeOutTime: 0
+  speed: 0
+  magnitude: 0
 --- !u!4 &1367482251 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4683506292423160, guid: 0cc611725f785ac40a68abb4c6b63829,
@@ -58416,9 +58941,10 @@ GameObject:
   - component: {fileID: 1390863924}
   - component: {fileID: 1390863923}
   - component: {fileID: 1390863922}
-  m_Layer: 0
+  - component: {fileID: 1390863926}
+  m_Layer: 15
   m_Name: p_up_leg2 (1)
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58457,12 +58983,12 @@ MeshCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1390863920}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cee594abbadf4545b9b549c9ba99ccd, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300010, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
 --- !u!23 &1390863924
@@ -58509,6 +59035,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1390863920}
   m_Mesh: {fileID: 4300010, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
+--- !u!114 &1390863926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1390863920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b020dc467980745ac8a859d8dd8407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrelType: 0
+  floatiness: 40
+  rotationWhenBlasted: 180
+  explosion: {fileID: 1660948848680200, guid: 04aaa1d59e48d74429585d10386fc055, type: 2}
+  timeBeforeExploding: 0.5
+  explosionDamage: 10
+  explosionDistance: 20
+  myRigidBody: {fileID: 1390863922}
+  activable: 1
+  affectedByExplosion:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistancePlayer: 0
+  shakeTime: 0
+  fadeInTime: 0
+  fadeOutTime: 0
+  speed: 0
+  magnitude: 0
 --- !u!1 &1398003879
 GameObject:
   m_ObjectHideFlags: 0
@@ -59858,9 +60413,10 @@ GameObject:
   - component: {fileID: 1448853460}
   - component: {fileID: 1448853459}
   - component: {fileID: 1448853458}
-  m_Layer: 0
+  - component: {fileID: 1448853462}
+  m_Layer: 15
   m_Name: p_up_leg1 (2)
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59899,12 +60455,12 @@ MeshCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1448853456}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cee594abbadf4545b9b549c9ba99ccd, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300008, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
 --- !u!23 &1448853460
@@ -59951,6 +60507,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1448853456}
   m_Mesh: {fileID: 4300008, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
+--- !u!114 &1448853462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1448853456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b020dc467980745ac8a859d8dd8407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrelType: 0
+  floatiness: 40
+  rotationWhenBlasted: 180
+  explosion: {fileID: 1660948848680200, guid: 04aaa1d59e48d74429585d10386fc055, type: 2}
+  timeBeforeExploding: 0.5
+  explosionDamage: 10
+  explosionDistance: 20
+  myRigidBody: {fileID: 1448853458}
+  activable: 1
+  affectedByExplosion:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistancePlayer: 0
+  shakeTime: 0
+  fadeInTime: 0
+  fadeOutTime: 0
+  speed: 0
+  magnitude: 0
 --- !u!1 &1458591941
 GameObject:
   m_ObjectHideFlags: 0
@@ -76492,9 +77077,10 @@ GameObject:
   - component: {fileID: 1886066875}
   - component: {fileID: 1886066874}
   - component: {fileID: 1886066873}
-  m_Layer: 0
+  - component: {fileID: 1886066877}
+  m_Layer: 15
   m_Name: p_torso (2)
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76533,12 +77119,12 @@ MeshCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1886066871}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cee594abbadf4545b9b549c9ba99ccd, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
 --- !u!23 &1886066875
@@ -76585,6 +77171,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1886066871}
   m_Mesh: {fileID: 4300000, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
+--- !u!114 &1886066877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1886066871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b020dc467980745ac8a859d8dd8407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrelType: 0
+  floatiness: 40
+  rotationWhenBlasted: 180
+  explosion: {fileID: 1660948848680200, guid: 04aaa1d59e48d74429585d10386fc055, type: 2}
+  timeBeforeExploding: 0.5
+  explosionDamage: 10
+  explosionDistance: 20
+  myRigidBody: {fileID: 1886066873}
+  activable: 1
+  affectedByExplosion:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistancePlayer: 0
+  shakeTime: 0
+  fadeInTime: 0
+  fadeOutTime: 0
+  speed: 0
+  magnitude: 0
 --- !u!114 &1886538855 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114297118422762486, guid: f0d0e42c67fc064479f18a7382631ed6,
@@ -77087,9 +77702,10 @@ GameObject:
   - component: {fileID: 1915736431}
   - component: {fileID: 1915736430}
   - component: {fileID: 1915736429}
-  m_Layer: 0
+  - component: {fileID: 1915736433}
+  m_Layer: 15
   m_Name: p_up_leg2 (2)
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77128,12 +77744,12 @@ MeshCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1915736427}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cee594abbadf4545b9b549c9ba99ccd, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300010, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
 --- !u!23 &1915736431
@@ -77180,6 +77796,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1915736427}
   m_Mesh: {fileID: 4300010, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
+--- !u!114 &1915736433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1915736427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b020dc467980745ac8a859d8dd8407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrelType: 0
+  floatiness: 40
+  rotationWhenBlasted: 180
+  explosion: {fileID: 1660948848680200, guid: 04aaa1d59e48d74429585d10386fc055, type: 2}
+  timeBeforeExploding: 0.5
+  explosionDamage: 10
+  explosionDistance: 20
+  myRigidBody: {fileID: 1915736429}
+  activable: 1
+  affectedByExplosion:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistancePlayer: 0
+  shakeTime: 0
+  fadeInTime: 0
+  fadeOutTime: 0
+  speed: 0
+  magnitude: 0
 --- !u!4 &1917792147 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 8918ffae76f4d5d43897164d4804bd7f, type: 3}
@@ -82406,9 +83051,10 @@ GameObject:
   - component: {fileID: 1994323551}
   - component: {fileID: 1994323550}
   - component: {fileID: 1994323549}
-  m_Layer: 0
+  - component: {fileID: 1994323553}
+  m_Layer: 15
   m_Name: p_down_leg2 (1)
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82447,12 +83093,12 @@ MeshCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1994323547}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3cee594abbadf4545b9b549c9ba99ccd, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300012, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
 --- !u!23 &1994323551
@@ -82499,6 +83145,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1994323547}
   m_Mesh: {fileID: 4300012, guid: f33c51033df9aa4458d01ab15c3a1671, type: 3}
+--- !u!114 &1994323553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1994323547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b020dc467980745ac8a859d8dd8407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrelType: 0
+  floatiness: 40
+  rotationWhenBlasted: 180
+  explosion: {fileID: 1660948848680200, guid: 04aaa1d59e48d74429585d10386fc055, type: 2}
+  timeBeforeExploding: 0.5
+  explosionDamage: 10
+  explosionDistance: 20
+  myRigidBody: {fileID: 1994323549}
+  activable: 1
+  affectedByExplosion:
+    serializedVersion: 2
+    m_Bits: 0
+  maxDistancePlayer: 0
+  shakeTime: 0
+  fadeInTime: 0
+  fadeOutTime: 0
+  speed: 0
+  magnitude: 0
 --- !u!1001 &1995225734
 Prefab:
   m_ObjectHideFlags: 0
