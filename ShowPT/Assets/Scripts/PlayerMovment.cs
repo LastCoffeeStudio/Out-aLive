@@ -300,7 +300,8 @@ public class PlayerMovment : MonoBehaviour
 
                 RaycastHit hit;
                 bool hitbool = Physics.Raycast(transform.position, velocity, out hit, 1f);
-                if (hitbool == false || (hit.transform.gameObject.layer !=  LayerMask.NameToLayer("Wall") 
+                if (hitbool == false || (hit.transform.gameObject.layer !=  LayerMask.NameToLayer("Wall")
+                                     && hit.transform.gameObject.layer != LayerMask.NameToLayer("LedsWall")
                                      && hit.transform.root.name != "prop_room"
                                      && hit.transform.root.name != "Scene"))
                 {
