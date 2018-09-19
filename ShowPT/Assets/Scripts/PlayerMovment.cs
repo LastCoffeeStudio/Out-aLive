@@ -51,6 +51,7 @@ public class PlayerMovment : MonoBehaviour
 
     [Header("Sounds")]
     public AudioCollection steps;
+    public Texture2D splatmap;
     private CtrlAudio ctrlAudio;
     private float lastMovx = 0f;
     private bool increas = true;
