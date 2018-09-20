@@ -57,6 +57,7 @@ public class ResourceMachineController : MonoBehaviour {
 
     [Header("Player Data")]
     private Inventory playerInventory;
+    private LimitShopController limitShopController;
     private ScoreController scoreController;
     private PlayerHealth playerHealth;
 
@@ -76,6 +77,7 @@ public class ResourceMachineController : MonoBehaviour {
     private void Start()
     {
         playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        limitShopController = GameObject.FindGameObjectWithTag("Player").GetComponent<LimitShopController>();
         ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         scoreController = GameObject.FindGameObjectWithTag("SceneUI").GetComponent<ScoreController>();
@@ -169,8 +171,9 @@ public class ResourceMachineController : MonoBehaviour {
                 break;
         }
 
-        if (type != Inventory.WEAPON_TYPE.NO_WEAPON && !playerInventory.hasWeapon(type) && resources[indexActualResource].cost <= scoreController.getTotalScore())
+        if (type != Inventory.WEAPON_TYPE.NO_WEAPON && !playerInventory.hasWeapon(type) && resources[indexActualResource].cost <= scoreController.getTotalScore() && limitShopController.canBuy(resources[indexActualResource].type))
         {
+            limitShopController.decreaseReminder(resources[indexActualResource].type);
             playerInventory.addWeapon(type);
         }
         else
@@ -195,14 +198,27 @@ public class ResourceMachineController : MonoBehaviour {
                 break;
         }
 
-        if (type != Inventory.AMMO_TYPE.NO_AMMO)
+        if (type != Inventory.AMMO_TYPE.NO_AMMO && limitShopController.canBuy(resources[indexActualResource].type))
         {
+            limitShopController.decreaseReminder(resources[indexActualResource].type);
             playerInventory.increaseAmmo(type, ammoIncrease);
+        }
+        else
+        {
+            ctrlAudio.playOneSound("UI", negativeSelection, transform.position, 1.0f, 0f, 150);
         }
     }
 
     private void buyHealth()
     {
-        playerHealth.buyHealth();
+        if (limitShopController.canBuy(resources[indexActualResource].type))
+        {
+            limitShopController.decreaseReminder(resources[indexActualResource].type);
+            playerHealth.buyHealth();
+        }
+        else
+        {
+            ctrlAudio.playOneSound("UI", negativeSelection, transform.position, 1.0f, 0f, 150);
+        }
     }
 }
