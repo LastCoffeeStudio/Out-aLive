@@ -32,21 +32,6 @@ public class Shotgun : Weapon
         projectile.transform.Rotate(0f, 180f, 0f);
     }
 
-    public override void increaseAmmo()
-    {
-        ++ammunition;
-        inventory.decreaseAmmo(typeAmmo, 1);
-        inventory.setAmmo(typeAmmo, (int)ammunition);
-		ctrlAudio.playOneSound("Weaponds", reloadAudio, transform.position, 0.5f, 0f, 150);
-    }
-
-    private void reloadAndCheck()
-    {
-        if (ammunition == maxAmmo - 1)
-        {
-            animator.SetBool("lastBullet", true);
-        }
-    }
     private void shoot()
     {
         shootEffect.Play();

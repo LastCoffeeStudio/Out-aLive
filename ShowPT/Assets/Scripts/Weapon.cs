@@ -128,11 +128,6 @@ public class Weapon : MonoBehaviour
 				}
                 animator.SetBool("reloading", true);
             }
-
-            if (type == Inventory.WEAPON_TYPE.SHOTGUN && ammunition == maxAmmo - 1)
-            {
-                animator.SetBool("lastBullet", true);
-            }
         }
     }
 
@@ -209,11 +204,6 @@ public class Weapon : MonoBehaviour
     {
         reloading = false;
         animator.SetBool("reloading", false);
-
-        if (type == Inventory.WEAPON_TYPE.SHOTGUN)
-        {
-            animator.SetBool("lastBullet", false);
-        }
     }
     protected virtual void shoot()
     {
