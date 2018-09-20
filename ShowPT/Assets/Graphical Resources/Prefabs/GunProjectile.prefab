@@ -178,7 +178,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1541823304122952}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 61.626343, y: 1.432, z: 57.129852}
+  m_LocalPosition: {x: 9.459778, y: 1.09, z: 32.437317}
   m_LocalScale: {x: 0.49465874, y: 0.49465868, z: 0.49465868}
   m_Children:
   - {fileID: 4579726512787594}
@@ -284,7 +284,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!65 &65830952645695558
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -295,7 +295,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!108 &108443283511450042
 Light:
@@ -380,13 +380,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfecd2e11621ea34eaa9cd37669f06ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileWeaponType: -1
+  projectileWeaponType: 0
   speed: 80
   timeLife: 10
   damage: 1
   layerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 16751411
   skinWidth: 0.1
   invokeExplosion: 0
   explosionType: {fileID: 1990858483930978}
@@ -467,7 +467,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 604176956
+  randomSeed: 1773017172
   InitialModule:
     serializedVersion: 3
     enabled: 1

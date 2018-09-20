@@ -35,11 +35,11 @@ public class Projectile : MonoBehaviour
     GameObject hitEffect;
 
     private GameObject player;
+    private bool hasHitSomething;
 
     //initialize values 
     void Start()
     {
-        Debug.Log("uo");
         ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
         player = GameObject.FindGameObjectWithTag("Player");
         myRigidbody = GetComponent<Rigidbody>();
@@ -49,38 +49,50 @@ public class Projectile : MonoBehaviour
         partialExtent = minimumExtent * (1.0f - skinWidth);
         sqrMinimumExtent = minimumExtent * minimumExtent;
         toDelete = false;
+        hasHitSomething = false;
     }
 
     void FixedUpdate()
     {
-        Debug.Log("fixedUpdate");
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
         //have we moved more than our minimum extent? 
-        Vector3 movementThisStep = myRigidbody.position - previousPosition;
+        Vector3 movementThisStep = transform.position - previousPosition;
         float movementSqrMagnitude = movementThisStep.sqrMagnitude;
+        movementThisStep = movementThisStep.normalized;
 
         if (movementSqrMagnitude > sqrMinimumExtent)
         {
             float movementMagnitude = Mathf.Sqrt(movementSqrMagnitude);
             RaycastHit hitInfo;
-
+            Vector3 endPoint = previousPosition + movementThisStep * movementMagnitude;
             //check for obstructions we might have missed 
-            if (Physics.Raycast(previousPosition, movementThisStep, out hitInfo, movementMagnitude, layerMask.value))
+            if (Physics.Raycast(previousPosition, movementThisStep, out hitInfo, movementMagnitude, layerMask) ||
+                Physics.Raycast(endPoint, -movementThisStep, out hitInfo, movementMagnitude, layerMask))
             {
                 if (!hitInfo.collider)
                     return;
 
-                if (hitInfo.collider.isTrigger)
-                    hitInfo.collider.SendMessage("OnTriggerEnter", myCollider);
+                if (!hasHitSomething)
+                {
+                    if (hitInfo.collider.isTrigger)
+                    {
+                        hitInfo.collider.SendMessage("OnTriggerEnter", myCollider);
+                        hasHitSomething = true;
+                    }
 
-                if (!hitInfo.collider.isTrigger)
-                    myRigidbody.position = hitInfo.point - (movementThisStep / movementMagnitude) * partialExtent;
-
+                    if (!hitInfo.collider.isTrigger)
+                    {
+                        transform.position = hitInfo.point - (movementThisStep / movementMagnitude) * partialExtent;
+                        GameObject weapon = player.GetComponent<Inventory>().getCarryingWeapon();
+                        touchedEnemy(hitInfo.collider, weapon);
+                        hasHitSomething = true;
+                    }
+                }
             }
         }
 
-        previousPosition = myRigidbody.position;
+        previousPosition = transform.position;
 
         if (timeLife > 0f)
         {
@@ -95,52 +107,54 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter(Collider col)
     {
         GameObject weapon = player.GetComponent<Inventory>().getCarryingWeapon();
-
         touchedEnemy(col, weapon);
     }
 
     public void touchedEnemy(Collider col, GameObject weapon)
     {
-        if (col.gameObject.layer == LayerMask.NameToLayer("Wall") || col.tag == "Sphere" || col.gameObject.layer == LayerMask.NameToLayer("BossWall"))
+        if (!hasHitSomething)
         {
-            destroyMe();
-        }
-        if (col.tag == "Enemy" || col.tag == "Agent" || col.tag == "Snitch")
-        {
-            ScoreController.weaponHit(projectileWeaponType);
-            float enemyHealth = col.gameObject.GetComponent<Enemy>().getHit(damage);
-            if (weapon != null)
+            if (col.gameObject.layer == LayerMask.NameToLayer("Wall") || col.tag == "Sphere" || col.gameObject.layer == LayerMask.NameToLayer("BossWall"))
             {
-                Crosshair crosshair = weapon.GetComponent<Crosshair>();
-                updateCrosshair(enemyHealth, crosshair);
+                destroyMe();
             }
-            destroyMe();
-        }
-        if (col.gameObject.layer == LayerMask.NameToLayer("PhysicsObjects"))
-        {
-            ScoreController.weaponHit(projectileWeaponType);
-            Vector4 dataToPass = new Vector4(transform.position.x, transform.position.y, transform.position.z, damage);
-            col.gameObject.SendMessage("shotBehavior", dataToPass);
-            destroyMe();
-        }
-        if (col.tag == "BossArm")
-        {
-            ScoreController.weaponHit(projectileWeaponType);
-            bool armActive;
-            float armHealth = col.gameObject.GetComponent<BossArmController>().getHit(damage, out armActive);
-
-            if (weapon != null && armActive)
+            if (col.tag == "Enemy" || col.tag == "Agent" || col.tag == "Snitch")
             {
-                Crosshair crosshair = weapon.GetComponent<Crosshair>();
-                updateCrosshair(armHealth, crosshair);
+                ScoreController.weaponHit(projectileWeaponType);
+                float enemyHealth = col.gameObject.GetComponent<Enemy>().getHit(damage);
+                if (weapon != null)
+                {
+                    Crosshair crosshair = weapon.GetComponent<Crosshair>();
+                    updateCrosshair(enemyHealth, crosshair);
+                }
+                destroyMe();
             }
+            if (col.gameObject.layer == LayerMask.NameToLayer("PhysicsObjects"))
+            {
+                ScoreController.weaponHit(projectileWeaponType);
+                Vector4 dataToPass = new Vector4(transform.position.x, transform.position.y, transform.position.z, damage);
+                col.gameObject.SendMessage("shotBehavior", dataToPass);
+                destroyMe();
+            }
+            if (col.tag == "BossArm")
+            {
+                ScoreController.weaponHit(projectileWeaponType);
+                bool armActive;
+                float armHealth = col.gameObject.GetComponent<BossArmController>().getHit(damage, out armActive);
 
-            destroyMe();
-        }
-        if (col.gameObject.layer == LayerMask.NameToLayer("LedsWall"))
-        {
-            Instantiate(ledsDecall, col.transform);
-            destroyMe();
+                if (weapon != null && armActive)
+                {
+                    Crosshair crosshair = weapon.GetComponent<Crosshair>();
+                    updateCrosshair(armHealth, crosshair);
+                }
+
+                destroyMe();
+            }
+            if (col.gameObject.layer == LayerMask.NameToLayer("LedsWall"))
+            {
+                Instantiate(ledsDecall, transform.position, col.transform.rotation);
+                destroyMe();
+            }
         }
     }
 
@@ -155,6 +169,7 @@ public class Projectile : MonoBehaviour
         {
             Instantiate(hitEffect, transform.position, Quaternion.identity);
         }
+        hasHitSomething = true;
         toDelete = true;
     }
 
