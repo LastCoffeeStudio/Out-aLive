@@ -4,20 +4,16 @@ using UnityEngine;
 
 public class LilEvent : GenericEvent
 {
-    public GameObject Lil;
-    public GameObject[] path;
+    public List<string> tvs;
 
-    private LilRobot lilController;
-
-    public GameObject tVShowmanManager;
+    private TVShowmanManager tVShowmanManager;
 
     private int nextPoint = 0;
     private bool eventActive = false;
 
     private void Start()
     {
-        lilController = Lil.GetComponent<LilRobot>();
-        tVShowmanManager = GameObject.FindGameObjectWithTag("TVShowmanManager"); 
+        tVShowmanManager = GameObject.FindGameObjectWithTag("TVShowmanManager").GetComponent<TVShowmanManager>(); 
     }
 
     private void FixedUpdate()
@@ -31,6 +27,6 @@ public class LilEvent : GenericEvent
     public override void onEnableEvent()
     {
         eventActive = true;
-        //tVShowmanManager.
+       // tVShowmanManager.playMessageAllTVs(tvs);
     }
 }

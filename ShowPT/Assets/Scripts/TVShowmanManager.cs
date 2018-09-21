@@ -13,22 +13,17 @@ public class TVShowmanManager : MonoBehaviour {
         ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
     }
 
-	void Update () {
-		if(Input.GetKeyDown(KeyCode.O))
-        {
-            //playMessageAllTVs();
-        }
-	}
-
-    private void playMessageAllTVs()
+    public void playMessageAllTVs(List<string> tvs)
     {
         AudioClip spriteAudio = sounds[0];
-        
+
         for (int i = 0; i < televisions.Length; i++)
         {
-            ctrlAudio.playOneSound(sounds.audioGroup, sounds[0], televisions[i].gameObject.transform.position, sounds.volume, sounds.spatialBlend, sounds.priority);
-            televisions[i].GetComponentInChildren<SpriteRenderer>()
-                .gameObject.GetComponent<Animator>().Play(sounds[0].name);
+            if (tvs.Contains(televisions[i].name)) {
+                ctrlAudio.playOneSound(sounds.audioGroup, spriteAudio, televisions[i].gameObject.transform.position, sounds.volume, sounds.spatialBlend, sounds.priority);
+                televisions[i].GetComponentInChildren<SpriteRenderer>()
+                    .gameObject.GetComponent<Animator>().Play(spriteAudio.name);
+            }
         }
     }
 }
