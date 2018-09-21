@@ -52,6 +52,11 @@ public class PlayerMovment : MonoBehaviour
     [Header("Sounds")]
     public AudioCollection steps;
     public Texture2D splatmap;
+    private int indexAudioCol = 1;
+    private Color red;
+    private Color blue;
+    private Color green;
+    private Color purple;
     private CtrlAudio ctrlAudio;
     private float lastMovx = 0f;
     private bool increas = true;
@@ -117,11 +122,38 @@ public class PlayerMovment : MonoBehaviour
         zoom = 50f;
         zoomSpeed = 10f;
         originalZoom = 60f;
+
+        blue = splatmap.GetPixel(1, 1);
+        red = splatmap.GetPixel(1, splatmap.width - 2);
+        purple = splatmap.GetPixel(splatmap.width - 2, splatmap.width - 2);
+        green = splatmap.GetPixel(splatmap.width - 2, 1);
     }
 
     public void PlayStep()
     {
-        ctrlAudio.playOneSound("Player", steps[0], transform.position, steps.volume, steps.spatialBlend, steps.priority);
+        //rate between terrain and splatmap;
+        float rate = splatmap.width / 240f;
+
+        //Get x and z for splatmap
+        int x = (int) ((transform.position.x + 100) * rate);
+        int z = (int)((transform.position.z + 100) * rate);
+        Color color = splatmap.GetPixel(x, z);
+        if (color == green)
+        {
+            indexAudioCol = 2;
+        }else if (color == purple)
+        {
+            indexAudioCol = 0;
+        }
+        else if(color == red)
+        {
+            indexAudioCol = 3;
+        }
+        else if(color == blue)
+        {
+            indexAudioCol = 1;
+        }
+        ctrlAudio.playOneSound("Player", steps[indexAudioCol], transform.position, steps.volume, steps.spatialBlend, steps.priority);
     }
 
     //Calcule 
