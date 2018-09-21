@@ -6,5 +6,6 @@ using UnityEngine;
 public class Tweet : ScriptableObject 
 {
 	public Tweeter tweeter;
+	[TextArea]
 	public string tweetText;
 }
