@@ -45,10 +45,13 @@ public class TweetSystem : MonoBehaviour
 	[SerializeField]
 	Tweet[] randomTweetList;
 
+	List<Tweet> requestedTweetsQueue;
+
 	// Use this for initialization
 	void Start () 
 	{
 		audioCtrl = FindObjectOfType<CtrlAudio> ();
+		requestedTweetsQueue = new List<Tweet> ();
 	}
 	
 	// Update is called once per frame
@@ -58,18 +61,16 @@ public class TweetSystem : MonoBehaviour
 		{
 		case state.TWEET_HIDDEN:
 			tweetTimer += Time.deltaTime;
-			if ((Input.GetKeyDown (KeyCode.I)) || tweetTimer > timeBetweenTweets) 
+			if (Input.GetKeyDown (KeyCode.I) || tweetTimer > timeBetweenTweets) 
 			{
-				tweetTimer = 0f;
-				audioCtrl.playOneSound("UI", tweetAudio, transform.position, 0.5f, 0f, 150);
 				generateTweet (chooseRandomTweet ());
-				tweetState = state.TWEET_RUNNING_IN;
 			}
 			break;
 
 		case state.TWEET_RUNNING_IN:
 			tweet.transform.position = Vector2.Lerp (tweet.transform.position, insidePoint.transform.position, Time.deltaTime);
-			if (Vector2.Distance (tweet.transform.position, insidePoint.transform.position) < 0.5f) {
+			if (Vector2.Distance (tweet.transform.position, insidePoint.transform.position) < 1f) 
+			{
 				tweetState = state.TWEET_SHOWING;
 			}
 			break;
@@ -85,8 +86,17 @@ public class TweetSystem : MonoBehaviour
 
 		case state.TWEET_RUNNING_OUT:
 			tweet.transform.position = Vector2.Lerp (tweet.transform.position, outsidePoint.transform.position, Time.deltaTime);
-			if (Vector2.Distance (tweet.transform.position, outsidePoint.transform.position) < 0.5f) {
-				tweetState = state.TWEET_HIDDEN;
+			if (Vector2.Distance (tweet.transform.position, outsidePoint.transform.position) < 1f) 
+			{
+				if (requestedTweetsQueue.Count > 0) 
+				{
+					generateTweet (requestedTweetsQueue [0]);
+					requestedTweetsQueue.RemoveAt (0);
+				} 
+				else 
+				{
+					tweetState = state.TWEET_HIDDEN;
+				}
 			}
 			break;
 		}
@@ -98,11 +108,28 @@ public class TweetSystem : MonoBehaviour
 		return randomTweetList [tweetNumber];
 	}
 
-	public void generateTweet(Tweet tweetData)
+	void generateTweet(Tweet tweetData)
 	{
+		tweetTimer = 0f;
+
 		tweetAvatar.sprite = tweetData.tweeter.tweeterAvatar;
 		tweetName.text = tweetData.tweeter.tweeterName;
 		tweetDir.text = tweetData.tweeter.tweeterDir;
 		tweetText.text = tweetData.tweetText;
+
+		audioCtrl.playOneSound("UI", tweetAudio, transform.position, 0.5f, 0f, 150);
+		tweetState = state.TWEET_RUNNING_IN;
+	}
+
+	public void requestTweet(Tweet requestedTweet)
+	{
+		if (tweetState == state.TWEET_HIDDEN) 
+		{
+			generateTweet (requestedTweet);
+		} 
+		else 
+		{
+			requestedTweetsQueue.Add (requestedTweet);
+		}
 	}
 }
