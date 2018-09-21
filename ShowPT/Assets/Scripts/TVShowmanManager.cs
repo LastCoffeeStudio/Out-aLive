@@ -16,7 +16,7 @@ public class TVShowmanManager : MonoBehaviour {
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.O))
         {
-            playMessageAllTVs();
+            //playMessageAllTVs();
         }
 	}
 
