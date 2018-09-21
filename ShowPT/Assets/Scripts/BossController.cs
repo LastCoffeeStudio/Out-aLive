@@ -438,6 +438,9 @@ public class BossController : MonoBehaviour
     private IEnumerator rollBoss()
     {
         float time = 0f;
+
+        float lastYPos = body.transform.position.y;
+
         while (time * 60 < rollDisplacementCurve.length)
         {
             float prevTime = time;
