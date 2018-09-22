@@ -77,17 +77,17 @@ public class Projectile : MonoBehaviour
                 {
                     if (hitInfo.collider.isTrigger)
                     {
-                        hitInfo.collider.SendMessage("OnTriggerEnter", myCollider);
-                        hasHitSomething = true;
+                        myCollider.SendMessage("OnTriggerEnter", myCollider);
                     }
 
                     if (!hitInfo.collider.isTrigger)
                     {
                         transform.position = hitInfo.point - (movementThisStep / movementMagnitude) * partialExtent;
-                        GameObject weapon = player.GetComponent<Inventory>().getCarryingWeapon();
-                        touchedEnemy(hitInfo.collider, weapon);
-                        hasHitSomething = true;
                     }
+
+                    GameObject weapon = player.GetComponent<Inventory>().getCarryingWeapon();
+                    touchedEnemy(hitInfo.collider, weapon);
+                    hasHitSomething = true;
                 }
             }
         }
@@ -112,6 +112,7 @@ public class Projectile : MonoBehaviour
 
     public void touchedEnemy(Collider col, GameObject weapon)
     {
+        Debug.Log("Hits: " + col.gameObject.name);
         if (!hasHitSomething)
         {
             if (col.gameObject.layer == LayerMask.NameToLayer("Wall") || col.tag == "Sphere" || col.gameObject.layer == LayerMask.NameToLayer("BossWall"))

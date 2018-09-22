@@ -13,12 +13,12 @@ public class BossController : MonoBehaviour
     public GameObject platform1;
     public GameObject platform2;
     public GameObject body;
+    public GameObject bodyPivot;
     public GameObject head;
     public GameObject spawnSelector;
     public GameObject arrow;
 
     [Header("Boss attributes")]
-    public float diameter;
     public int idleDamage;
     public int rotationDamage;
     public int rollDamage;
@@ -28,6 +28,7 @@ public class BossController : MonoBehaviour
     public int rollRepeatNumber;
     public float maxSpeed;
     public float acceleration;
+    public float timeToRoll;
     public float minPlayerDistance;
     public AnimationClip rotateAnim;
     public AnimationCurve rollDisplacementCurve;
@@ -44,16 +45,19 @@ public class BossController : MonoBehaviour
     private Bounds combatZone;
     private Animator bossAnimator;
     private Vector3 playerPosition;
-    private STATES state = STATES.ROTATE_ATTACK;
-    private int rollRepeat = 0;
-    private int totalRepeat = 0;
-    private int armsStopped = 0;
-    private int armsDead = 0;
-    private int rouletteRoll = 0;
-    private float chaseSpeed = 0f;
-    private float timeElapsed = 0f;
-    private bool armsActive = false;
-    private bool chasePlayer = false;
+    private STATES state;
+    private int rollRepeat;
+    private int totalRepeat;
+    private float rollDirectionX;
+    private float rollDirectionZ;
+    private int armsStopped;
+    private int armsDead;
+    private int rouletteRoll;
+    private float chaseSpeed;
+    private float timeElapsed;
+    private float sideLength;
+    private bool armsActive;
+    private bool chasePlayer;
     private bool[] spawns;
 
     private enum STATES
@@ -109,6 +113,7 @@ public class BossController : MonoBehaviour
         spawns = new bool[points.Length];
         setArms();
         createRotationCurve();
+        initializeVars();
     }
 	
 	void Update ()
@@ -134,6 +139,11 @@ public class BossController : MonoBehaviour
                         chasePlayer = false;
                         bossAnimator.SetBool("PlayerCaught", true);
                     }
+                }
+                if (bossAnimator.GetBool("Roll") && !bossAnimator.GetBool("Rolling"))
+                {
+                    bossAnimator.SetBool("Rolling", true);
+                    calculateRollData();
                 }
                 break;
             case STATES.ARMS_ATTACK:
@@ -269,18 +279,22 @@ public class BossController : MonoBehaviour
 
     public void setRoll()
     {
+        bossAnimator.SetBool("Rolling", false);
         ++rollRepeat;
         if (rollRepeat >= rollRepeatNumber)
         {
             rollRepeat = 0;
             bossAnimator.SetBool("Roll", false);
-        }
+            
+            transform.position += body.transform.localPosition;
+            body.transform.localPosition = Vector3.zero;
 
-        if (totalRepeat >= totalRepeatNumber)
-        {
-            totalRepeat = 0;
-            bossAnimator.SetInteger("State", 1);
-            state = STATES.ARMS_ATTACK;
+            if (totalRepeat >= totalRepeatNumber)
+            {
+                totalRepeat = 0;
+                bossAnimator.SetInteger("State", 1);
+                state = STATES.ARMS_ATTACK;
+            }
         }
     }
 
@@ -337,7 +351,6 @@ public class BossController : MonoBehaviour
         if (boolParam != 0)
         {
             rouletteRoll = Random.Range(1,5);
-            //calculateDirectionFromPlayerPosition();
         }
         else
         {
@@ -393,55 +406,106 @@ public class BossController : MonoBehaviour
 
     private void calculateDirectionFromPlayerPosition()
     {
+        //Correct the main transform
+        transform.position += body.transform.localPosition;
+        body.transform.localPosition = Vector3.zero;
+
         float angle = Vector3.Angle(transform.forward, (player.transform.position - transform.position).normalized);
         //Negative left, positive right
         Vector3 playerVec = (player.transform.position - transform.position);
         playerVec.y = 0;
         float dot = Vector3.Dot(transform.right, playerVec.normalized);
-        
+        rollDirectionZ = 1f;
+        rollDirectionX = 0f;
+
+        Debug.Log("--- Direction ---");
+        Debug.Log(rollDirectionX + " " + rollDirectionZ);
+
         if (dot >= 0)
         {
             if (angle > 45 && angle <= 135)
             {
-                transform.Rotate(0f, 90f, 0f);
+                rollDirectionZ = 0f;
+                rollDirectionX = 1f;
+                
+                //transform.Rotate(0f, 90f, 0f);
             }
             else if (angle > 135)
             {
-                transform.Rotate(0f, 180f, 0f);
+                rollDirectionZ = -1f;
+
+                //transform.Rotate(0f, 180f, 0f);
             }
         }
         else
         {
             if (angle > 45 && angle <= 135)
             {
-                transform.Rotate(0f, -90f, 0f);
+                rollDirectionZ = 0f;
+                rollDirectionX = -1f;
+                    
+                //transform.Rotate(0f, -90f, 0f);
             }
             else if (angle > 135)
             {
-                transform.Rotate(0f, -180f, 0f);
+                rollDirectionZ = -1f;
+
+                //transform.Rotate(0f, -180f, 0f);
             }
         }
     }
 
     private void checkRoll()
     {
-        Vector3 destinationPoint = transform.position + transform.forward * body.GetComponent<Renderer>().bounds.size.z;
+        Debug.Log("--- Check Roll ---");
+        Debug.Log(rollDirectionX + " " + rollDirectionZ);
+        // Here, rollDirectionX xor rollDirectionZ must be 0, and the other 1 or -1
+        // (true, due to previous call to calculateDirectionFromPlayerPosition())
+        Vector3 destinationPoint = transform.position + (transform.forward * rollDirectionZ + transform.right * rollDirectionX) * sideLength;
         int count = 0;
-        while (count <= 4 && !combatZone.Contains(destinationPoint))
+        if (!combatZone.Contains(destinationPoint))
         {
-            transform.Rotate(0f, 90f, 0f);
-            destinationPoint = transform.position + transform.forward * body.GetComponent<Renderer>().bounds.size.z;
+            float dirAux = rollDirectionX;
+            rollDirectionX = rollDirectionZ;
+            rollDirectionZ = -dirAux;
+            //transform.Rotate(0f, 90f, 0f);
+            destinationPoint = transform.position + (transform.forward * rollDirectionZ + transform.right * rollDirectionX) * sideLength;
             ++count;
         }
+        Debug.Log(rollDirectionX + " " + rollDirectionZ);
     }
 
     private IEnumerator rollBoss()
     {
-        float time = 0f;
 
-        float lastYPos = body.transform.position.y;
+        float time = 0;
+        float diagonal = sideLength / Mathf.Sqrt(2f);
+        float angleIncrement, displacementX, displacementY, displacementZ;
 
-        while (time * 60 < rollDisplacementCurve.length)
+        Vector3 initialPosition = body.transform.position;
+        Quaternion initialRotation = body.transform.rotation;
+        body.transform.Rotate(rollDirectionZ * 90f, 0f, -rollDirectionX * 90f, Space.World);
+        Quaternion finalRotation = body.transform.rotation;
+        body.transform.rotation = initialRotation;
+        
+
+        //float lastYPos = body.transform.position.y;
+
+        while (time < timeToRoll)
+        {
+            time += Time.deltaTime;
+            angleIncrement = Mathf.Lerp(0, Mathf.PI / 2f, time / timeToRoll);
+            displacementX = rollDirectionX * diagonal * (Mathf.Cos(45f * Mathf.Deg2Rad) - Mathf.Cos(45f * Mathf.Deg2Rad + angleIncrement));
+            displacementY = diagonal * (Mathf.Sin(45f * Mathf.Deg2Rad + angleIncrement) - Mathf.Sin(45f * Mathf.Deg2Rad));
+            displacementZ = rollDirectionZ * diagonal * (Mathf.Cos(45f * Mathf.Deg2Rad) - Mathf.Cos(45f * Mathf.Deg2Rad + angleIncrement));
+            body.transform.position = new Vector3(initialPosition.x + displacementX, initialPosition.y + displacementY, initialPosition.z + displacementZ);
+            body.transform.rotation = Quaternion.Lerp(initialRotation, finalRotation, time / timeToRoll);
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        setRoll();
+        /*while (time * 60 < rollDisplacementCurve.length)
         {
             float prevTime = time;
             time += Time.deltaTime;
@@ -454,7 +518,7 @@ public class BossController : MonoBehaviour
                 transform.Translate(transform.forward * rollDisplacementCurve.keys[i].value, Space.World);
             }
             yield return null;
-        }
+        }*/
     }
 
     private EnemySpawn findEnemySpawn(Enemy.EnemyType type)
@@ -488,23 +552,28 @@ public class BossController : MonoBehaviour
 
     private void spawnEnemy(EnemySpawn enemySpawn)
     {
+        Debug.Log(enemySpawn.type);
         int randomPoint = Random.Range(0, spawns.Length);
         int checkedPoints = 0;
         //Number of spawnpoints must be greater than maximum num enemies of any enemy!
-        while (spawns[randomPoint] && checkedPoints < spawns.Length)
+        while (checkedPoints < spawns.Length)
         {
-            ++checkedPoints;
-            ++randomPoint;
-            if (randomPoint >= spawns.Length)
+            Bounds pointBounds = new Bounds(points[randomPoint].transform.position, Vector3.one * 1.5f);
+            if (!spawns[randomPoint] && !body.GetComponent<BoxCollider>().bounds.Intersects(pointBounds))
             {
-                randomPoint = 0;
+                spawns[randomPoint] = true;
+                Instantiate(enemySpawn.enemy, points[randomPoint].transform.position, Quaternion.identity);
+                checkedPoints = spawns.Length;
             }
-        }
-
-        if (!spawns[randomPoint] && !body.GetComponent<BoxCollider>().bounds.Contains(points[randomPoint].transform.position))
-        {
-            spawns[randomPoint] = true;
-            Instantiate(enemySpawn.enemy, points[randomPoint].transform.position, Quaternion.identity);
+            else
+            {
+                ++checkedPoints;
+                ++randomPoint;
+                if (randomPoint >= spawns.Length)
+                {
+                    randomPoint = 0;
+                }
+            }
         }
     }
     
@@ -538,14 +607,31 @@ public class BossController : MonoBehaviour
             {
                 rotateAnim.SampleAnimation(gameObject, (i - 1) / 60f);
                 float lastRotationX = body.transform.rotation.x;
-                frames[i] = new Keyframe(i, ((diameter * rotationX) / lastPos) - ((diameter * lastRotationX) / lastPos));
+                frames[i] = new Keyframe(i, ((sideLength * rotationX) / lastPos) - ((sideLength * lastRotationX) / lastPos));
             }
             else
             {
-                frames[i] = new Keyframe(i, (diameter * body.transform.rotation.x) / lastPos);
+                frames[i] = new Keyframe(i, (sideLength * body.transform.rotation.x) / lastPos);
             }
         }
         rollDisplacementCurve = new AnimationCurve(frames);
+    }
+
+    private void initializeVars()
+    {
+        state = STATES.ROTATE_ATTACK;
+        rollRepeat = 0;
+        totalRepeat = 0;
+        rollDirectionX = 0f;
+        rollDirectionZ = 0f;
+        armsStopped = 0;
+        armsDead = 0;
+        rouletteRoll = 0;
+        chaseSpeed = 0f;
+        timeElapsed = 0f;
+        sideLength = body.GetComponent<Renderer>().bounds.size.z;
+        armsActive = false;
+        chasePlayer = false;
     }
 
     
