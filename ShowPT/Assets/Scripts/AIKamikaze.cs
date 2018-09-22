@@ -105,7 +105,7 @@ public class AIKamikaze : MonoBehaviour {
 
             case state.I_SEE_YOU:
                 animKamikaze.SetBool("Jump", true);
-				audioCtr.playOneSound("Enemies", detectSound, transform.position, 1.0f, 0.0f, 128);
+				audioCtr.playOneSound("Enemies", detectSound, transform.position, 1.0f, 1.0f, 52, false, null, 500f, 500f, AudioRolloffMode.Linear);
                 NPCstate = state.JUMPING;
                 break;
             case state.JUMPING:
