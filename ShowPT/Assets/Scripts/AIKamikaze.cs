@@ -31,8 +31,11 @@ public class AIKamikaze : MonoBehaviour {
 	CtrlAudio audioCtr;
 	[SerializeField]
 	AudioClip detectSound;
-	
-	public float viewAngle;
+    [SerializeField]
+    AudioClip bipbipSound;
+    private ulong idBipBipSound;
+
+    public float viewAngle;
 	private GameObject player;
     private PlayerMovment playerMovment;
 
@@ -86,7 +89,15 @@ public class AIKamikaze : MonoBehaviour {
 		gameObject.SetActive (false);
 	}
 
-	// Update is called once per frame
+    private void OnDestroy()
+    {
+        if (audioCtr != null)
+        {
+            audioCtr.stopSound(idBipBipSound);
+        }
+    }
+
+    // Update is called once per frame
     void Update()
     {
 		if (alreadyOnSuicideJump == false) 
@@ -105,7 +116,8 @@ public class AIKamikaze : MonoBehaviour {
 
             case state.I_SEE_YOU:
                 animKamikaze.SetBool("Jump", true);
-				audioCtr.playOneSound("Enemies", detectSound, transform.position, 1.0f, 1.0f, 52, false, null, 500f, 500f, AudioRolloffMode.Linear);
+				audioCtr.playOneSound("Enemies", detectSound, transform.position, 1.0f, 1.0f, 52, false, null, 50f, 0f, AudioRolloffMode.Linear);
+                idBipBipSound = audioCtr.playOneSound("Enemies", bipbipSound, transform.position, 0.7f, 1.0f, 52, true, gameObject, 25f, 0f, AudioRolloffMode.Linear);
                 NPCstate = state.JUMPING;
                 break;
             case state.JUMPING:
