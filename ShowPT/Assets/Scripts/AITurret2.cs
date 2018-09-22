@@ -149,7 +149,7 @@ public class AITurret2 : MonoBehaviour {
 		Quaternion targetRotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(lookPos) * 
 			Quaternion.AngleAxis(offSetAngle , Vector3.right), Time.deltaTime);
 
-		transform.rotation = targetRotation;
+		
 
         if (targetRotation != transform.rotation && playedGyro == false)
 	    {
@@ -161,6 +161,7 @@ public class AITurret2 : MonoBehaviour {
 	        ctrlAudio.stopSound(idGyro);
 	        playedGyro = false;
         }
+	    transform.rotation = targetRotation;
     }
 
 	void OnDrawGizmos()

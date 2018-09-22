@@ -34,6 +34,7 @@ public class Turret : Enemy
     private ulong idLaserAttak;
     private bool soundAttackingActive = false;
     private GameObject soundParticle;
+    private bool soundPlaying = false;
 
     private void Start()
     {
@@ -56,9 +57,19 @@ public class Turret : Enemy
     // Update is called once per frame
 	private void Update()
     {
-		if (myAI.shooting == true) 
+		if (myAI.shooting == true)
 		{
-			shoot ();
+		    soundPlaying = true;
+            shoot ();
+		}
+		else if(soundPlaying == true)
+		{
+		    soundAttackingActive = false;
+		    soundParticle.active = false;
+		    ctrAudio.stopSound(idSparks);
+		    ctrAudio.stopSound(idLaserAttak);
+		    laserEffect.SetActive(false);
+		    soundPlaying = false;
 		}
         checkStatus();
     }
