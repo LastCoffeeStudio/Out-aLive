@@ -7,7 +7,8 @@ public class GenericEvent : MonoBehaviour {
     public enum EventType
     {
         LILEVENT,
-        TURRETEVENT
+        TURRETEVENT,
+        DRONESEVENT
     }
 
     public EventType type;

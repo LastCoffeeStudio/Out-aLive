@@ -68,17 +68,6 @@ public class CtrlShieldDrones : MonoBehaviour
         sphere.SetActive(false);
     }
 
-    bool trigerFinish = false;
-    private void Update()
-    {
-        if (trigerFinish == false)
-        {
-            startEventDrones();
-
-            trigerFinish = true;
-        }
-    }
-
     public void startEventDrones()
     {
         StartCoroutine(downShieldDrones());

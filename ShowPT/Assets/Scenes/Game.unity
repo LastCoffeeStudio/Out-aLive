@@ -30791,6 +30791,7 @@ GameObject:
   - component: {fileID: 588722492}
   - component: {fileID: 588722491}
   - component: {fileID: 588722490}
+  - component: {fileID: 588722493}
   m_Layer: 0
   m_Name: EventsContainer
   m_TagString: EventsContainer
@@ -30837,6 +30838,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &588722493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 588722489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc4441f4e7455c04f926d322fbf70e30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  tvs:
+  - Flying TV (4)
+  - Flying TV (1)
 --- !u!1 &588837366
 GameObject:
   m_ObjectHideFlags: 0
@@ -53220,6 +53236,7 @@ Transform:
   - {fileID: 944318079}
   - {fileID: 1499718517}
   - {fileID: 1531932547}
+  - {fileID: 1502707025}
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -91654,6 +91671,60 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73a6d75943e5a2945b7ffdf77165f010, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1502707024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1502707025}
+  - component: {fileID: 1502707026}
+  - component: {fileID: 1502707027}
+  m_Layer: 10
+  m_Name: DronesTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1502707025
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1502707024}
+  m_LocalRotation: {x: 0, y: 0.12247562, z: 0, w: 0.9924716}
+  m_LocalPosition: {x: 73.68, y: -5.45, z: 118.82}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 918409136}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 14.07, z: 0}
+--- !u!114 &1502707026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1502707024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b15e07c006151644bf5890c327765c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventsType: 02000000
+--- !u!65 &1502707027
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1502707024}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 62.673805, y: 6.871087, z: 1}
+  m_Center: {x: -5.696964, y: -2.9355435, z: 0.0000050792487}
 --- !u!1 &1506411414
 GameObject:
   m_ObjectHideFlags: 0
