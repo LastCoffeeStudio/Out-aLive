@@ -13,9 +13,9 @@ public class TVShowmanManager : MonoBehaviour {
         ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
     }
 
-    public void playMessageAllTVs(List<string> tvs)
+    public void playMessageAllTVs(List<string> tvs, AudiosShowmanType audiosShowmanType)
     {
-        AudioClip spriteAudio = sounds[0];
+        AudioClip spriteAudio = sounds[(int)audiosShowmanType];
 
         for (int i = 0; i < televisions.Length; i++)
         {
