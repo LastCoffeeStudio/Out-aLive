@@ -192,6 +192,10 @@ public class PlayerMovment : MonoBehaviour
             if ((InteractableObjectsManager.interactableObjectsManagerinstance.ObjectActive == null ||
                 !InteractableObjectsManager.equalsObjectActive(interactableObject)) && !interactableObject.getState().Equals(InteractableObject.InteractableObjectState.DISABLE))
             {
+                if (InteractableObjectsManager.interactableObjectsManagerinstance.ObjectActive != null)
+                {
+                    InteractableObjectsManager.interactableObjectsManagerinstance.ObjectActive.enabled = false;
+                }
                 interactableObject.enabled = true;
                 InteractableObjectsManager.interactableObjectsManagerinstance.ObjectActive = interactableObject;
 				if (interactableObject.masterObject == InteractableObject.ObjectMaster.SAME_OBJECT) 
