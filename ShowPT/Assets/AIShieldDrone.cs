@@ -29,7 +29,7 @@ public class AIShieldDrone : MonoBehaviour
         shieldTransform = transform.GetChild(0);
         ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
         GameObject shieldGameObje = gameObject.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(3).gameObject;
-        idAudioShield = ctrlAudio.playOneSound("Enemies", audioShield, transform.position, 0.6f, 1f, 90, true, shieldGameObje, 30, 0f,
+        idAudioShield = ctrlAudio.playOneSound("Enemies", audioShield, transform.position, 0.2f, 1f, 90, true, shieldGameObje, 30, 0f,
             AudioRolloffMode.Linear);
     }
 

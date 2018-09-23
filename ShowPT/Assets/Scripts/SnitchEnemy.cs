@@ -19,7 +19,7 @@ public class SnitchEnemy : Enemy {
         
         player = GameObject.FindGameObjectWithTag("Player").transform;
         ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
-        idSnichSound = ctrAudio.playOneSound("Enemies", snichSound, transform.position, 0.6f, 1f, 90, true, gameObject, 30, 0f,
+        idSnichSound = ctrAudio.playOneSound("Enemies", snichSound, transform.position, 0.3f, 1f, 90, true, gameObject, 30, 0f,
             AudioRolloffMode.Linear);
 
     }

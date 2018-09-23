@@ -80,7 +80,7 @@ public class AIMisileSnitch : MonoBehaviour
     }
     public void blast()
     {
-        ctrlAudio.playOneSound("Enemies", audioBlast, transform.position, 1f, 1f, 70, false, null, 500f, 0f, AudioRolloffMode.Linear);
+        ctrlAudio.playOneSound("Enemies", audioBlast, transform.position, 0.5f, 1f, 70, false, null, 500f, 0f, AudioRolloffMode.Linear);
         switch (animationBlast)
         {
             case 0:
@@ -150,7 +150,7 @@ public class AIMisileSnitch : MonoBehaviour
     }
     public void startBlast()
     {
-       idAudioMisile = ctrlAudio.playOneSound("Enemies", audioMisile, transform.position, 1f, 1f, 70, true, gameObject, 500f, 0f, AudioRolloffMode.Linear);
+       idAudioMisile = ctrlAudio.playOneSound("Enemies", audioMisile, transform.position, 0.5f, 1f, 70, true, gameObject, 500f, 0f, AudioRolloffMode.Linear);
        fire.Play();
        trail.Play();
     }
