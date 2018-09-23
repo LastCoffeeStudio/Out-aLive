@@ -105,6 +105,7 @@ public class PlayerMovment : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         playerCollider = GetComponent<CapsuleCollider>();
+
         originalCapsuleCenter = playerCollider.center;
         originalCapsuleHeight = playerCollider.height;
         Cursor.lockState = CursorLockMode.Locked;
@@ -419,9 +420,8 @@ public class PlayerMovment : MonoBehaviour
         {
             if (crouchTime < timeToCrouch)
             {
+                if (actualCrouchAmount != crouchAmount) actualCrouchAmount = Mathf.Lerp(0f, crouchAmount, crouchTime / timeToCrouch);
                 crouchTime += Time.deltaTime;
-
-                actualCrouchAmount = Mathf.Lerp(0f, crouchAmount, crouchTime / timeToCrouch);
             }
             playerCollider.center = new Vector3(originalCapsuleCenter.x, originalCapsuleCenter.y - (originalCapsuleHeight * crouchAmount) / 2f, originalCapsuleCenter.z);
             playerCollider.height = originalCapsuleHeight - originalCapsuleHeight * crouchAmount;
@@ -430,9 +430,8 @@ public class PlayerMovment : MonoBehaviour
         {
             if (crouchTime < timeToCrouch)
             {
+                if(actualCrouchAmount != 0) actualCrouchAmount = Mathf.Lerp(crouchAmount, 0f, crouchTime / timeToCrouch);
                 crouchTime += Time.deltaTime;
-
-                actualCrouchAmount = Mathf.Lerp(crouchAmount, 0f, crouchTime / timeToCrouch);
             }
             playerCollider.center = originalCapsuleCenter;
             playerCollider.height = originalCapsuleHeight;

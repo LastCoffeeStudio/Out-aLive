@@ -35,7 +35,6 @@ public class CtrlGameState : MonoBehaviour
         gameState = gameStates.ACTIVE;
         numSnitchKilled = 0;
         numSnithcObjectives = 1;
-        Time.timeScale = 1;
         loseTitle.SetActive(false);
         winTitle.SetActive(false);
         continueButton.SetActive(false);
