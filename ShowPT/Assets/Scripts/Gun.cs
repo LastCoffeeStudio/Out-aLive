@@ -45,7 +45,7 @@ public class Gun : Weapon
         {
             projectile = Instantiate(projectileToShoot, shootPoint.position, Quaternion.LookRotation(Vector3.Normalize((ray.origin + ray.direction * weaponRange) - shootPoint.position)));
         }
-        ctrlAudio.playOneSound("Weaponds", shotAudio, transform.position, 0.5f, 0.0f, 128);
+       // ctrlAudio.playOneSound("Weaponds", shotAudio, transform.position, 0.5f, 0.0f, 128);
         pools.activeProjectiles.Add(projectile);
     }
 
@@ -67,6 +67,17 @@ public class Gun : Weapon
             ctrlAudio.playOneSound("Weaponds", reloadAudio, transform.position, 0.9f, 0.0f, 128);
         }
     }
+    protected override void shoot()
+    {
+        float pitch = 1 + ((1/maxCharge)*actualCharge);
+        ctrlAudio.playOneSound("Weaponds", shotAudio, transform.position, 0.8f, 0f, 150, false, null, 500F, 0F,
+            AudioRolloffMode.Logarithmic, pitch);
+        if (shootEffect != null)
+        {
+            shootEffect.Play();
+        }
+    }
+
 
     public override void decreaseAmmo()
     {

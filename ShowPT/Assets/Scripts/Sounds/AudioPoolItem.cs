@@ -12,4 +12,5 @@ public class AudioPoolItem
     public bool loop = false;
     public IEnumerator coroutine = null;
     public ulong ID = 0;
+    public float pitch = 1f;
 }

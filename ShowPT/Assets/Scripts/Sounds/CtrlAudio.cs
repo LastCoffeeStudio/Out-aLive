@@ -144,7 +144,7 @@ public class CtrlAudio : MonoBehaviour
         audioMixer.SetFloat(track, volume);
     }
     
-    protected ulong configPoolObject(int poolIndex, string track, AudioClip clip, Vector3 position, float volume, float spatialBlend, float importance, float maxDistance = 500.0f, float spread = 0f, AudioRolloffMode auioRollMode = AudioRolloffMode.Logarithmic)
+    protected ulong configPoolObject(int poolIndex, string track, AudioClip clip, Vector3 position, float volume, float spatialBlend, float importance, float maxDistance = 500.0f, float spread = 0f, AudioRolloffMode auioRollMode = AudioRolloffMode.Logarithmic, float pitch = 1f)
     {
         if (poolIndex >= 0 && poolIndex < pool.Count)
         {
@@ -158,6 +158,7 @@ public class CtrlAudio : MonoBehaviour
             source.maxDistance = maxDistance;
             source.spread = spread;
             source.rolloffMode = auioRollMode;
+            source.pitch = pitch;
 
             source.outputAudioMixerGroup = tracks[track].group;
             
@@ -215,7 +216,7 @@ public class CtrlAudio : MonoBehaviour
         return null;
     }
 
-    public ulong playOneSound(string track, AudioClip clip, Vector3 position, float volume, float spatialBlend, int priority = 128,  bool loop = false, GameObject parentObject = null, float maxDistance = 500.0f, float spread = 0f, AudioRolloffMode audioRolloff = AudioRolloffMode.Logarithmic)
+    public ulong playOneSound(string track, AudioClip clip, Vector3 position, float volume, float spatialBlend, int priority = 128,  bool loop = false, GameObject parentObject = null, float maxDistance = 500.0f, float spread = 0f, AudioRolloffMode audioRolloff = AudioRolloffMode.Logarithmic, float pitch = 1f)
     {
         if (tracks.ContainsKey(track) && clip != null && volume.Equals(0.0f) == false)
         {
@@ -235,7 +236,7 @@ public class CtrlAudio : MonoBehaviour
                     {
                         pool[i].gameObj.transform.parent = parentObject.transform;
                     }
-                    return configPoolObject(i, track, clip, position, volume, spatialBlend, importance, maxDistance, spread, audioRolloff);
+                    return configPoolObject(i, track, clip, position, volume, spatialBlend, importance, maxDistance, spread, audioRolloff, pitch);
                 }
                 else if (poolItem.importance > leastImportanceValue)
                 {
@@ -246,7 +247,7 @@ public class CtrlAudio : MonoBehaviour
 
             if (leastImportanceValue > importance)
             {
-                return configPoolObject(leastImportantIndex, track, clip, position, volume, spatialBlend, importance, maxDistance, spread, audioRolloff);
+                return configPoolObject(leastImportantIndex, track, clip, position, volume, spatialBlend, importance, maxDistance, spread, audioRolloff, pitch);
             }
 
             //In case we want all sounds here (TO DO) create new AudioPoolItem and call configPoolObject
