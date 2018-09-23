@@ -171,7 +171,7 @@ public class CtrlAudio : MonoBehaviour
             source.Play();
             if (poolItem.loop == false)
             {
-                poolItem.coroutine = stopSoundDelayed(nextId, source.clip.length);
+                poolItem.coroutine = stopSoundDelayed(nextId, source.clip.length/pitch);
 
                 StartCoroutine(poolItem.coroutine);
             }
