@@ -33,6 +33,7 @@ public class PlayerHealth : MonoBehaviour {
     [Header("Sounds")]
     private CtrlAudio ctrlAudio;
     public AudioCollection damageCollection;
+    public AudioCollection tvCollection;
     private ulong idClip = 0;
     // Use this for initialization
     void Start ()
@@ -52,7 +53,7 @@ public class PlayerHealth : MonoBehaviour {
 			if (gameOverTimer >= secondsBeforeGameOver) 
 			{
 				ctrlGameState.setGameState (CtrlGameState.gameStates.DEATH);
-			}
+            }
 		} 
 		else 
 		{
@@ -117,8 +118,9 @@ public class PlayerHealth : MonoBehaviour {
 			} 
 			else if (health <= 0) 
 			{
-				//Player DIES; Start dying sequence
-				PlayerMovment.overrideControls = true;
+                ctrlAudio.playOneSound(tvCollection.audioGroup, tvCollection[0], Vector3.zero, 0.05f, 0f, tvCollection.priority);
+                //Player DIES; Start dying sequence
+                PlayerMovment.overrideControls = true;
 				//deathAnimation.SetTrigger ("playerDied");
 				isDead = true;
 			}
