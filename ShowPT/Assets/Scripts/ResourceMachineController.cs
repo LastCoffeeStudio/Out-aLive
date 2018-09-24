@@ -41,6 +41,7 @@ public class ResourceMachineController : MonoBehaviour {
         public bool locked;
         public string description;
         public int ammount;
+        public int limit;
     }
 
     [Header("Containers")]
@@ -171,9 +172,8 @@ public class ResourceMachineController : MonoBehaviour {
                 break;
         }
 
-        if (type != Inventory.WEAPON_TYPE.NO_WEAPON && !playerInventory.hasWeapon(type) && resources[indexActualResource].cost <= scoreController.getTotalScore() && limitShopController.canBuy(resources[indexActualResource].type))
+        if (type != Inventory.WEAPON_TYPE.NO_WEAPON && !playerInventory.hasWeapon(type) && resources[indexActualResource].cost <= scoreController.getTotalScore())
         {
-            limitShopController.decreaseReminder(resources[indexActualResource].type);
             playerInventory.addWeapon(type);
         }
         else
@@ -198,9 +198,9 @@ public class ResourceMachineController : MonoBehaviour {
                 break;
         }
 
-        if (type != Inventory.AMMO_TYPE.NO_AMMO && limitShopController.canBuy(resources[indexActualResource].type))
+        if (type != Inventory.AMMO_TYPE.NO_AMMO && resources[indexActualResource].limit > 0)
         {
-            limitShopController.decreaseReminder(resources[indexActualResource].type);
+            --resources[indexActualResource].limit;
             playerInventory.increaseAmmo(type, ammoIncrease);
         }
         else
@@ -211,9 +211,9 @@ public class ResourceMachineController : MonoBehaviour {
 
     private void buyHealth()
     {
-        if (limitShopController.canBuy(resources[indexActualResource].type))
+        if (resources[indexActualResource].limit > 0)
         {
-            limitShopController.decreaseReminder(resources[indexActualResource].type);
+            --resources[indexActualResource].limit;
             playerHealth.buyHealth();
         }
         else
