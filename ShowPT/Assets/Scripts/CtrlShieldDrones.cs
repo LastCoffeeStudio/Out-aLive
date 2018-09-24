@@ -22,7 +22,6 @@ public class CtrlShieldDrones : MonoBehaviour
     private List<AIShieldDrone> shieldDrones;
     private GameObject player;
     private GameObject Snitch;
-	private Material SnitchMaterial;
     private GameObject sphere;
     private int dronesAlive;
     private List<GameObject> shieldsObjects;
@@ -31,7 +30,6 @@ public class CtrlShieldDrones : MonoBehaviour
     public AnimationCurve curve;
     public float timeDown = 5f;
     public float angleSpeed = 50f;
-	public float speedFade =1f;
     [NonSerialized]
     public bool rotateShieldsAnimation = true;
 
@@ -41,7 +39,7 @@ public class CtrlShieldDrones : MonoBehaviour
         shieldDrones = new List<AIShieldDrone>();
         shieldsObjects = new List<GameObject>();
         player = GameObject.FindGameObjectWithTag("Player");
-		
+
         for (int i = 0; i < transform.childCount; ++i)
         {
             if (transform.GetChild(i).tag == "Drone")
@@ -55,7 +53,6 @@ public class CtrlShieldDrones : MonoBehaviour
             else if (transform.GetChild(i).name == "Snitch")
             {
                 Snitch = transform.GetChild(i).gameObject;
-                SnitchMaterial = Snitch.GetComponent<Renderer>().material;
             }
             else if (transform.GetChild(i).name == "Sphere")
             {
@@ -66,16 +63,14 @@ public class CtrlShieldDrones : MonoBehaviour
         {
             shieldsObjects[i].transform.GetChild(0).Translate(0f, 0f, 10f);
         }
-        changeAlphaDronesSnitch(0f);
         Snitch.transform.parent = null;
         transform.Translate(0f, 30f, 0f);
-		sphere.SetActive(false);
+        sphere.SetActive(false);
     }
 
     public void startEventDrones()
     {
         StartCoroutine(downShieldDrones());
-		StartCoroutine(fadeDrones());
         StartCoroutine(rotateShieldDrones());
     }
 
@@ -110,66 +105,11 @@ public class CtrlShieldDrones : MonoBehaviour
         }
     }
 
-    public void changeAlphaDronesSnitch(float alpha)
-    {
-        for (int i = 0; i < shieldsObjects.Count; ++i)
-        {
-            
-            for (int j = 2; j < shieldsObjects[i].transform.GetChild(0).GetChild(0).GetChild(0).childCount; ++j)
-            {
-                Renderer rend = transform.GetChild(i).GetChild(0).GetChild(0).GetChild(0).GetChild(j)
-                    .GetComponent<Renderer>();
-                if (rend != null)
-                {
-                    Color color = rend.material.GetColor("_Color");
-                    color.a = 0f;
-                    rend.material.SetColor("_Color", color);
-                }
-            }
-        }
 
-        Color colorSnitch = SnitchMaterial.GetColor("_Color");
-        colorSnitch.a = 0f;
-        SnitchMaterial.SetColor("_Color", colorSnitch);
-    }
-
-    public void changeAlphaDronesSnitchDefault()
-    {
-        for (int i = 0; i < shieldsObjects.Count; ++i)
-        {
-
-            for (int j = 2; j < shieldsObjects[i].transform.GetChild(0).GetChild(0).GetChild(0).childCount; ++j)
-            {
-                Renderer rend = transform.GetChild(i).GetChild(0).GetChild(0).GetChild(0).GetChild(j)
-                    .GetComponent<Renderer>();
-                if (rend != null)
-                {
-                    Color color = rend.material.GetColor("_Color");
-                    color.a = 0f;
-                    rend.material.SetColor("_Color", color);
-                }
-            }
-        }
-
-        Color colorSnitch = SnitchMaterial.GetColor("_Color");
-        colorSnitch.a = 0f;
-        SnitchMaterial.SetColor("_Color", colorSnitch);
-    }
-
-    IEnumerator fadeDrones()
-	{
-		float alpha = 0f;
-		while (alpha < 1f)
-		{
-		   changeAlphaDronesSnitch(alpha);
-            yield return null;
-		}
-	}
-    
     IEnumerator downShieldDrones()
     {
         float time = 0f;
-        Vector3 startDownPosition= transform.position;
+        Vector3 startDownPosition = transform.position;
         Vector3 endDownPosition = Snitch.transform.position;
 
         //Drones Join in sphere
@@ -195,7 +135,7 @@ public class CtrlShieldDrones : MonoBehaviour
 
     IEnumerator rotateShieldDrones()
     {
-        
+
         while (rotateShieldsAnimation)
         {
             for (int i = 0; i < shieldsObjects.Count; i++)
