@@ -32,6 +32,8 @@ public class TweetSystem : MonoBehaviour
 	[SerializeField]
 	AudioClip tweetAudio;
 
+	bool toldToDeactivate = false;
+
 	enum state
 	{
 		TWEET_HIDDEN,
@@ -88,7 +90,11 @@ public class TweetSystem : MonoBehaviour
 			tweet.transform.position = Vector2.Lerp (tweet.transform.position, outsidePoint.transform.position, Time.deltaTime);
 			if (Vector2.Distance (tweet.transform.position, outsidePoint.transform.position) < 1f) 
 			{
-				if (requestedTweetsQueue.Count > 0) 
+				if (toldToDeactivate == true) 
+				{
+					gameObject.SetActive (false);
+				} 
+				else if (requestedTweetsQueue.Count > 0) 
 				{
 					generateTweet (requestedTweetsQueue [0]);
 					requestedTweetsQueue.RemoveAt (0);
@@ -131,5 +137,11 @@ public class TweetSystem : MonoBehaviour
 		{
 			requestedTweetsQueue.Add (requestedTweet);
 		}
+	}
+
+	public void deactivateSystem()
+	{
+		tweetState = state.TWEET_RUNNING_OUT;
+		toldToDeactivate = true;
 	}
 }

@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour {
     public int health;
     public  GameObject ctrlGame;
     private CtrlGameState ctrlGameState;
+	TweetSystem tweetSystem;
 
     public HudController hudController;
 
@@ -35,6 +36,7 @@ public class PlayerHealth : MonoBehaviour {
     public AudioCollection damageCollection;
     public AudioCollection tvCollection;
     private ulong idClip = 0;
+
     // Use this for initialization
     void Start ()
     {
@@ -42,6 +44,7 @@ public class PlayerHealth : MonoBehaviour {
         ctrlGameState = ctrlGame.GetComponent<CtrlGameState>();
 		deathAnimation = playerCamera.GetComponent<Animator> ();
         ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
+		tweetSystem = FindObjectOfType<TweetSystem> ();
     }
 
 	void Update()
@@ -120,6 +123,7 @@ public class PlayerHealth : MonoBehaviour {
 			{
                 ctrlAudio.playOneSound(tvCollection.audioGroup, tvCollection[0], Vector3.zero, 0.05f, 0f, tvCollection.priority);
                 //Player DIES; Start dying sequence
+				tweetSystem.deactivateSystem();
                 PlayerMovment.overrideControls = true;
 				//deathAnimation.SetTrigger ("playerDied");
 				isDead = true;
