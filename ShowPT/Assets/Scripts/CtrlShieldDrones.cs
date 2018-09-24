@@ -22,14 +22,17 @@ public class CtrlShieldDrones : MonoBehaviour
     private List<AIShieldDrone> shieldDrones;
     private GameObject player;
     private GameObject Snitch;
+	private Material SnitchMaterial;
     private GameObject sphere;
     private int dronesAlive;
     private List<GameObject> shieldsObjects;
+	private List<Material> shieldsMaterial;
 
     [Header("Animation Event")]
     public AnimationCurve curve;
     public float timeDown = 5f;
     public float angleSpeed = 50f;
+	public float speedFade =1f;
     [NonSerialized]
     public bool rotateShieldsAnimation = true;
 
@@ -39,7 +42,10 @@ public class CtrlShieldDrones : MonoBehaviour
         shieldDrones = new List<AIShieldDrone>();
         shieldsObjects = new List<GameObject>();
         player = GameObject.FindGameObjectWithTag("Player");
-
+		SnitchMaterial = Snitch.GetComponent<Renderer>().material;
+		Color colorSnitch = SnitchMaterial.color;
+		colorSnitch.a = 0f;
+		SnitchMaterial.SetColor("_Color", colorSnitch);
         for (int i = 0; i < transform.childCount; ++i)
         {
             if (transform.GetChild(i).tag == "Drone")
@@ -48,6 +54,10 @@ public class CtrlShieldDrones : MonoBehaviour
                 transform.GetChild(i).GetComponent<AIShieldDrone>().ctrlShieldDrones = this;
                 shieldDrones.Add(transform.GetChild(i).GetComponent<AIShieldDrone>());
                 shieldsObjects.Add(transform.GetChild(i).gameObject);
+				shieldsMaterial.Add(transform.GetChild(i).GetComponent<Renderer>().material);
+				Color color = shieldsMaterial [i].color;
+				color.a = 0f;
+				shieldsMaterial[i].SetColor("_Color", color);
                 ++dronesAlive;
             }
             else if (transform.GetChild(i).name == "Snitch")
@@ -65,12 +75,13 @@ public class CtrlShieldDrones : MonoBehaviour
         }
         Snitch.transform.parent = null;
         transform.Translate(0f, 30f, 0f);
-        sphere.SetActive(false);
+		sphere.SetActive(false);
     }
 
     public void startEventDrones()
     {
         StartCoroutine(downShieldDrones());
+		StartCoroutine(fadeDrones());
         StartCoroutine(rotateShieldDrones());
     }
 
@@ -105,6 +116,25 @@ public class CtrlShieldDrones : MonoBehaviour
         }
     }
 
+	IEnumerator fadeDrones()
+	{
+		float alpha = 0f;
+		while (alpha < 1f)
+		{
+			for (int i = 0; i < shieldsObjects.Count; i++)
+			{
+				alpha += speedFade * Time.deltaTime;
+				Color color = shieldsMaterial [i].color;
+				color.a = alpha;
+				shieldsMaterial[i].SetColor("_Color", color);
+
+			}
+			Color colorSnitch = SnitchMaterial.color;
+			colorSnitch.a = alpha;
+			SnitchMaterial.SetColor("_Color", colorSnitch);
+			yield return null;
+		}
+	}
     
     IEnumerator downShieldDrones()
     {
