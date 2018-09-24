@@ -124,8 +124,8 @@ public class Turret : Enemy
 
 					switch (hit.transform.gameObject.tag) {
 					case "Player":
-						PlayerHealth player = hit.transform.gameObject.GetComponent<PlayerHealth> ();
-						player.ChangeHealth (-shootDamage);
+						PlayerHealth playerTemp = hit.transform.gameObject.GetComponent<PlayerHealth> ();
+						playerTemp.ChangeHealth (-shootDamage);
 						break;
 					}
 				}
