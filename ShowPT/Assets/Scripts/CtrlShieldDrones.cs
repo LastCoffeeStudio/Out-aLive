@@ -26,7 +26,6 @@ public class CtrlShieldDrones : MonoBehaviour
     private GameObject sphere;
     private int dronesAlive;
     private List<GameObject> shieldsObjects;
-	private List<Material> shieldsMaterial;
 
     [Header("Animation Event")]
     public AnimationCurve curve;
@@ -42,10 +41,7 @@ public class CtrlShieldDrones : MonoBehaviour
         shieldDrones = new List<AIShieldDrone>();
         shieldsObjects = new List<GameObject>();
         player = GameObject.FindGameObjectWithTag("Player");
-		SnitchMaterial = Snitch.GetComponent<Renderer>().material;
-		Color colorSnitch = SnitchMaterial.color;
-		colorSnitch.a = 0f;
-		SnitchMaterial.SetColor("_Color", colorSnitch);
+		
         for (int i = 0; i < transform.childCount; ++i)
         {
             if (transform.GetChild(i).tag == "Drone")
@@ -54,15 +50,12 @@ public class CtrlShieldDrones : MonoBehaviour
                 transform.GetChild(i).GetComponent<AIShieldDrone>().ctrlShieldDrones = this;
                 shieldDrones.Add(transform.GetChild(i).GetComponent<AIShieldDrone>());
                 shieldsObjects.Add(transform.GetChild(i).gameObject);
-				shieldsMaterial.Add(transform.GetChild(i).GetComponent<Renderer>().material);
-				Color color = shieldsMaterial [i].color;
-				color.a = 0f;
-				shieldsMaterial[i].SetColor("_Color", color);
                 ++dronesAlive;
             }
             else if (transform.GetChild(i).name == "Snitch")
             {
                 Snitch = transform.GetChild(i).gameObject;
+                SnitchMaterial = Snitch.GetComponent<Renderer>().material;
             }
             else if (transform.GetChild(i).name == "Sphere")
             {
@@ -73,6 +66,7 @@ public class CtrlShieldDrones : MonoBehaviour
         {
             shieldsObjects[i].transform.GetChild(0).Translate(0f, 0f, 10f);
         }
+        changeAlphaDronesSnitch(0f);
         Snitch.transform.parent = null;
         transform.Translate(0f, 30f, 0f);
 		sphere.SetActive(false);
@@ -116,23 +110,59 @@ public class CtrlShieldDrones : MonoBehaviour
         }
     }
 
-	IEnumerator fadeDrones()
+    public void changeAlphaDronesSnitch(float alpha)
+    {
+        for (int i = 0; i < shieldsObjects.Count; ++i)
+        {
+            
+            for (int j = 2; j < shieldsObjects[i].transform.GetChild(0).GetChild(0).GetChild(0).childCount; ++j)
+            {
+                Renderer rend = transform.GetChild(i).GetChild(0).GetChild(0).GetChild(0).GetChild(j)
+                    .GetComponent<Renderer>();
+                if (rend != null)
+                {
+                    Color color = rend.material.GetColor("_Color");
+                    color.a = 0f;
+                    rend.material.SetColor("_Color", color);
+                }
+            }
+        }
+
+        Color colorSnitch = SnitchMaterial.GetColor("_Color");
+        colorSnitch.a = 0f;
+        SnitchMaterial.SetColor("_Color", colorSnitch);
+    }
+
+    public void changeAlphaDronesSnitchDefault()
+    {
+        for (int i = 0; i < shieldsObjects.Count; ++i)
+        {
+
+            for (int j = 2; j < shieldsObjects[i].transform.GetChild(0).GetChild(0).GetChild(0).childCount; ++j)
+            {
+                Renderer rend = transform.GetChild(i).GetChild(0).GetChild(0).GetChild(0).GetChild(j)
+                    .GetComponent<Renderer>();
+                if (rend != null)
+                {
+                    Color color = rend.material.GetColor("_Color");
+                    color.a = 0f;
+                    rend.material.SetColor("_Color", color);
+                }
+            }
+        }
+
+        Color colorSnitch = SnitchMaterial.GetColor("_Color");
+        colorSnitch.a = 0f;
+        SnitchMaterial.SetColor("_Color", colorSnitch);
+    }
+
+    IEnumerator fadeDrones()
 	{
 		float alpha = 0f;
 		while (alpha < 1f)
 		{
-			for (int i = 0; i < shieldsObjects.Count; i++)
-			{
-				alpha += speedFade * Time.deltaTime;
-				Color color = shieldsMaterial [i].color;
-				color.a = alpha;
-				shieldsMaterial[i].SetColor("_Color", color);
-
-			}
-			Color colorSnitch = SnitchMaterial.color;
-			colorSnitch.a = alpha;
-			SnitchMaterial.SetColor("_Color", colorSnitch);
-			yield return null;
+		   changeAlphaDronesSnitch(alpha);
+            yield return null;
 		}
 	}
     
