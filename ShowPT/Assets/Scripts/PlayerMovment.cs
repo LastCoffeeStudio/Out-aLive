@@ -23,6 +23,7 @@ public class PlayerMovment : MonoBehaviour
     [HideInInspector]
     public float localSpeed = 0f;
     public float lookSensivity;
+    public float cameraSmooth;
     public bool swagLook = false;
     public float jumpForce;
     public float groundDistance = 1.05f;
@@ -403,16 +404,20 @@ public class PlayerMovment : MonoBehaviour
 
         if (rotation != Vector3.zero)
         {
-            rb.MoveRotation(rb.rotation * Quaternion.Euler(rotation));
+            rb.rotation = Quaternion.Slerp(rb.rotation, rb.rotation * Quaternion.Euler(rotation), cameraSmooth * Time.deltaTime);
+            //rb.MoveRotation(rb.rotation * Quaternion.Euler(rotation));
         }
 
         rotation = new Vector3(-yRot, 0f, 0f) * lookSensivity;
 
         if (rotation != Vector3.zero)
         {
-            Quaternion currentRotation = cam.transform.localRotation;
+            cam.transform.rotation = Quaternion.Slerp(cam.transform.rotation, cam.transform.rotation * Quaternion.Euler(rotation), cameraSmooth * Time.deltaTime);
+            
+
+            /*Quaternion currentRotation = cam.transform.localRotation;
             currentRotation.x = Mathf.Clamp(currentRotation.x + Quaternion.Euler(rotation).x, -0.7f, 0.7f);
-            cam.transform.localRotation = currentRotation;
+            cam.transform.localRotation = currentRotation;*/
         }
 
         //Update Camera
