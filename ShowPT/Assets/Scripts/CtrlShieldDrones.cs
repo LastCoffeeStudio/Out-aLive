@@ -48,6 +48,7 @@ public class CtrlShieldDrones : MonoBehaviour
                 transform.GetChild(i).GetComponent<AIShieldDrone>().ctrlShieldDrones = this;
                 shieldDrones.Add(transform.GetChild(i).GetComponent<AIShieldDrone>());
                 shieldsObjects.Add(transform.GetChild(i).gameObject);
+                transform.GetChild(i).gameObject.SetActive(false);
                 ++dronesAlive;
             }
             else if (transform.GetChild(i).name == "Snitch")
@@ -70,6 +71,10 @@ public class CtrlShieldDrones : MonoBehaviour
 
     public void startEventDrones()
     {
+        for (int i = 0; i < shieldsObjects.Count; ++i)
+        {
+            shieldsObjects[i].SetActive(true);
+        }
         StartCoroutine(downShieldDrones());
         StartCoroutine(rotateShieldDrones());
     }

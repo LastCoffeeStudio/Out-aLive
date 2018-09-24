@@ -7,12 +7,11 @@ public class DronesEvent : GenericEvent
     public List<string> tvs;
     private TVShowmanManager tVShowmanManager;
     private AudiosShowmanType audiosShowmanType;
-    private CtrlShieldDrones ctrlShieldDrones;
+    public CtrlShieldDrones ctrlShieldDrones;
 
     private void Start()
     {
         tVShowmanManager = GameObject.FindGameObjectWithTag("TVShowmanManager").GetComponent<TVShowmanManager>();
-        ctrlShieldDrones = GameObject.FindGameObjectWithTag("Drone").transform.parent.GetComponent<CtrlShieldDrones>();
         audiosShowmanType = AudiosShowmanType.MIDTIME;
     }
 
