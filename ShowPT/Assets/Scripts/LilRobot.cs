@@ -60,6 +60,8 @@ public class LilRobot : Enemy
     private ulong idJumpLil;
     private ulong idElectricLil;
     private ulong idFinishJumpLil;
+    private bool playedFinishJump = false;
+    private bool falling = false;
 
     // Use this for initialization
     void Start()
@@ -140,11 +142,26 @@ public class LilRobot : Enemy
                 if (recoverTime > 0f)
                 {
                     recoverTime -= Time.deltaTime;
+                    RaycastHit hit;
+                    // Does the ray intersect any objects excluding the player layer
+                    if (playedFinishJump == false && Physics.Raycast(transform.position, Vector3.down , out hit, Mathf.Infinity))
+                    {
+                        if (falling == false && hit.transform.gameObject.layer == LayerMask.NameToLayer("Wall") && hit.distance > 1f)
+                        {
+                            falling = true;
+                        }
+                        else if(falling == true && hit.transform.gameObject.layer == LayerMask.NameToLayer("Wall") && hit.distance < 0.9f)
+                        {
+                            playedFinishJump = true;
+                            idFinishJumpLil = ctrAudio.playOneSound("Enemies", finishJumpLil, transform.position, 0.8f, 1.0f, 60, false, gameObject, 15f, 0f, AudioRolloffMode.Linear);
+                        }
+                    }
                 }
                 else
                 {
+                    falling = false;
+                    playedFinishJump = false;
                     ctrAudio.stopSound(idJumpLil);
-                    idFinishJumpLil = ctrAudio.playOneSound("Enemies", finishJumpLil, transform.position, 0.8f, 1.0f, 60, false, gameObject, 15f, 0f, AudioRolloffMode.Linear);
                     recoverTime = recoverResetTime;
                     state = LilRobotState.IDLE;
                     playerDamaged = false;

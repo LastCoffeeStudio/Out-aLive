@@ -138,6 +138,8 @@ public class BossController : MonoBehaviour
                         chaseSpeed = 0f;
                         chasePlayer = false;
                         bossAnimator.SetBool("PlayerCaught", true);
+
+                        //SOB stop search player y
                     }
                 }
                 if (bossAnimator.GetBool("Roll") && !bossAnimator.GetBool("Rolling"))
@@ -163,6 +165,7 @@ public class BossController : MonoBehaviour
                         {
                             if (!arms[i].dead && !arms[i].stopped && arms[i].delayLaunchTime <= timeElapsed)
                             {
+                                //SOB start punch to hit ADD CONDITION ONLY ONE
                                 float displacement = arms[i].speed * Time.deltaTime;
                                 arms[i].arm.transform.Translate(arms[i].arm.transform.forward * displacement, Space.World);
 
@@ -239,9 +242,11 @@ public class BossController : MonoBehaviour
         arms[id].stopped = true;
         arms[id].endingPosition = arms[id].arm.transform.position;
         ++armsStopped;
+        //SOB Punch hit wall
         if (armsStopped == (arms.Length - armsDead))
         {
             timeElapsed = 0f;
+            //SOB punch come back
         }
     }
 
@@ -268,6 +273,7 @@ public class BossController : MonoBehaviour
         playerPosition = player.transform.position;
         chasePlayer = true;
         bossAnimator.SetBool("PlayerCaught", false);
+        //SOB moverse rotandose en Y al jugador
     }
 
     public void calculateRollData()
@@ -306,6 +312,7 @@ public class BossController : MonoBehaviour
         {
             if (!arms[i].dead)
             {
+                //SOB open each door
                 arms[i].arm.SetActive(boolParam != 0);
                 arms[i].initialPosition = arms[i].arm.transform.position;
                 arms[i].stopped = false;
@@ -334,10 +341,12 @@ public class BossController : MonoBehaviour
         if (boolParam != 0)
         {
             ++totalRepeat;
+            //SOB activar plataforma
         }
         else
         {
             bossAnimator.SetBool("Roll", true);
+            //SOB quitar plataforma
         }
     }
 
@@ -350,6 +359,7 @@ public class BossController : MonoBehaviour
 
         if (boolParam != 0)
         {
+            //SOB Show roulete
             rouletteRoll = Random.Range(1,5);
         }
         else
@@ -477,7 +487,7 @@ public class BossController : MonoBehaviour
 
     private IEnumerator rollBoss()
     {
-
+        //SOB Up for rotate
         float time = 0;
         float diagonal = sideLength / Mathf.Sqrt(2f);
         float angleIncrement, displacementX, displacementY, displacementZ;
@@ -504,21 +514,9 @@ public class BossController : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
+        //SOB hit floor
         setRoll();
-        /*while (time * 60 < rollDisplacementCurve.length)
-        {
-            float prevTime = time;
-            time += Time.deltaTime;
-            if (time * 60 > rollDisplacementCurve.length)
-            {
-                time = rollDisplacementCurve.length / 60f;
-            }
-            for (int i = ((int)(prevTime * 60)); i < (int)(time * 60); ++i)
-            {
-                transform.Translate(transform.forward * rollDisplacementCurve.keys[i].value, Space.World);
-            }
-            yield return null;
-        }*/
+
     }
 
     private EnemySpawn findEnemySpawn(Enemy.EnemyType type)
@@ -576,7 +574,31 @@ public class BossController : MonoBehaviour
             }
         }
     }
-    
+
+    public void startSpinning()
+    {
+        //SOB
+    }
+
+    public void takeOutPlataform()
+    {
+        //SOB
+    }
+
+    public void closingGate()
+    {
+        //SOB
+    }
+
+    public void rouletteEndRoll ()
+    {
+        //SOB start hidde roulete
+    }
+
+    public void startRouletteSpin()
+    {
+        //SOB start hidde roulete
+    }
     /**Initialization**/
 
     private void setArms()
@@ -633,7 +655,6 @@ public class BossController : MonoBehaviour
         armsActive = false;
         chasePlayer = false;
     }
-
     
     /**Utils**/
 
