@@ -15,6 +15,7 @@ public class IntroCinematicController : MonoBehaviour {
         videoPlayer = GetComponent<VideoPlayer>();
         videoPlayer.loopPointReached += playGame;
         ctrlMain = GameObject.Find("CtrlMain").GetComponent<Main>();
+		Cursor.visible = false;
     }
 
     private void Update()
