@@ -89,6 +89,7 @@ public class BossController : MonoBehaviour
         public Vector3 initialPosition;
         [HideInInspector]
         public Vector3 endingPosition;
+		public GameObject destroyEffect;
     }
 
     [System.Serializable]
@@ -258,7 +259,13 @@ public class BossController : MonoBehaviour
         {
             arms[id].dead = true;
             ++armsDead;
+
+			arms [id].destroyEffect.transform.rotation = arms [id].arm.transform.rotation;
+			arms [id].destroyEffect.transform.position = arms [id].arm.transform.position;
+			arms [id].destroyEffect.SetActive(true);
+
             arms[id].arm.SetActive(false);
+
             //Activate death effect (activate another "Arm" broken, stays on the ground)
         }
 
