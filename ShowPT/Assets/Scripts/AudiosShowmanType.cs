@@ -9,5 +9,7 @@ public enum AudiosShowmanType {
     MIDTIME = 3,
     DRONES = 4,
     BRIDGE = 5,
-    PRESENTATIONBOSS = 6
+    PRESENTATIONBOSS = 6,
+    BOSSFIGHT = 7,
+    PLAYERDEAd = 8
 }
