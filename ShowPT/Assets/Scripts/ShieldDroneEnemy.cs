@@ -13,6 +13,9 @@ public class ShieldDroneEnemy : Enemy {
     private bool exploted = false;
     private GameObject effectHit;
     private GameObject propShield;
+    private Renderer rendShield;
+    private float incrementColorGreen;
+
     // Use this for initialization
     private void Start ()
     {
@@ -36,6 +39,12 @@ public class ShieldDroneEnemy : Enemy {
                 effectHit.SetActive(false);
             }
         }
+
+        //SetUp Color
+        rendShield = propShield.GetComponent<Renderer>();
+        //Total Change Green is 50
+        float totalChange = 50f / 255f;
+        incrementColorGreen = totalChange / (enemyHealth - 1f);
     }
 
     // Update is called once per frame
@@ -52,6 +61,9 @@ public class ShieldDroneEnemy : Enemy {
     {
         ctrAudio.playOneSound("Enemies", hitAudio, transform.position, 0.5f, 0.0f, 128);
         enemyHealth -= damage;
+        Color color = rendShield.material.GetColor("_TintColor");
+        color.g += incrementColorGreen;
+        rendShield.material.SetColor("_TintColor",color);
         checkHealth();
         return enemyHealth;
     }
