@@ -57,6 +57,7 @@ public class CtrlShieldDrones : MonoBehaviour
             else if (transform.GetChild(i).name == "Snitch")
             {
                 Snitch = transform.GetChild(i).gameObject;
+                transform.GetChild(i).gameObject.SetActive(false);
             }
             else if (transform.GetChild(i).name == "Sphere")
             {
@@ -78,6 +79,7 @@ public class CtrlShieldDrones : MonoBehaviour
         {
             shieldsObjects[i].SetActive(true);
         }
+        Snitch.SetActive(true);
         StartCoroutine(downShieldDrones());
         StartCoroutine(rotateShieldDrones());
         appearFadeDronesShield();

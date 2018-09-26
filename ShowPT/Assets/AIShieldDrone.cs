@@ -45,7 +45,7 @@ public class AIShieldDrone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (ctrlShieldDrones.playerInHome)
+        if (ctrlShieldDrones.playerInHome && Time.timeScale != 0)
         {
             if (updateRotation)
             {

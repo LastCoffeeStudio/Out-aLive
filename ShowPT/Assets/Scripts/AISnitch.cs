@@ -6,17 +6,21 @@ public class AISnitch : MonoBehaviour {
 
     
     public float speed = 5f;
-    public float radioToAttack = 20f;
+    public float radioToAttack;
     public float timeBetweenAttacks = 5f;
 
     private GameObject player;
     private Transform front;
     private Queue<GameObject> misilesQueue = new Queue<GameObject>();
     private float timeForNextAttack;
+    private CtrlShieldDrones ctrlShieldDrones;
+
     // Use this for initialization
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        ctrlShieldDrones = transform.root.transform.GetComponent<CtrlShieldDrones>();
+
         front = transform.GetChild(0);
         timeForNextAttack = timeBetweenAttacks;
         for (int i = 1; i < 5; ++i)
@@ -35,7 +39,7 @@ public class AISnitch : MonoBehaviour {
             front.position.z, player.transform.position.x, player.transform.position.z);
         transform.Rotate(0f, rotationY * speed * Time.deltaTime, 0f);
 
-        if (Vector3.Distance(player.transform.position, transform.position) < radioToAttack)
+        if (ctrlShieldDrones.playerInHome == true && (Vector3.Distance(player.transform.position, transform.position) < radioToAttack))
         {
             timeForNextAttack -= Time.deltaTime;
             if (timeForNextAttack < 0 && misilesQueue.Count > 0)

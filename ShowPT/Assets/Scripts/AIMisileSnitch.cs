@@ -10,7 +10,8 @@ public class AIMisileSnitch : MonoBehaviour
     private Transform originalTransform;
     public float maxSpeed;
     public float maxAcceleration;
-    public int distanceExplosion = 5;
+    [HideInInspector]
+    public int distanceExplosion = 2;
     public int animationBlast;
     private bool trackPlayer = false;
     private Vector3 position;
@@ -51,7 +52,7 @@ public class AIMisileSnitch : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-	    if (trackPlayer)
+	    if (trackPlayer && Time.timeScale != 0)
 	    {
 	        //transform.parent = null;
             float t = Time.deltaTime;
@@ -113,7 +114,7 @@ public class AIMisileSnitch : MonoBehaviour
             if (hit.transform.tag == "Player")
             {
                 int value = (int) Math.Abs(Vector3.Distance(player.transform.position, transform.position));
-                player.GetComponent<PlayerHealth>().ChangeHealth(value-distanceExplosion);
+                player.GetComponent<PlayerHealth>().ChangeHealth((value-distanceExplosion)*3);
             }
         }
         //Iff colision player
