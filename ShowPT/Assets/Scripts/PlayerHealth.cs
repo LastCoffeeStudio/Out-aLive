@@ -121,7 +121,7 @@ public class PlayerHealth : MonoBehaviour {
 			} 
 			else if (health <= 0) 
 			{
-                ctrlAudio.playOneSound(tvCollection.audioGroup, tvCollection[0], Vector3.zero, 0.05f, 0f, tvCollection.priority);
+                ctrlAudio.playOneSound(tvCollection.audioGroup, tvCollection[(int)GenericEvent.EventType.PLAYERDEAD], Vector3.zero, 0.05f, 0f, tvCollection.priority);
                 //Player DIES; Start dying sequence
 				tweetSystem.deactivateSystem();
                 PlayerMovment.overrideControls = true;
