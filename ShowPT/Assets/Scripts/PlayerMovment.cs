@@ -405,19 +405,14 @@ public class PlayerMovment : MonoBehaviour
         if (rotation != Vector3.zero)
         {
             rb.rotation = Quaternion.Slerp(rb.rotation, rb.rotation * Quaternion.Euler(rotation), cameraSmooth * Time.deltaTime);
-            //rb.MoveRotation(rb.rotation * Quaternion.Euler(rotation));
         }
 
         rotation = new Vector3(-yRot, 0f, 0f) * lookSensivity;
 
         if (rotation != Vector3.zero)
         {
-            cam.transform.rotation = Quaternion.Slerp(cam.transform.rotation, cam.transform.rotation * Quaternion.Euler(rotation), cameraSmooth * Time.deltaTime);
-            
-
-            /*Quaternion currentRotation = cam.transform.localRotation;
-            currentRotation.x = Mathf.Clamp(currentRotation.x + Quaternion.Euler(rotation).x, -0.7f, 0.7f);
-            cam.transform.localRotation = currentRotation;*/
+            Quaternion finalCamRotation = ClampRotationAroundXAxis(cam.transform.localRotation * Quaternion.Euler(rotation));
+            cam.transform.localRotation = Quaternion.Slerp(cam.transform.localRotation, finalCamRotation, cameraSmooth * Time.deltaTime);
         }
 
         //Update Camera
@@ -564,5 +559,21 @@ public class PlayerMovment : MonoBehaviour
         }
 
         return displacement;
+    }
+
+    Quaternion ClampRotationAroundXAxis(Quaternion q)
+    {
+        q.x /= q.w;
+        q.y /= q.w;
+        q.z /= q.w;
+        q.w = 1.0f;
+
+        float angleX = 2.0f * Mathf.Rad2Deg * Mathf.Atan(q.x);
+
+        angleX = Mathf.Clamp(angleX, -90f, 90f);
+
+        q.x = Mathf.Tan(0.5f * Mathf.Deg2Rad * angleX);
+
+        return q;
     }
 }
