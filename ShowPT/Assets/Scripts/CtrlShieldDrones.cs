@@ -33,6 +33,9 @@ public class CtrlShieldDrones : MonoBehaviour
     [NonSerialized]
     public bool rotateShieldsAnimation = true;
 
+    public delegate void AppearFade();
+    public event AppearFade appearFade;
+   
     void Start()
     {
         dronesAlive = 0;
@@ -77,6 +80,7 @@ public class CtrlShieldDrones : MonoBehaviour
         }
         StartCoroutine(downShieldDrones());
         StartCoroutine(rotateShieldDrones());
+        appearFadeDronesShield();
     }
 
     public List<AIShieldDrone> getNeightbours(AIShieldDrone agent, float radious)
@@ -107,6 +111,15 @@ public class CtrlShieldDrones : MonoBehaviour
             {
                 sphere.GetComponent<SphereSnitchController>().disolveBarrier(Snitch);
             }
+        }
+    }
+
+    protected virtual void appearFadeDronesShield()
+    {
+        AppearFade appearFadeEvent = appearFade;
+        if (appearFadeEvent != null)
+        {
+            appearFadeEvent();
         }
     }
 

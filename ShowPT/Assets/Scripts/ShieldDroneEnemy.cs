@@ -17,6 +17,7 @@ public class ShieldDroneEnemy : Enemy {
     private void Start ()
     {
         active = false;
+        ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         smoke1 = transform.GetChild(0).gameObject;
         smoke2 = transform.GetChild(1).gameObject;
@@ -49,6 +50,7 @@ public class ShieldDroneEnemy : Enemy {
 
     public override float getHit(int damage)
     {
+        ctrAudio.playOneSound("Enemies", hitAudio, transform.position, 0.5f, 0.0f, 128);
         enemyHealth -= damage;
         checkHealth();
         return enemyHealth;
