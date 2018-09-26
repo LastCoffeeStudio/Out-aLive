@@ -126,6 +126,7 @@ public class Turret : Enemy
 					case "Player":
 						PlayerHealth playerTemp = hit.transform.gameObject.GetComponent<PlayerHealth> ();
 						playerTemp.ChangeHealth (-shootDamage);
+                        playerTemp.hitTurret();
 						break;
 					}
 				}

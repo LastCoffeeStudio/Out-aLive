@@ -10,6 +10,7 @@ public class SnitchEnemy : Enemy {
 	GameObject bridge;
 
     [Header("Sounds")]
+    public AudioCollection tvCollection;
     public AudioClip snichSound;
     private ulong idSnichSound;
 
@@ -56,7 +57,8 @@ public class SnitchEnemy : Enemy {
             ctrAudio.stopSound(idSnichSound);
             ScoreController.addDead(ScoreController.Enemy.DRON);
 			bridge.SetActive (true);
-			generateDeathEffect ();
+            ctrAudio.playOneSound(tvCollection.audioGroup, tvCollection[(int)GenericEvent.EventType.BRIDGE], Vector3.zero, 0.05f, 0f, tvCollection.priority);
+            generateDeathEffect ();
         }
     }
     

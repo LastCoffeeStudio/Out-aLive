@@ -236,6 +236,7 @@ public class LilRobot : Enemy
         {
             playerDamaged = true;
             collision.gameObject.GetComponent<PlayerHealth>().ChangeHealth(-damage);
+            collision.gameObject.GetComponent<PlayerHealth>().hitLil();
         }
     }
 

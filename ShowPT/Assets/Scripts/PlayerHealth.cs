@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,6 +37,8 @@ public class PlayerHealth : MonoBehaviour {
     public AudioCollection damageCollection;
     public AudioCollection tvCollection;
     private ulong idClip = 0;
+    private bool playerDamagedFirstTimeLil;
+    private bool playerDamagedFirstTimeTurret;
 
     // Use this for initialization
     void Start ()
@@ -45,6 +48,8 @@ public class PlayerHealth : MonoBehaviour {
 		deathAnimation = playerCamera.GetComponent<Animator> ();
         ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
 		tweetSystem = FindObjectOfType<TweetSystem> ();
+        playerDamagedFirstTimeLil = false;
+        playerDamagedFirstTimeTurret = false;
     }
 
 	void Update()
@@ -134,5 +139,23 @@ public class PlayerHealth : MonoBehaviour {
     public void buyHealth()
     {
         ChangeHealth(maxHealth);
+    }
+
+    public void hitLil()
+    {
+        if (!playerDamagedFirstTimeLil)
+        {
+            playerDamagedFirstTimeLil = true;
+            ctrlAudio.playOneSound(tvCollection.audioGroup, tvCollection[(int)GenericEvent.EventType.FIRSTLIL], Vector3.zero, 0.05f, 0f, tvCollection.priority);
+        }
+    }
+
+    public void hitTurret()
+    {
+        if (!playerDamagedFirstTimeTurret)
+        {
+            playerDamagedFirstTimeTurret = true;
+            ctrlAudio.playOneSound(tvCollection.audioGroup, tvCollection[(int)GenericEvent.EventType.FIRSTORRET], Vector3.zero, 0.05f, 0f, tvCollection.priority);
+        }
     }
 }
