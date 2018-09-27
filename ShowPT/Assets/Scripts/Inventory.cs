@@ -173,6 +173,7 @@ public class Inventory : MonoBehaviour
             }
             weapon = type;
             weaponsInventory[(int)weapon].SetActive(true);
+            weaponsInventory[(int)weapon].GetComponent<Weapon>().restartParameters();
 
             AMMO_TYPE typeAmmo = AMMO_TYPE.GUNAMMO;
             switch (type)

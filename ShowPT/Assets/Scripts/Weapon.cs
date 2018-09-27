@@ -15,8 +15,8 @@ public class Weapon : MonoBehaviour
     public int maxAmmo = 10;
     public int ammunition;
 
-    protected bool firing = false;
-    protected bool reloading = false;
+    protected bool firing;
+    protected bool reloading;
     protected Animator animator;
     private Vector3 initialposition;
 
@@ -65,6 +65,8 @@ public class Weapon : MonoBehaviour
 
         aimPosition = new Vector3(-0.204f, -1.07f, 0);
         aimSpeed = 10;
+        firing = false;
+        reloading = false;
     }
 
     // Update is called once per frame
@@ -212,5 +214,11 @@ public class Weapon : MonoBehaviour
         {
             shootEffect.Play();
         }
+    }
+
+    public virtual void restartParameters()
+    {
+        firing = false;
+        reloading = false;
     }
 }
