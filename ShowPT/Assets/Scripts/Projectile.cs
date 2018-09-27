@@ -163,7 +163,7 @@ public class Projectile : MonoBehaviour
     {
         if (invokeExplosion && explosionType != null)
         {
-            ctrlAudio.playOneSound("Player", explosionSound, transform.position, 1.0f, 0.5f, 150);
+            ctrlAudio.playOneSound("Weaponds", explosionSound, transform.position, 1.0f, 1f, 50, false, null, 45F, 0F, AudioRolloffMode.Linear);
             explosionType.SetActive(true);
         }
         if (hitEffect)
