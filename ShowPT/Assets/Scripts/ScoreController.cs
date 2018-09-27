@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class ScoreController : MonoBehaviour {
 
+	public static ScoreController scoreController;
+
     public enum Enemy
     {
         WAZ,
@@ -110,14 +112,26 @@ public class ScoreController : MonoBehaviour {
     private static bool shouldShowDislikePArticle = false;
 
     public static float timeSinceLastAction = 0.0f;
+
+	[Header("Score Tweets")]
+	TweetSystem tweetSystem;
+	[SerializeField]
+	Tweet tenLilsTweet;
+	[SerializeField]
+	Tweet twentyLilsTweet;
     
+
     // Use this for initialization
-    void Start () {}
+    void Start () 
+	{
+		scoreController = this;
+		tweetSystem = FindObjectOfType<TweetSystem> ();
+
+	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-
         timeSinceLastAction += Time.deltaTime;
         if(timeSinceLastAction > SECONDS_TO_BORING)
         {
@@ -203,9 +217,13 @@ public class ScoreController : MonoBehaviour {
                 ++kamikazeDeads;
                 addScore((int)EnemyScore.KAMIKAZE);
                 break;
-            case Enemy.LIL:
-                ++LilDeads;
-                addScore((int)EnemyScore.LIL);
+			case Enemy.LIL:
+				++LilDeads;
+				addScore ((int)EnemyScore.LIL);
+				if (LilDeads == 10)
+					scoreController.tweetSystem.requestTweet (scoreController.tenLilsTweet);
+				else if (LilDeads == 20)
+					scoreController.tweetSystem.requestTweet (scoreController.twentyLilsTweet);
                 break;
             case Enemy.TV:
                 ++tvDeads;
