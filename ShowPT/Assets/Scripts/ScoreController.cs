@@ -128,7 +128,7 @@ public class ScoreController : MonoBehaviour {
 		tweetSystem = FindObjectOfType<TweetSystem> ();
 
 	}
-	
+
 	// Update is called once per frame
 	void Update ()
     {

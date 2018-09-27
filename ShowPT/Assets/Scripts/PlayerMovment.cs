@@ -170,6 +170,11 @@ public class PlayerMovment : MonoBehaviour
 
     void Update()
     {
+        float dt = Time.deltaTime;
+        if (dt == 0)
+        {
+            dt = 10;
+        }
         noiseValue = 0f;
         if (CtrlGameState.gameState == CtrlGameState.gameStates.ACTIVE)
         {

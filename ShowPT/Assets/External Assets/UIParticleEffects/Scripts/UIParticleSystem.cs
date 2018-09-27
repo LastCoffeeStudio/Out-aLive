@@ -82,6 +82,8 @@ public class UIParticleSystem : MonoBehaviour {
     /// </summary>
     public AnimationCurve SpeedOverLifetime;
 
+    public GameObject stadistics;
+
     [HideInInspector]
     public bool IsPlaying { get; protected set; }
 
@@ -138,7 +140,7 @@ public class UIParticleSystem : MonoBehaviour {
         {
             Playtime += Time.deltaTime;
             particleTimer += Time.deltaTime;
-            while (particleTimer > 1f / EmissionsPerSecond)
+            while (particleTimer > 1f / EmissionsPerSecond && !stadistics.activeSelf)
             {
                 particleTimer -= 1f / EmissionsPerSecond;
                 ParticlePoolPointer = (ParticlePoolPointer + 1) % ParticlePool.Length;
@@ -166,7 +168,7 @@ public class UIParticleSystem : MonoBehaviour {
 
         var gravityForce = Vector3.zero;
 
-        while (particleLifetime < Lifetime)
+        while (particleLifetime < Lifetime && !stadistics.activeSelf)
         {
             particleLifetime += Time.deltaTime;
 
