@@ -127,7 +127,35 @@ public class ScoreController : MonoBehaviour {
 		scoreController = this;
 		tweetSystem = FindObjectOfType<TweetSystem> ();
 
-	}
+        //Public Gui objects
+        likesInt = 0;
+        disLikesInt = 0;
+        totalScoreInt = 0;
+
+        //Likes
+        wazDeads = 0;
+        torretDeads = 0;
+        dronsDeads = 0;
+        kamikazeDeads = 0;
+        LilDeads = 0;
+
+        //Dislikes
+        tvDeads = 0;
+        cameraDeads = 0;
+        boringTime = 0;
+        lifeLost = 0;
+
+        pistolShotsUsed = 0;
+        SMGShotsUsed = 0;
+        shotgunShotsUsed = 0;
+        canonShotsUsed = 0;
+
+        pistolShotsTouched = 0;
+        SMGShotsTouched = 0;
+        shotgunShotsTouched = 0;
+        canonShotsTouched = 0;
+
+}
 
 	// Update is called once per frame
 	void Update ()
