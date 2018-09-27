@@ -16,7 +16,6 @@ public class Weapon : MonoBehaviour
     public int ammunition;
 
     protected bool firing;
-    protected bool reloading;
     protected Animator animator;
     private Vector3 initialposition;
 
@@ -66,7 +65,6 @@ public class Weapon : MonoBehaviour
         aimPosition = new Vector3(-0.204f, -1.07f, 0);
         aimSpeed = 10;
         firing = false;
-        reloading = false;
     }
 
     // Update is called once per frame
@@ -85,7 +83,7 @@ public class Weapon : MonoBehaviour
 
     protected void aimAmmo()
     {
-        if ((Input.GetButton("Fire2") || Input.GetAxis("AxisLT") > 0.5f) && !reloading)
+        if ((Input.GetButton("Fire2") || Input.GetAxis("AxisLT") > 0.5f) && !animator.GetBool("reloading"))
         {
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, aimPosition, Time.deltaTime * 2);
             crosshair.hide();
@@ -110,7 +108,6 @@ public class Weapon : MonoBehaviour
 				animator.SetBool ("shooting", true);
 				if (animator.GetBool ("reloading")) 
 				{
-					reloading = false;
 					animator.SetBool ("reloading", false);
 				}
 			} 
@@ -123,11 +120,7 @@ public class Weapon : MonoBehaviour
         {
             if (inventory.getAmmo(typeAmmo) > 0)
             {
-				if (reloading == false) 
-				{
-					//idReloadSound = ctrlAudio.playOneSound("Weaponds", reloadAudio, transform.position, 0.5f, 0f, 150, true);
-					reloading = true;
-				}
+				//idReloadSound = ctrlAudio.playOneSound("Weaponds", reloadAudio, transform.position, 0.5f, 0f, 150, true);
                 animator.SetBool("reloading", true);
             }
         }
@@ -204,7 +197,6 @@ public class Weapon : MonoBehaviour
 
     public void endReload()
     {
-        reloading = false;
         animator.SetBool("reloading", false);
     }
     protected virtual void shoot()
@@ -219,6 +211,9 @@ public class Weapon : MonoBehaviour
     public virtual void restartParameters()
     {
         firing = false;
-        reloading = false;
+        if (animator != null)
+        {
+            animator.SetBool("reloading", false);
+        }
     }
 }

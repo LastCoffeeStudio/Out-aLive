@@ -62,7 +62,6 @@ public class Gun : Weapon
         if (actualCharge >= maxCharge && animator.GetBool("reloading") == false)
         {
             animator.SetBool("aiming", false);
-            reloading = true;
             animator.SetBool("reloading", true);
             ctrlAudio.playOneSound("Weaponds", reloadAudio, transform.position, 0.9f, 0.0f, 128);
         }
