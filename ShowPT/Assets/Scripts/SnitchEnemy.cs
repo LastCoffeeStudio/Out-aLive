@@ -13,11 +13,13 @@ public class SnitchEnemy : Enemy {
     public AudioCollection tvCollection;
     public AudioClip snichSound;
     private ulong idSnichSound;
+    public List<string> tvs;
+    private TVShowmanManager tVShowmanManager;
 
     // Use this for initialization
     private void Start()
     {
-        
+        tVShowmanManager = GameObject.FindGameObjectWithTag("TVShowmanManager").GetComponent<TVShowmanManager>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
         idSnichSound = ctrAudio.playOneSound("Enemies", snichSound, transform.position, 0.3f, 1f, 90, true, gameObject, 30, 0f,
@@ -57,7 +59,8 @@ public class SnitchEnemy : Enemy {
             ctrAudio.stopSound(idSnichSound);
             ScoreController.addDead(ScoreController.Enemy.DRON);
 			bridge.SetActive (true);
-            ctrAudio.playOneSound(tvCollection.audioGroup, tvCollection[(int)GenericEvent.EventType.BRIDGE], Vector3.zero, 0.05f, 0f, tvCollection.priority);
+            tVShowmanManager.playMessageAllTVs(tvs, GenericEvent.EventType.BRIDGE);
+            //ctrAudio.playOneSound(tvCollection.audioGroup, tvCollection[(int)GenericEvent.EventType.BRIDGE], Vector3.zero, 0.05f, 0f, tvCollection.priority);
             generateDeathEffect ();
         }
     }
