@@ -164,7 +164,6 @@ public class PlayerMovment : MonoBehaviour
 		if (overrideControls == false) 
 		{
 			updatePlayer();
-			updateCamera ();
 		}
     }
 
@@ -176,8 +175,9 @@ public class PlayerMovment : MonoBehaviour
 			if (overrideControls == false) 
 			{
 				checkInteract();
-				checkInput ();
-			}
+				checkInput();
+                updateCamera();
+            }
         }
     }
 
@@ -404,7 +404,7 @@ public class PlayerMovment : MonoBehaviour
 
         if (rotation != Vector3.zero)
         {
-            rb.rotation = Quaternion.Slerp(rb.rotation, rb.rotation * Quaternion.Euler(rotation), cameraSmooth * Time.deltaTime);
+            transform.localRotation = Quaternion.Slerp(transform.localRotation, transform.localRotation * Quaternion.Euler(rotation), cameraSmooth * Time.deltaTime);
         }
 
         rotation = new Vector3(-yRot, 0f, 0f) * lookSensivity;
