@@ -40,6 +40,14 @@ public class PlayerHealth : MonoBehaviour {
     private bool playerDamagedFirstTimeLil;
     private bool playerDamagedFirstTimeTurret;
 
+	[Header("Health Tweets")]
+	[SerializeField]
+	Tweet damagedTweet;
+	[SerializeField]
+	Tweet halfLifeTweet;
+	[SerializeField]
+	Tweet almostDeadTweet;
+
     // Use this for initialization
     void Start ()
     {
@@ -117,6 +125,7 @@ public class PlayerHealth : MonoBehaviour {
 			        idClip = ctrlAudio.playOneSound(damageCollection.audioGroup, damageCollection[0], transform.position, damageCollection.volume, damageCollection.spatialBlend, damageCollection.priority);
                 }
                 damageable = false;
+				callForDamageTweets ();
 			}
 
 			if (health > maxHealth) 
@@ -158,4 +167,23 @@ public class PlayerHealth : MonoBehaviour {
             ctrlAudio.playOneSound(tvCollection.audioGroup, tvCollection[(int)GenericEvent.EventType.FIRSTORRET], Vector3.zero, 0.05f, 0f, tvCollection.priority);
         }
     }
+
+	void callForDamageTweets()
+	{
+		if (health <= (maxHealth / 4) * 3 && damagedTweet != null) 
+		{
+			tweetSystem.requestTweet (damagedTweet);
+			damagedTweet = null;
+		} 
+		else if (health <= maxHealth / 2 && halfLifeTweet != null) 
+		{
+			tweetSystem.requestTweet (halfLifeTweet);
+			halfLifeTweet = null;
+		} 
+		else if (health <= maxHealth / 4 && almostDeadTweet != null) 
+		{
+			tweetSystem.requestTweet (almostDeadTweet);
+			almostDeadTweet = null;
+		}
+	}
 }

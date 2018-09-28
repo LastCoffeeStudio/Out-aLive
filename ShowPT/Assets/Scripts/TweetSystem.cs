@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class TweetSystem : MonoBehaviour 
 {
 	[SerializeField]
+	float tweetSpeed = 2f;
+	[SerializeField]
 	float timeBetweenTweets = 60f;
 	float tweetTimer = 0f;
 
@@ -74,7 +76,7 @@ public class TweetSystem : MonoBehaviour
 			break;
 
 		case state.TWEET_RUNNING_IN:
-			tweet.transform.position = Vector2.Lerp (tweet.transform.position, insidePoint.transform.position, Time.deltaTime);
+			tweet.transform.position = Vector2.Lerp (tweet.transform.position, insidePoint.transform.position, Time.deltaTime * tweetSpeed);
 			if (Vector2.Distance (tweet.transform.position, insidePoint.transform.position) < 5f) 
 			{
 				tweetState = state.TWEET_SHOWING;
@@ -91,7 +93,7 @@ public class TweetSystem : MonoBehaviour
 			break;
 
 		case state.TWEET_RUNNING_OUT:
-			tweet.transform.position = Vector2.Lerp (tweet.transform.position, outsidePoint.transform.position, Time.deltaTime);
+			tweet.transform.position = Vector2.Lerp (tweet.transform.position, outsidePoint.transform.position, Time.deltaTime * tweetSpeed);
 			if (Vector2.Distance (tweet.transform.position, outsidePoint.transform.position) < 5f) 
 			{
 				if (toldToDeactivate == true) 
