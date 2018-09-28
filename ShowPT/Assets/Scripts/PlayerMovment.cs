@@ -423,7 +423,8 @@ public class PlayerMovment : MonoBehaviour
                 Debug.DrawRay(transform.position, Vector3.down, new Color(0.3f, 0.5f, 0.3f), 0.1f, true);
                 bool hitbool = Physics.Raycast(transform.position, Vector3.down, out hit, 1.85f);
                 if (playFallSound == true  && hitbool && (hit.transform.gameObject.layer == LayerMask.NameToLayer("Wall")
-                                                                              || hit.transform.root.name == "Showroom"))
+                                                          || hit.transform.root.name == "Showroom"
+                                                          || hit.transform.root.name == "metalbasebosszone"))
                 {
                     playFallSound = false;
                     checkSelectedSound();
