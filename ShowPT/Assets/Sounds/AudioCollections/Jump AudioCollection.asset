@@ -11,8 +11,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 292c2b6f07fd4cb41bb15506a32ba323, type: 3}
   m_Name: Jump AudioCollection
   m_EditorClassIdentifier: 
-  audioGroup: 
-  volume: 1
-  spatialBlend: 1
-  priority: 128
-  audioClipBanks: []
+  audioGroup: Player
+  volume: 0.2
+  spatialBlend: 0
+  priority: 23
+  audioClipBanks:
+  - Clips:
+    - {fileID: 8300000, guid: d18275062d0654d42b74ee34c58d8864, type: 3}
+  - Clips:
+    - {fileID: 8300000, guid: e8916165f56bcac41a27e5a6b17534e8, type: 3}
+  - Clips:
+    - {fileID: 8300000, guid: 1238580b96ea20a44b95a4fb801d2faa, type: 3}
+  - Clips:
+    - {fileID: 8300000, guid: ef0f7c440b4c8d143b4ec1ff90c77f41, type: 3}

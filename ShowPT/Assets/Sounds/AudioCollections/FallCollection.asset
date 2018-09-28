@@ -11,8 +11,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 292c2b6f07fd4cb41bb15506a32ba323, type: 3}
   m_Name: FallCollection
   m_EditorClassIdentifier: 
-  audioGroup: 
-  volume: 1
-  spatialBlend: 1
-  priority: 128
-  audioClipBanks: []
+  audioGroup: Player
+  volume: 0.2
+  spatialBlend: 0
+  priority: 23
+  audioClipBanks:
+  - Clips:
+    - {fileID: 8300000, guid: f25ea6b8feb4e8040b723e039d160f19, type: 3}
+  - Clips:
+    - {fileID: 8300000, guid: 57b5997c864b6ed4ea8bb8d7fe878992, type: 3}
+  - Clips:
+    - {fileID: 8300000, guid: ca85499936ade6c4fa3090815262e693, type: 3}
+  - Clips:
+    - {fileID: 8300000, guid: db91dd6fbe5e34e488b413e4c701209d, type: 3}
