@@ -52,6 +52,10 @@ public class PlayerMovment : MonoBehaviour
 
     [Header("Sounds")]
     public AudioCollection steps;
+    public AudioCollection jumpsCollection;
+    public AudioCollection fallCollection;
+    private bool playFallSound = true;
+    private float lastYposition;
     public Texture2D splatmap;
     private int indexAudioCol = 1;
     private Color red;
@@ -133,29 +137,35 @@ public class PlayerMovment : MonoBehaviour
 
     public void PlayStep()
     {
+        checkSelectedSound();
+        ctrlAudio.playOneSound("Player", steps[indexAudioCol], transform.position, steps.volume, steps.spatialBlend, steps.priority);
+    }
+
+    public void checkSelectedSound()
+    {
         //rate between terrain and splatmap;
         float rate = splatmap.width / 240f;
 
         //Get x and z for splatmap
-        int x = (int) ((transform.position.x + 100) * rate);
+        int x = (int)((transform.position.x + 100) * rate);
         int z = (int)((transform.position.z + 100) * rate);
         Color color = splatmap.GetPixel(x, z);
         if (color == green)
         {
             indexAudioCol = 2;
-        }else if (color == purple)
+        }
+        else if (color == purple)
         {
             indexAudioCol = 0;
         }
-        else if(color == red)
+        else if (color == red)
         {
             indexAudioCol = 3;
         }
-        else if(color == blue)
+        else if (color == blue)
         {
             indexAudioCol = 1;
         }
-        ctrlAudio.playOneSound("Player", steps[indexAudioCol], transform.position, steps.volume, steps.spatialBlend, steps.priority);
     }
 
     //Calcule 
@@ -299,6 +309,9 @@ public class PlayerMovment : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("ButtonA")) && isGrounded && !jumping)
         {
             jumps = true;
+            lastYposition = transform.position.y;
+            checkSelectedSound();
+            ctrlAudio.playOneSound(jumpsCollection.audioGroup, jumpsCollection[indexAudioCol], transform.position, jumpsCollection.volume, jumpsCollection.spatialBlend, jumpsCollection.priority);
             if (crouched)
             {
                 updateCrouchState(false);
@@ -389,6 +402,7 @@ public class PlayerMovment : MonoBehaviour
 
             if (jumping)
             {
+                playFallSound = true;
                 jumping = false;
             }
             if (jumps)
@@ -399,6 +413,28 @@ public class PlayerMovment : MonoBehaviour
                 rb.AddForce(jumpVector * Time.fixedDeltaTime, ForceMode.Impulse);
                 state = playerState.JUMPING;
             }
+        }
+
+        if (jumping)
+        {
+            if (lastYposition > transform.position.y)
+            {
+                RaycastHit hit;
+                Debug.DrawRay(transform.position, Vector3.down, new Color(0.3f, 0.5f, 0.3f), 0.1f, true);
+                bool hitbool = Physics.Raycast(transform.position, Vector3.down, out hit, 1.85f);
+                if (playFallSound == true  && hitbool && (hit.transform.gameObject.layer == LayerMask.NameToLayer("Wall")
+                                                                              || hit.transform.root.name == "Showroom"))
+                {
+                    playFallSound = false;
+                    checkSelectedSound();
+                    ctrlAudio.playOneSound(fallCollection.audioGroup, fallCollection[indexAudioCol], transform.position, fallCollection.volume, fallCollection.spatialBlend, fallCollection.priority);
+                }
+            }
+            else
+            {
+                lastYposition = transform.position.y;
+            }
+          
         }
     }
 
