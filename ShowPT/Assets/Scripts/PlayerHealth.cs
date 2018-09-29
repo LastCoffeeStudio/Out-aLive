@@ -31,6 +31,12 @@ public class PlayerHealth : MonoBehaviour {
 	[SerializeField]
 	Transform deathPose;
 	Animator deathAnimation;
+	[SerializeField]
+	Animator gun;
+	[SerializeField]
+	Animator shotgun;
+	[SerializeField]
+	Animator cannon;
 
     [Header("Sounds")]
     private CtrlAudio ctrlAudio;
@@ -139,7 +145,12 @@ public class PlayerHealth : MonoBehaviour {
                 //Player DIES; Start dying sequence
 				tweetSystem.deactivateSystem();
                 PlayerMovment.overrideControls = true;
-				//deathAnimation.SetTrigger ("playerDied");
+				if(gun.isActiveAndEnabled)
+					gun.SetTrigger ("playerDead");
+				if(shotgun.isActiveAndEnabled)
+					shotgun.SetTrigger ("playerDead");
+				if(cannon.isActiveAndEnabled)
+					cannon.SetTrigger ("playerDead");
 				isDead = true;
 			}
 		}
