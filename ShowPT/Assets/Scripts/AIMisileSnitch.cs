@@ -11,7 +11,7 @@ public class AIMisileSnitch : MonoBehaviour
     public float maxSpeed;
     public float maxAcceleration;
     [HideInInspector]
-    public int distanceExplosion = 2;
+    public int distanceExplosion;
     public int animationBlast;
     private bool trackPlayer = false;
     private Vector3 position;
@@ -46,6 +46,7 @@ public class AIMisileSnitch : MonoBehaviour
         trail = transform.GetChild(2).gameObject.GetComponent<ParticleSystem>();
         fire.Stop();
         trail.Stop();
+        distanceExplosion = 6;
         ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
     }
 	

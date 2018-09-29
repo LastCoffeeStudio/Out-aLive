@@ -39,7 +39,7 @@ public class AIShieldDrone : MonoBehaviour
         {
             ctrlAudio.stopSound(idAudioShield);
         }
-        ctrlShieldDrones.dronKilled();
+        
     }
 
     // Update is called once per frame

@@ -15,6 +15,7 @@ public class ShieldDroneEnemy : Enemy {
     private GameObject propShield;
     private Renderer rendShield;
     private float incrementColorGreen;
+    private CtrlShieldDrones ctrlShieldDrones;
 
     // Use this for initialization
     private void Start ()
@@ -26,6 +27,7 @@ public class ShieldDroneEnemy : Enemy {
         smoke2 = transform.GetChild(1).gameObject;
         particleSmoke1 = smoke1.GetComponent<ParticleSystem>();
         particleSmoke2 = smoke2.GetComponent<ParticleSystem>();
+        ctrlShieldDrones = transform.root.GetComponent<CtrlShieldDrones>();
         //ctrAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>()
         for (int i = 0; i < transform.childCount;++i)
         {
@@ -91,6 +93,7 @@ public class ShieldDroneEnemy : Enemy {
         }
         else if(enemyHealth <= 0f)
         {
+            ctrlShieldDrones.dronKilled();
             propShield.SetActive(false);
             ScoreController.addDead(ScoreController.Enemy.DRON);
             smoke1.SetActive(true);
