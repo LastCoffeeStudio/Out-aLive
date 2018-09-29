@@ -15,7 +15,8 @@ public class FadeAppearTintColor: MonoBehaviour
 	    ctrlShieldDrones = gameObject.transform.root.GetComponent<CtrlShieldDrones>();
 	    ctrlShieldDrones.appearFade += playFade;
         renderer = GetComponent<Renderer>();
-	    setAlpha();
+	    renderer.material.SetFloat("_Mode", 2f);
+        setAlpha();
     }
 
     public void playFade()
@@ -39,6 +40,7 @@ public class FadeAppearTintColor: MonoBehaviour
             yield return null;
         }
         alpha = 0.196f;
+        renderer.material.SetFloat("_Mode", 0f);
         setAlpha();
     }
 }
