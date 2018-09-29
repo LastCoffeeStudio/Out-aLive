@@ -19,12 +19,17 @@ public class BossDoor : MonoBehaviour {
 	[SerializeField]
 	GameObject securityWall;
 
-	public bool openDoor = false;
+    [Header("Audio")]
+    public AudioClip doorOpenAudio;
+    protected CtrlAudio ctrlAudio;
+
+    public bool openDoor = false;
 
 	// Use this for initialization
 	void Start () 
 	{
-		upperPanelClosedPosition = upperPanel.transform.position;
+	    ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
+        upperPanelClosedPosition = upperPanel.transform.position;
 		lowerPanelClosedPosition = lowerPanel.transform.position;
 	}
 
@@ -51,6 +56,7 @@ public class BossDoor : MonoBehaviour {
 
 	public void OpenSesame()
 	{
-		openDoor = true;
+	    ctrlAudio.playOneSound("Weaponds", doorOpenAudio, transform.position, 0.5f, 0f, 150);
+        openDoor = true;
 	}
 }
