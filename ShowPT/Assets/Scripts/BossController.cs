@@ -40,7 +40,11 @@ public class BossController : MonoBehaviour
     public EnemySpawn[] enemies;
     //TODO: change spawnpoints for an area when the boss room is flat.
     public GameObject[] points;
-    
+
+    [Header("Sounds attributes")]
+    public AudioCollection bossSounds;
+    public AudioCollection voiceSounds;
+
     private GameObject player;
     private Bounds combatZone;
     private Animator bossAnimator;
@@ -59,6 +63,8 @@ public class BossController : MonoBehaviour
     private bool armsActive;
     private bool chasePlayer;
     private bool[] spawns;
+    private CtrlAudio ctrlAudio;
+    private CameraShake cameraShake;
 
     private enum STATES
     {
@@ -107,6 +113,8 @@ public class BossController : MonoBehaviour
 	void Start ()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
+        cameraShake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
         bossAnimator = GetComponent<Animator>();
         Vector3 combatZoneSize = (minLimit.transform.position - maxLimit.transform.position);
         combatZoneSize = new Vector3(Mathf.Abs(combatZoneSize.x), Mathf.Abs(combatZoneSize.y), Mathf.Abs(combatZoneSize.z));
@@ -257,6 +265,7 @@ public class BossController : MonoBehaviour
         Debug.Log(arms[id].health);
         if (arms[id].health <= 0)
         {
+            ctrlAudio.playOneSound(voiceSounds.audioGroup, voiceSounds[(int)GenericEvent.EventType.BOSSFIGHT], transform.position, voiceSounds.volume, voiceSounds.spatialBlend, voiceSounds.priority);
             arms[id].dead = true;
             ++armsDead;
 
@@ -287,6 +296,7 @@ public class BossController : MonoBehaviour
     {
         calculateDirectionFromPlayerPosition();
         checkRoll();
+        ctrlAudio.playOneSound(bossSounds.audioGroup, bossSounds[2], transform.position, bossSounds.volume, bossSounds.spatialBlend, bossSounds.priority);
         StartCoroutine("rollBoss");
     }
 
@@ -315,6 +325,11 @@ public class BossController : MonoBehaviour
     {
         int boolParam = animationEvent.intParameter;
 
+        if (boolParam != 0)
+        {
+            ctrlAudio.playOneSound(bossSounds.audioGroup, bossSounds[0], transform.position, bossSounds.volume, bossSounds.spatialBlend, bossSounds.priority);
+        }
+        
         for (int i = 0; i < arms.Length; ++i)
         {
             if (!arms[i].dead)
@@ -504,7 +519,7 @@ public class BossController : MonoBehaviour
         body.transform.Rotate(rollDirectionZ * 90f, 0f, -rollDirectionX * 90f, Space.World);
         Quaternion finalRotation = body.transform.rotation;
         body.transform.rotation = initialRotation;
-        
+
 
         //float lastYPos = body.transform.position.y;
 
@@ -522,6 +537,8 @@ public class BossController : MonoBehaviour
         }
 
         //SOB hit floor
+        float playerDistance = Vector3.Distance(transform.position, player.transform.position);
+        cameraShake.startShake(0.1f, 0.05f, 0.3f, 15, (2f * (1 - Mathf.Clamp01(playerDistance / 50))));
         setRoll();
 
     }
@@ -595,6 +612,7 @@ public class BossController : MonoBehaviour
     public void closingGate()
     {
         //SOB
+        ctrlAudio.playOneSound(bossSounds.audioGroup, bossSounds[0], transform.position, bossSounds.volume, bossSounds.spatialBlend, bossSounds.priority);
     }
 
     public void rouletteEndRoll ()

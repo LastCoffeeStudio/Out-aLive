@@ -19,7 +19,7 @@ public class TVShowmanManager : MonoBehaviour {
 
         for (int i = 0; i < televisions.Length; i++)
         {
-            if (tvs.Contains(televisions[i].name)) {
+            if (tvs.Contains(televisions[i].name) && televisions[i].transform.GetChild(0).gameObject.activeSelf) {
                 ctrlAudio.playOneSound(sounds.audioGroup, spriteAudio, televisions[i].gameObject.transform.position, sounds.volume, sounds.spatialBlend, sounds.priority);
                 televisions[i].GetComponentInChildren<SpriteRenderer>()
                     .gameObject.GetComponent<Animator>().Play(spriteAudio.name);
