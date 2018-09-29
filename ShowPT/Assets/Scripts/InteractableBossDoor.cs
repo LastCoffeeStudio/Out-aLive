@@ -7,6 +7,7 @@ public class InteractableBossDoor : InteractableObject {
 	protected override void executeAction()
 	{
 		GetComponent<BossDoor>().OpenSesame();
+
 		setState(InteractableObjectState.DISABLE);
 	}
 }
