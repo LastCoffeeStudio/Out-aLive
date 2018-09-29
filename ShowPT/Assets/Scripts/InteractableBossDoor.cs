@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class InteractableBossDoor : InteractableObject {
 
-	protected override void executeAction()
+    private BGM bgm;
+
+    protected override void Start()
+    {
+        bgm = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<BGM>();
+        base.Start();
+    }
+
+    protected override void executeAction()
 	{
 		GetComponent<BossDoor>().OpenSesame();
+        bgm.playMeSomething(3);
 		setState(InteractableObjectState.DISABLE);
 	}
 }

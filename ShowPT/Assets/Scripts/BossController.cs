@@ -107,7 +107,6 @@ public class BossController : MonoBehaviour
         public int maxNumEnemies;
     }
     
-    
     /**Boss**/
 
 	void Start ()
@@ -266,6 +265,7 @@ public class BossController : MonoBehaviour
         if (arms[id].health <= 0)
         {
             ctrlAudio.playOneSound(voiceSounds.audioGroup, voiceSounds[(int)GenericEvent.EventType.BOSSFIGHT], transform.position, voiceSounds.volume, voiceSounds.spatialBlend, voiceSounds.priority);
+            ctrlAudio.playOneSound(bossSounds.audioGroup, bossSounds[3], transform.position, bossSounds.volume, bossSounds.spatialBlend, bossSounds.priority);
             arms[id].dead = true;
             ++armsDead;
 
