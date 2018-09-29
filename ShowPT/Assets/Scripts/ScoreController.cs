@@ -23,11 +23,11 @@ public class ScoreController : MonoBehaviour {
     public enum EnemyScore
     {
         WAZ = 10,
-        TURRET = 20,
-        DRON = 30,
-        KAMIKAZE = 40,
-        LIL = 50,
-        TV = 10,
+        TURRET = 35,
+        DRON = 20,
+        KAMIKAZE = 50,
+        LIL = 10,
+        TV = 20,
         CAMERA = 10
     }
 
