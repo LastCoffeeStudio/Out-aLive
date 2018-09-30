@@ -602,6 +602,13 @@ public class BossController : MonoBehaviour
     public void startSpinning()
     {
         //SOB
+        ctrlAudio.playOneSound(bossSounds.audioGroup, bossSounds[5], transform.position, bossSounds.volume, bossSounds.spatialBlend, bossSounds.priority);
+    }
+
+    public void spinning()
+    {
+        //SOB
+        ctrlAudio.playOneSound(bossSounds.audioGroup, bossSounds[4], transform.position, bossSounds.volume, bossSounds.spatialBlend, bossSounds.priority);
     }
 
     public void takeOutPlataform()
