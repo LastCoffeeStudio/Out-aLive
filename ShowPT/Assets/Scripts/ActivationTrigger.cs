@@ -6,13 +6,30 @@ public class ActivationTrigger : MonoBehaviour {
 
 	[SerializeField]
 	GameObject objectToActivate;
+    bool activated;
 
-	void OnTriggerEnter(Collider col)
+    private void Start()
+    {
+        activated = false;
+    }
+
+    void OnTriggerEnter(Collider col)
 	{
-		if (col.tag == "Player") 
+		if (col.tag == "Player" && !activated) 
 		{
-			objectToActivate.SetActive (true);
+            activated = true;
+            objectToActivate.SetActive (true);
 			gameObject.SetActive (false);
 		}
 	}
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Player" && !activated)
+        {
+            activated = true;
+            objectToActivate.SetActive(true);
+            gameObject.SetActive(false);
+        }
+    }
 }

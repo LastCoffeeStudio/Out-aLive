@@ -151,7 +151,6 @@ public class BossController : MonoBehaviour
                         chaseSpeed = Mathf.Clamp(chaseSpeed, 0, maxSpeed);
                         Vector3 dir = (playerPosition - transform.position).normalized;
                         dir.y = 0f;
-                        Debug.DrawRay(transform.position, (playerPosition - transform.position), new Color(0f, 1f, 0f, 1f));
                         transform.Translate(dir * chaseSpeed * Time.deltaTime, Space.World);
                     }
                     else
@@ -237,7 +236,6 @@ public class BossController : MonoBehaviour
                     cameraShake.startShake(shakeTime, fadeInTime, fadeOutTime, speed, (magnitude * (1 - Mathf.Clamp01(playerDistance / maxDistancePlayer))));
 
                     generateDeathEffect();
-                    Debug.Log("Explodes");
                 }
                 else
                 {
@@ -289,7 +287,6 @@ public class BossController : MonoBehaviour
     public float getHitArm(int id, int damage)
     {
         arms[id].health -= damage;
-        Debug.Log(arms[id].health);
         if (arms[id].health <= 0)
         {
             ctrlAudio.playOneSound(voiceSounds.audioGroup, voiceSounds[(int)GenericEvent.EventType.BOSSFIGHT], transform.position, voiceSounds.volume, voiceSounds.spatialBlend, voiceSounds.priority);
@@ -460,6 +457,9 @@ public class BossController : MonoBehaviour
         }
 
         EnemySpawn enemySpawn = findEnemySpawn(type);
+        /**/
+        enemySpawn = enemies[1];
+        /**/
         int numberSpawns = Random.Range(enemySpawn.minNumEnemies, enemySpawn.maxNumEnemies + 1);
 
         if (enemySpawn.type == Enemy.EnemyType.ALL)
@@ -494,23 +494,16 @@ public class BossController : MonoBehaviour
         rollDirectionZ = 1f;
         rollDirectionX = 0f;
 
-        Debug.Log("--- Direction ---");
-        Debug.Log(rollDirectionX + " " + rollDirectionZ);
-
         if (dot >= 0)
         {
             if (angle > 45 && angle <= 135)
             {
                 rollDirectionZ = 0f;
                 rollDirectionX = 1f;
-                
-                //transform.Rotate(0f, 90f, 0f);
             }
             else if (angle > 135)
             {
                 rollDirectionZ = -1f;
-
-                //transform.Rotate(0f, 180f, 0f);
             }
         }
         else
@@ -519,36 +512,28 @@ public class BossController : MonoBehaviour
             {
                 rollDirectionZ = 0f;
                 rollDirectionX = -1f;
-                    
-                //transform.Rotate(0f, -90f, 0f);
             }
             else if (angle > 135)
             {
                 rollDirectionZ = -1f;
-
-                //transform.Rotate(0f, -180f, 0f);
             }
         }
     }
 
     private void checkRoll()
     {
-        Debug.Log("--- Check Roll ---");
-        Debug.Log(rollDirectionX + " " + rollDirectionZ);
         // Here, rollDirectionX xor rollDirectionZ must be 0, and the other 1 or -1
         // (true, due to previous call to calculateDirectionFromPlayerPosition())
         Vector3 destinationPoint = transform.position + (transform.forward * rollDirectionZ + transform.right * rollDirectionX) * sideLength;
         int count = 0;
-        if (!combatZone.Contains(destinationPoint))
+        while (!combatZone.Contains(destinationPoint) && count < 4)
         {
             float dirAux = rollDirectionX;
             rollDirectionX = rollDirectionZ;
             rollDirectionZ = -dirAux;
-            //transform.Rotate(0f, 90f, 0f);
             destinationPoint = transform.position + (transform.forward * rollDirectionZ + transform.right * rollDirectionX) * sideLength;
             ++count;
         }
-        Debug.Log(rollDirectionX + " " + rollDirectionZ);
     }
 
     private IEnumerator rollBoss()
@@ -627,8 +612,27 @@ public class BossController : MonoBehaviour
             Bounds pointBounds = new Bounds(points[randomPoint].transform.position, Vector3.one * 1.5f);
             if (!spawns[randomPoint] && !body.GetComponent<BoxCollider>().bounds.Intersects(pointBounds))
             {
+                Vector3 spawnPoint = points[randomPoint].transform.position;
+
+                switch (enemySpawn.type)
+                {
+                    case Enemy.EnemyType.TURRET:
+                        RaycastHit hitInfo;
+                        if (Physics.Raycast(spawnPoint, -Vector3.up, out hitInfo, 10f))
+                        {
+                            spawnPoint = hitInfo.point;
+                        }
+                        break;
+                    case Enemy.EnemyType.KAMIKAZE:
+                        BoxCollider collider = enemySpawn.enemy.GetComponentInChildren<BoxCollider>();
+                        collider.transform.localPosition = new Vector3(0f, 1f, 0f);
+                        collider.transform.localRotation = Quaternion.identity;
+                        collider.size = new Vector3(70f,2f,70f);
+                        break;
+                }
+
                 spawns[randomPoint] = true;
-                Instantiate(enemySpawn.enemy, points[randomPoint].transform.position, Quaternion.identity);
+                Instantiate(enemySpawn.enemy, spawnPoint, Quaternion.identity);
                 checkedPoints = spawns.Length;
             }
             else

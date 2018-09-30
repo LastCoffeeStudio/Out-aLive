@@ -112,7 +112,6 @@ public class Projectile : MonoBehaviour
 
     public void touchedEnemy(Collider col, GameObject weapon)
     {
-        Debug.Log("Hits: " + col.gameObject.name);
         if (!hasHitSomething)
         {
             if (col.gameObject.layer == LayerMask.NameToLayer("Wall") || col.tag == "Sphere" || col.gameObject.layer == LayerMask.NameToLayer("BossWall"))
