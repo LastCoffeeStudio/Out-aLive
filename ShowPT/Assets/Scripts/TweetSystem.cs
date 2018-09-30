@@ -51,7 +51,7 @@ public class TweetSystem : MonoBehaviour
 	state tweetState = state.TWEET_HIDDEN;
 
 	[SerializeField]
-	Tweet[] randomTweetList;
+	List<Tweet> randomTweetList;
 
 	List<Tweet> requestedTweetsQueue;
 
@@ -59,6 +59,7 @@ public class TweetSystem : MonoBehaviour
 	void Start () 
 	{
 		audioCtrl = FindObjectOfType<CtrlAudio> ();
+		//randomTweetList = new List<Tweet> ();
 		requestedTweetsQueue = new List<Tweet> ();
 	}
 	
@@ -71,7 +72,10 @@ public class TweetSystem : MonoBehaviour
 			tweetTimer += Time.deltaTime;
 			if (Input.GetKeyDown (KeyCode.I) || tweetTimer > timeBetweenTweets) 
 			{
-				generateTweet (chooseRandomTweet ());
+				if (randomTweetList.Count > 0) 
+				{
+					generateTweet (chooseRandomTweet ());
+				}
 			}
 			break;
 
@@ -116,8 +120,10 @@ public class TweetSystem : MonoBehaviour
 
 	Tweet chooseRandomTweet()
 	{
-		int tweetNumber = Random.Range (0, randomTweetList.Length - 1);
-		return randomTweetList [tweetNumber];
+		int tweetNumber = Random.Range (0, randomTweetList.Count - 1);
+		Tweet tweetToReturn = randomTweetList [tweetNumber];
+		randomTweetList.RemoveAt (tweetNumber);
+		return tweetToReturn;
 	}
 
 	void generateTweet(Tweet tweetData)
