@@ -41,6 +41,18 @@ public class BossController : MonoBehaviour
     //TODO: change spawnpoints for an area when the boss room is flat.
     public GameObject[] points;
 
+    [Header("Final state attributes")]
+    public float timeToExplode;
+    public GameObject deathAnimation;
+
+    [Header("Player Shake Settings")]
+    public float maxDistancePlayer;
+    public float shakeTime;
+    public float fadeInTime;
+    public float fadeOutTime;
+    public float speed;
+    public float magnitude;
+
     [Header("Sounds attributes")]
     public AudioCollection bossSounds;
     public AudioCollection voiceSounds;
@@ -60,6 +72,7 @@ public class BossController : MonoBehaviour
     private float chaseSpeed;
     private float timeElapsed;
     private float sideLength;
+    private float explosionTimer;
     private bool armsActive;
     private bool chasePlayer;
     private bool[] spawns;
@@ -216,6 +229,21 @@ public class BossController : MonoBehaviour
                     }
                 }
                 break;
+            case STATES.DEFEAT:
+                if (explosionTimer >= timeToExplode)
+                {
+                    //Do shake when it explodes
+                    float playerDistance = Vector3.Distance(transform.position, player.transform.position);
+                    cameraShake.startShake(shakeTime, fadeInTime, fadeOutTime, speed, (magnitude * (1 - Mathf.Clamp01(playerDistance / maxDistancePlayer))));
+
+                    generateDeathEffect();
+                    Debug.Log("Explodes");
+                }
+                else
+                {
+                    explosionTimer += Time.deltaTime;
+                }
+                break;
             default:
                 break;
         }
@@ -281,7 +309,23 @@ public class BossController : MonoBehaviour
         return arms[id].health;
     }
 
-    
+    private void generateDeathEffect()
+    {
+        /*if (ctrAudio != null)
+        {
+            ctrAudio.playOneSound("Enemies", deathAudio, transform.position, 1.0f, 1f, 128);
+        }*/
+
+        if (deathAnimation != null)
+        {
+            deathAnimation.transform.position = transform.position;
+            deathAnimation.transform.rotation = transform.rotation;
+            deathAnimation.SetActive(true);
+        }
+        gameObject.SetActive(false);
+    }
+
+
     /**Animation calls**/
 
     public void startChasingPlayer()
@@ -683,6 +727,7 @@ public class BossController : MonoBehaviour
         rouletteRoll = 0;
         chaseSpeed = 0f;
         timeElapsed = 0f;
+        explosionTimer = 0f;
         sideLength = body.GetComponent<Renderer>().bounds.size.z;
         armsActive = false;
         chasePlayer = false;

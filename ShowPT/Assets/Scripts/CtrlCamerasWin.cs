@@ -37,14 +37,6 @@ public class CtrlCamerasWin : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        enabled = false;
-        if (endCameras.Length > 0)
-        {
-            timerEndCamera = 0f;
-            activeEndCamera = (uint)Random.Range(0, endCameras.Length);
-            endCameras[activeEndCamera].cameraObject.SetActive(true);
-        }
-
         for (int i = 0; i < endCameras.Length; ++i)
         {
             endCameras[i].actual = (uint)Random.Range(0, endCameras[i].path.Length);
@@ -122,5 +114,15 @@ public class CtrlCamerasWin : MonoBehaviour {
             return 0;
         }
         return camera.actual + 1;
+    }
+
+    private void OnEnable()
+    {
+        if (endCameras.Length > 0)
+        {
+            timerEndCamera = 0f;
+            activeEndCamera = (uint)Random.Range(0, endCameras.Length);
+            endCameras[activeEndCamera].cameraObject.SetActive(true);
+        }
     }
 }

@@ -143,15 +143,8 @@ public class PlayerHealth : MonoBehaviour {
 			{
                 ctrlAudio.playOneSound(tvCollection.audioGroup, tvCollection[(int)GenericEvent.EventType.PLAYERDEAD], Vector3.zero, 0.05f, 0f, tvCollection.priority);
                 //Player DIES; Start dying sequence
-				tweetSystem.deactivateSystem();
-                PlayerMovment.overrideControls = true;
-				if(gun.isActiveAndEnabled)
-					gun.SetTrigger ("playerDead");
-				if(shotgun.isActiveAndEnabled)
-					shotgun.SetTrigger ("playerDead");
-				if(cannon.isActiveAndEnabled)
-					cannon.SetTrigger ("playerDead");
-				isDead = true;
+                disablePlayer();
+                isDead = true;
 			}
 		}
     }
@@ -177,6 +170,18 @@ public class PlayerHealth : MonoBehaviour {
             playerDamagedFirstTimeTurret = true;
             ctrlAudio.playOneSound(tvCollection.audioGroup, tvCollection[(int)GenericEvent.EventType.FIRSTORRET], Vector3.zero, 0.05f, 0f, tvCollection.priority);
         }
+    }
+
+    public void disablePlayer()
+    {
+        tweetSystem.deactivateSystem();
+        PlayerMovment.overrideControls = true;
+        if (gun.isActiveAndEnabled)
+            gun.SetTrigger("playerDead");
+        if (shotgun.isActiveAndEnabled)
+            shotgun.SetTrigger("playerDead");
+        if (cannon.isActiveAndEnabled)
+            cannon.SetTrigger("playerDead");
     }
 
 	void callForDamageTweets()
