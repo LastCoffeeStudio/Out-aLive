@@ -292,7 +292,7 @@ public class PlayerMovment : MonoBehaviour
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, originalZoom, Time.deltaTime * zoomSpeed);
             localSpeed = moveSpeed;
         }
-        if ((Input.GetButtonDown("ButtonB") || Input.GetKeyDown(KeyCode.C)) && !jumping)
+        if ((Input.GetButtonDown("ButtonB") || Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.LeftControl)) && !jumping)
         {
             updateCrouchState(!crouched);
         }
