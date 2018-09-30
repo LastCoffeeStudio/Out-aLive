@@ -173,7 +173,7 @@ public class ScoreController : MonoBehaviour {
             stadistics.SetActive(true);
             hud.SetActive(false);
         }
-        else
+        else if(CtrlGameState.getGameState() != CtrlGameState.gameStates.INITIALINTRO)
         {
             stadistics.SetActive(false);
             hud.SetActive(true);

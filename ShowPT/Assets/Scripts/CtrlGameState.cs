@@ -13,6 +13,7 @@ public class CtrlGameState : MonoBehaviour
         DEBUG,
         WIN,
         DEATH,
+        INITIALINTRO,
         EXIT
     }
 
@@ -32,7 +33,7 @@ public class CtrlGameState : MonoBehaviour
     void Start ()
 	{
         gameUI = GameObject.FindGameObjectWithTag("SceneUI").GetComponent<GameUI>();
-        gameState = gameStates.ACTIVE;
+        gameState = gameStates.INITIALINTRO;
         numSnitchKilled = 0;
         numSnithcObjectives = 1;
         loseTitle.SetActive(false);
