@@ -21,8 +21,6 @@ public class EndingCinematicController : MonoBehaviour {
         Cursor.visible = false;
     }
 
-    private void Update() {}
-
     private void endGame(VideoPlayer vp)
     {
         ctrlGameState.setGameState(CtrlGameState.gameStates.WIN);

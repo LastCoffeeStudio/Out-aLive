@@ -46,7 +46,6 @@ public class BossController : MonoBehaviour
     public GameObject deathAnimation;
 
     [Header("Player Shake Settings")]
-    public float maxDistancePlayer;
     public float shakeTime;
     public float fadeInTime;
     public float fadeOutTime;
@@ -231,11 +230,9 @@ public class BossController : MonoBehaviour
             case STATES.DEFEAT:
                 if (explosionTimer >= timeToExplode)
                 {
-                    //Do shake when it explodes
-                    float playerDistance = Vector3.Distance(transform.position, player.transform.position);
-                    cameraShake.startShake(shakeTime, fadeInTime, fadeOutTime, speed, (magnitude * (1 - Mathf.Clamp01(playerDistance / maxDistancePlayer))));
-
+                    cameraShake.startShake(shakeTime, fadeInTime, fadeOutTime, speed, magnitude);
                     generateDeathEffect();
+                    player.GetComponent<PlayerHealth>().disablePlayer();
                 }
                 else
                 {
@@ -457,9 +454,6 @@ public class BossController : MonoBehaviour
         }
 
         EnemySpawn enemySpawn = findEnemySpawn(type);
-        /**/
-        enemySpawn = enemies[1];
-        /**/
         int numberSpawns = Random.Range(enemySpawn.minNumEnemies, enemySpawn.maxNumEnemies + 1);
 
         if (enemySpawn.type == Enemy.EnemyType.ALL)

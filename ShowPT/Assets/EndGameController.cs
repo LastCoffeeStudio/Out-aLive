@@ -23,7 +23,6 @@ public class EndGameController : MonoBehaviour
     {
 		if (endTimer >= timeToEnd)
         {
-            player.GetComponent<PlayerHealth>().disablePlayer();
             cinematicObject.SetActive(true);
             scoreController.hud.SetActive(false);
         }
