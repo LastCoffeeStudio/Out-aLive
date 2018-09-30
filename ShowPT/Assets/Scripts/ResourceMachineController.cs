@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -66,12 +67,17 @@ public class ResourceMachineController : MonoBehaviour {
     [SerializeField]
     private Resource[] resources;
     private int indexActualResource;
+    [SerializeField]
+    private Resource[] resourcesAmmo;
+    private List<Resource> actualResources;
 
     [Header("Player stats (Debug)")]
     public int score;
 
     [Header("Sounds")]
     public AudioClip negativeSelection;
+    public AudioClip soldAmmo;
+    public AudioClip heathSold;
 
     private CtrlAudio ctrlAudio;
 
@@ -82,6 +88,8 @@ public class ResourceMachineController : MonoBehaviour {
         ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         scoreController = GameObject.FindGameObjectWithTag("SceneUI").GetComponent<ScoreController>();
+        actualResources = new List<Resource>();
+        actualResources = resources.ToList();
         indexActualResource = 0;
         updateSelected(0);
     }
@@ -89,13 +97,13 @@ public class ResourceMachineController : MonoBehaviour {
     public void updateSelected(int index)
     {
         indexActualResource += index;
-        if (indexActualResource >= resources.Length)
+        if (indexActualResource >= actualResources.Count)
         {
             indexActualResource = 0;
         }
         if (indexActualResource < 0)
         {
-            indexActualResource = resources.Length - 1;
+            indexActualResource = actualResources.Count - 1;
         }
 
         updateResourceData();
@@ -104,26 +112,28 @@ public class ResourceMachineController : MonoBehaviour {
 
     private void updateResourceData()
     {
-        if (resources[indexActualResource].locked && score >= resources[indexActualResource].cost)
+        if (actualResources[indexActualResource].locked && score >= actualResources[indexActualResource].cost)
         {
-            resources[indexActualResource].locked = false;
+            Resource resourceAct =  actualResources[indexActualResource];
+            resourceAct.locked = false;
+            actualResources[indexActualResource] = resourceAct;
         }
     }
 
     private void updateUI()
     {
-        resourceImage.sprite = resources[indexActualResource].image;
-        resourceImage.rectTransform.sizeDelta = new Vector2(resources[indexActualResource].width, resources[indexActualResource].height);
-        resourceText.text = resources[indexActualResource].text;
-        descriptionText.text = resources[indexActualResource].description;
+        resourceImage.sprite = actualResources[indexActualResource].image;
+        resourceImage.rectTransform.sizeDelta = new Vector2(actualResources[indexActualResource].width, actualResources[indexActualResource].height);
+        resourceText.text = actualResources[indexActualResource].text;
+        descriptionText.text = actualResources[indexActualResource].description;
 
-        switch (resources[indexActualResource].category)
+        switch (actualResources[indexActualResource].category)
         {
             case ResourceCategory.WEAPON:
                 costLayer.SetActive(true);
-                costText.text = resources[indexActualResource].cost.ToString();
+                costText.text = actualResources[indexActualResource].cost.ToString();
                 lockImage.gameObject.SetActive(true);
-                if (resources[indexActualResource].locked)
+                if (actualResources[indexActualResource].locked)
                 {
                     lockImage.sprite = locked;
                 }
@@ -141,7 +151,7 @@ public class ResourceMachineController : MonoBehaviour {
 
     public void buyResource()
     {
-        switch (resources[indexActualResource].category)
+        switch (actualResources[indexActualResource].category)
         {
             case ResourceCategory.WEAPON:
                 buyWeapon();
@@ -158,23 +168,31 @@ public class ResourceMachineController : MonoBehaviour {
     private void buyWeapon()
     {
         Inventory.WEAPON_TYPE type = Inventory.WEAPON_TYPE.NO_WEAPON;
-
-        switch (resources[indexActualResource].type)
+        int cost = actualResources[indexActualResource].cost;
+        ResourceType ammoWeapondSelect = ResourceType.NONE;
+        switch (actualResources[indexActualResource].type)
         {
             case ResourceType.GUN:
                 type = Inventory.WEAPON_TYPE.GUN;
+                deleteElement();
                 break;
             case ResourceType.SHOTGUN:
                 type = Inventory.WEAPON_TYPE.SHOTGUN;
+                ammoWeapondSelect = ResourceType.SHOTGUNAMMO;
                 break;
             case ResourceType.CANNON:
                 type = Inventory.WEAPON_TYPE.CANON;
+                ammoWeapondSelect = ResourceType.CANNONAMMO;
                 break;
         }
 
-        if (type != Inventory.WEAPON_TYPE.NO_WEAPON && !playerInventory.hasWeapon(type) && resources[indexActualResource].cost <= scoreController.getTotalScore())
+        if (type != Inventory.WEAPON_TYPE.NO_WEAPON && !playerInventory.hasWeapon(type) && cost <= scoreController.getTotalScore())
         {
             playerInventory.addWeapon(type);
+            if (ammoWeapondSelect != ResourceType.NONE)
+            {
+                changeWeapondToAmmo(ammoWeapondSelect);
+            }
         }
         else
         {
@@ -185,40 +203,71 @@ public class ResourceMachineController : MonoBehaviour {
     private void buyAmmo()
     {
         Inventory.AMMO_TYPE type = Inventory.AMMO_TYPE.NO_AMMO;
-        int ammoIncrease = resources[indexActualResource].ammount;
+        int ammoIncrease = actualResources[indexActualResource].ammount;
 
-        switch (resources[indexActualResource].type)
+        switch (actualResources[indexActualResource].type)
         {
             case ResourceType.SHOTGUNAMMO:
                 type = Inventory.AMMO_TYPE.SHOTGUNAMMO;
-                
                 break;
             case ResourceType.CANNONAMMO:
                 type = Inventory.AMMO_TYPE.CANONAMMO;
                 break;
         }
 
-        if (type != Inventory.AMMO_TYPE.NO_AMMO && resources[indexActualResource].limit > 0)
+        if (type != Inventory.AMMO_TYPE.NO_AMMO && actualResources[indexActualResource].limit > 0)
         {
-            --resources[indexActualResource].limit;
+           // --resources[indexActualResource].limit;
             playerInventory.increaseAmmo(type, ammoIncrease);
+            ctrlAudio.playOneSound("UI", soldAmmo, transform.position, 1.0f, 0f, 43);
         }
         else
         {
-            ctrlAudio.playOneSound("UI", negativeSelection, transform.position, 1.0f, 0f, 150);
+            ctrlAudio.playOneSound("UI", negativeSelection, transform.position, 1.0f, 0f, 43);
         }
+        deleteElement();
     }
 
     private void buyHealth()
     {
         if (resources[indexActualResource].limit > 0)
         {
-            --resources[indexActualResource].limit;
+            //--resources[indexActualResource].limit;
+            ctrlAudio.playOneSound("UI", heathSold, transform.position, 0.5f, 0f, 43);
             playerHealth.buyHealth();
         }
         else
         {
-            ctrlAudio.playOneSound("UI", negativeSelection, transform.position, 1.0f, 0f, 150);
+            ctrlAudio.playOneSound("UI", negativeSelection, transform.position, 1.0f, 0f, 43);
         }
+        deleteElement();
+    }
+
+    private void changeWeapondToAmmo(ResourceType type)
+    {
+        for (int i = 0; i < resourcesAmmo.Length; ++i)
+        {
+            if (resourcesAmmo[i].type == type)
+            {
+                actualResources[indexActualResource] = resourcesAmmo[i];
+            }
+        }
+        updateSelected(indexActualResource);
+    }
+
+    private void deleteElement()
+    {
+        actualResources.RemoveAt(indexActualResource);
+        if (actualResources.Count == 0)
+        {
+            for (int i = 0; i < resourcesAmmo.Length; ++i)
+            {
+                if (resourcesAmmo[i].category == ResourceCategory.NONE)
+                {
+                    actualResources.Add(resourcesAmmo[resourcesAmmo.Length - 1]);
+                }
+            }
+        }
+        updateSelected(indexActualResource);
     }
 }
