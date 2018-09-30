@@ -614,25 +614,25 @@ public class BossController : MonoBehaviour
             {
                 Vector3 spawnPoint = points[randomPoint].transform.position;
 
-                switch (enemySpawn.type)
+                if (enemySpawn.type == Enemy.EnemyType.TURRET)
                 {
-                    case Enemy.EnemyType.TURRET:
-                        RaycastHit hitInfo;
-                        if (Physics.Raycast(spawnPoint, -Vector3.up, out hitInfo, 10f))
-                        {
-                            spawnPoint = hitInfo.point;
-                        }
-                        break;
-                    case Enemy.EnemyType.KAMIKAZE:
-                        BoxCollider collider = enemySpawn.enemy.GetComponentInChildren<BoxCollider>();
-                        collider.transform.localPosition = new Vector3(0f, 1f, 0f);
-                        collider.transform.localRotation = Quaternion.identity;
-                        collider.size = new Vector3(70f,2f,70f);
-                        break;
+                    RaycastHit hitInfo;
+                    if (Physics.Raycast(spawnPoint, -Vector3.up, out hitInfo, 10f))
+                    {
+                        spawnPoint = hitInfo.point;
+                    }
                 }
 
                 spawns[randomPoint] = true;
-                Instantiate(enemySpawn.enemy, spawnPoint, Quaternion.identity);
+                GameObject enemy = Instantiate(enemySpawn.enemy, spawnPoint, Quaternion.identity);
+                if (enemySpawn.type == Enemy.EnemyType.KAMIKAZE)
+                {
+                    BoxCollider collider = enemy.GetComponentInChildren<BoxCollider>();
+                    collider.transform.localPosition = new Vector3(0f, 1f, 0f);
+                    collider.transform.localRotation = Quaternion.identity;
+                    collider.size = new Vector3(70f, 2f, 70f);
+                }
+
                 checkedPoints = spawns.Length;
             }
             else
