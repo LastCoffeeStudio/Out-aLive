@@ -137,7 +137,7 @@ public class CtrlDebug : MonoBehaviour
 		}
 
 		//Activate/Deactivate enemies
-		if (Input.GetKeyDown (KeyCode.M)) 
+		/*if (Input.GetKeyDown (KeyCode.M)) 
 		{
 			if (enemies.activeInHierarchy) 
 			{
@@ -147,13 +147,13 @@ public class CtrlDebug : MonoBehaviour
 			{
 				enemies.SetActive (true);
 			}
-		}
+		}*/
 
 		//Force bridge activation
-		if (Input.GetKeyDown (KeyCode.O)) 
+		/*if (Input.GetKeyDown (KeyCode.O)) 
 		{
 			bridge.SetActive (true);
-		}
+		}*/
 
 		//Force WIN condition
 		if (Input.GetKey(KeyCode.V))
