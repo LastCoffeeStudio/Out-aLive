@@ -28,7 +28,9 @@ public class ScoreController : MonoBehaviour {
         KAMIKAZE = 50,
         LIL = 10,
         TV = 20,
-        CAMERA = 10
+        CAMERA = 10,
+        BOSS_ARM_HIT = 10,
+        BOSS_ARM_KEEPED = 50
     }
 
     public enum ActionScore
@@ -52,12 +54,14 @@ public class ScoreController : MonoBehaviour {
     public Text kamikazeDeadsLabel;
     public Text lilDeadsLabel;
     public Text totalDeadsLabel;
+    public Text bossArmsHittedLabel;
 
     public Text tvDeadsLabel;
     public Text cameraDeadsLabel;
     public Text boringTimeLabel;
     public Text lifeLostLabel;
-    
+    public Text bossAtacksLabel;
+
     public Text pistolAverage;
     public Text shotgunAverage;
     public Text SMGAverage;
@@ -74,12 +78,14 @@ public class ScoreController : MonoBehaviour {
     private static int dronsDeads;
     private static int kamikazeDeads;
     private static int LilDeads;
+    private static int bossAtacks;
 
     //Dislikes
     private static int tvDeads;
     private static int cameraDeads;
     private static int boringTime;
     private static int lifeLost;
+    private static int bossArmsHitted;
 
     private static int pistolShotsUsed;
     private static int SMGShotsUsed;
@@ -142,12 +148,14 @@ public class ScoreController : MonoBehaviour {
         dronsDeads = 0;
         kamikazeDeads = 0;
         LilDeads = 0;
+        bossArmsHitted = 0;
 
         //Dislikes
         tvDeads = 0;
         cameraDeads = 0;
         boringTime = 0;
         lifeLost = 0;
+        bossAtacks = 0;
 
         pistolShotsUsed = 0;
         SMGShotsUsed = 0;
@@ -273,6 +281,18 @@ public class ScoreController : MonoBehaviour {
         updateHud = true;
     }
 
+    public static void boss_finish_arm_atack()
+    {
+        bossAtacks += 1;
+        addScore((int)EnemyScore.BOSS_ARM_KEEPED, false);
+    }
+
+    public static void boss_arm_hitted()
+    {
+        bossArmsHitted += 1;
+        addScore((int)EnemyScore.BOSS_ARM_HIT, true);
+    }
+
     public static void addLikes(int likes)
     {
         shouldShowLikePArticle = true;
@@ -329,11 +349,13 @@ public class ScoreController : MonoBehaviour {
             dronsDeadsLabel.text = dronsDeads.ToString();
             kamikazeDeadsLabel.text = kamikazeDeads.ToString();
             lilDeadsLabel.text = LilDeads.ToString();
+            bossArmsHittedLabel.text = bossArmsHitted.ToString();
 
             tvDeadsLabel.text = tvDeads.ToString();
             cameraDeadsLabel.text = cameraDeads.ToString();
             boringTimeLabel.text = boringTime.ToString();
             lifeLostLabel.text = lifeLost.ToString();
+            bossAtacksLabel.text = bossAtacks.ToString();
 
             likesLabel.text = likesInt.ToString();
 

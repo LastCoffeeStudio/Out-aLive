@@ -222,6 +222,7 @@ public class BossController : MonoBehaviour
                             armsStopped = 0;
                             bossAnimator.SetInteger("State", 2);
                             state = STATES.ROULETTE_ATTACK;
+                            ScoreController.boss_finish_arm_atack();
                             armsActive = false;
                         }
                     }
@@ -284,6 +285,9 @@ public class BossController : MonoBehaviour
     public float getHitArm(int id, int damage)
     {
         arms[id].health -= damage;
+
+        ScoreController.boss_arm_hitted();
+
         if (arms[id].health <= 0)
         {
             ctrlAudio.playOneSound(voiceSounds.audioGroup, voiceSounds[(int)GenericEvent.EventType.BOSSFIGHT], transform.position, voiceSounds.volume, voiceSounds.spatialBlend, voiceSounds.priority);
