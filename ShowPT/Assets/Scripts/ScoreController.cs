@@ -119,6 +119,10 @@ public class ScoreController : MonoBehaviour {
 	Tweet tenLilsTweet;
 	[SerializeField]
 	Tweet twentyLilsTweet;
+	[SerializeField]
+	Tweet fiveTurretsTweet;
+	[SerializeField]
+	Tweet fiveKamisTweet;
     
 
     // Use this for initialization
@@ -240,10 +244,14 @@ public class ScoreController : MonoBehaviour {
             case Enemy.TURRET:
                 ++torretDeads;
                 addScore((int)EnemyScore.TURRET);
+				if (torretDeads == 5)
+					scoreController.tweetSystem.requestTweet (scoreController.fiveTurretsTweet);
                 break;
             case Enemy.KAMIKAZE:
                 ++kamikazeDeads;
                 addScore((int)EnemyScore.KAMIKAZE);
+				if (kamikazeDeads == 5)
+					scoreController.tweetSystem.requestTweet (scoreController.fiveKamisTweet);
                 break;
 			case Enemy.LIL:
 				++LilDeads;

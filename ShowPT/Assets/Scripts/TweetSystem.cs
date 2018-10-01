@@ -34,10 +34,6 @@ public class TweetSystem : MonoBehaviour
 	[SerializeField]
 	AudioClip tweetAudio;
 
-	[Header("Special Tweets")]
-	[SerializeField]
-	Tweet tenLils;
-
 	bool toldToDeactivate = false;
 
 	enum state
@@ -81,7 +77,7 @@ public class TweetSystem : MonoBehaviour
 
 		case state.TWEET_RUNNING_IN:
 			tweet.transform.position = Vector2.Lerp (tweet.transform.position, insidePoint.transform.position, Time.deltaTime * tweetSpeed);
-			if (Vector2.Distance (tweet.transform.position, insidePoint.transform.position) < 5f) 
+			if (Vector2.Distance (tweet.transform.position, insidePoint.transform.position) < 10f) 
 			{
 				tweetState = state.TWEET_SHOWING;
 			}
@@ -98,7 +94,7 @@ public class TweetSystem : MonoBehaviour
 
 		case state.TWEET_RUNNING_OUT:
 			tweet.transform.position = Vector2.Lerp (tweet.transform.position, outsidePoint.transform.position, Time.deltaTime * tweetSpeed);
-			if (Vector2.Distance (tweet.transform.position, outsidePoint.transform.position) < 5f) 
+			if (Vector2.Distance (tweet.transform.position, outsidePoint.transform.position) < 10f) 
 			{
 				if (toldToDeactivate == true) 
 				{
