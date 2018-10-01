@@ -100,6 +100,9 @@ public class ShieldDroneEnemy : Enemy {
             particleSmoke1.Play();
             smoke2.SetActive(true);
             particleSmoke2.Play();
+            AudioSource audio = GetComponentInChildren<AudioSource>();
+            audio.volume = 1f;
+            audio.maxDistance = 100F;
             GetComponentInChildren<RotateShieldDead>().enabled = true;
             transform.parent.parent.Rotate(Random.Range(30, 60), Random.Range(30, 60), Random.Range(30, 60));
             transform.parent.GetComponent<Animator>().enabled = true;

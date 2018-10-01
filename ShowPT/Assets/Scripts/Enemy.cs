@@ -114,7 +114,7 @@ public class Enemy : MonoBehaviour
 	{
 		if (ctrAudio != null) 
 		{
-			ctrAudio.playOneSound("Enemies", deathAudio, transform.position, 1.0f, 1f, 128);
+			ctrAudio.playOneSound("Enemies", deathAudio, transform.position, 1.0f, 1f, 40, false, null, 70F, 0F, AudioRolloffMode.Linear);
 		}
 		if (deathAnimation != null) 
 		{
