@@ -81,6 +81,9 @@ public class ResourceMachineController : MonoBehaviour {
 
     private CtrlAudio ctrlAudio;
 
+    public delegate void WeapondBought(ResourceType weapondType, ResourceType ammoType);
+    public static event WeapondBought weapondBought;
+
     private void Start()
     {
         playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
@@ -92,6 +95,7 @@ public class ResourceMachineController : MonoBehaviour {
         actualResources = resources.ToList();
         indexActualResource = 0;
         updateSelected(0);
+        weapondBought += changeWeapondToAmmo;
     }
 
     public void updateSelected(int index)
@@ -169,7 +173,8 @@ public class ResourceMachineController : MonoBehaviour {
     {
         Inventory.WEAPON_TYPE type = Inventory.WEAPON_TYPE.NO_WEAPON;
         int cost = actualResources[indexActualResource].cost;
-        ResourceType ammoWeapondSelect = ResourceType.NONE;
+        ResourceType ammoSelect = ResourceType.NONE;
+        ResourceType weapondSelect = ResourceType.NONE;
         switch (actualResources[indexActualResource].type)
         {
             case ResourceType.GUN:
@@ -178,20 +183,23 @@ public class ResourceMachineController : MonoBehaviour {
                 break;
             case ResourceType.SHOTGUN:
                 type = Inventory.WEAPON_TYPE.SHOTGUN;
-                ammoWeapondSelect = ResourceType.SHOTGUNAMMO;
+                weapondSelect = ResourceType.SHOTGUN;
+                ammoSelect = ResourceType.SHOTGUNAMMO;
                 break;
             case ResourceType.CANNON:
                 type = Inventory.WEAPON_TYPE.CANON;
-                ammoWeapondSelect = ResourceType.CANNONAMMO;
+                weapondSelect = ResourceType.CANNON;
+                ammoSelect = ResourceType.CANNONAMMO;
                 break;
         }
 
         if (type != Inventory.WEAPON_TYPE.NO_WEAPON && !playerInventory.hasWeapon(type) && cost <= scoreController.getTotalScore())
         {
             playerInventory.addWeapon(type);
-            if (ammoWeapondSelect != ResourceType.NONE)
+            if (ammoSelect != ResourceType.NONE)
             {
-                changeWeapondToAmmo(ammoWeapondSelect);
+                //changeWeapondToAmmo(ammoWeapondSelect);
+                weapondBoughtEvent(weapondSelect, ammoSelect);
             }
         }
         else
@@ -230,26 +238,32 @@ public class ResourceMachineController : MonoBehaviour {
 
     private void buyHealth()
     {
-        if (resources[indexActualResource].limit > 0)
+        if (actualResources[indexActualResource].limit > 0 && playerHealth.health < playerHealth.maxHealth)
         {
             //--resources[indexActualResource].limit;
             ctrlAudio.playOneSound("UI", heathSold, transform.position, 0.5f, 0f, 43);
             playerHealth.buyHealth();
+            deleteElement();
         }
         else
         {
             ctrlAudio.playOneSound("UI", negativeSelection, transform.position, 1.0f, 0f, 43);
         }
-        deleteElement();
     }
 
-    private void changeWeapondToAmmo(ResourceType type)
+    private void changeWeapondToAmmo(ResourceType weapondType, ResourceType ammoType)
     {
-        for (int i = 0; i < resourcesAmmo.Length; ++i)
+        for (int i = 0; i < actualResources.Count; ++i)
         {
-            if (resourcesAmmo[i].type == type)
+            if (actualResources[i].type == weapondType)
             {
-                actualResources[indexActualResource] = resourcesAmmo[i];
+                for (int j = 0; j < resourcesAmmo.Length; ++j)
+                {
+                    if (resourcesAmmo[j].type == ammoType)
+                    {
+                        actualResources[i] = resourcesAmmo[j];
+                    }
+                }
             }
         }
         updateSelected(indexActualResource);
@@ -269,5 +283,14 @@ public class ResourceMachineController : MonoBehaviour {
             }
         }
         updateSelected(indexActualResource);
+    }
+
+    protected virtual void weapondBoughtEvent(ResourceType weapondType, ResourceType ammoType)
+    {
+        var handler = weapondBought;
+        if (handler != null)
+        {
+            handler(weapondType, ammoType);
+        }
     }
 }
