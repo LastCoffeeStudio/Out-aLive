@@ -66,7 +66,7 @@ public class TweetSystem : MonoBehaviour
 		{
 		case state.TWEET_HIDDEN:
 			tweetTimer += Time.deltaTime;
-			if (Input.GetKeyDown (KeyCode.I) || tweetTimer > timeBetweenTweets) 
+			if (tweetTimer > timeBetweenTweets) 
 			{
 				if (randomTweetList.Count > 0) 
 				{
