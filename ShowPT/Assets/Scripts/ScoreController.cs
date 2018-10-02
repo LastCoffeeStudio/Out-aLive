@@ -117,6 +117,9 @@ public class ScoreController : MonoBehaviour {
     private static bool shouldShowLikePArticle = false;
     private static bool shouldShowDislikePArticle = false;
 
+    private static bool haveCannonIncremented = false;
+    private static bool haveShotgunIncremented = false;
+
     public static float timeSinceLastAction = 0.0f;
 
 	[Header("Score Tweets")]
@@ -136,6 +139,8 @@ public class ScoreController : MonoBehaviour {
 	{
 		scoreController = this;
 		tweetSystem = FindObjectOfType<TweetSystem> ();
+        haveCannonIncremented = false;
+        haveShotgunIncremented = false;
 
         //Public Gui objects
         likesInt = 0;
@@ -169,8 +174,8 @@ public class ScoreController : MonoBehaviour {
 
 }
 
-	// Update is called once per frame
-	void Update ()
+    // Update is called once per frame
+    void Update ()
     {
         timeSinceLastAction += Time.deltaTime;
         if(timeSinceLastAction > SECONDS_TO_BORING)
@@ -207,9 +212,11 @@ public class ScoreController : MonoBehaviour {
                 ++pistolShotsUsed;
                 break;
             case Inventory.WEAPON_TYPE.SHOTGUN:
+                haveShotgunIncremented = false;
                 ++shotgunShotsUsed;
                 break;
             case Inventory.WEAPON_TYPE.CANON:
+                haveCannonIncremented = false;
                 ++canonShotsUsed;
                 break;
             default:
@@ -226,10 +233,21 @@ public class ScoreController : MonoBehaviour {
                 ++pistolShotsTouched;
                 break;
             case Inventory.WEAPON_TYPE.SHOTGUN:
-                ++shotgunShotsTouched;
+                if (!haveShotgunIncremented)
+                {
+                    ++shotgunShotsTouched;
+                    haveShotgunIncremented = true;
+                }
                 break;
             case Inventory.WEAPON_TYPE.CANON:
-                ++canonShotsTouched;
+                {
+                    if (!haveCannonIncremented)
+                    {
+                        ++canonShotsTouched;
+                        haveCannonIncremented = true;
+                    }
+                }
+                haveCannonIncremented = true;
                 break;
             default:
                 break;
@@ -328,6 +346,8 @@ public class ScoreController : MonoBehaviour {
     {
         return totalScoreInt;
     }
+
+
 
     void updateLavels()
     {
