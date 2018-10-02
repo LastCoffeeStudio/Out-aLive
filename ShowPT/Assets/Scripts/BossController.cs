@@ -85,10 +85,6 @@ public class BossController : MonoBehaviour
     private CtrlAudio ctrlAudio;
     private CameraShake cameraShake;
 
-    private GameObject enemyToSummon;
-    private Vector3 summonSpawnPoint;
-    private GameObject summonedEnemy;
-
     private enum STATES
     {
         ROTATE_ATTACK,
@@ -663,19 +659,8 @@ public class BossController : MonoBehaviour
                 }
 
                 spawns[randomPoint] = true;
-                enemyToSummon = enemySpawn.enemy;
-                summonSpawnPoint = spawnPoint;
-                Invoke("summonInTime", summonTime);
-                Instantiate(smokeEffect, summonSpawnPoint, Quaternion.identity);
-                //GameObject enemy = Instantiate(enemySpawn.enemy, spawnPoint, Quaternion.identity);
-                if (enemySpawn.type == Enemy.EnemyType.KAMIKAZE)
-                {
-                    BoxCollider collider = summonedEnemy.GetComponentInChildren<BoxCollider>();
-                    collider.transform.localPosition = new Vector3(0f, 1f, 0f);
-                    collider.transform.localRotation = Quaternion.identity;
-                    collider.size = new Vector3(70f, 2f, 70f);
-                }
-
+                StartCoroutine(summonInTime(enemySpawn, spawnPoint, summonTime));
+                Instantiate(smokeEffect, spawnPoint, Quaternion.identity);
                 checkedPoints = spawns.Length;
             }
             else
@@ -690,11 +675,17 @@ public class BossController : MonoBehaviour
         }
     }
 
-    private void summonInTime()
+    IEnumerator summonInTime(EnemySpawn enemySpawn, Vector3 spawnPoint, float time)
     {
-        if (enemyToSummon != null)
+        yield return new WaitForSeconds(time);
+        GameObject enemy = Instantiate(enemySpawn.enemy, spawnPoint, Quaternion.identity);
+
+        if (enemySpawn.type == Enemy.EnemyType.KAMIKAZE)
         {
-            summonedEnemy = Instantiate(enemyToSummon, summonSpawnPoint, Quaternion.identity);
+            BoxCollider collider = enemy.GetComponentInChildren<BoxCollider>();
+            collider.transform.localPosition = new Vector3(0f, 1f, 0f);
+            collider.transform.localRotation = Quaternion.identity;
+            collider.size = new Vector3(70f, 2f, 70f);
         }
     }
 
