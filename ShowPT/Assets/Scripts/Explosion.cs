@@ -36,6 +36,11 @@ public class Explosion : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
+        Debug.Log("name: " + col.name);
+        Debug.Log("tag: " + col.tag);
+        Debug.Log("layer: " + col.gameObject.layer);
+        Debug.Log("nametolayer: " + LayerMask.NameToLayer("PhysicsObjects"));
+
         if (col.tag == "Enemy" || col.tag == "Agent" || col.tag == "Snitch")
         {
             float distance = Vector3.Distance(col.gameObject.transform.position, transform.position);
@@ -48,6 +53,13 @@ public class Explosion : MonoBehaviour {
             int finalDamage = calculateDamage(distance);
             Vector4 dataToPass = new Vector4(transform.position.x, transform.position.y, transform.position.z, finalDamage);
             col.gameObject.SendMessage("shotBehavior", dataToPass);
+        }
+        if (col.tag == "BossArm")
+        {
+            bool armActive;
+            float distance = Vector3.Distance(col.gameObject.transform.position, transform.position);
+            int finalDamage = calculateDamage(distance);
+            float armHealth = col.gameObject.GetComponent<BossArmController>().getHit(finalDamage, out armActive);
         }
     }
 

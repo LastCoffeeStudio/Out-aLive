@@ -5,62 +5,21 @@ using UnityEngine.UI;
 
 public class ResourceMachineActivationController : MonoBehaviour
 {
-    public bool machineActive;
-    public Image background;
+    public Animator resourceMachineAnim;
+    public float minDistance;
 
-    public struct BackgroundUI
+    private GameObject player;
+
+    void Start ()
     {
-        public GameObject UIElement;
-        public float turnOnDelayTime;
-        public float turnOnTime;
-        public float flickSpeed;
-
-        [HideInInspector]
-        public bool isActive;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    public BackgroundUI[] elements;
-    
-	void Start ()
+    private void Update()
     {
-        setElements(machineActive);
-    }
-
-    private void setElements(bool active)
-    {
-        for (int i = 0; i < elements.Length; ++i)
+        if (!resourceMachineAnim.GetBool("MachineOn") && Vector3.Distance(resourceMachineAnim.transform.position, player.transform.position) <= minDistance)
         {
-            Debug.Log("a");
-            Color color = elements[i].UIElement.GetComponent<MaskableGraphic>().color;
-            color.a = (active) ? 1f : 0f;
-            elements[i].UIElement.GetComponent<MaskableGraphic>().color = color;
-        }
-    }
-
-    IEnumerator onEnable()
-    {
-        //Enable background with custom animation
-
-
-
-        //Enable all the elements
-        bool allActive = false;
-
-        while (!allActive)
-        {
-            allActive = true;
-
-            for (int i = 0; i < elements.Length; ++i)
-            {
-                if (!elements[i].isActive)
-                {
-                    allActive = false;
-
-                    //Update elements
-                }
-            }
-
-            yield return null;
+            resourceMachineAnim.SetBool("MachineOn", true);
         }
     }
 }

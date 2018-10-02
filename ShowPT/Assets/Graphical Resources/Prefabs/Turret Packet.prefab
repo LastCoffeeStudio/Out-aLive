@@ -572,6 +572,7 @@ GameObject:
   - component: {fileID: 95309062099061152}
   - component: {fileID: 114832623235760016}
   - component: {fileID: 136307048605010488}
+  - component: {fileID: 54760870888365430}
   m_Layer: 18
   m_Name: Turret_Good
   m_TagString: Enemy
@@ -2281,6 +2282,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!54 &54760870888365430
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1888814160080726}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!54 &54834283463795114
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -2693,6 +2709,7 @@ MonoBehaviour:
   rotationSpeed: 1
   burstTime: 2
   coolDownTime: 2
+  shooting: 0
   viewMask:
     serializedVersion: 2
     m_Bits: 256
