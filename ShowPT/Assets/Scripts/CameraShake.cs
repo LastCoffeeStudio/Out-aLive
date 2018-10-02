@@ -20,10 +20,10 @@ public class CameraShake : MonoBehaviour
     {
 		if (PlayerMovment.overrideControls == false) 
 		{
-			if (Input.GetKeyDown (KeyCode.H)) 
+			/*if (Input.GetKeyDown (KeyCode.H)) 
 			{
 				startShake (10f, 0.1f, 0.2f, 10, 0.5f);
-			}
+			}*/
 
 			Vector3 cameraPivotPosition = new Vector3 ();
 
