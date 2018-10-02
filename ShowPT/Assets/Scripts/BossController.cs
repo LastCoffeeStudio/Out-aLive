@@ -44,6 +44,7 @@ public class BossController : MonoBehaviour
     [Header("Final state attributes")]
     public float timeToExplode;
     public GameObject deathAnimation;
+    public GameObject[] explosions;
 
     [Header("Player Shake Settings")]
     public float shakeTime;
@@ -73,6 +74,9 @@ public class BossController : MonoBehaviour
     private float timeElapsed;
     private float sideLength;
     private float explosionTimer;
+    private float explosionEffectsTimer;
+    private float timeToInvokeExplosion;
+    private int explosionsIndex;
     private bool armsActive;
     private bool chasePlayer;
     private bool[] spawns;
@@ -175,6 +179,8 @@ public class BossController : MonoBehaviour
                     {
                         bossAnimator.SetInteger("State", 3);
                         state = STATES.DEFEAT;
+                        timeToInvokeExplosion = timeToExplode / (float)explosions.Length;
+                        explosionEffectsTimer = timeToInvokeExplosion;
                         break;
                     }
 
@@ -239,6 +245,19 @@ public class BossController : MonoBehaviour
                 else
                 {
                     explosionTimer += Time.deltaTime;
+                }
+                if (explosionEffectsTimer >= timeToInvokeExplosion && explosionsIndex < explosions.Length)
+                {
+                    if (explosions[explosionsIndex] != null)
+                    {
+                        explosions[explosionsIndex].SetActive(true);
+                    }
+                    ++explosionsIndex;
+                    explosionEffectsTimer = 0f;
+                }
+                else
+                {
+                    explosionEffectsTimer += Time.deltaTime;
                 }
                 break;
             default:
@@ -746,6 +765,9 @@ public class BossController : MonoBehaviour
         chaseSpeed = 0f;
         timeElapsed = 0f;
         explosionTimer = 0f;
+        explosionEffectsTimer = 0f;
+        timeToInvokeExplosion = 0f;
+        explosionsIndex = 0;
         sideLength = body.GetComponent<Renderer>().bounds.size.z;
         armsActive = false;
         chasePlayer = false;
