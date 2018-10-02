@@ -16,6 +16,7 @@ public class ShieldDroneEnemy : Enemy {
     private Renderer rendShield;
     private float incrementColorGreen;
     private CtrlShieldDrones ctrlShieldDrones;
+    private bool dead = false;
 
     // Use this for initialization
     private void Start ()
@@ -64,7 +65,10 @@ public class ShieldDroneEnemy : Enemy {
         ctrAudio.playOneSound("Enemies", hitAudio, transform.position, 0.5f, 0.0f, 128);
         enemyHealth -= damage;
         Color color = rendShield.material.GetColor("_TintColor");
-        color.g += incrementColorGreen;
+        for (int i = 0; i < damage; ++i)
+        {
+            color.g += incrementColorGreen;
+        }
         rendShield.material.SetColor("_TintColor",color);
         checkHealth();
         return enemyHealth;
@@ -91,8 +95,9 @@ public class ShieldDroneEnemy : Enemy {
             effectHit.SetActive(true);
             StartCoroutine(playEffectHit());
         }
-        else if(enemyHealth <= 0f)
+        else if(enemyHealth <= 0f && dead == false)
         {
+            dead = true;
             ctrlShieldDrones.dronKilled();
             propShield.SetActive(false);
             ScoreController.addDead(ScoreController.Enemy.DRON);
