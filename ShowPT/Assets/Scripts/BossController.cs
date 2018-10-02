@@ -274,6 +274,7 @@ public class BossController : MonoBehaviour
         arms[id].stopped = true;
         arms[id].endingPosition = arms[id].arm.transform.position;
         ++armsStopped;
+        ctrlAudio.playOneSound(bossSounds.audioGroup, bossSounds[6], arms[id].endingPosition, bossSounds.volume, bossSounds.spatialBlend, bossSounds.priority);
         //SOB Punch hit wall
         if (armsStopped == (arms.Length - armsDead))
         {
@@ -290,7 +291,21 @@ public class BossController : MonoBehaviour
 
         if (arms[id].health <= 0)
         {
-            ctrlAudio.playOneSound(voiceSounds.audioGroup, voiceSounds[(int)GenericEvent.EventType.BOSSFIGHT], transform.position, voiceSounds.volume, voiceSounds.spatialBlend, voiceSounds.priority);
+            int soundDestroyArm = 0;
+            switch(armsDead)
+            {
+                case 0:
+                    soundDestroyArm = 7;
+                    break;
+                case 1:
+                    soundDestroyArm = 8;
+                    break;
+                case 2:
+                    soundDestroyArm = 9;
+                    break;
+            }
+
+            ctrlAudio.playOneSound(voiceSounds.audioGroup, bossSounds[soundDestroyArm], transform.position, voiceSounds.volume, voiceSounds.spatialBlend, voiceSounds.priority);
             ctrlAudio.playOneSound(bossSounds.audioGroup, bossSounds[3], transform.position, bossSounds.volume, bossSounds.spatialBlend, bossSounds.priority);
             arms[id].dead = true;
             ++armsDead;
