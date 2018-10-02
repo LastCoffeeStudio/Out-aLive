@@ -147,6 +147,7 @@ public class ResourceMachineController : MonoBehaviour {
                 }
                 break;
             case ResourceCategory.AMMO:
+            case ResourceCategory.HEALTH:
                 costLayer.SetActive(false);
                 lockImage.gameObject.SetActive(false);
                 break;

@@ -20,6 +20,7 @@ public class Projectile : MonoBehaviour
     public GameObject explosionType;
     public GameObject ledsDecall;
     public AudioClip explosionSound;
+    public AudioClip bossFailHitSound;
 
     private float minimumExtent;
     private float partialExtent;
@@ -154,6 +155,10 @@ public class Projectile : MonoBehaviour
             {
                 Instantiate(ledsDecall, transform.position, col.transform.rotation);
                 destroyMe();
+            }
+            if (col.gameObject.layer == LayerMask.NameToLayer("BossWall"))
+            {
+                ctrlAudio.playOneSound("Boss", bossFailHitSound, col.transform.position, 1.0f, 1.0f, 40);
             }
         }
     }
