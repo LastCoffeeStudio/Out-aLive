@@ -58,6 +58,7 @@ public class BossController : MonoBehaviour
     [Header("Sounds attributes")]
     public AudioCollection bossSounds;
     public AudioCollection voiceSounds;
+    public AudioClip bossSuccHitSound;
 
     private GameObject player;
     private Bounds combatZone;
@@ -311,7 +312,7 @@ public class BossController : MonoBehaviour
     public float getHitArm(int id, int damage)
     {
         arms[id].health -= damage;
-
+        ctrlAudio.playOneSound("Boss", bossSuccHitSound, arms[id].arm.transform.position, 1.0f, 1.0f, 40);
         ScoreController.boss_arm_hitted();
 
         if (arms[id].health <= 0)
@@ -330,7 +331,7 @@ public class BossController : MonoBehaviour
                     break;
             }
 
-            ctrlAudio.playOneSound(voiceSounds.audioGroup, bossSounds[soundDestroyArm], transform.position, voiceSounds.volume, voiceSounds.spatialBlend, voiceSounds.priority);
+            ctrlAudio.playOneSound(bossSounds.audioGroup, bossSounds[soundDestroyArm], transform.position, bossSounds.volume, bossSounds.spatialBlend, bossSounds.priority);
             ctrlAudio.playOneSound(bossSounds.audioGroup, bossSounds[3], transform.position, bossSounds.volume, bossSounds.spatialBlend, bossSounds.priority);
             arms[id].dead = true;
             ++armsDead;
