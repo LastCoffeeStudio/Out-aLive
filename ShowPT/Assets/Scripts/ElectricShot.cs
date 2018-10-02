@@ -34,6 +34,7 @@ public class ElectricShot : MonoBehaviour {
         {
             projectilesList.Add(Instantiate(lightToEnemy, transform.position, Quaternion.identity, gameObject.transform));
             positionList.Add(other.gameObject.transform.position);
+            ScoreController.weaponHit(Inventory.WEAPON_TYPE.SHOTGUN);
 
             other.gameObject.GetComponent<Enemy>().getHit(damage);
             other.gameObject.GetComponent<Enemy>().setStatusParalyzed();
@@ -42,6 +43,7 @@ public class ElectricShot : MonoBehaviour {
         {
             projectilesList.Add(Instantiate(lightToEnemy, transform.position, Quaternion.identity, gameObject.transform));
             positionList.Add(other.gameObject.transform.position);
+            ScoreController.weaponHit(Inventory.WEAPON_TYPE.SHOTGUN);
 
             bool armActive;
             other.gameObject.GetComponent<BossArmController>().getHit(damage, out armActive);
@@ -50,6 +52,7 @@ public class ElectricShot : MonoBehaviour {
         {
             Vector4 dataToPass = new Vector4(transform.position.x, transform.position.y, transform.position.z, damage);
             other.gameObject.SendMessage("shotBehavior", dataToPass);
+            ScoreController.weaponHit(Inventory.WEAPON_TYPE.SHOTGUN);
         }
     }
 }
