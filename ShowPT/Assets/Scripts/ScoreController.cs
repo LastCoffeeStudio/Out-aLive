@@ -193,10 +193,10 @@ public class ScoreController : MonoBehaviour {
 
         totalScoreLabel.text = totalScoreInt.ToString();
         
-        if (Input.GetKey(KeyCode.Z))
+       /* if (Input.GetKey(KeyCode.Z))
         {
             totalScoreInt += 500;
-        }
+        }*/
     }
 
     public static void weaponUsed(Inventory.WEAPON_TYPE weaponType)
