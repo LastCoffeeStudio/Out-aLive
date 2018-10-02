@@ -40,6 +40,8 @@ public class BossController : MonoBehaviour
     public EnemySpawn[] enemies;
     //TODO: change spawnpoints for an area when the boss room is flat.
     public GameObject[] points;
+    public float summonTime;
+    public GameObject smokeEffect;
 
     [Header("Final state attributes")]
     public float timeToExplode;
@@ -81,6 +83,10 @@ public class BossController : MonoBehaviour
     private bool[] spawns;
     private CtrlAudio ctrlAudio;
     private CameraShake cameraShake;
+
+    private GameObject enemyToSummon;
+    private Vector3 summonSpawnPoint;
+    private GameObject summonedEnemy;
 
     private enum STATES
     {
@@ -656,10 +662,14 @@ public class BossController : MonoBehaviour
                 }
 
                 spawns[randomPoint] = true;
-                GameObject enemy = Instantiate(enemySpawn.enemy, spawnPoint, Quaternion.identity);
+                enemyToSummon = enemySpawn.enemy;
+                summonSpawnPoint = spawnPoint;
+                Invoke("summonInTime", summonTime);
+                Instantiate(smokeEffect, summonSpawnPoint, Quaternion.identity);
+                //GameObject enemy = Instantiate(enemySpawn.enemy, spawnPoint, Quaternion.identity);
                 if (enemySpawn.type == Enemy.EnemyType.KAMIKAZE)
                 {
-                    BoxCollider collider = enemy.GetComponentInChildren<BoxCollider>();
+                    BoxCollider collider = summonedEnemy.GetComponentInChildren<BoxCollider>();
                     collider.transform.localPosition = new Vector3(0f, 1f, 0f);
                     collider.transform.localRotation = Quaternion.identity;
                     collider.size = new Vector3(70f, 2f, 70f);
@@ -676,6 +686,14 @@ public class BossController : MonoBehaviour
                     randomPoint = 0;
                 }
             }
+        }
+    }
+
+    private void summonInTime()
+    {
+        if (enemyToSummon != null)
+        {
+            summonedEnemy = Instantiate(enemyToSummon, summonSpawnPoint, Quaternion.identity);
         }
     }
 
