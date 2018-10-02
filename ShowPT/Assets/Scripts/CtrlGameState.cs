@@ -48,11 +48,11 @@ public class CtrlGameState : MonoBehaviour
 
     public void Update()
     {
-		if (Input.GetKeyDown(KeyCode.Escape) && PlayerMovment.overrideControls == false)
+		if (Input.GetKeyDown(KeyCode.P) && PlayerMovment.overrideControls == false)
         {
             if (gameState == gameStates.PAUSE)
             {
-                setGameState(gameStates.ACTIVE);
+				resumeGame ();
             }
             else
             {
