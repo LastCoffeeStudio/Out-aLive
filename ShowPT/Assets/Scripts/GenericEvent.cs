@@ -14,8 +14,7 @@ public class GenericEvent : MonoBehaviour {
         BRIDGE = 5,
         PRESENTATIONBOSS = 6,
         BOSSFIGHT = 7,
-        PLAYERDEAD = 8,
-        CLAP = 9
+        PLAYERDEAD = 8
     }
 
     public EventType type;
