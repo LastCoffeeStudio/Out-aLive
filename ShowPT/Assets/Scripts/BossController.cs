@@ -506,6 +506,8 @@ public class BossController : MonoBehaviour
         //Update roulette texture
         updateRouletteHead(enemySpawn);
 
+        ctrlAudio.playOneSound(bossSounds.audioGroup, bossSounds[12], transform.position, bossSounds.volume, bossSounds.spatialBlend, bossSounds.priority);
+
         if (enemySpawn.type == Enemy.EnemyType.ALL)
         {
             for (int i = 0; i < numberSpawns; ++i)
