@@ -734,6 +734,7 @@ public class BossController : MonoBehaviour
     public void startRouletteSpin()
     {
         //SOB start hidde roulete
+        ctrlAudio.playOneSound(bossSounds.audioGroup, bossSounds[11], transform.position, bossSounds.volume, bossSounds.spatialBlend, bossSounds.priority);
     }
     /**Initialization**/
 
