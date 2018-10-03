@@ -618,4 +618,9 @@ public class PlayerMovment : MonoBehaviour
 
         return q;
     }
+
+    void SetMainCameraCustomCullingMatrix(Vector3 cameraPosition, Vector3 lookAtPosition)
+    {
+        Camera.main.cullingMatrix = cam.projectionMatrix * cam.worldToCameraMatrix;
+    }
 }

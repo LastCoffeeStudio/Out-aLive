@@ -41,6 +41,7 @@ public class Explosion : MonoBehaviour {
             float distance = Vector3.Distance(col.gameObject.transform.position, transform.position);
             int finalDamage = calculateDamage(distance);
             col.gameObject.GetComponent<Enemy>().getHit(finalDamage);
+            Debug.Log(col.name);
         }
         if (col.gameObject.layer == LayerMask.NameToLayer("PhysicsObjects"))
         {
