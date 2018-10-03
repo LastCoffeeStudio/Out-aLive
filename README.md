@@ -4,7 +4,8 @@ FPS Shooter game where you are the contestant of the most macabre and popular TV
 
 ![Menu](https://github.com/LastCoffeeStudio/Out-aLive/blob/master/Wiki/fondos9.jpeg)
 ![Presenter](https://github.com/LastCoffeeStudio/Out-aLive/blob/master/Wiki/fondos10.jpeg)
-![Gun](https://github.com/LastCoffeeStudio/Out-aLive/blob/master/Wiki/fondos.png)
+![Stage](https://github.com/LastCoffeeStudio/Out-aLive/blob/master/Wiki/fondos11.jpeg)
+![Gun](https://github.com/LastCoffeeStudio/Out-aLive/blob/master/Wiki/fondos.jpeg)
 ![Decal](https://github.com/LastCoffeeStudio/Out-aLive/blob/master/Wiki/fondos1.jpeg)
 ![Shootgun](https://github.com/LastCoffeeStudio/Out-aLive/blob/master/Wiki/fondos2.jpeg)
 ![Damage](https://github.com/LastCoffeeStudio/Out-aLive/blob/master/Wiki/fondos3.jpeg)
