@@ -80,6 +80,7 @@ public class BossController : MonoBehaviour
     private float explosionEffectsTimer;
     private float timeToInvokeExplosion;
     private int explosionsIndex;
+    private bool firstRoulette;
     private bool armsActive;
     private bool chasePlayer;
     private bool[] spawns;
@@ -462,8 +463,15 @@ public class BossController : MonoBehaviour
 
         if (boolParam != 0)
         {
-            //SOB Show roulete
-            rouletteRoll = Random.Range(1,5);
+            if (firstRoulette)
+            {
+                rouletteRoll = 4;
+                firstRoulette = false;
+            }
+            else
+            {
+                rouletteRoll = Random.Range(1, 5);
+            }
         }
         else
         {
@@ -500,7 +508,6 @@ public class BossController : MonoBehaviour
         }
 
         EnemySpawn enemySpawn = findEnemySpawn(type);
-        Debug.Log(enemySpawn.type);
         int numberSpawns = Random.Range(enemySpawn.minNumEnemies, enemySpawn.maxNumEnemies + 1);
 
         //Update roulette texture
@@ -797,6 +804,7 @@ public class BossController : MonoBehaviour
         sideLength = body.GetComponent<Renderer>().bounds.size.z;
         armsActive = false;
         chasePlayer = false;
+        firstRoulette = true;
     }
     
     /**Utils**/
