@@ -137,7 +137,7 @@ public class ResourceMachineController : MonoBehaviour {
                 costLayer.SetActive(true);
                 costText.text = actualResources[indexActualResource].cost.ToString();
                 lockImage.gameObject.SetActive(true);
-                if (score < actualResources[indexActualResource].cost)
+                if (scoreController.getTotalScore() < actualResources[indexActualResource].cost)
                 {
                     lockImage.sprite = locked;
                 }
