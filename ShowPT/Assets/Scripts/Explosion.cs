@@ -36,11 +36,6 @@ public class Explosion : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-        Debug.Log("name: " + col.name);
-        Debug.Log("tag: " + col.tag);
-        Debug.Log("layer: " + col.gameObject.layer);
-        Debug.Log("nametolayer: " + LayerMask.NameToLayer("PhysicsObjects"));
-
         if (col.tag == "Enemy" || col.tag == "Agent" || col.tag == "Snitch")
         {
             float distance = Vector3.Distance(col.gameObject.transform.position, transform.position);

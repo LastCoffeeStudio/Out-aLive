@@ -42,6 +42,7 @@ public class BossController : MonoBehaviour
     public GameObject[] points;
     public float summonTime;
     public GameObject smokeEffect;
+    public Texture defaultRouletteText;
 
     [Header("Final state attributes")]
     public float timeToExplode;
@@ -124,6 +125,7 @@ public class BossController : MonoBehaviour
         public GameObject enemy;
         public int minNumEnemies;
         public int maxNumEnemies;
+        public Texture rouletteText;
     }
     
     /**Boss**/
@@ -465,6 +467,9 @@ public class BossController : MonoBehaviour
         }
         else
         {
+            Material mat = spawnSelector.GetComponent<Renderer>().material;
+            mat.SetTexture("_EmissionMap", defaultRouletteText);
+
             state = STATES.ROTATE_ATTACK;
             bossAnimator.SetInteger("State",0);
         }
@@ -495,7 +500,11 @@ public class BossController : MonoBehaviour
         }
 
         EnemySpawn enemySpawn = findEnemySpawn(type);
+        Debug.Log(enemySpawn.type);
         int numberSpawns = Random.Range(enemySpawn.minNumEnemies, enemySpawn.maxNumEnemies + 1);
+
+        //Update roulette texture
+        updateRouletteHead(enemySpawn);
 
         if (enemySpawn.type == Enemy.EnemyType.ALL)
         {
@@ -513,6 +522,12 @@ public class BossController : MonoBehaviour
                 spawnEnemy(enemySpawn);
             }
         }
+    }
+
+    private void updateRouletteHead(EnemySpawn enemySpawn)
+    {
+        Material mat = spawnSelector.GetComponent<Renderer>().material;
+        mat.SetTexture("_EmissionMap", enemySpawn.rouletteText);
     }
 
     private void calculateDirectionFromPlayerPosition()
@@ -638,7 +653,6 @@ public class BossController : MonoBehaviour
 
     private void spawnEnemy(EnemySpawn enemySpawn)
     {
-        Debug.Log(enemySpawn.type);
         int randomPoint = Random.Range(0, spawns.Length);
         int checkedPoints = 0;
         //Number of spawnpoints must be greater than maximum num enemies of any enemy!
