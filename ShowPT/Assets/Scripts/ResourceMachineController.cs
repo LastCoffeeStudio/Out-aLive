@@ -128,8 +128,8 @@ public class ResourceMachineController : MonoBehaviour {
     {
         resourceImage.sprite = actualResources[indexActualResource].image;
         resourceImage.rectTransform.sizeDelta = new Vector2(actualResources[indexActualResource].width, actualResources[indexActualResource].height);
-        resourceText.text = actualResources[indexActualResource].text;
-        descriptionText.text = actualResources[indexActualResource].description;
+        resourceText.text = LocalizationManager.instance.getLocalizedValue(actualResources[indexActualResource].text);
+        descriptionText.text = LocalizationManager.instance.getLocalizedValue(actualResources[indexActualResource].description);
 
         switch (actualResources[indexActualResource].category)
         {
