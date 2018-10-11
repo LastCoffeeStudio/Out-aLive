@@ -89,7 +89,7 @@ public class InteractableObjectsManager : MonoBehaviour {
         InteractableInfo interactableInfo = (InteractableInfo)interactableObjectsManagerinstance.interactableObjects[name];
         if (interactableInfo.showAction)
         {
-            interactableObjectsManagerinstance.actionText.text = interactableInfo.action;
+            interactableObjectsManagerinstance.actionText.text = LocalizationManager.instance.getLocalizedValue(interactableInfo.action);
             interactableObjectsManagerinstance.background.gameObject.SetActive(true);
         }
         if (interactableInfo.showKey)
@@ -100,7 +100,7 @@ public class InteractableObjectsManager : MonoBehaviour {
         }
         if (interactableInfo.showName)
         {
-            interactableObjectsManagerinstance.objectNameText.text = interactableInfo.objectName;
+            interactableObjectsManagerinstance.objectNameText.text = LocalizationManager.instance.getLocalizedValue(interactableInfo.objectName);
         }
         interactableObjectsManagerinstance.line.gameObject.SetActive(true);
     }
