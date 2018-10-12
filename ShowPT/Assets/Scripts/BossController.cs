@@ -58,7 +58,7 @@ public class BossController : MonoBehaviour
 
     [Header("Sounds attributes")]
     public AudioCollection bossSounds;
-    public AudioCollection voiceSounds;
+    public SubtitleAudioCollection voiceSounds;
     public AudioClip bossSuccHitSound;
 
     private GameObject player;
@@ -320,17 +320,22 @@ public class BossController : MonoBehaviour
             switch(armsDead)
             {
                 case 0:
-                    soundDestroyArm = 7;
+                    soundDestroyArm = 9;
                     break;
                 case 1:
-                    soundDestroyArm = 8;
+                    soundDestroyArm = 10;
                     break;
                 case 2:
-                    soundDestroyArm = 9;
+                    soundDestroyArm = 11;
                     break;
             }
 
-            ctrlAudio.playOneSound(bossSounds.audioGroup, bossSounds[soundDestroyArm], transform.position, bossSounds.volume, bossSounds.spatialBlend, bossSounds.priority);
+            if (soundDestroyArm != 0)
+            {
+                SubtitleAudio subAudio = voiceSounds[soundDestroyArm];
+                SubtitleManager.instance.playSubtitle(subAudio.audioClip.length, subAudio.keysString, SubtitleManager.SubtitleType.UPSUBTITLE);
+                ctrlAudio.playOneSound(voiceSounds.audioGroup, subAudio.audioClip, transform.position, voiceSounds.volume, voiceSounds.spatialBlend, voiceSounds.priority);
+            }
             ctrlAudio.playOneSound(bossSounds.audioGroup, bossSounds[3], transform.position, bossSounds.volume, bossSounds.spatialBlend, bossSounds.priority);
             arms[id].dead = true;
             ++armsDead;

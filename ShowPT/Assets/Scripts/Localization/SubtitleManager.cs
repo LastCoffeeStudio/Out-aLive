@@ -28,6 +28,7 @@ public class SubtitleManager : MonoBehaviour
     private Text UpSubtitle;
     private Text DownSubtitle;
     private Text selectText;
+    private int iter;
 
     private void Start()
     {
@@ -44,8 +45,9 @@ public class SubtitleManager : MonoBehaviour
         DownSubtitle = transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>();
     }
 
-    public void playSubtitle(int timeInSecs, SubtitleItem[] subtitles, SubtitleType subtitleType)
+    public void playSubtitle(float timeInSecs, SubtitleItem[] subtitles, SubtitleType subtitleType)
     {
+        int timeSec = ((int) timeInSecs + 1);
         switch (subtitleType)
         {
             case SubtitleType.UPSUBTITLE:
@@ -55,13 +57,13 @@ public class SubtitleManager : MonoBehaviour
                 selectText = DownSubtitle;
                 break;
         }
-        StartCoroutine(playSubtitleAsync(timeInSecs, subtitles));
+        StartCoroutine(playSubtitleAsync(timeSec, subtitles));
     }
 
     IEnumerator playSubtitleAsync(int timeInSecs, SubtitleItem[] subtitles)
     {
         selectText.gameObject.SetActive(true);
-        int iter = 0;
+        iter = 0;
         while (iter < subtitles.Length-1)
         {
             selectText.text = LocalizationManager.instance.getLocalizedValue(subtitles[iter].keySubtitle);
@@ -71,5 +73,12 @@ public class SubtitleManager : MonoBehaviour
         selectText.text = LocalizationManager.instance.getLocalizedValue(subtitles[iter].keySubtitle);
         yield return new WaitForSeconds(timeInSecs - subtitles[iter].timeSec);
         selectText.gameObject.SetActive(false);
+    }
+
+    public void stopSubtitle()
+    {
+        UpSubtitle.gameObject.SetActive(false);
+        DownSubtitle.gameObject.SetActive(false);
+        StopAllCoroutines();
     }
 }

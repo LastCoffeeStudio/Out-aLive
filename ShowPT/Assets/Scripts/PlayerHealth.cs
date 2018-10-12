@@ -41,7 +41,7 @@ public class PlayerHealth : MonoBehaviour {
     [Header("Sounds")]
     private CtrlAudio ctrlAudio;
     public AudioCollection damageCollection;
-    public AudioCollection tvCollection;
+    public SubtitleAudioCollection tvCollection;
     private ulong idClip = 0;
     private bool playerDamagedFirstTimeLil;
     private bool playerDamagedFirstTimeTurret;
@@ -139,9 +139,11 @@ public class PlayerHealth : MonoBehaviour {
 				health = maxHealth;
 				hudController.ChangeHealthBar (health);
 			} 
-			else if (health <= 0) 
+			else if (health <= 0)
 			{
-                ctrlAudio.playOneSound(tvCollection.audioGroup, tvCollection[(int)GenericEvent.EventType.PLAYERDEAD], Vector3.zero, 0.05f, 0f, tvCollection.priority);
+			    SubtitleAudio subAudio = tvCollection[(int) GenericEvent.EventType.PLAYERDEAD];
+                ctrlAudio.playOneSound(tvCollection.audioGroup, subAudio.audioClip, Vector3.zero, 0.05f, 0f, tvCollection.priority);
+                SubtitleManager.instance.playSubtitle(subAudio.audioClip.length, subAudio.keysString, SubtitleManager.SubtitleType.UPSUBTITLE);
                 //Player DIES; Start dying sequence
                 disablePlayer();
                 isDead = true;
@@ -159,7 +161,9 @@ public class PlayerHealth : MonoBehaviour {
         if (!playerDamagedFirstTimeLil)
         {
             playerDamagedFirstTimeLil = true;
-            ctrlAudio.playOneSound(tvCollection.audioGroup, tvCollection[(int)GenericEvent.EventType.FIRSTLIL], Vector3.zero, 0.05f, 0f, tvCollection.priority);
+            SubtitleAudio subAudio = tvCollection[(int)GenericEvent.EventType.FIRSTLIL];
+            ctrlAudio.playOneSound(tvCollection.audioGroup, subAudio.audioClip, Vector3.zero, 0.05f, 0f, tvCollection.priority);
+            SubtitleManager.instance.playSubtitle(subAudio.audioClip.length, subAudio.keysString, SubtitleManager.SubtitleType.UPSUBTITLE);
         }
     }
 
@@ -168,7 +172,10 @@ public class PlayerHealth : MonoBehaviour {
         if (!playerDamagedFirstTimeTurret)
         {
             playerDamagedFirstTimeTurret = true;
-            ctrlAudio.playOneSound(tvCollection.audioGroup, tvCollection[(int)GenericEvent.EventType.FIRSTORRET], Vector3.zero, 0.05f, 0f, tvCollection.priority);
+            SubtitleAudio subAudio = tvCollection[(int)GenericEvent.EventType.FIRSTORRET];
+            ctrlAudio.playOneSound(tvCollection.audioGroup, subAudio.audioClip, Vector3.zero, 0.05f, 0f, tvCollection.priority);
+            SubtitleManager.instance.playSubtitle(subAudio.audioClip.length, subAudio.keysString,
+                SubtitleManager.SubtitleType.UPSUBTITLE);
         }
     }
 

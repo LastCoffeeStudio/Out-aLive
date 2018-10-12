@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TVShowmanManager : MonoBehaviour {
 
-    public AudioCollection sounds;
+    public SubtitleAudioCollection soundsSubtitle;
     private GameObject[] televisions;
     private CtrlAudio ctrlAudio;
 
@@ -15,15 +15,16 @@ public class TVShowmanManager : MonoBehaviour {
 
     public void playMessageAllTVs(List<string> tvs, GenericEvent.EventType audiosShowmanType)
     {
-        AudioClip spriteAudio = sounds[(int)audiosShowmanType];
-
+        SubtitleAudio subtitleAudio = soundsSubtitle[(int) audiosShowmanType];
+        AudioClip spriteAudio = subtitleAudio.audioClip;
         for (int i = 0; i < televisions.Length; i++)
         {
             if (tvs.Contains(televisions[i].name) && televisions[i].transform.GetChild(0).gameObject.activeSelf) {
-                ctrlAudio.playOneSound(sounds.audioGroup, spriteAudio, televisions[i].gameObject.transform.position, sounds.volume, sounds.spatialBlend, sounds.priority);
+                ctrlAudio.playOneSound(soundsSubtitle.audioGroup, spriteAudio, televisions[i].gameObject.transform.position, soundsSubtitle.volume, soundsSubtitle.spatialBlend, soundsSubtitle.priority);
                 televisions[i].GetComponentInChildren<SpriteRenderer>()
                     .gameObject.GetComponent<Animator>().Play(spriteAudio.name);
             }
         }
+        SubtitleManager.instance.playSubtitle(spriteAudio.length, subtitleAudio.keysString, SubtitleManager.SubtitleType.UPSUBTITLE);
     }
 }
