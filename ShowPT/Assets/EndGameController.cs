@@ -6,7 +6,7 @@ public class EndGameController : MonoBehaviour
 {
     public float timeToEnd;
     public GameObject cinematicObject;
-
+    public SubtitleAudio subAudio;
     private GameObject player;
     private ScoreController scoreController;
     private float endTimer;
@@ -23,6 +23,7 @@ public class EndGameController : MonoBehaviour
     {
 		if (endTimer >= timeToEnd)
         {
+            SubtitleManager.instance.playSubtitle(20f, subAudio.keysString, SubtitleManager.SubtitleType.DOWNSUBTITLE);
             cinematicObject.SetActive(true);
             scoreController.hud.SetActive(false);
         }
