@@ -84,7 +84,7 @@ public class SubtitleManager : MonoBehaviour
     {
         UpSubtitle.gameObject.SetActive(false);
         DownSubtitle.gameObject.SetActive(false);
-        StopAllCoroutines();
+        StopCoroutine("playSubtitleAsync");
     }
 
     public void subtitlesActive(bool state)

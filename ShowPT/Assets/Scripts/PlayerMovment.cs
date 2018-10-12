@@ -360,6 +360,8 @@ public class PlayerMovment : MonoBehaviour
                 if (hitbool == false || (hit.transform.gameObject.layer !=  LayerMask.NameToLayer("Wall")
                                      && hit.transform.gameObject.layer != LayerMask.NameToLayer("LedsWall")
                                      && hit.transform.root.name != "prop_room"
+                                     && hit.transform.name != "DoorPos"
+                                     && hit.transform.name != "DoorNeg"
                                      && hit.transform.root.name != "Scene"))
                 {
                         Debug.DrawRay(transform.position, velocity, new Color(1f, 0f, 1f), 0.1f, true);

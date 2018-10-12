@@ -16,7 +16,7 @@ public class CtrlAudio : MonoBehaviour
     private Dictionary<ulong, AudioPoolItem> activePool = new Dictionary<ulong, AudioPoolItem>();
     private ulong nextId = 0;
     private Transform listenerPos = null;
-
+    private int sceneIndex;
     void Awake()
     {
         if (ctrlAudioInstance == null)
@@ -58,6 +58,14 @@ public class CtrlAudio : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        if (sceneIndex == 1)
+        {
+            GetComponent<BGM>().playMeSomething(0);
+        }
+    }
+
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -70,13 +78,15 @@ public class CtrlAudio : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.buildIndex == 0)
+        if (scene.buildIndex == 1)
         {
             listenerPos = GameObject.FindGameObjectWithTag("MainCamera").transform;
+            sceneIndex = 1;
         }
-        else if (scene.buildIndex == 1)
+        else if (scene.buildIndex == 2)
         {
             listenerPos = GameObject.FindGameObjectWithTag("Player").transform;
+            sceneIndex = 1;
         }
     }
 

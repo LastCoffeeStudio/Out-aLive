@@ -40,23 +40,19 @@ public class Main : MonoBehaviour
         actionsDictionary = new Dictionary<Actions, UnityAction>();
         initializeActions();
     }
-
-    private void Start()
-    {
-        bgm = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<BGM>();
-        bgm.playMeSomething(0);
-    }
+    
 
     void OnEnable()
     {
         //Debug.Log("OnEnable called");
         SceneManager.sceneLoaded += OnSceneLoaded;
+        
     }
 
     // called second
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(SceneManager.GetActiveScene().buildIndex == 0)
+        if(SceneManager.GetActiveScene().buildIndex == 1)
         {
             disableGameObjects();
             shouldLoadSceneOne = true;
@@ -69,7 +65,7 @@ public class Main : MonoBehaviour
         if (shouldLoadSceneOne)
         {
             shouldLoadSceneOne = false;
-            StartCoroutine(loadLevel(1));
+            StartCoroutine(loadLevel(2));
         }
 
         if (async != null && async.isDone)
@@ -115,7 +111,7 @@ public class Main : MonoBehaviour
 		Cursor.lockState = CursorLockMode.None;
 		Cursor.visible = true;
         Time.timeScale = 1;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void quitGame()

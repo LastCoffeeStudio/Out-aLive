@@ -7,7 +7,7 @@ public class BGM : MonoBehaviour {
 	//This class serves mostly as an interface between CtrlAudio.cs and other classes in order to modify BGM stuff.
 
 	CtrlAudio ctrlAudio;
-	ulong idbackgroundMusic;
+	ulong idbackgroundMusic = 0;
 	[SerializeField]
 	float normalVolume = 0.6f;
 
@@ -43,13 +43,19 @@ public class BGM : MonoBehaviour {
 	public void playMeSomething(int musicId)
 	{
 		stopTheMusic ();
-		ctrlAudio.setTrackVolume ("Music", trackVolume);
-	    idbackgroundMusic = ctrlAudio.playOneSound("Music", musicList[musicId], Vector3.zero, 0.6f, 0f, 1, true);
+	    if (ctrlAudio != null)
+	    {
+	        ctrlAudio.setTrackVolume("Music", trackVolume);
+	        idbackgroundMusic = ctrlAudio.playOneSound("Music", musicList[musicId], Vector3.zero, 0.6f, 0f, 1, true);
+        }
     }
 
 	public void stopTheMusic()
 	{
-		ctrlAudio.stopSound (idbackgroundMusic);
+	    if (ctrlAudio != null)
+	    {
+	        ctrlAudio.stopSound(idbackgroundMusic);
+        }
 		isFading = false;
 	}
 
