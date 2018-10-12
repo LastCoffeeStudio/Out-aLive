@@ -129,7 +129,7 @@ public class TweetSystem : MonoBehaviour
 		tweetAvatar.sprite = tweetData.tweeter.tweeterAvatar;
 		tweetName.text = tweetData.tweeter.tweeterName;
 		tweetDir.text = tweetData.tweeter.tweeterDir;
-		tweetText.text = tweetData.tweetText;
+		tweetText.text = LocalizationManager.instance.getLocalizedValue(tweetData.tweetText);
 
 		audioCtrl.playOneSound("UI", tweetAudio, transform.position, 0.5f, 0f, 150);
 		tweetState = state.TWEET_RUNNING_IN;
