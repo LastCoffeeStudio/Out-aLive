@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class SubtitleManager : MonoBehaviour
 {
     public static SubtitleManager instance;
+    private bool subtitlesAtive = true;
+
     void Awake()
     {
         if (instance == null)
@@ -47,17 +49,20 @@ public class SubtitleManager : MonoBehaviour
 
     public void playSubtitle(float timeInSecs, SubtitleItem[] subtitles, SubtitleType subtitleType)
     {
-        int timeSec = ((int) timeInSecs + 1);
-        switch (subtitleType)
+        if (subtitlesAtive)
         {
-            case SubtitleType.UPSUBTITLE:
-                selectText = UpSubtitle;
-                break;
-            case SubtitleType.DOWNSUBTITLE:
-                selectText = DownSubtitle;
-                break;
+            int timeSec = ((int) timeInSecs + 1);
+            switch (subtitleType)
+            {
+                case SubtitleType.UPSUBTITLE:
+                    selectText = UpSubtitle;
+                    break;
+                case SubtitleType.DOWNSUBTITLE:
+                    selectText = DownSubtitle;
+                    break;
+            }
+            StartCoroutine(playSubtitleAsync(timeSec, subtitles));
         }
-        StartCoroutine(playSubtitleAsync(timeSec, subtitles));
     }
 
     IEnumerator playSubtitleAsync(int timeInSecs, SubtitleItem[] subtitles)
@@ -80,5 +85,10 @@ public class SubtitleManager : MonoBehaviour
         UpSubtitle.gameObject.SetActive(false);
         DownSubtitle.gameObject.SetActive(false);
         StopAllCoroutines();
+    }
+
+    public void subtitlesActive(bool state)
+    {
+        subtitlesAtive = state;
     }
 }

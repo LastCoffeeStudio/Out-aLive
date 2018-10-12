@@ -55,7 +55,7 @@ public class OptionsController : MonoBehaviour {
 
     public void setVolume(float value)
     {
-        mixer.SetFloat("masterVolume", value);
+        mixer.SetFloat("Master", value);
         volumeValue.text = ((int)(((value / 80f) + 1f) * 100)).ToString();
     }
 
@@ -73,5 +73,10 @@ public class OptionsController : MonoBehaviour {
     {
         Resolution resolution = resolutions[value];
         Screen.SetResolution(resolution.width,resolution.height,Screen.fullScreen,60);
+    }
+
+    public void setSubtitles(bool value)
+    {
+        SubtitleManager.instance.subtitlesActive(value);
     }
 }
