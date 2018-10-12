@@ -12,6 +12,10 @@ public class LocalizedText : MonoBehaviour
     void Start()
     {
         Text text = GetComponent<Text>();
+        if (LocalizationManager.instance.getLenguage() == "AR.json")
+        {
+            text.font = LocalizationManager.instance.arFont;
+        }
         text.text = LocalizationManager.instance.getLocalizedValue(key);
     }
 

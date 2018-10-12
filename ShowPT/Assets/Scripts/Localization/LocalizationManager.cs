@@ -11,7 +11,9 @@ public class LocalizationManager : MonoBehaviour
     private Dictionary<string, string> localizedText;
     private bool isReady = false;
     private string missingTextString = "Localized text not found";
+    public Font arFont;
 
+    private string lenguage;
     // Use this for initialization
     void Awake()
     {
@@ -42,6 +44,7 @@ public class LocalizationManager : MonoBehaviour
                 localizedText.Add(loadedData.items[i].key, loadedData.items[i].value);
             }
             Debug.Log("Data loaded, dictionary contains: " + localizedText.Count + " entries");
+            lenguage = fileName;
         }
         else
         {
@@ -66,6 +69,11 @@ public class LocalizationManager : MonoBehaviour
     public bool getIsReady()
     {
         return isReady;
+    }
+
+    public string getLenguage()
+    {
+        return lenguage;
     }
 
 }
