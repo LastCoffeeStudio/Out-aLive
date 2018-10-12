@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
@@ -39,9 +40,16 @@ public class LocalizationManager : MonoBehaviour
             string dataAsJson = File.ReadAllText(filePath);
             LocalizationData loadedData = JsonUtility.FromJson<LocalizationData>(dataAsJson);
 
-            for (int i = 0; i < loadedData.items.Length; i++)
+            for (int i = 0; i < loadedData.items.Length; ++i)
             {
-                localizedText.Add(loadedData.items[i].key, loadedData.items[i].value);
+                if (fileName != "AR.json")
+                {
+                    localizedText.Add(loadedData.items[i].key, loadedData.items[i].value);
+                }
+                else
+                {
+                    localizedText.Add(loadedData.items[i].key,reverse(loadedData.items[i].value)); 
+                }
             }
             Debug.Log("Data loaded, dictionary contains: " + localizedText.Count + " entries");
             lenguage = fileName;
@@ -76,4 +84,10 @@ public class LocalizationManager : MonoBehaviour
         return lenguage;
     }
 
+    public static string reverse(string s)
+    {
+        char[] charArray = s.ToCharArray();
+        Array.Reverse(charArray);
+        return new string(charArray);
+    }
 }
