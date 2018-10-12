@@ -6,7 +6,7 @@ using UnityEngine.Video;
 public class IntroCinematicController : MonoBehaviour {
 
     public Main ctrlMain;
-
+    public SubtitleAudio subtite;
     private VideoPlayer videoPlayer;
 
     private void Start()
@@ -16,6 +16,7 @@ public class IntroCinematicController : MonoBehaviour {
         videoPlayer.loopPointReached += playGame;
         ctrlMain = GameObject.Find("CtrlMain").GetComponent<Main>();
 		Cursor.visible = false;
+        SubtitleManager.instance.playSubtitle(47, subtite.keysString, SubtitleManager.SubtitleType.DOWNSUBTITLE);
     }
 
     private void Update()
