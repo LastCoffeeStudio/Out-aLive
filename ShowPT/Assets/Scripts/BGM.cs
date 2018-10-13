@@ -6,7 +6,7 @@ public class BGM : MonoBehaviour {
 
 	//This class serves mostly as an interface between CtrlAudio.cs and other classes in order to modify BGM stuff.
 
-	CtrlAudio ctrlAudio;
+	public CtrlAudio ctrlAudio;
 	ulong idbackgroundMusic = 0;
 	[SerializeField]
 	float normalVolume = 0.6f;
@@ -23,8 +23,12 @@ public class BGM : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
-		trackVolume = ctrlAudio.getTrackVolume("Music");
+	    if (ctrlAudio == null)
+	    {
+	        ctrlAudio = GameObject.FindGameObjectWithTag("CtrlAudio").GetComponent<CtrlAudio>();
+	    }
+
+	    trackVolume = ctrlAudio.getTrackVolume("Music");
 	}
 	
 	// Update is called once per frame

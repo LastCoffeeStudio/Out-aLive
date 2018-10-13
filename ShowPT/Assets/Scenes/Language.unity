@@ -214,6 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ebef40c43ad02478d533e560dc4b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bgm: {fileID: 134511928}
 --- !u!4 &100928719
 Transform:
   m_ObjectHideFlags: 0
@@ -289,6 +290,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &134511928 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114632354977813408, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1062379315}
+  m_Script: {fileID: 11500000, guid: 8048a8765dc155b43bb2fa506aa490ce, type: 3}
 --- !u!1 &149500990
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,6 +307,7 @@ GameObject:
   - component: {fileID: 149500993}
   - component: {fileID: 149500992}
   - component: {fileID: 149500991}
+  - component: {fileID: 149500995}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -370,6 +378,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &149500995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 149500990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc7bfe7202e0f043b6016c72141b114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightedAudioClip: {fileID: 8300000, guid: f756d1e2f2544c34c96b5832bb7d5d28,
+    type: 3}
+  selectedAudioClip: {fileID: 8300000, guid: 7616f434b93505a4588ba9f0e0b61cde, type: 3}
+  canceledAudioClip: {fileID: 8300000, guid: 91a0b0727b19a6f4fa64643cf394b4c0, type: 3}
 --- !u!1 &270818053
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,6 +521,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 298017063}
+--- !u!114 &361848716 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114103367934453112, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1062379315}
+  m_Script: {fileID: 11500000, guid: d1bf5f333740da6419fdd308eba1bae9, type: 3}
 --- !u!1 &479427190
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,6 +538,7 @@ GameObject:
   - component: {fileID: 479427194}
   - component: {fileID: 479427193}
   - component: {fileID: 479427192}
+  - component: {fileID: 479427195}
   m_Layer: 5
   m_Name: Portuges
   m_TagString: Untagged
@@ -620,6 +650,53 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 479427190}
+--- !u!114 &479427195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 479427190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 149500995}
+          m_MethodName: playHiglight
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 149500995}
+          m_MethodName: playSelected
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &532440248
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,6 +773,7 @@ GameObject:
   - component: {fileID: 601396329}
   - component: {fileID: 601396328}
   - component: {fileID: 601396327}
+  - component: {fileID: 601396330}
   m_Layer: 5
   m_Name: English
   m_TagString: Untagged
@@ -807,6 +885,53 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 601396325}
+--- !u!114 &601396330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 601396325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 149500995}
+          m_MethodName: playHiglight
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 149500995}
+          m_MethodName: playSelected
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &795541089
 GameObject:
   m_ObjectHideFlags: 0
@@ -1195,6 +1320,59 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1001 &1062379315
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4689495464855942, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -11.034362
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689495464855942, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3.3548477
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689495464855942, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -12.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689495464855942, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689495464855942, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689495464855942, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689495464855942, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689495464855942, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114103367934453112, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0,
+        type: 2}
+      propertyPath: numSounds
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114632354977813408, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0,
+        type: 2}
+      propertyPath: ctrlAudio
+      value: 
+      objectReference: {fileID: 361848716}
+    m_RemovedComponents:
+    - {fileID: 114795185686054574, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: 1fd85f70a87b0df4cb92cba6e98e0dc0, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1300324878
 GameObject:
   m_ObjectHideFlags: 0
@@ -1421,6 +1599,7 @@ GameObject:
   - component: {fileID: 1890360420}
   - component: {fileID: 1890360419}
   - component: {fileID: 1890360418}
+  - component: {fileID: 1890360421}
   m_Layer: 5
   m_Name: Arabe
   m_TagString: Untagged
@@ -1532,6 +1711,53 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1890360416}
+--- !u!114 &1890360421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1890360416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 149500995}
+          m_MethodName: playHiglight
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 149500995}
+          m_MethodName: playSelected
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &2047502463
 GameObject:
   m_ObjectHideFlags: 0
@@ -1615,6 +1841,7 @@ GameObject:
   - component: {fileID: 2104931165}
   - component: {fileID: 2104931164}
   - component: {fileID: 2104931163}
+  - component: {fileID: 2104931166}
   m_Layer: 5
   m_Name: "Espa\xF1ol"
   m_TagString: Untagged
@@ -1726,6 +1953,53 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2104931161}
+--- !u!114 &2104931166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2104931161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 149500995}
+          m_MethodName: playHiglight
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 149500995}
+          m_MethodName: playSelected
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &2107446759
 GameObject:
   m_ObjectHideFlags: 0

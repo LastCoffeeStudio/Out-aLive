@@ -78,7 +78,7 @@ public class CtrlAudio : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.buildIndex == 1)
+        if (scene.buildIndex == 0 || scene.buildIndex == 1)
         {
             listenerPos = GameObject.FindGameObjectWithTag("MainCamera").transform;
             sceneIndex = 1;
