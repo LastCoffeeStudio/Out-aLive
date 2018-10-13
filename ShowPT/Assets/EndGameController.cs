@@ -10,7 +10,7 @@ public class EndGameController : MonoBehaviour
     private GameObject player;
     private ScoreController scoreController;
     private float endTimer;
-
+    private bool playedSubt = false;
 	void Start ()
     {
         endTimer = 0;
@@ -23,7 +23,11 @@ public class EndGameController : MonoBehaviour
     {
 		if (endTimer >= timeToEnd)
         {
-            SubtitleManager.instance.playSubtitle(20f, subAudio.keysString, SubtitleManager.SubtitleType.DOWNSUBTITLE);
+            if (playedSubt == false)
+            {
+                SubtitleManager.instance.playSubtitle(20f, subAudio.keysString, SubtitleManager.SubtitleType.DOWNSUBTITLE);
+                playedSubt = true;
+            }
             cinematicObject.SetActive(true);
             scoreController.hud.SetActive(false);
         }
