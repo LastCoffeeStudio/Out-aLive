@@ -95,7 +95,15 @@ public class ResourceMachineController : MonoBehaviour {
         actualResources = resources.ToList();
         indexActualResource = 0;
         updateSelected(0);
+    }
+    private void OnEnable()
+    {
         weapondBought += changeWeapondToAmmo;
+    }
+
+    private void OnDisable()
+    {
+        weapondBought -= changeWeapondToAmmo;
     }
 
     public void updateSelected(int index)

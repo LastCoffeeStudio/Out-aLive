@@ -7,7 +7,7 @@ public class SubtitleManager : MonoBehaviour
 {
     public static SubtitleManager instance;
     private bool subtitlesAtive = true;
-
+    private Coroutine actualCoroutine;
     void Awake()
     {
         if (instance == null)
@@ -61,7 +61,7 @@ public class SubtitleManager : MonoBehaviour
                     selectText = DownSubtitle;
                     break;
             }
-            StartCoroutine(playSubtitleAsync(timeSec, subtitles));
+            actualCoroutine = StartCoroutine(playSubtitleAsync(timeSec, subtitles));
         }
     }
 
@@ -84,7 +84,7 @@ public class SubtitleManager : MonoBehaviour
     {
         UpSubtitle.gameObject.SetActive(false);
         DownSubtitle.gameObject.SetActive(false);
-        StopCoroutine("playSubtitleAsync");
+        StopCoroutine(actualCoroutine);
     }
 
     public void subtitlesActive(bool state)
