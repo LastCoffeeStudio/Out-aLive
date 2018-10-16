@@ -27,16 +27,12 @@ public class SubtitleManager : MonoBehaviour
         UPSUBTITLE,
         DOWNSUBTITLE
     }
-    private Text UpSubtitle;
-    private Text DownSubtitle;
+
+    private Text upSubtitle;
+    private Text downSubtitle;
     private Text selectText;
     private int iter;
-
-    private void OnEnable()
-    {
-        UpSubtitle = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>();
-        DownSubtitle = transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>();
-    }
+    
 
     public void playSubtitle(float timeInSecs, SubtitleItem[] subtitles, SubtitleType subtitleType)
     {
@@ -46,10 +42,10 @@ public class SubtitleManager : MonoBehaviour
             switch (subtitleType)
             {
                 case SubtitleType.UPSUBTITLE:
-                    selectText = UpSubtitle;
+                    selectText = LocalizationManager.instance.upSubtitle;
                     break;
                 case SubtitleType.DOWNSUBTITLE:
-                    selectText = DownSubtitle;
+                    selectText = LocalizationManager.instance.downSubtitle;
                     break;
             }
             actualCoroutine = StartCoroutine(playSubtitleAsync(timeSec, subtitles));
@@ -58,7 +54,7 @@ public class SubtitleManager : MonoBehaviour
 
     IEnumerator playSubtitleAsync(int timeInSecs, SubtitleItem[] subtitles)
     {
-        selectText.gameObject.SetActive(true);
+        selectText.transform.parent.gameObject.SetActive(true);
         iter = 0;
         while (iter < subtitles.Length-1)
         {
@@ -68,13 +64,13 @@ public class SubtitleManager : MonoBehaviour
         }
         selectText.text = LocalizationManager.instance.getLocalizedValue(subtitles[iter].keySubtitle);
         yield return new WaitForSeconds(timeInSecs - subtitles[iter].timeSec);
-        selectText.gameObject.SetActive(false);
+        selectText.transform.parent.gameObject.SetActive(false);
     }
 
     public void stopSubtitle()
     {
-        UpSubtitle.gameObject.SetActive(false);
-        DownSubtitle.gameObject.SetActive(false);
+        LocalizationManager.instance.upSubtitle.transform.parent.gameObject.SetActive(false);
+        LocalizationManager.instance.downSubtitle.transform.parent.gameObject.SetActive(false);
         StopCoroutine(actualCoroutine);
     }
 

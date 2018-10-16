@@ -3,11 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.UI;
 
 public class LocalizationManager : MonoBehaviour
 {
 
     public static LocalizationManager instance;
+    public Text upSubtitle;
+    public Text downSubtitle;
 
     private Dictionary<string, string> localizedText;
     private bool isReady = false;
