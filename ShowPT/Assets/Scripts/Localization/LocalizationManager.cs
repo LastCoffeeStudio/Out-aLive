@@ -12,7 +12,6 @@ public class LocalizationManager : MonoBehaviour
     private Dictionary<string, string> localizedText;
     private bool isReady = false;
     private string missingTextString = "Localized text not found";
-    public Font arFont;
 
     private string lenguage;
     // Use this for initialization

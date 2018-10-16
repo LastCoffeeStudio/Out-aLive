@@ -32,15 +32,6 @@ public class SubtitleManager : MonoBehaviour
     private Text selectText;
     private int iter;
 
-    private void Start()
-    {
-        if (LocalizationManager.instance.getLenguage() == "AR.json")
-        {
-            UpSubtitle.font = LocalizationManager.instance.arFont;
-            DownSubtitle.font = LocalizationManager.instance.arFont;
-        }
-    }
-
     private void OnEnable()
     {
         UpSubtitle = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>();
