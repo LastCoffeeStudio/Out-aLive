@@ -6,13 +6,10 @@ public class ChangeEmisionControls : MonoBehaviour
 {
 
     public Texture2D[] emisionTextures;
-    public int positionMaterial;
+    public Material material;
 	// Use this for initialization
 	void Start ()
 	{
-	    Material[] actualMaterials = GetComponent<Renderer>().materials;
-	    Material actMaterial = actualMaterials[positionMaterial];
-
 	    Texture2D texture;
 	    switch (LocalizationManager.instance.getLenguage())
 	    {
@@ -38,8 +35,8 @@ public class ChangeEmisionControls : MonoBehaviour
 	            texture = emisionTextures[0];
                 break;
         }
-	    actMaterial.SetTexture("_EmissionMap", texture);
 
+	    material.SetTexture("_EmissionMap", texture);
     }
 	
 }
